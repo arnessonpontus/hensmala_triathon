@@ -1,22 +1,110 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
+  background: linear-gradient(rgb(128, 170, 162) 0%,   #8EA68D 100%);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+h1 {
+  color: rgb(238, 234, 234)
+}
+
+h2 {
+  color: rgb(238, 234, 234)
+}
+
+a {
+  text-decoration: none;
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+p {
+  color: rgb(238, 234, 234)
+
 }
+
+.spinner {
+  justify-self: center;
+  align-self: center
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  right: 0;
+  left: 0;
+  height: 10vh;
+  align-items: center
+
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.about {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-text {
+  margin-left: 20vh;
+  margin-right: 20vh
+}
+
+
+.media {
+  
+}
+
+.media-choices {
+  height: 80vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+}
+
+.video-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.videos {
+}
+
+.video {
+  margin: 10px
+}
+
+.photos {
+}
+
+.albums {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.album {
+  margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
