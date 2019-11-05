@@ -24,7 +24,7 @@ class Videos extends React.Component {
           className="spinner"
           sizeUnit={"px"}
           size={100}
-          color={"black"}
+          color={"white"}
           loading={this.state.isVideoLoading}
         />
         <div className="video-grid">

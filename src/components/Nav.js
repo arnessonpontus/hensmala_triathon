@@ -17,6 +17,9 @@ class Nav extends React.Component {
         <Link to="/media">
          <h3 className="media-link">MEDIA</h3>
         </Link>
+        <Link to="/login">
+         <h3 className="login-link">LOGIN</h3>
+        </Link>
       </nav>
         
     );
