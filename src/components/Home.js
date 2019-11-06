@@ -48,14 +48,16 @@ class Home extends Component {
 
     firebase
       .database()
-      .ref("/" + this.state.name + " - " + dateTime)
+      .ref("/registrations")
       .push({
+        name: this.state.name,
         email: this.state.email,
         birthday: this.state.birthday,
         sex: this.state.sex,
         city: this.state.city,
         info: this.state.info,
-        hasPayed: false
+        hasPayed: "Nej",
+        time: dateTime
       })
       .then(
         this.setState({

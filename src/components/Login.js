@@ -1,5 +1,6 @@
 import React from "react";
 import * as firebase from "firebase";
+import Registrations from "./Registrations";
 
 class Login extends React.Component {
   state = {
@@ -33,7 +34,7 @@ class Login extends React.Component {
     if (firebase.auth().currentUser) {
       return (
         <div className="login">
-          <h1>HEJ LENNART</h1>
+          <Registrations />
           <button onClick={logOutUser}>LOGGA UT HÄR</button>
         </div>
       );
