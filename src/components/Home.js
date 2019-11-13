@@ -107,7 +107,7 @@ class Home extends Component {
                 type="text"
                 name="name"
                 value={this.state.name}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </label>
             <label>
@@ -117,7 +117,7 @@ class Home extends Component {
                 type="text"
                 name="email"
                 value={this.state.email}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </label>
             <label>
@@ -127,7 +127,7 @@ class Home extends Component {
                 type="text"
                 name="birthday"
                 value={this.state.birthday}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </label>
             <label>
@@ -137,7 +137,7 @@ class Home extends Component {
                 type="text"
                 name="city"
                 value={this.state.city}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </label>
             <label>
@@ -147,7 +147,7 @@ class Home extends Component {
                 type="text"
                 name="info"
                 value={this.state.info}
-                onChange={this.handleInputChange}
+                onChange={this.handleChange}
               />
             </label>
             <br />
