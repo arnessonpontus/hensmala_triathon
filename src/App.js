@@ -9,7 +9,6 @@ import Videos from "./components/Videos";
 import Photos from "./components/Photos";
 import Login from "./components/Login";
 import { Route, HashRouter as Router } from "react-router-dom";
-import config from "./config";
 import * as firebase from "firebase";
 
 function App() {
@@ -29,6 +28,15 @@ function App() {
   );
 }
 // Initialize Firebase
-firebase.initializeApp(config);
+firebase.initializeApp({
+  apiKey: "AIzaSyCpmSUH4Vr4N9TP487Hxz3hQnoL_mKPhRI",
+  authDomain: "hensmala-tri-proj.firebaseapp.com",
+  databaseURL: "https://hensmala-tri-proj.firebaseio.com",
+  projectId: "hensmala-tri-proj",
+  storageBucket: "hensmala-tri-proj.appspot.com",
+  messagingSenderId: "219062878367",
+  appId: "1:219062878367:web:1121ccf32971d1ce63e2aa",
+  measurementId: "G-99TRG33M08"
+});
 
 export default App;
