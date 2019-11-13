@@ -21,7 +21,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit = e => {
