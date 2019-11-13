@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import * as firebase from "firebase";
 
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
+
 class Home extends Component {
   state = {
     name: "",
     email: "",
     birthday: "",
     info: "",
-    sex: "",
     city: "",
     hasPayed: "",
     isAnmald: false
@@ -19,6 +24,20 @@ class Home extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  handleSubmit = e => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "register", ...this.state })
+    })
+      .then(() => alert("Success!"))
+      .catch(error => alert(error));
+
+    e.preventDefault();
+  };
+
+  handleChange = e => this.setState({ [e.target.name]: e.target.value });
+  /*
   handleInputChange = e => {
     //const input = document.querySelector(".nameInput");
     //input.setAttribute("style", "background-color: gray;");
@@ -36,6 +55,7 @@ class Home extends Component {
 
     this.setState({ [name]: value });
   };
+  
 
   handleSubmit = e => {
     e.preventDefault();
@@ -71,6 +91,7 @@ class Home extends Component {
         this.setState({ isAnmald: true })
       );
   };
+  */
 
   render() {
     if (this.state.isAnmald === false) {
@@ -78,7 +99,7 @@ class Home extends Component {
         <div className="home">
           <h1>HENSMÅLA TRIATHLON 2020</h1>
           <h3>Anmälan</h3>
-          <form className="form" method="post" onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <label>
               Namn:
               <br />
@@ -120,23 +141,6 @@ class Home extends Component {
               />
             </label>
             <label>
-              Kön
-              <br />
-              <select
-                onChange={this.handleInputChange}
-                name="sex"
-                id="sexSelection"
-                value={this.state.sex}
-              >
-                <option name="sex" value="man">
-                  Man
-                </option>
-                <option name="sex" value="woman">
-                  Kvinna
-                </option>
-              </select>
-            </label>
-            <label>
               Information:
               <br />
               <input
@@ -146,10 +150,9 @@ class Home extends Component {
                 onChange={this.handleInputChange}
               />
             </label>
-            <input name="Accept" type="checkbox" checked={false} />
             <br />
             <br />
-            <button>Send data!</button>
+            <button type="submit">Send data!</button>
           </form>
         </div>
       );
