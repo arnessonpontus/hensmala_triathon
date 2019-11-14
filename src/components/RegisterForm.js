@@ -27,7 +27,7 @@ class RegisterForm extends Component {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "register", ...this.state })
     })
-      .then(() => this.props.handleRegSuccess)
+      .then(() => this.props.handleRegSuccess())
       .catch(error => alert(error));
 
     e.preventDefault();
