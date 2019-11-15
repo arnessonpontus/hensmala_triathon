@@ -14,14 +14,18 @@ h2 {
   color: rgb(15, 15, 15);
 }
 
+h3 {
+  color: rgb(15, 15, 15);
+}
+
 a {
   text-decoration: none;
   color: white;
 }
 
+
 p {
   color: rgb(15, 15, 15);
-
 }
 
 .spinner {
@@ -34,10 +38,15 @@ p {
   text-decoration: none;
 }
 
+.video {
+  margin: 2vh;
+}
+
 .active {
   color: #fff;
   text-decoration: none;
 }
+
 
 
 

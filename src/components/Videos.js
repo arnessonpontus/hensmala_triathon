@@ -1,6 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Container, Row } from "reactstrap";
 
 class Videos extends React.Component {
   state = {
@@ -9,8 +10,8 @@ class Videos extends React.Component {
 
   render() {
     const opts = {
-      height: "290",
-      width: "540",
+      height: "250",
+      width: "480",
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
         autoplay: 0
@@ -18,16 +19,16 @@ class Videos extends React.Component {
     };
 
     return (
-      <div className="videos">
-        <h1>VIDEOS</h1>
-        <ClipLoader
-          className="spinner"
-          sizeUnit={"px"}
-          size={100}
-          color={"white"}
-          loading={this.state.isVideoLoading}
-        />
-        <div className="video-grid">
+      <Container className="p-5">
+        <Row>
+          <ClipLoader
+            className="spinner"
+            sizeUnit={"px"}
+            size={100}
+            color={"black"}
+            loading={this.state.isVideoLoading}
+          />
+
           <YouTube
             videoId="2g811Eo7K8U"
             opts={opts}
@@ -46,8 +47,8 @@ class Videos extends React.Component {
             onReady={() => this.setState({ isVideoLoading: false })}
             className="video"
           />
-        </div>
-      </div>
+        </Row>
+      </Container>
     );
   }
 

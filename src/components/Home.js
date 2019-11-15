@@ -31,7 +31,7 @@ class Home extends Component {
       <div>
         <img
           style={{ width: "100%" }}
-          src="/images/ht_banner.jpg"
+          src="/images/ht_banner_smaller.jpg"
           alt="HT_banner"
         ></img>
         <Container className="p-5">

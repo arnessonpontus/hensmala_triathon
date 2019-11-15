@@ -6,7 +6,6 @@ class Photos extends React.Component {
     const albumName2 = "Hensmåla Triathlon 2015";
     return (
       <div className="photos">
-        <h1>FOTON</h1>
         <div className="albums">
           <div className="album">
             <h2>{albumName1}</h2>
