@@ -34,6 +34,7 @@ class Navigation extends React.Component {
           activeClassName="active"
           exact={true}
           to="/"
+          onClick={() => this.setState({ isOpen: false })}
         >
           <img
             src="/images/nav_hona.png"
@@ -51,6 +52,7 @@ class Navigation extends React.Component {
             className="inactive"
             activeClassName="active"
             to="/aboutALS"
+            onClick={() => this.setState({ isOpen: false })}
           >
             OM ALS
           </NavLink>
@@ -59,6 +61,7 @@ class Navigation extends React.Component {
             className="inactive"
             activeClassName="active"
             to="/aboutHT"
+            onClick={() => this.setState({ isOpen: false })}
           >
             OM HENSMÅLA TRIATLON
           </NavLink>
@@ -67,6 +70,7 @@ class Navigation extends React.Component {
             className="inactive"
             activeClassName="active"
             to="/media"
+            onClick={() => this.setState({ isOpen: false })}
           >
             MEDIA
           </NavLink>

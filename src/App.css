@@ -30,12 +30,12 @@ p {
 }
 
 .inactive {
-  color: #fff;
+  color: #ebebeb;
   text-decoration: none;
 }
 
 .active {
-  color: #d6d6d6;
+  color: #fff;
   text-decoration: none;
 }
 
