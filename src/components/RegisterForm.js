@@ -110,7 +110,7 @@ class RegisterForm extends Component {
             onChange={this.handleChange}
           />
         </FormGroup>
-        <Button>Sign in</Button>
+        <Button>Amnäl mig!</Button>
       </Form>
     );
   }

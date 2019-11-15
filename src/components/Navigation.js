@@ -42,7 +42,9 @@ class Navigation extends React.Component {
           ></img>
           Hensmåla Triathlon
         </NavbarBrand>
-        <NavbarToggler onClick={this.toggle}>Visa Mer</NavbarToggler>
+        <NavbarToggler onClick={this.toggle}>
+          <img style={{ width: 30 }} src="/images/menu.png"></img>
+        </NavbarToggler>
         <Collapse isOpen={this.state.isOpen} navbar>
           <NavLink
             tag={RRNavLink}

@@ -34,9 +34,9 @@ class Home extends Component {
           src="/images/ht_banner.jpg"
           alt="HT_banner"
         ></img>
-        <Container className="m-5">
+        <Container className="p-5">
           <Row>
-            <Col>
+            <Col className="s">
               <Card>
                 <CardBody>
                   <h3>Välkommen till Hensmåla Triathlon</h3>
@@ -58,14 +58,14 @@ class Home extends Component {
           <Card className="mt-5">
             <CardBody>
               <Row>
-                <Col>
+                <Col style={{ marginTop: "5vh" }} md={6}>
                   {!this.state.hasRegisterd ? (
                     <RegisterForm handleRegSuccess={this.handleRegSuccess} />
                   ) : (
                     <RegSuccess />
                   )}
                 </Col>
-                <Col>
+                <Col style={{ marginTop: "5vh" }}>
                   <h3>Om oss</h3>
                   <p>
                     Hensmåla Triathlon har länge Lorem ipsum dolor sit amet,
