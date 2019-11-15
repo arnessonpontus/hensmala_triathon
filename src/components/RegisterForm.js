@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const encode = data => {
   return Object.keys(data)
@@ -49,64 +50,68 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <div className="home">
+      <Form onSubmit={this.handleSubmit}>
         <h3>Anmälan</h3>
-        <form className="registrationForm" onSubmit={this.handleSubmit}>
-          <label>
-            Namn:
-            <br />
-            <input
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Epost:
-            <br />
-            <input
-              type="text"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Födelsedatum:
-            <br />
-            <input
-              type="text"
-              name="birthday"
-              value={this.state.birthday}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Ort(klubb):
-            <br />
-            <input
-              type="text"
-              name="city"
-              value={this.state.city}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Information:
-            <br />
-            <input
-              type="text"
-              name="info"
-              value={this.state.info}
-              onChange={this.handleChange}
-            />
-          </label>
-          <br />
-          <br />
-          <button type="submit">Send data!</button>
-        </form>
-      </div>
+        <FormGroup>
+          <Label for="name">Namn</Label>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Förnamn Efternamn"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="email">Epost</Label>
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="din.email@gmail.com"
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="birthdayID">Födelsedatum</Label>
+          <Input
+            type="text"
+            name="birthday"
+            id="birthday"
+            placeholder="1986-06-10"
+            value={this.state.birthday}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="city"> Ort (klubb)</Label>
+          <Input
+            type="text"
+            name="city"
+            id="city"
+            placeholder="Hensmåla löparförening"
+            value={this.state.city}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="info">Information</Label>
+          <Input
+            type="textarea"
+            name="info"
+            id="info"
+            placeholder="Jag skulle vilja..."
+            value={this.state.info}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
+        <Button>Sign in</Button>
+      </Form>
     );
   }
 }

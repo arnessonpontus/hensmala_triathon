@@ -1,15 +1,17 @@
 .App {
-  text-align: center;
-  background: linear-gradient(rgb(128, 170, 162) 0%,   #8EA68D 100%);
+  color: rgb(15, 15, 15);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: #F6F6F6;
   min-height: 100vh;
 }
 
 h1 {
-  color: rgb(238, 234, 234)
+  color: rgb(15, 15, 15);
+  text-align: center;
 }
 
 h2 {
-  color: rgb(238, 234, 234)
+  color: rgb(15, 15, 15);
 }
 
 a {
@@ -18,12 +20,8 @@ a {
 }
 
 p {
-  color: rgb(238, 234, 234)
+  color: rgb(15, 15, 15);
 
-}
-
-li {
-  list-style: none
 }
 
 .spinner {
@@ -31,93 +29,16 @@ li {
   align-self: center
 }
 
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  right: 0;
-  left: 0;
-  height: 10vh;
-  align-items: center
-
+.inactive {
+  color: #fff;
+  text-decoration: none;
 }
 
-.home {
-  display: flex;
-  flex-direction: column;
+.active {
+  color: #d6d6d6;
+  text-decoration: none;
 }
 
-.form {
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center
-}
-
-.about {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.about-text {
-  margin-left: 20vh;
-  margin-right: 20vh
-}
-
-
-.media {
-  
-}
-
-.media-choices {
-  height: 80vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center
-}
-
-.video-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.videos {
-}
-
-.video {
-  margin: 10px
-}
-
-.photos {
-}
-
-.albums {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
-.album {
-  margin: 10px;
-}
-
-/*Login*/
-.participantList {
-  
-}
-.participant {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center
-}
-
-.adminForm {
-  display: flex;
-  flex-direction: column;  
-}
 
 
 

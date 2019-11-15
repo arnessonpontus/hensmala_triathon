@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Media from "./components/Media";
-import Nav from "./components/Nav";
+import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import AboutALS from "./components/AboutALS";
 import AboutHT from "./components/AboutHT";
@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Navigation />
         <Route path="/" exact component={Home} />
         <Route path="/media" component={Media} />
         <Route path="/aboutHT" component={AboutHT} />
