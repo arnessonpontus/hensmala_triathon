@@ -50,6 +50,9 @@ p {
   cursor: pointer;
 }
 
+.card-title {
+  font-weight: bold;
+}
 
 
 

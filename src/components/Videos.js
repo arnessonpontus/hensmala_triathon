@@ -1,7 +1,15 @@
 import React from "react";
 import YouTube from "react-youtube";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Container, Row } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardTitle,
+  CardBody,
+  CardText
+} from "reactstrap";
 
 class Videos extends React.Component {
   state = {
@@ -18,34 +26,52 @@ class Videos extends React.Component {
       }
     };
 
+    const videos = [
+      {
+        id: "2g811Eo7K8U",
+        text:
+          "Hensmåla Triathlon-arrangörerna Eva och Lennart Arnesson är nominerade till Årets Kronobergare 2018 - Peje i Hensmåla.",
+        title: "Katter som är roliga"
+      },
+      {
+        id: "Årets kronobergare 2",
+        text: "REdigerad av Lennart Arnesson",
+        title: "Hensmåla Triathlon 2015"
+      },
+      {
+        id: "Neuropodden 9 september 2017",
+        text: "Redigerad av Andre Arnesson",
+        title: "Hensmåla Triathlon 2018"
+      }
+    ];
+
     return (
-      <Container className="p-5">
-        <ClipLoader
-          className="spinner"
-          sizeUnit={"px"}
-          size={100}
-          color={"black"}
-          loading={this.state.isVideoLoading}
-        />
+      <Container>
         <Row>
-          <YouTube
-            videoId="2g811Eo7K8U"
-            opts={opts}
-            onReady={() => this.setState({ isVideoLoading: false })}
-            className="video"
-          />
-          <YouTube
-            videoId="4_8Tvd9LpHU"
-            opts={opts}
-            onReady={() => this.setState({ isVideoLoading: false })}
-            className="video"
-          />
-          <YouTube
-            videoId="4_8Tvd9LpHU"
-            opts={opts}
-            onReady={() => this.setState({ isVideoLoading: false })}
-            className="video"
-          />
+          {videos.map(video => {
+            return (
+              <Col className="mt-4" md="6">
+                <Card>
+                  <CardBody>
+                    <ClipLoader
+                      className="spinner"
+                      sizeUnit={"px"}
+                      size={100}
+                      color={"black"}
+                      loading={this.state.isVideoLoading}
+                    />
+                    <YouTube
+                      videoId={video.id}
+                      opts={opts}
+                      onReady={() => this.setState({ isVideoLoading: false })}
+                    />
+                    <CardTitle className="mt-2">{video.title}</CardTitle>
+                    <CardText>{video.text}</CardText>
+                  </CardBody>
+                </Card>
+              </Col>
+            );
+          })}
         </Row>
       </Container>
     );

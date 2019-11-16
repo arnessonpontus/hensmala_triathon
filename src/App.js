@@ -8,6 +8,8 @@ import AboutHT from "./components/AboutHT";
 import Videos from "./components/Videos";
 import Photos from "./components/Photos";
 import Register from "./components/Register";
+import Articles from "./components/Articles";
+import Radio from "./components/Radio";
 
 import { Route, HashRouter as Router } from "react-router-dom";
 
@@ -23,6 +25,8 @@ function App() {
         <Route path="/aboutALS" component={AboutALS} />
         <Route path="/videos" component={Videos} />
         <Route path="/photos" component={Photos} />
+        <Route path="/articles" component={Articles} />
+        <Route path="/radio" component={Radio} />
       </div>
     </Router>
   );
