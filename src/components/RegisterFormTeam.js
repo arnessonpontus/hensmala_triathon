@@ -9,7 +9,7 @@ const encode = data => {
 
 class RegisterFormTeam extends Component {
   state = {
-    name: "",
+    teamName: "",
     email: "",
     birthday: "",
     info: "",
@@ -55,13 +55,13 @@ class RegisterFormTeam extends Component {
           <Form onSubmit={this.handleSubmit}>
             <h3>Anmälan Lag</h3>
             <FormGroup>
-              <Label for="name">Namn</Label>
+              <Label for="teamTame">Namn</Label>
               <Input
                 type="text"
-                name="name"
-                id="name"
+                name="teamName"
+                id="teamName"
                 placeholder="Gubbaflås"
-                value={this.state.name}
+                value={this.state.teamName}
                 onChange={this.handleChange}
               />
             </FormGroup>
