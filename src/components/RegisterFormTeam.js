@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Row,
+  Col,
+  Card,
+  CardBody
+} from "reactstrap";
 
 const encode = data => {
   return Object.keys(data)
@@ -13,7 +23,8 @@ class RegisterFormTeam extends Component {
     email: "",
     birthday: "",
     info: "",
-    city: ""
+    city: "",
+    isButtonDisabled: true
   };
 
   constructor(props) {
@@ -39,13 +50,12 @@ class RegisterFormTeam extends Component {
 
     const name = e.target.name;
     let value = e.target.value;
-    /*
-    if (e.target.name === "sex") {
-      var element = document.getElementById("sexSelection");
-      value = element.options[element.selectedIndex].value;
-    }
-*/
+
     this.setState({ [name]: value });
+  };
+
+  toggleConsent = () => {
+    this.setState({ isButtonDisabled: !this.state.isButtonDisabled });
   };
 
   render() {
@@ -55,8 +65,9 @@ class RegisterFormTeam extends Component {
           <Form onSubmit={this.handleSubmit}>
             <h3>Anmälan Lag</h3>
             <FormGroup>
-              <Label for="teamTame">Namn</Label>
+              <Label for="teamName">Lagnamn</Label>
               <Input
+                required="true"
                 type="text"
                 name="teamName"
                 id="teamName"
@@ -65,54 +76,149 @@ class RegisterFormTeam extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
+            <Label for="teamMember1">Lagmedlem 1</Label>
+            <Card id="teamMember1" style={{ backgroundColor: "#dfeff0" }}>
+              <CardBody>
+                <FormGroup>
+                  <Label for="email">Epost</Label>
+                  <Input
+                    required="true"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="din.email@gmail.com"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="birthdayID">Födelsedatum</Label>
+                  <Input
+                    required="true"
+                    type="date"
+                    name="birthday"
+                    id="birthday"
+                    placeholder="date placeholder"
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="city"> Ort (klubb)</Label>
+                  <Input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="Hensmåla löparförening"
+                    value={this.state.city}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+              </CardBody>
+            </Card>
+            <Label className="mt-4" for="teamMember1">
+              Lagmedlem 2
+            </Label>
+            <Card id="teamMember1" style={{ backgroundColor: "#cee7e9" }}>
+              <CardBody>
+                <FormGroup>
+                  <Label for="email">Epost</Label>
+                  <Input
+                    required="true"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="din.email@gmail.com"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="birthdayID">Födelsedatum</Label>
+                  <Input
+                    required="true"
+                    type="date"
+                    name="birthday"
+                    id="birthday"
+                    placeholder="date placeholder"
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="city"> Ort (klubb)</Label>
+                  <Input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="Hensmåla löparförening"
+                    value={this.state.city}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+              </CardBody>
+            </Card>
+            <Label className="mt-4" for="teamMember1">
+              Lagmedlem 3
+            </Label>
+            <Card id="teamMember1" style={{ backgroundColor: "#b6dcdf" }}>
+              <CardBody>
+                <FormGroup>
+                  <Label for="email">Epost</Label>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="din.email@gmail.com"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+
+                <FormGroup>
+                  <Label for="birthdayID">Födelsedatum</Label>
+                  <Input
+                    type="date"
+                    name="birthday"
+                    id="birthday"
+                    placeholder="date placeholder"
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="city"> Ort (klubb)</Label>
+                  <Input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="Hensmåla löparförening"
+                    value={this.state.city}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+              </CardBody>
+            </Card>
 
             <FormGroup>
-              <Label for="email">Epost</Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="din.email@gmail.com"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label for="birthdayID">Födelsedatum</Label>
-              <Input
-                type="text"
-                name="birthday"
-                id="birthday"
-                placeholder="1986-06-10"
-                value={this.state.birthday}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="city"> Ort (klubb)</Label>
-              <Input
-                type="text"
-                name="city"
-                id="city"
-                placeholder="Hensmåla löparförening"
-                value={this.state.city}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label for="info">Information</Label>
+              <Label className="mt-4" for="info">
+                Information
+              </Label>
               <Input
                 type="textarea"
                 name="info"
                 id="info"
-                placeholder="Jag skulle vilja..."
+                placeholder="Vi skulle vilja..."
                 value={this.state.info}
                 onChange={this.handleChange}
               />
             </FormGroup>
-            <Button>Amnäl mig!</Button>
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" onClick={this.toggleConsent} /> Jag
+                accepterar att Hensmåla Triathlon sparar data om mig
+              </Label>
+            </FormGroup>
+            <Button className="mt-4" disabled={this.state.isButtonDisabled}>
+              Anmäl oss!
+            </Button>
           </Form>
         </Col>
         <Col style={{ marginTop: "5vh" }}>

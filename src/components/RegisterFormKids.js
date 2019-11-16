@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Row,
+  Col,
+  FormText
+} from "reactstrap";
 
 const encode = data => {
   return Object.keys(data)
@@ -13,7 +22,9 @@ class RegisterFormKids extends Component {
     email: "",
     birthday: "",
     info: "",
-    city: ""
+    city: "",
+    sex: "",
+    isButtonDisabled: true
   };
 
   constructor(props) {
@@ -39,13 +50,17 @@ class RegisterFormKids extends Component {
 
     const name = e.target.name;
     let value = e.target.value;
-    /*
+
     if (e.target.name === "sex") {
-      var element = document.getElementById("sexSelection");
+      let element = document.getElementById("sexSelection");
       value = element.options[element.selectedIndex].value;
     }
-*/
+
     this.setState({ [name]: value });
+  };
+
+  toggleConsent = () => {
+    this.setState({ isButtonDisabled: !this.state.isButtonDisabled });
   };
 
   render() {
@@ -57,6 +72,7 @@ class RegisterFormKids extends Component {
             <FormGroup>
               <Label for="name">Namn</Label>
               <Input
+                required="true"
                 type="text"
                 name="name"
                 id="name"
@@ -69,6 +85,7 @@ class RegisterFormKids extends Component {
             <FormGroup>
               <Label for="email">Epost</Label>
               <Input
+                required="true"
                 type="email"
                 name="email"
                 id="email"
@@ -77,17 +94,31 @@ class RegisterFormKids extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
-
             <FormGroup>
               <Label for="birthdayID">Födelsedatum</Label>
               <Input
-                type="text"
+                required="true"
+                type="date"
                 name="birthday"
                 id="birthday"
-                placeholder="1986-06-10"
-                value={this.state.birthday}
+                placeholder="date placeholder"
                 onChange={this.handleChange}
               />
+            </FormGroup>
+            <FormGroup>
+              <Label for="sexSelection">Kön</Label>
+              <Input
+                required="true"
+                type="select"
+                name="sex"
+                id="sexSelection"
+                onChange={this.handleChange}
+              >
+                <option></option>
+                <option>Man</option>
+                <option>Kvinna</option>
+              </Input>
+              <FormText>Du kommer tävla mot de med samma kön</FormText>
             </FormGroup>
             <FormGroup>
               <Label for="city"> Ort (klubb)</Label>
@@ -112,7 +143,15 @@ class RegisterFormKids extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
-            <Button>Amnäl mig!</Button>
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" onClick={this.toggleConsent} /> Jag
+                accepterar att Hensmåla Triathlon sparar data om mig
+              </Label>
+            </FormGroup>
+            <Button className="mt-4" disabled={this.state.isButtonDisabled}>
+              Anmäl mig!
+            </Button>
           </Form>
         </Col>
         <Col style={{ marginTop: "5vh" }}>

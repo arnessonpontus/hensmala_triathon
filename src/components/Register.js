@@ -6,8 +6,6 @@ import RegSuccess from "./RegSuccess";
 import classnames from "classnames";
 import {
   Container,
-  Row,
-  Col,
   Card,
   CardBody,
   Nav,
@@ -18,6 +16,7 @@ import {
 } from "reactstrap";
 
 class Register extends Component {
+  // TODO: Form validation
   state = {
     hasRegisterd: false,
     activeTab: "1"
