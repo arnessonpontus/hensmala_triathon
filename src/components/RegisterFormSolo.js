@@ -26,7 +26,7 @@ class RegisterFormSolo extends Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "register", ...this.state })
+      body: encode({ "form-name": "registerSolo", ...this.state })
     })
       .then(() => this.props.handleRegistration())
       .catch(error => alert(error));
