@@ -55,7 +55,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
-            to="/aboutALS"
+            to="/Register"
             onClick={() => this.setState({ isOpen: false })}
           >
             ANMÄLAN

@@ -7,6 +7,8 @@ import AboutALS from "./components/AboutALS";
 import AboutHT from "./components/AboutHT";
 import Videos from "./components/Videos";
 import Photos from "./components/Photos";
+import Register from "./components/Register";
+
 import { Route, HashRouter as Router } from "react-router-dom";
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
       <div className="App">
         <Navigation />
         <Route path="/" exact component={Home} />
+        <Route path="/register" component={Register} />
         <Route path="/media" component={Media} />
         <Route path="/aboutHT" component={AboutHT} />
         <Route path="/aboutALS" component={AboutALS} />
