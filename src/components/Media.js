@@ -13,7 +13,7 @@ class Media extends React.Component {
                 <CardBody>
                   <h3 className="logo">RADIO</h3>
                   <img
-                    style={{ width: "30vh" }}
+                    style={{ width: "80%" }}
                     src="/images/radio.svg"
                     alt="radio"
                   ></img>
@@ -23,11 +23,11 @@ class Media extends React.Component {
           </Col>
           <Col md="4">
             <Link to="/articles">
-              <Card className="text-center">
+              <Card className="text-center ">
                 <CardBody>
                   <h3 className="logo">ARTIKLAR</h3>
                   <img
-                    style={{ width: "30vh" }}
+                    style={{ width: "80%" }}
                     src="/images/article.svg"
                     alt="article"
                   ></img>
@@ -43,7 +43,7 @@ class Media extends React.Component {
                 <CardBody>
                   <h3 className="logo">VIDEOS</h3>
                   <img
-                    style={{ width: "30vh" }}
+                    style={{ width: "80%" }}
                     src="/images/video.svg"
                     alt="video"
                   ></img>
@@ -57,7 +57,7 @@ class Media extends React.Component {
                 <CardBody>
                   <h3 className="logo">FOTON</h3>
                   <img
-                    style={{ width: "30vh" }}
+                    style={{ width: "80%" }}
                     src="/images/camera.svg"
                     alt="camera"
                   ></img>

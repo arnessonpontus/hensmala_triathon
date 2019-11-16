@@ -24,7 +24,7 @@ class Home extends Component {
           <Card>
             <CardBody>
               <Row>
-                <Col md={6}>
+                <Col className="my-4" ms={4}>
                   <h2>Välkommen till Hensmåla Triathlon</h2>
                   <CardText>
                     Hensmåla Triathlon har länge Lorem ipsum dolor sit amet,
@@ -36,9 +36,9 @@ class Home extends Component {
                   </CardText>
                 </Col>
 
-                <Col className="text-right" md={6}>
+                <Col className="text-center mt-4 my-auto" ms={4}>
                   <img
-                    width="300"
+                    width="250px"
                     src="/images/hona_1500.jpg"
                     alt="hensmala_triathlon"
                   ></img>

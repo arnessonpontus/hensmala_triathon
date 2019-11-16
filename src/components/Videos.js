@@ -18,8 +18,8 @@ class Videos extends React.Component {
 
   render() {
     const opts = {
-      height: "250",
-      width: "480",
+      height: "70%",
+      width: "90%",
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
         autoplay: 0
@@ -35,7 +35,7 @@ class Videos extends React.Component {
       },
       {
         id: "Årets kronobergare 2",
-        text: "REdigerad av Lennart Arnesson",
+        text: "Redigerad av Lennart Arnesson",
         title: "Hensmåla Triathlon 2015"
       },
       {
@@ -50,7 +50,7 @@ class Videos extends React.Component {
         <Row>
           {videos.map(video => {
             return (
-              <Col className="mt-4" md="6">
+              <Col className="mt-4 text-center" md="6">
                 <Card>
                   <CardBody>
                     <ClipLoader
