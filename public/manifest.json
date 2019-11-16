@@ -1,19 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Hensmala triathlon",
+  "name": "Hensmala triathlon",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "hona192.png",
+      "src": "/images/logos/hona_51.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "51x51"
     },
     {
-      "src": "hona512.png",
+      "src": "/images/logos/hona_153.png",
+      "type": "image/png",
+      "sizes": "153x153"
+    },
+    {
+      "src": "/images/logos/hona_256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/images/logos/hona_512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

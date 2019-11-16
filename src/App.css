@@ -32,11 +32,6 @@ p {
   color: rgb(15, 15, 15);
 }
 
-.spinner {
-  justify-self: center;
-  align-self: center
-}
-
 .inactive {
   color: #ebebeb;
   text-decoration: none;

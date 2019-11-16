@@ -7,7 +7,6 @@ import {
   Input,
   Row,
   Col,
-  FormFeedback,
   FormText
 } from "reactstrap";
 

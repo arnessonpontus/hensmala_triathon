@@ -20,15 +20,14 @@ class Videos extends React.Component {
 
     return (
       <Container className="p-5">
+        <ClipLoader
+          className="spinner"
+          sizeUnit={"px"}
+          size={100}
+          color={"black"}
+          loading={this.state.isVideoLoading}
+        />
         <Row>
-          <ClipLoader
-            className="spinner"
-            sizeUnit={"px"}
-            size={100}
-            color={"black"}
-            loading={this.state.isVideoLoading}
-          />
-
           <YouTube
             videoId="2g811Eo7K8U"
             opts={opts}

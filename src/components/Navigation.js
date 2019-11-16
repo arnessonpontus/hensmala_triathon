@@ -6,22 +6,31 @@ import {
   Navbar,
   NavbarToggler,
   Collapse,
-  NavbarBrand
+  NavbarBrand,
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu
 } from "reactstrap";
 
 class Navigation extends React.Component {
   state = {
-    isOpen: false
+    isHamburgerOpen: false,
+    isDropdownOpen: false
   };
 
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
+    this.toggleHamburger = this.toggleHamburger.bind(this);
   }
 
-  toggle = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+  toggleHamburger = () => {
+    this.setState({ isHamburgerOpen: !this.state.isHamburgerOpen });
+  };
+
+  toggleDropdown = () => {
+    this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   };
 
   render() {
@@ -34,7 +43,7 @@ class Navigation extends React.Component {
           activeClassName="active"
           exact={true}
           to="/"
-          onClick={() => this.setState({ isOpen: false })}
+          onClick={() => this.setState({ isHamburgerOpen: false })}
         >
           <img
             src="/images/nav_hona.png"
@@ -43,20 +52,20 @@ class Navigation extends React.Component {
           ></img>
           Hensmåla Triathlon
         </NavbarBrand>
-        <NavbarToggler onClick={this.toggle}>
+        <NavbarToggler onClick={this.toggleHamburger}>
           <img
             style={{ width: 30 }}
             src="/images/menu.png"
             alt="hamburger-menu"
           ></img>
         </NavbarToggler>
-        <Collapse isOpen={this.state.isOpen} navbar>
+        <Collapse isOpen={this.state.isHamburgerOpen} navbar>
           <NavLink
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
             to="/Register"
-            onClick={() => this.setState({ isOpen: false })}
+            onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             ANMÄLAN
           </NavLink>
@@ -65,7 +74,7 @@ class Navigation extends React.Component {
             className="inactive"
             activeClassName="active"
             to="/aboutALS"
-            onClick={() => this.setState({ isOpen: false })}
+            onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             OM ALS
           </NavLink>
@@ -74,19 +83,102 @@ class Navigation extends React.Component {
             className="inactive"
             activeClassName="active"
             to="/aboutHT"
-            onClick={() => this.setState({ isOpen: false })}
+            onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             OM HENSMÅLA TRIATLON
           </NavLink>
+
           <NavLink
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
             to="/media"
-            onClick={() => this.setState({ isOpen: false })}
+            onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             MEDIA
           </NavLink>
+          <Dropdown
+            isOpen={this.state.isDropdownOpen}
+            toggle={this.toggleDropdown}
+          >
+            <DropdownToggle caret color="none" style={{ color: "#ebebeb" }}>
+              RESULTAT
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem>
+                <a
+                  href="/results/2019_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2019
+                </a>
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="/results/2018_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2018
+                </a>
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="/results/2017_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2017
+                </a>
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="/results/2016_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2016
+                </a>
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="/results/2015_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2015
+                </a>
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="/results/2014_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2014
+                </a>
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="/results/2013_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2013
+                </a>
+              </DropdownItem>
+              <DropdownItem>
+                <a
+                  href="/results/2012_resultat_hensmala_triathlon.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2012
+                </a>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </Collapse>
       </Navbar>
     );
