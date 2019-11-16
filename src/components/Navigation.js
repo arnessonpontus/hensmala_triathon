@@ -34,6 +34,8 @@ class Navigation extends React.Component {
   };
 
   render() {
+    const result_years = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
+
     return (
       <Navbar expand="md" sticky="top" style={{ backgroundColor: "#11999E" }}>
         <NavbarBrand
@@ -105,78 +107,22 @@ class Navigation extends React.Component {
               RESULTAT
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>
-                <a
-                  href="/results/2019_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2019
-                </a>
-              </DropdownItem>
-              <DropdownItem>
-                <a
-                  href="/results/2018_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2018
-                </a>
-              </DropdownItem>
-              <DropdownItem>
-                <a
-                  href="/results/2017_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2017
-                </a>
-              </DropdownItem>
-              <DropdownItem>
-                <a
-                  href="/results/2016_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2016
-                </a>
-              </DropdownItem>
-              <DropdownItem>
-                <a
-                  href="/results/2015_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2015
-                </a>
-              </DropdownItem>
-              <DropdownItem>
-                <a
-                  href="/results/2014_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2014
-                </a>
-              </DropdownItem>
-              <DropdownItem>
-                <a
-                  href="/results/2013_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2013
-                </a>
-              </DropdownItem>
-              <DropdownItem>
-                <a
-                  href="/results/2012_resultat_hensmala_triathlon.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  2012
-                </a>
-              </DropdownItem>
+              {result_years.map(year => {
+                return (
+                  <DropdownItem>
+                    <a
+                      style={{ color: "black" }}
+                      href={
+                        "/results/" + year + "_resultat_hensmala_triathlon.pdf"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {year}
+                    </a>
+                  </DropdownItem>
+                );
+              })}
             </DropdownMenu>
           </Dropdown>
         </Collapse>

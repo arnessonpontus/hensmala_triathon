@@ -60,7 +60,7 @@ class Radio extends React.Component {
               <Col className="mt-4" md="6">
                 <Card style={{ minHeight: 500 }}>
                   <CardBody>
-                    <CardImg src="images/arets_kronobergare.png"></CardImg>
+                    <CardImg src="images/eva_kronobergare.jpg"></CardImg>
                     <CardTitle className="mt-2">{radioShow.title}</CardTitle>
                     <CardText>{radioShow.text}</CardText>
 
