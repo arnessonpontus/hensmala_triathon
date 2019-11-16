@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardText,
-  Jumbotron,
-  Button
-} from "reactstrap";
+import { Col, Button } from "reactstrap";
 
 class RegSuccess extends Component {
   render() {

@@ -47,6 +47,9 @@ p {
   text-decoration: none;
 }
 
+.tabLink:hover {
+  cursor: pointer;
+}
 
 
 
