@@ -20,10 +20,16 @@ const encode = data => {
 class RegisterFormTeam extends Component {
   state = {
     teamName: "",
-    email: "",
-    birthday: "",
+    email1: "",
+    birthday1: "",
+    city1: "",
+    email2: "",
+    birthday2: "",
+    city2: "",
+    email3: "",
+    birthday3: "",
+    city3: "",
     info: "",
-    city: "",
     isButtonDisabled: true
   };
 
@@ -80,36 +86,36 @@ class RegisterFormTeam extends Component {
             <Card id="teamMember1" style={{ backgroundColor: "#dfeff0" }}>
               <CardBody>
                 <FormGroup>
-                  <Label for="email">Epost</Label>
+                  <Label for="email1">Epost</Label>
                   <Input
                     required="true"
                     type="email"
-                    name="email"
-                    id="email"
+                    name="email1"
+                    id="email1"
                     placeholder="din.email@gmail.com"
-                    value={this.state.email}
+                    value={this.state.email1}
                     onChange={this.handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="birthdayID">Födelsedatum</Label>
+                  <Label for="birthdayID1">Födelsedatum</Label>
                   <Input
                     required="true"
                     type="date"
-                    name="birthday"
-                    id="birthday"
+                    name="birthday1"
+                    id="birthday1"
                     placeholder="date placeholder"
                     onChange={this.handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="city"> Ort (klubb)</Label>
+                  <Label for="city1"> Ort (klubb)</Label>
                   <Input
                     type="text"
-                    name="city"
-                    id="city"
+                    name="city1"
+                    id="city1"
                     placeholder="Hensmåla löparförening"
-                    value={this.state.city}
+                    value={this.state.city1}
                     onChange={this.handleChange}
                   />
                 </FormGroup>
@@ -121,36 +127,36 @@ class RegisterFormTeam extends Component {
             <Card id="teamMember1" style={{ backgroundColor: "#cee7e9" }}>
               <CardBody>
                 <FormGroup>
-                  <Label for="email">Epost</Label>
+                  <Label for="email2">Epost</Label>
                   <Input
                     required="true"
                     type="email"
-                    name="email"
-                    id="email"
+                    name="email2"
+                    id="email2"
                     placeholder="din.email@gmail.com"
-                    value={this.state.email}
+                    value={this.state.email2}
                     onChange={this.handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="birthdayID">Födelsedatum</Label>
+                  <Label for="birthdayID2">Födelsedatum</Label>
                   <Input
                     required="true"
                     type="date"
-                    name="birthday"
-                    id="birthday"
+                    name="birthday2"
+                    id="birthday2"
                     placeholder="date placeholder"
                     onChange={this.handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="city"> Ort (klubb)</Label>
+                  <Label for="city2"> Ort (klubb)</Label>
                   <Input
                     type="text"
-                    name="city"
-                    id="city"
+                    name="city2"
+                    id="city2"
                     placeholder="Hensmåla löparförening"
-                    value={this.state.city}
+                    value={this.state.city2}
                     onChange={this.handleChange}
                   />
                 </FormGroup>
@@ -162,35 +168,35 @@ class RegisterFormTeam extends Component {
             <Card id="teamMember1" style={{ backgroundColor: "#b6dcdf" }}>
               <CardBody>
                 <FormGroup>
-                  <Label for="email">Epost</Label>
+                  <Label for="email3">Epost</Label>
                   <Input
                     type="email"
-                    name="email"
-                    id="email"
+                    name="email3"
+                    id="email3"
                     placeholder="din.email@gmail.com"
-                    value={this.state.email}
+                    value={this.state.email3}
                     onChange={this.handleChange}
                   />
                 </FormGroup>
 
                 <FormGroup>
-                  <Label for="birthdayID">Födelsedatum</Label>
+                  <Label for="birthdayID3">Födelsedatum</Label>
                   <Input
                     type="date"
-                    name="birthday"
-                    id="birthday"
+                    name="birthday3"
+                    id="birthday3"
                     placeholder="date placeholder"
                     onChange={this.handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="city"> Ort (klubb)</Label>
+                  <Label for="city3"> Ort (klubb)</Label>
                   <Input
                     type="text"
-                    name="city"
-                    id="city"
+                    name="city3"
+                    id="city3"
                     placeholder="Hensmåla löparförening"
-                    value={this.state.city}
+                    value={this.state.city3}
                     onChange={this.handleChange}
                   />
                 </FormGroup>
