@@ -51,8 +51,8 @@ class RegisterFormSolo extends Component {
     const name = e.target.name;
     let value = e.target.value;
 
-    if (e.target.name === "sex") {
-      let element = document.getElementById("sexSelection");
+    if (e.target.name === "sexSOLO") {
+      let element = document.getElementById("sexSelectionSOLO");
       value = element.options[element.selectedIndex].value;
     }
 
@@ -75,7 +75,7 @@ class RegisterFormSolo extends Component {
                 required="true"
                 type="text"
                 name="name"
-                id="name"
+                id="nameSOLO"
                 placeholder="Förnamn Efternamn"
                 value={this.state.name}
                 onChange={this.handleChange}
@@ -88,7 +88,7 @@ class RegisterFormSolo extends Component {
                 required="true"
                 type="email"
                 name="email"
-                id="email"
+                id="emailSOLO"
                 placeholder="din.email@gmail.com"
                 value={this.state.email}
                 onChange={this.handleChange}
@@ -100,7 +100,7 @@ class RegisterFormSolo extends Component {
                 required="true"
                 type="date"
                 name="birthday"
-                id="birthday"
+                id="birthdaySOLO"
                 placeholder="date placeholder"
                 onChange={this.handleChange}
               />
@@ -111,7 +111,7 @@ class RegisterFormSolo extends Component {
                 required="true"
                 type="select"
                 name="sex"
-                id="sexSelection"
+                id="sexSelectionSOLO"
                 onChange={this.handleChange}
               >
                 <option></option>
@@ -126,7 +126,7 @@ class RegisterFormSolo extends Component {
               <Input
                 type="text"
                 name="city"
-                id="city"
+                id="citySOLO"
                 placeholder="Hensmåla löparförening"
                 value={this.state.city}
                 onChange={this.handleChange}
@@ -138,7 +138,7 @@ class RegisterFormSolo extends Component {
               <Input
                 type="textarea"
                 name="info"
-                id="info"
+                id="infoSOLO"
                 placeholder="Jag skulle vilja..."
                 value={this.state.info}
                 onChange={this.handleChange}

@@ -51,8 +51,8 @@ class RegisterFormKids extends Component {
     const name = e.target.name;
     let value = e.target.value;
 
-    if (e.target.name === "sex") {
-      let element = document.getElementById("sexSelection");
+    if (e.target.name === "sexKID") {
+      let element = document.getElementById("sexSelectionKID");
       value = element.options[element.selectedIndex].value;
     }
 
@@ -74,8 +74,8 @@ class RegisterFormKids extends Component {
               <Input
                 required="true"
                 type="text"
-                name="name"
-                id="name"
+                name="nameKID"
+                id="nameKID"
                 placeholder="Förnamn Efternamn"
                 value={this.state.name}
                 onChange={this.handleChange}
@@ -87,8 +87,8 @@ class RegisterFormKids extends Component {
               <Input
                 required="true"
                 type="email"
-                name="email"
-                id="email"
+                name="emailKID"
+                id="emailKID"
                 placeholder="din.email@gmail.com"
                 value={this.state.email}
                 onChange={this.handleChange}
@@ -99,8 +99,8 @@ class RegisterFormKids extends Component {
               <Input
                 required="true"
                 type="date"
-                name="birthday"
-                id="birthday"
+                name="birthdayKID"
+                id="birthdayKID"
                 placeholder="date placeholder"
                 onChange={this.handleChange}
               />
@@ -110,8 +110,8 @@ class RegisterFormKids extends Component {
               <Input
                 required="true"
                 type="select"
-                name="sex"
-                id="sexSelection"
+                name="sexKID"
+                id="sexSelectionKID"
                 onChange={this.handleChange}
               >
                 <option></option>
@@ -124,8 +124,8 @@ class RegisterFormKids extends Component {
               <Label for="city"> Ort (klubb)</Label>
               <Input
                 type="text"
-                name="city"
-                id="city"
+                name="cityKID"
+                id="cityKID"
                 placeholder="Hensmåla löparförening"
                 value={this.state.city}
                 onChange={this.handleChange}
@@ -136,8 +136,8 @@ class RegisterFormKids extends Component {
               <Label for="info">Information</Label>
               <Input
                 type="textarea"
-                name="info"
-                id="info"
+                name="infoKID"
+                id="infoKID"
                 placeholder="Jag skulle vilja..."
                 value={this.state.info}
                 onChange={this.handleChange}
