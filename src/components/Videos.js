@@ -66,7 +66,6 @@ class Videos extends React.Component {
                       onReady={() => this.setState({ isVideoLoading: false })}
                     />
                     <CardTitle className="mt-2">{video.title}</CardTitle>
-                    <CardText>{video.text}</CardText>
                   </CardBody>
                 </Card>
               </Col>

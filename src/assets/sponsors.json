@@ -1,27 +1,284 @@
-[
+
     {
-        "title": "Korpalycke",
-        "image": "korpalycke.gif",
-        "link": "https://www.korpalycke.se"
-    },
-    {
-        "title": "Liljas",
-        "image": "liljas.png",
-        "link": "https://www.liljasbil.se"
-    },
-    {
-        "title": "Nelson Garden ",
-        "image": "nelson.png",
-        "link": "https://www.nelsongarden.se/"
-    },
-    {
-        "title": "Företag1",
-        "image": "nelson.png",
-        "link": "www.korpalycke.se"
-    },
-    {
-        "title": "Företag2",
-        "image": "nelson.png",
-        "link": "www.korpalycke.se"
+        "gold": [
+            {
+                "title": "Linons",
+                "image": "lions.png",
+                "link": "https://www.korpalycke.se"
+            },
+            {
+                "title": "Holtab",
+                "image": "holtab.png",
+                "link": "https://www.liljasbil.se"
+            },
+            {
+                "title": "Sparbanken Eken",
+                "image": "sparbanken.png",
+                "link": "https://www.nelsongarden.se/"
+            },
+            {
+                "title": "Åkes",
+                "image": "akes.png",
+                "link": ""
+            },
+            {
+                "title": "Konga mekaniska",
+                "image": "km.png",
+                "link": "https://www.liljasbil.se"
+            },
+            {
+                "title": "Urshultsbagarn",
+                "image": "urhultsbagarn.png",
+                "link": "https://www.liljasbil.se"
+            },
+            {
+                "title": "Carlqvist Bil",
+                "image": "carlqvist.png",
+                "link": "https://www.liljasbil.se"
+            }
+        ],
+    
+        "silver":[
+            {
+                "title": "Länsförsäkringar",
+                "image": "lf.png",
+                "link": "https://www.liljasbil.se"
+            },
+            {
+                "title": "Trensums",
+                "image": "trensum.png",
+                "link": "https://www.liljasbil.se"
+            },
+            {
+                "title": "Xylem",
+                "image": "xylem.png",
+                "link": "https://www.liljasbil.se"
+            },
+            {
+                "title": "EBA",
+                "image": "eba.png",
+                "link": "https://www.liljasbil.se"
+            },
+            {
+                "title": "",
+                "image": "anders-bisterhult.png",
+                "link": ""
+            },
+            {
+                "title": "Liljas",
+                "image": "liljas.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "rolf.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "t-billackering.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "hensmala-teknik.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "alvesta-glass.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "glass-factory.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "liljegrens.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "stewes.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "liljegrens.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "ica.png",
+                "link": ""
+            }
+            
+        ],
+
+        "brons":[
+            {
+                "title": "",
+                "image": "vitaminwell.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "specialsnickeriet.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "bjs.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "colorama.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "biggans.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "istom.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "bildelar.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "jga.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "korpen.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "akes-optic.png",
+                "link": ""
+            },
+            {
+                "title": "orthex",
+                "image": "orthex.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "oel.png",
+                "link": "https://www.korpalycke.se"
+            },
+            {
+                "title": "",
+                "image": "rallytidtagning.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "lrf.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "autoverkstaden.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "tingsryds-tryckeri.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "tinghockey.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "woody.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "ladan.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "fohlins.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "nelson.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "lars-carlsson.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "sandbergs-ror.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "lindas-har.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "harlins.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "lilla-hjartat.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "screen.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "thomas-liljegren.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "sportfiske.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "hydroware.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "scapa.png",
+                "link": ""
+            },
+            {
+                "title": "",
+                "image": "belganet.png",
+                "link": ""
+            }
+        ]
+
     }
-]
+

@@ -35,7 +35,6 @@ a {
   color: black;
 }
 
-
 p {
   color: rgb(15, 15, 15);
 }
@@ -61,6 +60,44 @@ p {
 .card-title {
   font-weight: bold;
   font-size: 30;
+}
+
+.spons-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.spons-gold{
+  height: 200px;
+  width: 250px;
+  margin: 10px;
+  border-color: #ffd700;
+  border-style: solid;
+  border-width: 5;
+}
+.spons-silver{
+  height: 150px;
+  width: 200px;
+  margin: 10px;
+}
+.spons-brons{
+  height: 100px;
+  width: 150px;
+  margin: 10px;
+}
+
+.spons-img-gold{
+  max-height: 150px;
+  max-width: 200px;
+}
+.spons-img-silver{
+  max-height: 100px;
+  max-width: 150px;
+}
+.spons-img-brons{
+  max-height: 50px;
+  max-width: 100px;
 }
 
 
