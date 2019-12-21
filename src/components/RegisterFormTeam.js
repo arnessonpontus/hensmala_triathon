@@ -75,7 +75,7 @@ class RegisterFormTeam extends Component {
               <Input
                 required="true"
                 type="text"
-                name="teamName1"
+                name="teamName"
                 id="teamName"
                 placeholder="Gubbaflås"
                 value={this.state.teamName}
