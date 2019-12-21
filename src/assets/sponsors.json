@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Korpalycke",
+        "image": "korpalycke.gif",
+        "link": "https://www.korpalycke.se"
+    },
+    {
+        "title": "Liljas",
+        "image": "liljas.png",
+        "link": "https://www.liljasbil.se"
+    },
+    {
+        "title": "Nelson Garden ",
+        "image": "nelson.png",
+        "link": "https://www.nelsongarden.se/"
+    },
+    {
+        "title": "Företag1",
+        "image": "nelson.png",
+        "link": "www.korpalycke.se"
+    },
+    {
+        "title": "Företag2",
+        "image": "nelson.png",
+        "link": "www.korpalycke.se"
+    }
+]
