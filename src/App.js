@@ -10,6 +10,7 @@ import Photos from "./components/Photos";
 import Register from "./components/Register";
 import Articles from "./components/Articles";
 import Radio from "./components/Radio";
+import Sponsors from "./components/Sponsors";
 
 import { Route, HashRouter as Router } from "react-router-dom";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/photos" component={Photos} />
         <Route path="/articles" component={Articles} />
         <Route path="/radio" component={Radio} />
+        <Route path="/sponsors" component={Sponsors} />
       </div>
     </Router>
   );

@@ -99,6 +99,15 @@ class Navigation extends React.Component {
           >
             MEDIA
           </NavLink>
+          <NavLink
+            tag={RRNavLink}
+            className="inactive"
+            activeClassName="active"
+            to="/sponsors"
+            onClick={() => this.setState({ isHamburgerOpen: false })}
+          >
+            SPONSORER
+          </NavLink>
           <Dropdown
             isOpen={this.state.isDropdownOpen}
             toggle={this.toggleDropdown}
