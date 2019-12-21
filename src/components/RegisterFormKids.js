@@ -18,12 +18,12 @@ const encode = data => {
 
 class RegisterFormKids extends Component {
   state = {
-    name: "",
-    email: "",
-    birthday: "",
-    info: "",
-    city: "",
-    sex: "",
+    nameKID: "",
+    emailKID: "",
+    birthdayKID: "",
+    infoKID: "",
+    cityKID: "",
+    sexKID: "",
     isButtonDisabled: true
   };
 
@@ -70,43 +70,43 @@ class RegisterFormKids extends Component {
           <Form onSubmit={this.handleSubmit}>
             <h3>Anmälan Barn</h3>
             <FormGroup>
-              <Label for="name">Namn</Label>
+              <Label for="nameKID">Namn</Label>
               <Input
                 required="true"
                 type="text"
                 name="nameKID"
                 id="nameKID"
                 placeholder="Förnamn Efternamn"
-                value={this.state.name}
+                value={this.state.nameKID}
                 onChange={this.handleChange}
               />
             </FormGroup>
 
             <FormGroup>
-              <Label for="email">Epost</Label>
+              <Label for="emailKID">Epost</Label>
               <Input
                 required="true"
-                type="email"
+                type="emailKID"
                 name="emailKID"
                 id="emailKID"
                 placeholder="din.email@gmail.com"
-                value={this.state.email}
+                value={this.state.emailKID}
                 onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup>
-              <Label for="birthdayID">Födelsedatum</Label>
+              <Label for="birthdayIDKID">Födelsedatum</Label>
               <Input
                 required="true"
                 type="date"
                 name="birthdayKID"
-                id="birthdayKID"
+                id="birthdayIDKID"
                 placeholder="date placeholder"
                 onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup>
-              <Label for="sexSelection">Kön</Label>
+              <Label for="sexSelectionKID">Kön</Label>
               <Input
                 required="true"
                 type="select"
@@ -121,25 +121,25 @@ class RegisterFormKids extends Component {
               <FormText>Du kommer tävla mot de med samma kön</FormText>
             </FormGroup>
             <FormGroup>
-              <Label for="city"> Ort (klubb)</Label>
+              <Label for="cityKID"> Ort (klubb)</Label>
               <Input
                 type="text"
                 name="cityKID"
                 id="cityKID"
                 placeholder="Hensmåla löparförening"
-                value={this.state.city}
+                value={this.state.cityKID}
                 onChange={this.handleChange}
               />
             </FormGroup>
 
             <FormGroup>
-              <Label for="info">Information</Label>
+              <Label for="infoKID">Information</Label>
               <Input
                 type="textarea"
                 name="infoKID"
                 id="infoKID"
                 placeholder="Jag skulle vilja..."
-                value={this.state.info}
+                value={this.state.infoKID}
                 onChange={this.handleChange}
               />
             </FormGroup>
