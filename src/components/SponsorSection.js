@@ -9,7 +9,7 @@ class SponsorSection extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ margin: "10px" }}>
         {this.props.sponsor.link ? (
           <a
             target="_blank"

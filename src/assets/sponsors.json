@@ -2,39 +2,39 @@
     {
         "gold": [
             {
-                "title": "Linons",
+                "title": "Lions",
                 "image": "lions.png",
-                "link": "https://www.korpalycke.se"
+                "link": "http://www.lions-sm.nu/tryd_front"
             },
             {
                 "title": "Holtab",
                 "image": "holtab.png",
-                "link": "https://www.liljasbil.se"
+                "link": "https://www.holtab.se/"
             },
             {
                 "title": "Sparbanken Eken",
                 "image": "sparbanken.png",
-                "link": "https://www.nelsongarden.se/"
+                "link": "https://www.sparbankeneken.se/"
             },
             {
                 "title": "Åkes",
                 "image": "akes.png",
-                "link": ""
+                "link": "http://www.xn--keshemlagade-scb.se/"
             },
             {
                 "title": "Konga mekaniska",
                 "image": "km.png",
-                "link": "https://www.liljasbil.se"
+                "link": "http://www.kongamek.se/"
             },
             {
                 "title": "Urshultsbagarn",
                 "image": "urhultsbagarn.png",
-                "link": "https://www.liljasbil.se"
+                "link": "http://www.urshultsbagarn.se/"
             },
             {
                 "title": "Carlqvist Bil",
                 "image": "carlqvist.png",
-                "link": "https://www.liljasbil.se"
+                "link": "https://carlqvistbil.se/"
             }
         ],
     
@@ -42,22 +42,22 @@
             {
                 "title": "Länsförsäkringar",
                 "image": "lf.png",
-                "link": "https://www.liljasbil.se"
+                "link": "https://www.lansforsakringar.se/kronoberg/privat/"
             },
             {
                 "title": "Trensums",
                 "image": "trensum.png",
-                "link": "https://www.liljasbil.se"
+                "link": "https://trensums.com/"
             },
             {
                 "title": "Xylem",
                 "image": "xylem.png",
-                "link": "https://www.liljasbil.se"
+                "link": ""
             },
             {
                 "title": "EBA",
                 "image": "eba.png",
-                "link": "https://www.liljasbil.se"
+                "link": ""
             },
             {
                 "title": "",
@@ -67,7 +67,7 @@
             {
                 "title": "Liljas",
                 "image": "liljas.png",
-                "link": ""
+                "link": "http://www.liljasbil.se/"
             },
             {
                 "title": "",
@@ -82,7 +82,7 @@
             {
                 "title": "",
                 "image": "hensmala-teknik.png",
-                "link": ""
+                "link": "www.hmteknik.se"
             },
             {
                 "title": "",
@@ -102,7 +102,7 @@
             {
                 "title": "",
                 "image": "stewes.png",
-                "link": ""
+                "link": "http://www.stewesservice.se/"
             },
             {
                 "title": "",
@@ -112,7 +112,7 @@
             {
                 "title": "",
                 "image": "ica.png",
-                "link": ""
+                "link": "http://www.ica.se/butiker/supermarket/tingsryd/ica-supermarket-tingsryd-2230/start/"
             }
             
         ],
@@ -126,7 +126,7 @@
             {
                 "title": "",
                 "image": "specialsnickeriet.png",
-                "link": ""
+                "link": "http://www.specialsnickeriet.se/"
             },
             {
                 "title": "",
@@ -136,7 +136,7 @@
             {
                 "title": "",
                 "image": "colorama.png",
-                "link": ""
+                "link": "http://www.fargvvsbutiken.se/"
             },
             {
                 "title": "",
@@ -151,17 +151,17 @@
             {
                 "title": "",
                 "image": "bildelar.png",
-                "link": ""
+                "link": "http://www.biltab.se/"
             },
             {
                 "title": "",
                 "image": "jga.png",
-                "link": ""
+                "link": "www.jga.se"
             },
             {
                 "title": "",
                 "image": "korpen.png",
-                "link": ""
+                "link": "http://www2.idrottonline.se/KorpenTingsrydMIF-Korpen/"
             },
             {
                 "title": "",
@@ -171,12 +171,12 @@
             {
                 "title": "orthex",
                 "image": "orthex.png",
-                "link": ""
+                "link": "http://www.orthexgroup.se/orthex-group/varumarken/hammarplast"
             },
             {
                 "title": "",
                 "image": "oel.png",
-                "link": "https://www.korpalycke.se"
+                "link": "http://oelofsweden.se/"
             },
             {
                 "title": "",
@@ -186,27 +186,27 @@
             {
                 "title": "",
                 "image": "lrf.png",
-                "link": ""
+                "link": "https://www.lrf.se/"
             },
             {
                 "title": "",
                 "image": "autoverkstaden.png",
-                "link": ""
+                "link": "http://www.autoverkstaden.se/"
             },
             {
                 "title": "",
                 "image": "tingsryds-tryckeri.png",
-                "link": ""
+                "link": "http://tingsrydstryckeri.se/"
             },
             {
                 "title": "",
                 "image": "tinghockey.png",
-                "link": ""
+                "link": "https://www.tinghockey.com/"
             },
             {
                 "title": "",
                 "image": "woody.png",
-                "link": ""
+                "link": "https://www.woody.se/"
             },
             {
                 "title": "",
@@ -246,7 +246,7 @@
             {
                 "title": "",
                 "image": "lilla-hjartat.png",
-                "link": ""
+                "link": "www.lilla-hjartat.se"
             },
             {
                 "title": "",
@@ -256,7 +256,7 @@
             {
                 "title": "",
                 "image": "thomas-liljegren.png",
-                "link": ""
+                "link": "http://www.liljegrens.nu/"
             },
             {
                 "title": "",
