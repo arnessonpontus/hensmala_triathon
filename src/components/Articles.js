@@ -17,7 +17,7 @@ class Articles extends React.Component {
 
   render() {
     return (
-      <div className="year-2019 text-center pt-5">
+      <div className="text-center pt-5">
         <Button
           color="primary"
           style={{
@@ -30,14 +30,13 @@ class Articles extends React.Component {
         >
           Till toppen
         </Button>
-        <ButtonGroup className="px-5 pb-5">
+        <ButtonGroup size="sm" className="px-5 pb-5">
           <Button onClick={() => this.onYearTap("2013")}>2013</Button>
           <Button onClick={() => this.onYearTap("2014")}>2014</Button>
           <Button onClick={() => this.onYearTap("2015")}>2015</Button>
           <Button onClick={() => this.onYearTap("2016")}>2016</Button>
           <Button onClick={() => this.onYearTap("2017")}>2017</Button>
           <Button onClick={() => this.onYearTap("2018")}>2018</Button>
-          <Button onClick={() => this.onYearTap("2019")}>2019</Button>
         </ButtonGroup>
         <div className="px-5 pb-5">
           <h3>2019</h3>
