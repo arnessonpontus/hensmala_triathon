@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Card, CardBody, Col, Row } from "reactstrap";
+import { Container, Card, CardBody, Row } from "reactstrap";
 
 class Media extends React.Component {
   render() {

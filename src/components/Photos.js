@@ -4,19 +4,17 @@ import photoAlbums from "../assets/photoAlbums";
 import {
   Container,
   Row,
-  Media,
   Card,
   CardBody,
   Col,
   CardImg,
-  CardText,
   CardTitle
 } from "reactstrap";
 
 class Photos extends React.Component {
   render() {
     return (
-      <Container>
+      <Container className="pb-4">
         <Row>
           {photoAlbums.map(album => {
             return (

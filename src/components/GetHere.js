@@ -24,6 +24,7 @@ class GetHere extends Component {
             <div class="mapouter">
               <div class="gmap_canvas">
                 <iframe
+                  title="getHere"
                   width="300"
                   height="300"
                   id="gmap_canvas"

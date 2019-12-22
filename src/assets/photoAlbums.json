@@ -14,16 +14,52 @@
         "https://ssl.c.photoshelter.com/img-get2/I0000p4HfW3UlwbY/fit=1000x750/Hensmala-Triathlon-12.jpg"
     },
     {
-      "title": "Hensmåla Triathlon 2018 - förtrampet",
+      "title": "Hensmåla Triathlon 2018 - Förtrampet",
       "src":
         "https://www.flickr.com/photos/96601282@N07/sets/72157699927130554",
       "image": "https://live.staticflickr.com/1838/44076481491_6fcde4b25b_z.jpg"
+    },
+    {
+    "title": "Hensmåla Triathlon 2018 - Uppbygnad",
+        "src":
+          "https://www.flickr.com/photos/96601282@N07/albums/72157699926823514",
+        "image": "https://live.staticflickr.com/1780/29139381687_7a14c5b4d9_z.jpg"
+    },
+    {
+        "title": "Hensmåla Triathlon 2018 - Triathlonet",
+        "src":"https://www.flickr.com/photos/96601282@N07/sets/72157694560727770",
+        "image": "https://live.staticflickr.com/1849/44126623791_69a83dfa80_z.jpg"
+    },
+    {
+        "title": "Hensmåla Triathlon 2017",
+        "src":"https://www.flickr.com/photos/168812344@N07/sets/72157707407353674",
+        "image": "https://live.staticflickr.com/7879/33434415528_dff25fab86_z.jpg"
+    },
+    {
+        "title": "Hensmåla Triathlon 2016",
+        "src":"https://www.flickr.com/photos/96601282@N07/sets/72157671038263421",
+        "image": "https://live.staticflickr.com/8859/28613523011_38154c0d09_z.jpg"
     },
     {
       "title": "Hensmåla Triathlon 2015",
       "src":
         "https://www.flickr.com/photos/126543226@N06/albums/72157656377504728",
       "image": "https://live.staticflickr.com/499/20262091536_ecbc7c2106_z.jpg"
+    },
+    {
+        "title": "Hensmåla Triathlon 2014",
+        "src": "https://www.flickr.com/photos/126543226@N06/sets/72157646257286041/",
+        "image": "https://live.staticflickr.com/5593/14668860538_76be63768a_z.jpg"
+    },
+    {
+        "title": "Hensmåla Triathlon 2013",
+        "src": "https://www.flickr.com/photos/96601282@N07/albums/72157634865373615",
+        "image": "https://live.staticflickr.com/3757/9402510431_fd04bd9c7b_z.jpg"
+    },
+    {
+        "title": "Hensmåla Triathlon 2012",
+        "src": "https://www.flickr.com/photos/126543226@N06/sets/72157694600277874",
+        "image": "https://live.staticflickr.com/885/40381885255_3952e5f93e_z.jpg"
     }
   ]
 

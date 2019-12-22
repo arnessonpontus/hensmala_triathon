@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Card, CardBody, CardText } from "reactstrap";
+import { Col, Card, CardBody, CardText } from "reactstrap";
 
 class News extends Component {
   render() {

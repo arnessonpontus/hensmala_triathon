@@ -3,7 +3,7 @@ import SponsorSection from "./SponsorSection";
 
 import sponsors from "../assets/sponsors";
 
-import { Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 
 class Sponsors extends Component {
   render() {

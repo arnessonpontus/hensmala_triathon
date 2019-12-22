@@ -35,11 +35,6 @@ a {
   color: black;
 }
 
-a:hover {
-  color: yellow;
-}
-
-
 p {
   color: rgb(15, 15, 15);
 }
@@ -103,7 +98,20 @@ p {
   max-width: 100px;
 }
 
+.video-wrapper{
+  width: auto; 
+  height: auto;
+}
 
+.video-player{
+  padding-top: 56.25%; 
+  position: relative;
+}
+
+.article-seperator{
+  height: 50px;
+  background-color: #11999E;
+}
 
 
 

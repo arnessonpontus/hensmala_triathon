@@ -3,10 +3,6 @@ import React, { Component } from "react";
 import { Card } from "reactstrap";
 
 class SponsorSection extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div style={{ margin: "10px" }}>
@@ -24,6 +20,7 @@ class SponsorSection extends Component {
               }}
             >
               <img
+                alt={this.props.image}
                 className={"spons-img-" + this.props.sponsType}
                 src={"../../images/sponsorImages/" + this.props.sponsor.image}
               ></img>
@@ -38,6 +35,7 @@ class SponsorSection extends Component {
             }}
           >
             <img
+              alt={this.props.image}
               className={"spons-img-" + this.props.sponsType}
               src={"../../images/sponsorImages/" + this.props.sponsor.image}
             ></img>
