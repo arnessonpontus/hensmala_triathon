@@ -8,7 +8,6 @@ import {
   Card,
   CardBody,
   CardText,
-  Jumbotron,
   Button
 } from "reactstrap";
 

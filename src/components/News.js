@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Card, CardBody, CardText } from "reactstrap";
+import { Col, Card, CardBody } from "reactstrap";
 import newsArc from "../assets/news";
 
 class News extends Component {
@@ -47,6 +47,7 @@ class News extends Component {
                       }}
                       width="100%"
                       src={news.image}
+                      alt={news.image}
                     ></img>
                   </Col>
                 </div>

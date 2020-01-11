@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardText,
-  Jumbotron
-} from "reactstrap";
+import { Jumbotron } from "reactstrap";
 
 class Footer extends React.Component {
   render() {

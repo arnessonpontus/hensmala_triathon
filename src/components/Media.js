@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Card, CardBody, Row } from "reactstrap";
+import { Container, Card } from "reactstrap";
 
 class Media extends React.Component {
   render() {
     return (
       <Container
+        className="media-container"
         style={{
           minHeight: "70vh",
           display: "flex",
@@ -15,7 +16,7 @@ class Media extends React.Component {
         }}
       >
         <Link to="/radio">
-          <Card style={styles.cardStyle} className="text-center m-2 ">
+          <Card style={styles.cardStyle}>
             <h3 style={styles.textStyle}>RADIO</h3>
             <img
               height="80px"
