@@ -24,7 +24,7 @@ class Distances extends Component {
             <img
               src="/images/simning.jpg"
               alt="simma"
-              style={{ width: 200 }}
+              style={{ width: 200, height: 200 }}
             ></img>
           </Col>
         </Row>
@@ -47,7 +47,7 @@ class Distances extends Component {
             <img
               src="/images/cykling.jpg"
               alt="simma"
-              style={{ width: 200 }}
+              style={{ width: 200, height: 200 }}
             ></img>
           </Col>
         </Row>
@@ -70,7 +70,7 @@ class Distances extends Component {
             <img
               src="/images/lopning.jpg"
               alt="simma"
-              style={{ width: 200 }}
+              style={{ width: 200, height: 200 }}
             ></img>
           </Col>
         </Row>

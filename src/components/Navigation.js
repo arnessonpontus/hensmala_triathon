@@ -10,7 +10,8 @@ import {
   Dropdown,
   DropdownItem,
   DropdownToggle,
-  DropdownMenu
+  DropdownMenu,
+  Button
 } from "reactstrap";
 
 class Navigation extends React.Component {
@@ -135,6 +136,15 @@ class Navigation extends React.Component {
             </DropdownMenu>
           </Dropdown>
         </Collapse>
+        <a
+          className="donate"
+          style={{ position: "absolute", right: 20 }}
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://egnainsamlingar.neuro.se/fundraisers/hensmala-triathlon"
+        >
+          <Button color="light">DONERA</Button>
+        </a>
       </Navbar>
     );
   }

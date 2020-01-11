@@ -11,13 +11,14 @@ import Register from "./components/Register";
 import Articles from "./components/Articles";
 import Radio from "./components/Radio";
 import Sponsors from "./components/Sponsors";
+import Footer from "./components/Footer";
 
 import { Route, HashRouter as Router } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <Navigation />
         <Route path="/" exact component={Home} />
         <Route path="/register" component={Register} />
@@ -29,8 +30,9 @@ function App() {
         <Route path="/articles" component={Articles} />
         <Route path="/radio" component={Radio} />
         <Route path="/sponsors" component={Sponsors} />
-      </div>
-    </Router>
+      </Router>
+      <Footer />
+    </div>
   );
 }
 

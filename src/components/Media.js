@@ -5,59 +5,80 @@ import { Container, Card, CardBody, Row } from "reactstrap";
 class Media extends React.Component {
   render() {
     return (
-      <Container>
-        <Row className="justify-content-center ">
-          <Link to="/radio">
-            <Card
-              style={{ minWidth: 200, borderColor: "#b6dcdf", borderWidth: 5 }}
-              className="text-center m-2 "
-            >
-              <CardBody>
-                <h3 className="logo">RADIO</h3>
-                <img src="/images/radio.svg" alt="radio"></img>
-              </CardBody>
-            </Card>
-          </Link>
+      <Container
+        style={{
+          minHeight: "70vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap"
+        }}
+      >
+        <Link to="/radio">
+          <Card style={styles.cardStyle} className="text-center m-2 ">
+            <h3 style={styles.textStyle}>RADIO</h3>
+            <img
+              height="80px"
+              width="80px"
+              src="/images/radio.svg"
+              alt="radio"
+            ></img>
+          </Card>
+        </Link>
 
-          <Link to="/articles">
-            <Card
-              style={{ minWidth: 200, borderColor: "#b6dcdf", borderWidth: 5 }}
-              className="text-center m-2"
-            >
-              <CardBody>
-                <h3 className="logo">ARTIKLAR</h3>
-                <img src="/images/article.svg" alt="article"></img>
-              </CardBody>
-            </Card>
-          </Link>
+        <Link to="/articles">
+          <Card style={styles.cardStyle} className="text-center m-2">
+            <h3 style={styles.textStyle}>ARTIKLAR</h3>
+            <img
+              height="80px"
+              width="80px"
+              src="/images/article.svg"
+              alt="article"
+            ></img>
+          </Card>
+        </Link>
 
-          <Link to="/videos">
-            <Card
-              style={{ minWidth: 200, borderColor: "#b6dcdf", borderWidth: 5 }}
-              className="text-center m-2"
-            >
-              <CardBody>
-                <h3 className="logo">VIDEOS</h3>
-                <img src="/images/video.svg" alt="video"></img>
-              </CardBody>
-            </Card>
-          </Link>
+        <Link to="/videos">
+          <Card style={styles.cardStyle} className="text-center m-2">
+            <h3 style={styles.textStyle}>VIDEOS</h3>
+            <img
+              height="80px"
+              width="80px"
+              src="/images/video.svg"
+              alt="video"
+            ></img>
+          </Card>
+        </Link>
 
-          <Link to="/photos">
-            <Card
-              style={{ minWidth: 200, borderColor: "#b6dcdf", borderWidth: 5 }}
-              className="text-center m-2"
-            >
-              <CardBody>
-                <h3 className="logo">FOTON</h3>
-                <img src="/images/camera.svg" alt="camera"></img>
-              </CardBody>
-            </Card>
-          </Link>
-        </Row>
+        <Link to="/photos">
+          <Card style={styles.cardStyle} className="text-center m-2">
+            <h3 style={styles.textStyle}>FOTON</h3>
+            <img
+              height="80px"
+              width="80px"
+              src="/images/camera.svg"
+              alt="camera"
+            ></img>
+          </Card>
+        </Link>
       </Container>
     );
   }
 }
+
+const styles = {
+  cardStyle: {
+    minWidth: 250,
+    minHeight: 200,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#11999E",
+    borderWidth: 5
+  },
+  textStyle: {
+    color: "white"
+  }
+};
 
 export default Media;

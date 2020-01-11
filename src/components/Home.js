@@ -8,7 +8,8 @@ import {
   Card,
   CardBody,
   CardText,
-  Jumbotron
+  Jumbotron,
+  Button
 } from "reactstrap";
 
 class Home extends Component {
@@ -46,18 +47,28 @@ class Home extends Component {
               </Row>
             </CardBody>
           </Card>
-
+          <Row className="donate-home">
+            <Col className=" mt-5">
+              <Card className="align-items-center">
+                <CardBody>
+                  <a
+                    className="donate-home"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://egnainsamlingar.neuro.se/fundraisers/hensmala-triathlon"
+                  >
+                    <Button style={{ backgroundColor: "#11999E" }}>
+                      DONERA TILL ALS
+                    </Button>
+                  </a>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
           <Row>
             <News />
           </Row>
         </Container>
-
-        <Jumbotron
-          className="text-center "
-          style={{ marginBottom: 0, height: 100 }}
-        >
-          <p>Hensmåla Triathlon</p>
-        </Jumbotron>
       </div>
     );
   }

@@ -113,6 +113,28 @@ p {
   background-color: #11999E;
 }
 
+.social-container{
+  background-color: #fff;
+  width: 50;
+  height: 50;
+  border-radius: 5;
+}
+
+.donate-home{
+  visibility: hidden;
+  height: 0;
+}
+
+@media (max-width: 1040px) {
+  .donate{
+    visibility: hidden;
+  } 
+  .donate-home{
+    visibility: visible;
+  }
+}
+
+
 
 
 
