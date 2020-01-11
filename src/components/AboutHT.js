@@ -42,7 +42,7 @@ class AboutHT extends React.Component {
           src="/images/about-ht.jpg"
           alt="HT_banner"
         ></img>
-        <Container className="mt-5">
+        <Container className="mt-5" style={{ minHeight: "50vh" }}>
           <div>
             <Button
               outline

@@ -36,7 +36,7 @@ a {
 }
 
 a :hover{
-  opacity: 70%;
+  filter: opacity(70%);
 }
 
 p {
@@ -131,7 +131,7 @@ p {
 }
 
 .media-container :hover{
-  opacity: 80%;
+  filter: opacity(80%);
   text-decoration: none;
 }
 

@@ -8,6 +8,7 @@ class Media extends React.Component {
       <Container
         className="media-container"
         style={{
+          paddingTop: 40,
           minHeight: "70vh",
           display: "flex",
           justifyContent: "center",

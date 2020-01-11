@@ -40,7 +40,7 @@ class AboutALS extends React.Component {
           src="/images/about-als.jpg"
           alt="Neuro"
         ></img>
-        <Container className="mt-5">
+        <Container className="mt-5" style={{ minHeight: "50vh" }}>
           <div>
             <Button
               outline
