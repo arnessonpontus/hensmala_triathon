@@ -142,6 +142,7 @@ p {
   } 
   .donate-home{
     visibility: visible;
+    height: 100%;
   }
 }
 
