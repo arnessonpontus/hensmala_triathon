@@ -43,6 +43,14 @@ p {
   color: rgb(15, 15, 15);
 }
 
+b {
+  color: rgb(15, 15, 15);
+}
+
+i {
+  color: rgb(71, 71, 71);
+}
+
 .inactive {
   color: #ebebeb;
   text-decoration: none;

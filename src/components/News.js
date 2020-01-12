@@ -18,7 +18,7 @@ class News extends Component {
                     marginTop: 20,
                     borderRadius: 5,
                     borderWidth: 1,
-                    borderColor: "black",
+                    borderColor: "#8b8989",
                     borderStyle: "solid",
                     display: "flex",
                     justifyContent: "space-between",

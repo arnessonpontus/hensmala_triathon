@@ -229,6 +229,10 @@ class RegisterFormTeam extends Component {
         </Col>
         <Col style={{ marginTop: "5vh" }}>
           <h3>Anmäl er som Lag</h3>
+          <b>Startavgift: 500kr </b>
+          <i style={{ fontSize: 12 }}>
+            Priset kommer höjas den 30e juni till 600kr
+          </i>
           <p>
             När ni anmäler er som lag får sträckorna delas upp inom laget. Detta
             kan innebära att ni är tre som deltar där alla kör en gren var.

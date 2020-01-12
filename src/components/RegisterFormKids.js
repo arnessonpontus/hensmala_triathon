@@ -156,6 +156,10 @@ class RegisterFormKids extends Component {
         </Col>
         <Col style={{ marginTop: "5vh" }}>
           <h3>Anmäl dig för de lite kortare sträckorna</h3>
+          <b>Startavgift: 100kr </b>
+          <i style={{ fontSize: 12 }}>
+            Priset kommer höjas den 30e juni till 200kr
+          </i>
           <p>
             När du anmäler sig till Hensmåla Triathlon som barn utför du alla
             tre grenar individuellt, men där alla grenar är förkortade. För mer

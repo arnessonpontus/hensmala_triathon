@@ -17,7 +17,7 @@ class Media extends React.Component {
         }}
       >
         <Link to="/radio">
-          <Card style={styles.cardStyle}>
+          <Card style={styles.cardStyle} className="text-center m-2">
             <h3 style={styles.textStyle}>RADIO</h3>
             <img
               height="80px"

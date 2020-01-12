@@ -157,6 +157,10 @@ class RegisterFormSolo extends Component {
         </Col>
         <Col style={{ marginTop: "5vh" }}>
           <h3>Anmäl dig som indiviuell deltagare</h3>
+          <b>Startavgift: 300kr </b>
+          <i style={{ fontSize: 12 }}>
+            Priset kommer höjas den 30e juni till 400kr
+          </i>
           <p>
             När du anmälder sig som indiviuell deltagare utför du alla tre
             grenar individuellt. För mer information om sträckorna och regler
