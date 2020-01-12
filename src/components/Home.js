@@ -35,11 +35,11 @@ class Home extends Component {
                     <br></br>
                     På de första sju åren har strax över <b>700 000kr</b>{" "}
                     samlats in och skänks till ALS-forskningen denom NEURO. De
-                    två sista pren har gåvan riktats mot Stoppa ALK och ALS
-                    Treatment Center Kaolinska.
+                    två sista åren har gåvan riktats mot Stoppa ALS och ALS
+                    Treatment Center Karolinska.
                     <br></br>
                     <br></br>
-                    2019 skänktes <b>161 891kr</b>
+                    2019 skänktes <b>161 891kr</b>.
                   </CardText>
                 </Col>
 
