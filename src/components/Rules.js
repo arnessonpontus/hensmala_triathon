@@ -8,8 +8,8 @@ class Rules extends Component {
         <p>
           Det är frivilligt att använda våtdräkt oberoende av vattnets
           temperatur. Alla måste använda den simmössa som delats ut vid
-          registreringen. Direkt efter målgång samlas simmössan in. Det är inte
-          tillåtet att använda fotklädnad i någon form eller handskar under
+          registreringen. Direkt efter simningen samlas simmössan in. Det är
+          inte tillåtet att använda fotklädnad i någon form eller handskar under
           simningen. Följebåtar, surfingbrädor samt dykare finns runt hela
           simsträckan. Får du problem kan du tillkalla hjälp från dom.
         </p>

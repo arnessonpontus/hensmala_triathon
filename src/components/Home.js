@@ -27,13 +27,13 @@ class Home extends Component {
                 <Col className="my-4" ms={4}>
                   <h2>Välkommen till Hensmåla Triathlon</h2>
                   <CardText>
-                    Mitt i de djupa småländska skogarna arrangeras ett
+                    I det fina småländska landskapet arrangeras årligen ett
                     minitriathlon till förmån för ALS-forskningen. Alla sträckor
-                    är anpassade till den vackra Stora Hensjön och Hensmåla
-                    landskap
+                    är anpassade till den vackra Stora Hensjön och Hensmålas
+                    landskap.
                     <br></br>
                     <br></br>
-                    På de första sju åren har strax över <b>700 000kr</b>{" "}
+                    På de första sju åren har strax över <b>700 000 kr</b>{" "}
                     samlats in och skänks till ALS-forskningen denom NEURO. De
                     två sista åren har gåvan riktats mot Stoppa ALS och ALS
                     Treatment Center Karolinska.

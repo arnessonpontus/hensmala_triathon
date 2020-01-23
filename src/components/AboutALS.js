@@ -84,20 +84,6 @@ class AboutALS extends React.Component {
                     50 och 70 år.
                     <br />
                     <br />
-                    Stoppa ALS och ALS Treatment Center Karolinska Stoppa ALS
-                    och Neuroförbundet driver tillsammans en riktad insamling
-                    för att möjliggöra uppstart och drift av ett rikstäckande
-                    center för kliniska behandlingsstudier för ALS-patienter,
-                    ALS Treatment Center Karolinska. Centret skall utgå ifrån
-                    Karolinska Sjukhuset i Huddinge och kommer göra det möjligt
-                    för patienter över hela Sverige att delta i kliniska studier
-                    på nya lovande preparat. Det första delmålet är att samla in
-                    1,5 miljoner kronor för att kunna öppna centret och hålla
-                    det igång under ett år. Hensmåla Triathlons överskott från
-                    2018, 125 000 kronor, skänktes till denna insamling. Se
-                    artikeln här.
-                    <br />
-                    <br />
                     I slutet av oktober 2018 hände det äntligen, ALS Treatment
                     Center Karolinska blev verklighet! Centret har satt upp
                     infrastruktur samt anställt och utbildat personal. Centret
@@ -131,7 +117,15 @@ class AboutALS extends React.Component {
                     delmålet är att samla in 1,5 miljoner kronor för att kunna
                     öppna centret och hålla det igång under ett år. Hensmåla
                     Triathlons överskott från 2018, 125 000 kronor, skänktes
-                    till denna insamling. Se artikeln här.
+                    till denna insamling. Se artikeln{" "}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="images/articleImages/2018/neuro_2018-10-02.pdf"
+                    >
+                      här
+                    </a>
+                    .
                     <br />
                     <br />
                     I slutet av oktober 2018 hände det äntligen, ALS Treatment
