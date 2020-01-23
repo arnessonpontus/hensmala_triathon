@@ -10,6 +10,7 @@ import {
   Card,
   CardBody
 } from "reactstrap";
+import { NavLink as RRNavLink } from "react-router-dom";
 
 const encode = data => {
   return Object.keys(data)
@@ -30,7 +31,8 @@ class RegisterFormTeam extends Component {
     birthday3: "",
     city3: "",
     info: "",
-    isButtonDisabled: true
+    isCheckboxOneTicked: false,
+    isCheckboxTwoTicked: false
   };
 
   constructor(props) {
@@ -60,8 +62,12 @@ class RegisterFormTeam extends Component {
     this.setState({ [name]: value });
   };
 
-  toggleConsent = () => {
-    this.setState({ isButtonDisabled: !this.state.isButtonDisabled });
+  toggleConsent = checkbox => {
+    if (checkbox === 1) {
+      this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
+    } else {
+      this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
+    }
   };
 
   render() {
@@ -73,7 +79,7 @@ class RegisterFormTeam extends Component {
             <FormGroup>
               <Label for="teamName">Lagnamn</Label>
               <Input
-                required="true"
+                required={true}
                 type="text"
                 name="teamName"
                 id="teamName"
@@ -88,7 +94,7 @@ class RegisterFormTeam extends Component {
                 <FormGroup>
                   <Label for="email1">Epost</Label>
                   <Input
-                    required="true"
+                    required={true}
                     type="email"
                     name="email1"
                     id="email1"
@@ -100,7 +106,7 @@ class RegisterFormTeam extends Component {
                 <FormGroup>
                   <Label for="birthdayID1">Födelsedatum</Label>
                   <Input
-                    required="true"
+                    required={true}
                     type="date"
                     name="birthday1"
                     id="birthday1"
@@ -121,15 +127,15 @@ class RegisterFormTeam extends Component {
                 </FormGroup>
               </CardBody>
             </Card>
-            <Label className="mt-4" for="teamMember1">
+            <Label className="mt-4" for="teamMember2">
               Lagmedlem 2
             </Label>
-            <Card id="teamMember1" style={{ backgroundColor: "#cee7e9" }}>
+            <Card id="teamMember2" style={{ backgroundColor: "#cee7e9" }}>
               <CardBody>
                 <FormGroup>
                   <Label for="email2">Epost</Label>
                   <Input
-                    required="true"
+                    required={true}
                     type="email"
                     name="email2"
                     id="email2"
@@ -141,7 +147,7 @@ class RegisterFormTeam extends Component {
                 <FormGroup>
                   <Label for="birthdayID2">Födelsedatum</Label>
                   <Input
-                    required="true"
+                    required={true}
                     type="date"
                     name="birthday2"
                     id="birthday2"
@@ -162,10 +168,10 @@ class RegisterFormTeam extends Component {
                 </FormGroup>
               </CardBody>
             </Card>
-            <Label className="mt-4" for="teamMember1">
+            <Label className="mt-4" for="teamMember3">
               Lagmedlem 3
             </Label>
-            <Card id="teamMember1" style={{ backgroundColor: "#b6dcdf" }}>
+            <Card id="teamMember3" style={{ backgroundColor: "#b6dcdf" }}>
               <CardBody>
                 <FormGroup>
                   <Label for="email3">Epost</Label>
@@ -211,18 +217,42 @@ class RegisterFormTeam extends Component {
                 type="textarea"
                 name="info"
                 id="info"
-                placeholder="Vi skulle vilja..."
+                placeholder="t.ex. önskemål att starta i någon speciell
+                startgrupp"
                 value={this.state.info}
                 onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup check>
-              <Label check>
-                <Input type="checkbox" onClick={this.toggleConsent} /> Jag
-                accepterar att Hensmåla Triathlon sparar data om mig
+              <Label for="checkbox1">
+                <Input
+                  className="checkbox1"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(1)}
+                />{" "}
+                Jag accepterar att Hensmåla Triathlon sparar data om mig.
               </Label>
             </FormGroup>
-            <Button className="mt-4" disabled={this.state.isButtonDisabled}>
+            <FormGroup check>
+              <Label for="checkbox2">
+                <Input
+                  className="checkbox2"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(2)}
+                />{" "}
+                Jag kommer följa den information och de tävlingsregler som finns
+                på denna sida.
+              </Label>
+            </FormGroup>
+            <Button
+              className="mt-4"
+              disabled={
+                !(
+                  this.state.isCheckboxOneTicked &&
+                  this.state.isCheckboxTwoTicked
+                )
+              }
+            >
               Anmäl oss!
             </Button>
           </Form>
@@ -231,14 +261,16 @@ class RegisterFormTeam extends Component {
           <h3>Anmäl er som Lag</h3>
           <b>Startavgift: 500kr </b>
           <i style={{ fontSize: 12 }}>
-            Priset kommer höjas den 30e juni till 600kr
+            Priset kommer höjas till 600 kr från och med 15:e juli.
           </i>
           <p>
             När ni anmäler er som lag får sträckorna delas upp inom laget. Detta
             kan innebära att ni är tre som deltar där alla kör en gren var.
             Eller innefattar laget endast två personer och en person kör två av
-            grenarna. För mer information om sträckorna och regler kan du gå in
-            HÄR.
+            grenarna. För mer information om sträckorna och regler kan du gå in{" "}
+            <RRNavLink tag={RRNavLink} to="/AboutHT">
+              HÄR
+            </RRNavLink>
           </p>
           <p>
             Hensmåla Triathlon har länge Lorem ipsum dolor sit amet, consectetur
@@ -250,6 +282,10 @@ class RegisterFormTeam extends Component {
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
           </p>
+          <b>
+            Fotografering och videofilmning förekommer, meddela om du inte vill
+            vara med.
+          </b>
         </Col>
       </Row>
     );

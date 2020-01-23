@@ -10,7 +10,12 @@ class GetHere extends Component {
             <b>Hitta till Hensmåla</b>
             <p>
               Adressen är Hensmåla östergård 31. En liten by utanför Tingsryd
-              längs väg 126.
+              längs väg 120.
+            </p>
+            <b>Parkeringar</b>
+            <p>
+              Parkeringar finns på åkrar i närheten till tävlingsområdet.
+              Skyltar och funktionärer visar parkeringsplatser.
             </p>
           </Col>
           <Col
@@ -21,18 +26,18 @@ class GetHere extends Component {
               justifyContent: "center"
             }}
           >
-            <div class="mapouter">
-              <div class="gmap_canvas">
+            <div className="mapouter">
+              <div className="gmap_canvas">
                 <iframe
                   title="getHere"
                   width="300"
                   height="300"
                   id="gmap_canvas"
                   src="https://maps.google.com/maps?q=hensm%C3%A5la%2031&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  frameborder="0"
+                  frameBorder="0"
                   scrolling="no"
-                  marginheight="0"
-                  marginwidth="0"
+                  marginHeight="0"
+                  marginWidth="0"
                 ></iframe>
               </div>
             </div>

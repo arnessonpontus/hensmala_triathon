@@ -141,7 +141,7 @@ class Navigation extends React.Component {
           style={{ position: "absolute", right: 20 }}
           target="_blank"
           rel="noopener noreferrer"
-          href="https://egnainsamlingar.neuro.se/fundraisers/hensmala-triathlon"
+          href="https://egnainsamlingar.neuro.se/projects/neuro-10"
         >
           <Button color="light">DONERA</Button>
         </a>

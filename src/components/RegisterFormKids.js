@@ -1,14 +1,6 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Row,
-  Col,
-  FormText
-} from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import { NavLink as RRNavLink } from "react-router-dom";
 
 const encode = data => {
   return Object.keys(data)
@@ -24,7 +16,11 @@ class RegisterFormKids extends Component {
     infoKID: "",
     cityKID: "",
     sexKID: "",
-    isButtonDisabled: true
+    guardianName: "",
+    guardianPhone: "",
+    guardianEmail: "",
+    isCheckboxOneTicked: false,
+    isCheckboxTwoTicked: false
   };
 
   constructor(props) {
@@ -59,8 +55,12 @@ class RegisterFormKids extends Component {
     this.setState({ [name]: value });
   };
 
-  toggleConsent = () => {
-    this.setState({ isButtonDisabled: !this.state.isButtonDisabled });
+  toggleConsent = checkbox => {
+    if (checkbox === 1) {
+      this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
+    } else {
+      this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
+    }
   };
 
   render() {
@@ -72,7 +72,7 @@ class RegisterFormKids extends Component {
             <FormGroup>
               <Label for="nameKID">Namn</Label>
               <Input
-                required="true"
+                required={true}
                 type="text"
                 name="nameKID"
                 id="nameKID"
@@ -85,7 +85,7 @@ class RegisterFormKids extends Component {
             <FormGroup>
               <Label for="emailKID">Epost</Label>
               <Input
-                required="true"
+                required={true}
                 type="emailKID"
                 name="emailKID"
                 id="emailKID"
@@ -97,7 +97,7 @@ class RegisterFormKids extends Component {
             <FormGroup>
               <Label for="birthdayIDKID">Födelsedatum</Label>
               <Input
-                required="true"
+                required={true}
                 type="date"
                 name="birthdayKID"
                 id="birthdayIDKID"
@@ -108,7 +108,7 @@ class RegisterFormKids extends Component {
             <FormGroup>
               <Label for="sexSelectionKID">Kön</Label>
               <Input
-                required="true"
+                required={true}
                 type="select"
                 name="sexKID"
                 id="sexSelectionKID"
@@ -118,7 +118,6 @@ class RegisterFormKids extends Component {
                 <option>Man</option>
                 <option>Kvinna</option>
               </Input>
-              <FormText>Du kommer tävla mot de med samma kön</FormText>
             </FormGroup>
             <FormGroup>
               <Label for="cityKID"> Ort (klubb)</Label>
@@ -131,6 +130,42 @@ class RegisterFormKids extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
+            <FormGroup>
+              <Label for="guardianName"> Målsmans namn</Label>
+              <Input
+                type="text"
+                required={true}
+                name="guardianName"
+                id="guardianName"
+                placeholder="Lars Svensson"
+                value={this.state.guardianName}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="guardianPhone"> Målsmans telefonnummer</Label>
+              <Input
+                type="tel"
+                required={true}
+                name="guardianPhone"
+                id="guardianPhone"
+                placeholder="0704554432"
+                value={this.state.guardianPhone}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="guardianEmail"> Målsmans epost</Label>
+              <Input
+                type="email"
+                required={true}
+                name="guardianEmail"
+                id="guardianEmail"
+                placeholder="lars.svensson@gmail.com"
+                value={this.state.guardianEmail}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
 
             <FormGroup>
               <Label for="infoKID">Information</Label>
@@ -138,18 +173,42 @@ class RegisterFormKids extends Component {
                 type="textarea"
                 name="infoKID"
                 id="infoKID"
-                placeholder="Jag skulle vilja..."
+                placeholder="t.ex. önskemål att starta i någon speciell
+                startgrupp"
                 value={this.state.infoKID}
                 onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup check>
-              <Label check>
-                <Input type="checkbox" onClick={this.toggleConsent} /> Jag
-                accepterar att Hensmåla Triathlon sparar data om mig
+              <Label for="checkbox1">
+                <Input
+                  className="checkbox1"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(1)}
+                />{" "}
+                Jag accepterar att Hensmåla Triathlon sparar data om mig.
               </Label>
             </FormGroup>
-            <Button className="mt-4" disabled={this.state.isButtonDisabled}>
+            <FormGroup check>
+              <Label for="checkbox2">
+                <Input
+                  className="checkbox2"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(2)}
+                />{" "}
+                Jag kommer följa den information och de tävlingsregler som finns
+                på denna sida.
+              </Label>
+            </FormGroup>
+            <Button
+              className="mt-4"
+              disabled={
+                !(
+                  this.state.isCheckboxOneTicked &&
+                  this.state.isCheckboxTwoTicked
+                )
+              }
+            >
               Anmäl mig!
             </Button>
           </Form>
@@ -163,8 +222,17 @@ class RegisterFormKids extends Component {
           <p>
             När du anmäler sig till Hensmåla Triathlon som barn utför du alla
             tre grenar individuellt, men där alla grenar är förkortade. För mer
-            information om sträckorna och regler kan du gå in HÄR.
+            information om sträckorna och regler kan du gå in{" "}
+            <RRNavLink tag={RRNavLink} to="/AboutHT">
+              HÄR
+            </RRNavLink>
           </p>
+          <b>
+            Alla som deltar måste kunna simma 200m. Det är föräldrarnas ansvar
+            att detta uppfylls.
+          </b>
+          <br></br>
+          <br></br>
           <p>
             Hensmåla Triathlon har länge Lorem ipsum dolor sit amet, consectetur
             adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -175,6 +243,10 @@ class RegisterFormKids extends Component {
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
           </p>
+          <b>
+            Fotografering och videofilmning förekommer, meddela om du inte vill
+            vara med.
+          </b>
         </Col>
       </Row>
     );

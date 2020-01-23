@@ -40,9 +40,9 @@ class Register extends Component {
   render() {
     return (
       <Container>
-        <Card className="mt-5">
-          <CardBody>
-            {!this.state.hasRegisterd ? (
+        {!this.state.hasRegisterd ? (
+          <Card className="mt-5">
+            <CardBody>
               <div>
                 <Nav tabs>
                   <NavItem>
@@ -104,11 +104,11 @@ class Register extends Component {
                   </TabPane>
                 </TabContent>
               </div>
-            ) : (
-              <RegSuccess handleRegistration={this.handleRegistration} />
-            )}
-          </CardBody>
-        </Card>
+            </CardBody>
+          </Card>
+        ) : (
+          <RegSuccess handleRegistration={this.handleRegistration} />
+        )}
       </Container>
     );
   }

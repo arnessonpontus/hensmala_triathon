@@ -13,6 +13,12 @@ class Distances extends Component {
               väntar bakom startsnöret till startskottet går. Därefter är det
               medurs varv runt ön som gäller.
             </p>
+            <p>
+              En film på simningen kan du se{" "}
+              <a href="https://www.youtube.com/watch?time_continue=2&amp;v=JT6NvRHYMqw&amp;feature=emb_logo">
+                här
+              </a>
+            </p>
           </Col>
           <Col
             style={{
@@ -36,6 +42,12 @@ class Distances extends Component {
               deltagaren är utanför växlingsområdet, därefter sker turen medurs
               runt sjön.
             </p>
+            <p>
+              En film på cykelrundan kan du se{" "}
+              <a href="https://www.youtube.com/watch?v=ce22jo1_FzA&amp;feature=emb_logo">
+                här
+              </a>
+            </p>
           </Col>
           <Col
             style={{
@@ -57,6 +69,12 @@ class Distances extends Component {
             <p>
               Löpningen sker i de djupa småländska skogarna. I början av
               löpningen är mördarbacken. Efter den är det en lek.
+            </p>
+            <p>
+              En film på löprundan kan du se{" "}
+              <a href="https://www.youtube.com/watch?v=cnDqY2JtKUk&amp;feature=emb_logo">
+                här
+              </a>
             </p>
           </Col>
           <Col

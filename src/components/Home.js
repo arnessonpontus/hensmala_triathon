@@ -61,7 +61,7 @@ class Home extends Component {
                     className="donate-home"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://egnainsamlingar.neuro.se/fundraisers/hensmala-triathlon"
+                    href="https://egnainsamlingar.neuro.se/projects/neuro-10"
                   >
                     <Button style={{ backgroundColor: "#11999E" }}>
                       DONERA TILL ALS

@@ -1,14 +1,6 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Row,
-  Col,
-  FormText
-} from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import { NavLink as RRNavLink } from "react-router-dom";
 
 const encode = data => {
   return Object.keys(data)
@@ -24,7 +16,8 @@ class RegisterFormSolo extends Component {
     info: "",
     city: "",
     sex: "",
-    isButtonDisabled: true
+    isCheckboxOneTicked: false,
+    isCheckboxTwoTicked: false
   };
 
   constructor(props) {
@@ -59,8 +52,12 @@ class RegisterFormSolo extends Component {
     this.setState({ [name]: value });
   };
 
-  toggleConsent = () => {
-    this.setState({ isButtonDisabled: !this.state.isButtonDisabled });
+  toggleConsent = checkbox => {
+    if (checkbox === 1) {
+      this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
+    } else {
+      this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
+    }
   };
 
   render() {
@@ -72,7 +69,7 @@ class RegisterFormSolo extends Component {
             <FormGroup>
               <Label for="name">Namn</Label>
               <Input
-                required="true"
+                required={true}
                 type="text"
                 name="name"
                 id="nameSOLO"
@@ -85,7 +82,7 @@ class RegisterFormSolo extends Component {
             <FormGroup>
               <Label for="email">Epost</Label>
               <Input
-                required="true"
+                required={true}
                 type="email"
                 name="email"
                 id="emailSOLO"
@@ -97,7 +94,7 @@ class RegisterFormSolo extends Component {
             <FormGroup>
               <Label for="birthdayID">Födelsedatum</Label>
               <Input
-                required="true"
+                required={true}
                 type="date"
                 name="birthday"
                 id="birthdaySOLO"
@@ -108,7 +105,7 @@ class RegisterFormSolo extends Component {
             <FormGroup>
               <Label for="sexSelection">Kön</Label>
               <Input
-                required="true"
+                required={true}
                 type="select"
                 name="sex"
                 id="sexSelectionSOLO"
@@ -118,7 +115,6 @@ class RegisterFormSolo extends Component {
                 <option>Man</option>
                 <option>Kvinna</option>
               </Input>
-              <FormText>Du kommer tävla mot de med samma kön</FormText>
             </FormGroup>
 
             <FormGroup>
@@ -139,18 +135,42 @@ class RegisterFormSolo extends Component {
                 type="textarea"
                 name="info"
                 id="infoSOLO"
-                placeholder="Jag skulle vilja..."
+                placeholder="t.ex. önskemål att starta i någon speciell
+                startgrupp"
                 value={this.state.info}
                 onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup check>
-              <Label check>
-                <Input type="checkbox" onClick={this.toggleConsent} /> Jag
-                accepterar att Hensmåla Triathlon sparar data om mig
+              <Label for="checkbox1">
+                <Input
+                  className="checkbox1"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(1)}
+                />{" "}
+                Jag accepterar att Hensmåla Triathlon sparar data om mig.
               </Label>
             </FormGroup>
-            <Button className="mt-4" disabled={this.state.isButtonDisabled}>
+            <FormGroup check>
+              <Label for="checkbox2">
+                <Input
+                  className="checkbox2"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(2)}
+                />{" "}
+                Jag kommer följa den information och de tävlingsregler som finns
+                på denna sida.
+              </Label>
+            </FormGroup>
+            <Button
+              className="mt-4"
+              disabled={
+                !(
+                  this.state.isCheckboxOneTicked &&
+                  this.state.isCheckboxTwoTicked
+                )
+              }
+            >
               Anmäl mig!
             </Button>
           </Form>
@@ -159,12 +179,15 @@ class RegisterFormSolo extends Component {
           <h3>Anmäl dig som indiviuell deltagare</h3>
           <b>Startavgift: 300kr </b>
           <i style={{ fontSize: 12 }}>
-            Priset kommer höjas den 30e juni till 400kr
+            Priset kommer höjas till 400 kr från och med 15:e juli.
           </i>
           <p>
             När du anmälder sig som indiviuell deltagare utför du alla tre
             grenar individuellt. För mer information om sträckorna och regler
-            kan du gå in HÄR.
+            kan du gå in{" "}
+            <RRNavLink tag={RRNavLink} to="/AboutHT">
+              HÄR
+            </RRNavLink>
           </p>
           <p>
             Hensmåla Triathlon har länge Lorem ipsum dolor sit amet, consectetur
@@ -176,6 +199,10 @@ class RegisterFormSolo extends Component {
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
           </p>
+          <b>
+            Fotografering och videofilmning förekommer, meddela om du inte vill
+            vara med.
+          </b>
         </Col>
       </Row>
     );

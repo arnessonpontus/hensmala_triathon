@@ -2,32 +2,39 @@ import React from "react";
 import { Collapse, Button, CardBody, Card, Container } from "reactstrap";
 import Distances from "./Distances";
 import GetHere from "./GetHere";
+import Rules from "./Rules";
 
 class AboutHT extends React.Component {
   state = {
     isInfoOpen: false,
     isGetHereOpen: false,
-    isDistancesOpen: false
+    isDistancesOpen: false,
+    isRulesOpen: false
   };
 
   constructor(props) {
     super(props);
 
-    this.toggleInfo = this.toggleInfo.bind(this);
-    this.toggleGetHEre = this.toggleGetHere.bind(this);
-    this.toggleDistances = this.toggleDistances.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
-  toggleInfo = () => {
-    this.setState({ isInfoOpen: !this.state.isInfoOpen });
-  };
+  toggle = cardType => {
+    switch (cardType) {
+      case "Info":
+        this.setState({ isInfoOpen: !this.state.isInfoOpen });
 
-  toggleGetHere = () => {
-    this.setState({ isGetHereOpen: !this.state.isGetHereOpen });
-  };
+        break;
+      case "GetHere":
+        this.setState({ isGetHereOpen: !this.state.isGetHereOpen });
 
-  toggleDistances = () => {
-    this.setState({ isDistancesOpen: !this.state.isDistancesOpen });
+        break;
+      case "Distances":
+        this.setState({ isDistancesOpen: !this.state.isDistancesOpen });
+
+        break;
+      default:
+        this.setState({ isRulesOpen: !this.state.isRulesOpen });
+    }
   };
 
   componentDidMount() {
@@ -49,7 +56,7 @@ class AboutHT extends React.Component {
               size="lg"
               block
               color="secondary"
-              onClick={this.toggleInfo}
+              onClick={() => this.toggle("Info")}
               style={{
                 marginBottom: "1rem",
                 display: "flex",
@@ -80,7 +87,7 @@ class AboutHT extends React.Component {
               size="lg"
               block
               color="secondary"
-              onClick={this.toggleGetHere}
+              onClick={() => this.toggle("GetHere")}
               style={{
                 marginBottom: "1rem",
                 display: "flex",
@@ -108,7 +115,7 @@ class AboutHT extends React.Component {
               size="lg"
               block
               color="secondary"
-              onClick={this.toggleDistances}
+              onClick={() => this.toggle("Distances")}
               style={{
                 marginBottom: "1rem",
                 display: "flex",
@@ -126,6 +133,32 @@ class AboutHT extends React.Component {
               <Card>
                 <CardBody>
                   <Distances />
+                </CardBody>
+              </Card>
+            </Collapse>
+            <Button
+              outline
+              size="lg"
+              block
+              color="secondary"
+              onClick={() => this.toggle("Rules")}
+              style={{
+                marginBottom: "1rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+              }}
+            >
+              Tävlingsrelger
+              <img
+                src="../../images/icons/downarrow.svg"
+                alt="arrow down"
+              ></img>
+            </Button>
+            <Collapse isOpen={this.state.isRulesOpen}>
+              <Card>
+                <CardBody>
+                  <Rules />
                 </CardBody>
               </Card>
             </Collapse>
