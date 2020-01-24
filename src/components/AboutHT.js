@@ -75,7 +75,10 @@ class AboutHT extends React.Component {
                 <CardBody>
                   <p>
                     Hensmåla Triathlon gå av stapeln för åttonde året i rad och
-                    i år kommer det bli bättre än någonsin!
+                    i år kommer det bli bättre än någonsin! I år kommer Hensmåla
+                    Triathlon vara den 1:e augusti. Första start är kl. 15.00.
+                    Det kommer vara fem startgrupper med tre minuter mellan
+                    grupperna.
                   </p>
                 </CardBody>
               </Card>

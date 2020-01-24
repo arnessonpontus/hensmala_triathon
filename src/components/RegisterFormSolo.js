@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
+import Consent from "./Consent";
 
 const encode = data => {
   return Object.keys(data)
@@ -149,6 +150,7 @@ class RegisterFormSolo extends Component {
                   onClick={() => this.toggleConsent(1)}
                 />{" "}
                 Jag accepterar att Hensmåla Triathlon sparar data om mig.
+                {<Consent />}
               </Label>
             </FormGroup>
             <FormGroup check>
@@ -158,8 +160,11 @@ class RegisterFormSolo extends Component {
                   type="checkbox"
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
-                Jag kommer följa den information och de tävlingsregler som finns
-                på denna sida.
+                Jag kommer att följa den anmälningsinformation och de{" "}
+                <RRNavLink tag={RRNavLink} to="/AboutHT">
+                  tävlingsregler
+                </RRNavLink>{" "}
+                som finns på denna sida.
               </Label>
             </FormGroup>
             <Button
@@ -190,19 +195,17 @@ class RegisterFormSolo extends Component {
             </RRNavLink>
           </p>
           <p>
-            Hensmåla Triathlon har länge Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+            Du kommer få ett mail med startnummer och <b>betalningsuppgifter</b>{" "}
+            då anmälan är gjord. När tävlingen närmar sig kommer yttligare
+            information skickas ut via mail till alla deltagare.
           </p>
           <b>
             Fotografering och videofilmning förekommer, meddela om du inte vill
             vara med.
           </b>
+          <br></br>
+          <br></br>
+          <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
         </Col>
       </Row>
     );

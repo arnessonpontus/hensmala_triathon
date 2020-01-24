@@ -29,9 +29,7 @@ class News extends Component {
                     <h3>{news.title}</h3>
                     <p>{news.text}</p>
 
-                    <i style={{ justifySelf: "flex-end" }}>
-                      {Date(Date.now().toString()).substring(0, 25)}
-                    </i>
+                    <i style={{ justifySelf: "flex-end" }}>{news.date}</i>
                   </Col>
                   <Col
                     style={{

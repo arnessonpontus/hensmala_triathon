@@ -27,6 +27,9 @@ class Home extends Component {
                 <Col className="my-4" ms={4}>
                   <h2>Välkommen till Hensmåla Triathlon</h2>
                   <CardText>
+                    <h5>
+                      År 2020 kommer triathlonet gå av stapeln 1:e augusti!
+                    </h5>
                     I det fina småländska landskapet arrangeras årligen ett
                     minitriathlon till förmån för ALS-forskningen. Alla sträckor
                     är anpassade till den vackra Stora Hensjön och Hensmålas

@@ -3,18 +3,14 @@
     "title": "Snart öppnar anmälan!",
     "text":
       "Snart öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats.",
-    "image": "images/eva_kronobergare.jpg"
-  },
-  {
-    "title": "Hej hopp alla glada!",
-    "text":
-      "Nu ska vi springa och cykla bra. Efteråt blir det grill.",
-    "image": "images/logos/hona_153.png"
+    "image": "images/eva_kronobergare.jpg",
+    "date": "Fre 01-24-2020"
   },
   {
     "title": "Första nyheten är en ny hemsida!",
     "text":
-      "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som deltagare att anmäla dig, hitta info osv. ",
-    "image": "images/cykling.jpg"
+      "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig osv. ",
+    "image": "images/hemsida_news.png",
+    "date": "Fre 01-20-2020"
   }
 ]

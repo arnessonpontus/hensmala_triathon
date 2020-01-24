@@ -11,6 +11,7 @@ import {
   CardBody
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
+import Consent from "./Consent";
 
 const encode = data => {
   return Object.keys(data)
@@ -21,12 +22,15 @@ const encode = data => {
 class RegisterFormTeam extends Component {
   state = {
     teamName: "",
+    name1: "",
     email1: "",
     birthday1: "",
     city1: "",
+    name2: "",
     email2: "",
     birthday2: "",
     city2: "",
+    name3: "",
     email3: "",
     birthday3: "",
     city3: "",
@@ -92,6 +96,18 @@ class RegisterFormTeam extends Component {
             <Card id="teamMember1" style={{ backgroundColor: "#dfeff0" }}>
               <CardBody>
                 <FormGroup>
+                  <Label for="name1">Namn</Label>
+                  <Input
+                    required={true}
+                    type="text"
+                    name="name1"
+                    id="name1"
+                    placeholder="Förnamn Efternamn"
+                    value={this.state.name1}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
                   <Label for="email1">Epost</Label>
                   <Input
                     required={true}
@@ -133,6 +149,18 @@ class RegisterFormTeam extends Component {
             <Card id="teamMember2" style={{ backgroundColor: "#cee7e9" }}>
               <CardBody>
                 <FormGroup>
+                  <Label for="name2">Namn</Label>
+                  <Input
+                    required={true}
+                    type="text"
+                    name="name2"
+                    id="name2"
+                    placeholder="Förnamn Efternamn"
+                    value={this.state.name2}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
                   <Label for="email2">Epost</Label>
                   <Input
                     required={true}
@@ -169,10 +197,22 @@ class RegisterFormTeam extends Component {
               </CardBody>
             </Card>
             <Label className="mt-4" for="teamMember3">
-              Lagmedlem 3
+              Lagmedlem 3 (Ej för lag med endast två deltagare)
             </Label>
             <Card id="teamMember3" style={{ backgroundColor: "#b6dcdf" }}>
               <CardBody>
+                <FormGroup>
+                  <Label for="name3">Namn</Label>
+                  <Input
+                    required={true}
+                    type="text"
+                    name="name3"
+                    id="name3"
+                    placeholder="Förnamn Efternamn"
+                    value={this.state.name3}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
                 <FormGroup>
                   <Label for="email3">Epost</Label>
                   <Input
@@ -230,7 +270,8 @@ class RegisterFormTeam extends Component {
                   type="checkbox"
                   onClick={() => this.toggleConsent(1)}
                 />{" "}
-                Jag accepterar att Hensmåla Triathlon sparar data om mig.
+                Vi accepterar att Hensmåla Triathlon sparar data om oss.
+                {<Consent />}
               </Label>
             </FormGroup>
             <FormGroup check>
@@ -240,8 +281,11 @@ class RegisterFormTeam extends Component {
                   type="checkbox"
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
-                Jag kommer följa den information och de tävlingsregler som finns
-                på denna sida.
+                Vi kommer att följa den anmälningsinformation och de{" "}
+                <RRNavLink tag={RRNavLink} to="/AboutHT">
+                  tävlingsregler
+                </RRNavLink>{" "}
+                som finns på denna sida. som finns på denna sida.
               </Label>
             </FormGroup>
             <Button
@@ -273,19 +317,17 @@ class RegisterFormTeam extends Component {
             </RRNavLink>
           </p>
           <p>
-            Hensmåla Triathlon har länge Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+            Ni kommer få ett mail med startnummer och <b>betalningsuppgifter</b>{" "}
+            då anmälan är gjord. När tävlingen närmar sig kommer yttligare
+            information skickas ut via mail till alla deltagare.
           </p>
           <b>
             Fotografering och videofilmning förekommer, meddela om du inte vill
             vara med.
           </b>
+          <br></br>
+          <br></br>
+          <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
         </Col>
       </Row>
     );
