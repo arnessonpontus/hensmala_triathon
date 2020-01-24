@@ -20,16 +20,19 @@ class Home extends Component {
           src="/images/ht_banner_smaller.jpg"
           alt="HT_banner"
         ></img>
-        <Container className="p-5">
+        <Container className="p-4">
+          <h1
+            className="mb-5"
+            style={{ fontSize: 70, color: "#11999E", fontWeight: "bold" }}
+          >
+            1 augusti 2020
+          </h1>
           <Card>
             <CardBody>
               <Row>
                 <Col className="my-4" ms={4}>
                   <h2>Välkommen till Hensmåla Triathlon</h2>
                   <CardText>
-                    <h5>
-                      År 2020 kommer triathlonet gå av stapeln 1:e augusti!
-                    </h5>
                     I det fina småländska landskapet arrangeras årligen ett
                     minitriathlon till förmån för ALS-forskningen. Alla sträckor
                     är anpassade till den vackra Stora Hensjön och Hensmålas

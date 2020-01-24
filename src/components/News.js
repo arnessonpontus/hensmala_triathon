@@ -18,11 +18,12 @@ class News extends Component {
                     marginTop: 20,
                     borderRadius: 5,
                     borderWidth: 1,
-                    borderColor: "#8b8989",
+                    borderColor: "#d9d7d7",
                     borderStyle: "solid",
                     display: "flex",
                     justifyContent: "space-between",
-                    flexWrap: "wrap"
+                    flexWrap: "wrap",
+                    boxShadow: "inset 0px 0px 5px 5px #d9d7d7"
                   }}
                 >
                   <Col>

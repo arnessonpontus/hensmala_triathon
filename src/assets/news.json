@@ -1,9 +1,9 @@
 [
   {
-    "title": "Snart öppnar anmälan!",
+    "title": "Nu öppnar anmälan!",
     "text":
-      "Snart öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats.",
-    "image": "images/eva_kronobergare.jpg",
+      "Nu öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats!",
+    "image": "images/fireworks.png",
     "date": "Fre 01-24-2020"
   },
   {
@@ -11,6 +11,6 @@
     "text":
       "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig osv. ",
     "image": "images/hemsida_news.png",
-    "date": "Fre 01-20-2020"
+    "date": "Mån 01-20-2020"
   }
 ]
