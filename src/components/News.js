@@ -23,7 +23,7 @@ class News extends Component {
                     display: "flex",
                     justifyContent: "space-between",
                     flexWrap: "wrap",
-                    boxShadow: "inset 0px 0px 5px 5px #d9d7d7"
+                    boxShadow: "0px 0px 3px 3px #c4c4c4"
                   }}
                 >
                   <Col>

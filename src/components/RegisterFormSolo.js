@@ -195,9 +195,10 @@ class RegisterFormSolo extends Component {
             </RRNavLink>
           </p>
           <p>
-            Du kommer få ett mail med startnummer och <b>betalningsuppgifter</b>{" "}
-            då anmälan är gjord. När tävlingen närmar sig kommer yttligare
-            information skickas ut via mail till alla deltagare.
+            Du kommer få ett mail med ett id-nummer och{" "}
+            <b>betalningsuppgifter</b> då anmälan är gjord. När tävlingen närmar
+            sig kommer yttligare information skickas ut via mail till alla
+            deltagare.
           </p>
           <b>
             Fotografering och videofilmning förekommer, meddela om du inte vill

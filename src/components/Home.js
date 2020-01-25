@@ -23,7 +23,7 @@ class Home extends Component {
         <Container className="p-4">
           <h1
             className="mb-5"
-            style={{ fontSize: 70, color: "#11999E", fontWeight: "bold" }}
+            style={{ fontSize: "70px", color: "#11999E", fontWeight: "bold" }}
           >
             1 augusti 2020
           </h1>

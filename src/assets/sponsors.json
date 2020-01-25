@@ -52,12 +52,12 @@
             {
                 "title": "Xylem",
                 "image": "xylem.png",
-                "link": ""
+                "link": "https://www.xylem.com/sv-se"
             },
             {
                 "title": "EBA",
                 "image": "eba.png",
-                "link": ""
+                "link": "http://eba.emmaboda.se/IncitXpandWeb07751_2/Internet/Cm/Logon.aspx"
             },
             {
                 "title": "",
@@ -72,32 +72,27 @@
             {
                 "title": "",
                 "image": "rolf.png",
-                "link": ""
+                "link": "http://rj-schakt.se"
             },
             {
                 "title": "",
                 "image": "t-billackering.png",
-                "link": ""
+                "link": "https://www.tingsryds-billackering.se"
             },
             {
                 "title": "",
                 "image": "hensmala-teknik.png",
-                "link": "www.hmteknik.se"
+                "link": "http://hmteknik.se"
             },
             {
                 "title": "",
                 "image": "alvesta-glass.png",
-                "link": ""
+                "link": "https://www.alvestaglass.se"
             },
             {
                 "title": "",
                 "image": "glass-factory.png",
-                "link": ""
-            },
-            {
-                "title": "",
-                "image": "liljegrens.png",
-                "link": ""
+                "link": "https://www.theglassfactory.se"
             },
             {
                 "title": "",
@@ -107,7 +102,7 @@
             {
                 "title": "",
                 "image": "liljegrens.png",
-                "link": ""
+                "link": "https://www.liljegrens.nu"
             },
             {
                 "title": "",
@@ -121,7 +116,7 @@
             {
                 "title": "",
                 "image": "vitaminwell.png",
-                "link": ""
+                "link": "https://www.vitaminwell.com/sv/"
             },
             {
                 "title": "",
@@ -131,7 +126,7 @@
             {
                 "title": "",
                 "image": "bjs.png",
-                "link": ""
+                "link": "http://www.bjs-tingsryd.com"
             },
             {
                 "title": "",
@@ -141,22 +136,22 @@
             {
                 "title": "",
                 "image": "biggans.png",
-                "link": ""
+                "link": "https://www.facebook.com/Biggans-Café-512830595471818/"
             },
             {
                 "title": "",
                 "image": "istom.png",
-                "link": ""
+                "link": "http://istom.se"
             },
             {
                 "title": "",
                 "image": "bildelar.png",
-                "link": "http://www.biltab.se/"
+                "link": "https://www.adbildelar.se/butik-verkstad/ad-bildelar-tingsryd"
             },
             {
                 "title": "",
                 "image": "jga.png",
-                "link": "www.jga.se"
+                "link": "https://jga.se"
             },
             {
                 "title": "",
@@ -166,7 +161,7 @@
             {
                 "title": "",
                 "image": "akes-optic.png",
-                "link": ""
+                "link": "http://www.glasogonen.nu/index.php?utm_source=kronoberg&utm_medium=tingsryd&utm_campaign=7695"
             },
             {
                 "title": "orthex",
@@ -206,52 +201,52 @@
             {
                 "title": "",
                 "image": "woody.png",
-                "link": "https://www.woody.se/"
+                "link": "https://lindgrens-tingsryd.woody.se"
             },
             {
                 "title": "",
                 "image": "ladan.png",
-                "link": ""
+                "link": "http://www.restaurangladan.se"
             },
             {
                 "title": "",
                 "image": "fohlins.png",
-                "link": ""
+                "link": "https://www.fohlins.se"
             },
             {
                 "title": "",
                 "image": "nelson.png",
-                "link": ""
+                "link": "https://www.nelsongarden.se"
             },
             {
                 "title": "",
                 "image": "lars-carlsson.png",
-                "link": ""
+                "link": "http://www.carlssontra.se"
             },
             {
                 "title": "",
                 "image": "sandbergs-ror.png",
-                "link": ""
+                "link": "https://www.sandbergs-ror.se"
             },
             {
                 "title": "",
                 "image": "lindas-har.png",
-                "link": ""
+                "link": "https://www.facebook.com/Lindasharatelje/"
             },
             {
                 "title": "",
                 "image": "harlins.png",
-                "link": ""
+                "link": "https://www.facebook.com/pages/Härlins-Eftr/605887589539863"
             },
             {
                 "title": "",
                 "image": "lilla-hjartat.png",
-                "link": "www.lilla-hjartat.se"
+                "link": "https://lilla-hjartat.se"
             },
             {
                 "title": "",
                 "image": "screen.png",
-                "link": ""
+                "link": "http://www.screenab.com"
             },
             {
                 "title": "",
@@ -261,22 +256,22 @@
             {
                 "title": "",
                 "image": "sportfiske.png",
-                "link": ""
+                "link": "https://www.facebook.com/SmalandSportfiske"
             },
             {
                 "title": "",
                 "image": "hydroware.png",
-                "link": ""
+                "link": "http://www.hydroware.se"
             },
             {
                 "title": "",
                 "image": "scapa.png",
-                "link": ""
+                "link": "https://scapainter.com"
             },
             {
                 "title": "",
                 "image": "belganet.png",
-                "link": ""
+                "link": "https://www.yourvismawebsite.com/belganet-handels-ab"
             }
         ]
 

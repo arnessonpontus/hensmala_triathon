@@ -52,7 +52,7 @@ i {
 }
 
 .inactive {
-  color: #ebebeb;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -61,13 +61,12 @@ i {
 }
 
 .active {
-  color: #fff;
+  color: #d3d1d1;
   text-decoration: none;
 }
 
 .tabLink:hover {
   cursor: pointer;
-  color: red;
 }
 
 .card-title {

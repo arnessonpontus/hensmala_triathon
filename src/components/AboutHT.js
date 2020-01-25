@@ -73,13 +73,20 @@ class AboutHT extends React.Component {
             <Collapse isOpen={this.state.isInfoOpen}>
               <Card>
                 <CardBody>
-                  <p>
+                  <h5>
                     Hensmåla Triathlon gå av stapeln för åttonde året i rad och
-                    i år kommer det bli bättre än någonsin! I år kommer Hensmåla
-                    Triathlon vara den 1:e augusti. Första start är kl. 15.00.
-                    Det kommer vara fem startgrupper med tre minuter mellan
-                    grupperna.
-                  </p>
+                    vi hoppas det kommer bli bättre än någonsin!
+                  </h5>
+                  <ul className="ml-5">
+                    <li>
+                      Hensmåla Triathlon 2020 kommer att vara den 1:e augusti
+                    </li>
+                    <li>Första start är kl. 15.00</li>
+                    <li>
+                      Det kommer vara fem startgrupper med tre minuter mellan
+                      grupperna
+                    </li>
+                  </ul>
                 </CardBody>
               </Card>
             </Collapse>

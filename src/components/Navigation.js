@@ -44,6 +44,7 @@ class Navigation extends React.Component {
           color="light"
           className="inactive"
           activeClassName="active"
+          style={{}}
           exact={true}
           to="/"
           onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -113,7 +114,7 @@ class Navigation extends React.Component {
             isOpen={this.state.isDropdownOpen}
             toggle={this.toggleDropdown}
           >
-            <DropdownToggle caret color="none" style={{ color: "#ebebeb" }}>
+            <DropdownToggle caret color="none" style={{ color: "#fff" }}>
               RESULTAT
             </DropdownToggle>
             <DropdownMenu>
