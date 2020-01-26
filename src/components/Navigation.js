@@ -114,7 +114,7 @@ class Navigation extends React.Component {
             isOpen={this.state.isDropdownOpen}
             toggle={this.toggleDropdown}
           >
-            <DropdownToggle caret color="none" style={{ color: "#fff" }}>
+            <DropdownToggle caret color="none" className="results">
               RESULTAT
             </DropdownToggle>
             <DropdownMenu>

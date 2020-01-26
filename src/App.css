@@ -65,6 +65,21 @@ i {
   text-decoration: none;
 }
 
+.nav-link:hover {
+  color:  rgb(201, 197, 197);
+}
+
+.navbar-brand:hover {
+  color: rgb(201, 197, 197);
+}
+
+.dropdown .dropdown-toggle {
+color: #fff;
+}
+.dropdown .dropdown-toggle:hover {
+  color: rgb(201, 197, 197);
+  }
+
 .tabLink:hover {
   cursor: pointer;
 }
