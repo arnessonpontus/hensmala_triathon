@@ -277,6 +277,11 @@
                 "title": "",
                 "image": "belganet.png",
                 "link": "https://www.yourvismawebsite.com/belganet-handels-ab"
+            },
+            {
+                "title": "Ekoreklam",
+                "image": "ekoreklam.png",
+                "link": "http://www.ekoreklam.se/"
             }
         ]
 
