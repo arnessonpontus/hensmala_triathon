@@ -31,7 +31,7 @@ const App = () => {
         <Route path="/om-als" component={AboutALS} />
         <Route path="/videos" component={Videos} />
         <Route path="/foton" component={Photos} />
-        <Route path="/articles" component={Articles} />
+        <Route path="/artiklar" component={Articles} />
         <Route path="/radio" component={Radio} />
         <Route path="/sponsorer" component={Sponsors} />
       </Router>
