@@ -25,15 +25,15 @@ const App = () => {
       <Router>
         <Navigation />
         <Route path="/" exact component={Home} />
-        <Route path="/register" component={Register} />
+        <Route path="/anmalan" component={Register} />
         <Route path="/media" component={Media} />
-        <Route path="/aboutHT" component={AboutHT} />
-        <Route path="/aboutALS" component={AboutALS} />
+        <Route path="/om-ht" component={AboutHT} />
+        <Route path="/om-als" component={AboutALS} />
         <Route path="/videos" component={Videos} />
-        <Route path="/photos" component={Photos} />
+        <Route path="/foton" component={Photos} />
         <Route path="/articles" component={Articles} />
         <Route path="/radio" component={Radio} />
-        <Route path="/sponsors" component={Sponsors} />
+        <Route path="/sponsorer" component={Sponsors} />
       </Router>
       <Footer />
     </div>

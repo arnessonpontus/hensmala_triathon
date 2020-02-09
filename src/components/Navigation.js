@@ -68,7 +68,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
-            to="/Register"
+            to="/anmalan"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             ANMÄLAN
@@ -77,7 +77,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
-            to="/aboutALS"
+            to="/om-als"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             OM ALS
@@ -86,7 +86,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
-            to="/aboutHT"
+            to="/om-ht"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             OM HENSMÅLA TRIATLON
@@ -105,7 +105,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
-            to="/sponsors"
+            to="/sponsorer"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             SPONSORER

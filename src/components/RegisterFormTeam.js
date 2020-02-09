@@ -282,7 +282,7 @@ class RegisterFormTeam extends Component {
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
                 Vi kommer att följa den anmälningsinformation och de{" "}
-                <RRNavLink tag={RRNavLink} to="/AboutHT">
+                <RRNavLink tag={RRNavLink} to="/om-ht">
                   tävlingsregler
                 </RRNavLink>{" "}
                 som finns på denna sida. som finns på denna sida.
@@ -312,7 +312,7 @@ class RegisterFormTeam extends Component {
             kan innebära att ni är tre som deltar där alla kör en gren var.
             Eller innefattar laget endast två personer och en person kör två av
             grenarna. För mer information om sträckorna och regler kan du gå in{" "}
-            <RRNavLink tag={RRNavLink} to="/AboutHT">
+            <RRNavLink tag={RRNavLink} to="/om-ht">
               HÄR
             </RRNavLink>
           </p>

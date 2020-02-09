@@ -199,7 +199,7 @@ class RegisterFormKids extends Component {
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
                 Jag kommer att följa den anmälningsinformation och de{" "}
-                <RRNavLink tag={RRNavLink} to="/AboutHT">
+                <RRNavLink tag={RRNavLink} to="/om-ht">
                   tävlingsregler
                 </RRNavLink>{" "}
                 som finns på denna sida. som finns på denna sida.
@@ -228,7 +228,7 @@ class RegisterFormKids extends Component {
             När du anmäler sig till Hensmåla Triathlon som barn utför du alla
             tre grenar individuellt, men där alla grenar är förkortade. För mer
             information om sträckorna och regler kan du gå in{" "}
-            <RRNavLink tag={RRNavLink} to="/AboutHT">
+            <RRNavLink tag={RRNavLink} to="/om-ht">
               HÄR
             </RRNavLink>
           </p>

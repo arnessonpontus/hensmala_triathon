@@ -28,7 +28,7 @@ class Media extends React.Component {
           </Card>
         </Link>
 
-        <Link to="/articles">
+        <Link to="/artiklar">
           <Card style={styles.cardStyle} className="text-center m-2">
             <h3 style={styles.textStyle}>ARTIKLAR</h3>
             <img
@@ -52,7 +52,7 @@ class Media extends React.Component {
           </Card>
         </Link>
 
-        <Link to="/photos">
+        <Link to="/foton">
           <Card style={styles.cardStyle} className="text-center m-2">
             <h3 style={styles.textStyle}>FOTON</h3>
             <img

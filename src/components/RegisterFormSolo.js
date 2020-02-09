@@ -161,7 +161,7 @@ class RegisterFormSolo extends Component {
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
                 Jag kommer att följa den anmälningsinformation och de{" "}
-                <RRNavLink tag={RRNavLink} to="/AboutHT">
+                <RRNavLink tag={RRNavLink} to="/om-ht">
                   tävlingsregler
                 </RRNavLink>{" "}
                 som finns på denna sida.
@@ -190,7 +190,7 @@ class RegisterFormSolo extends Component {
             När du anmälder sig som indiviuell deltagare utför du alla tre
             grenar individuellt. För mer information om sträckorna och regler
             kan du gå in{" "}
-            <RRNavLink tag={RRNavLink} to="/AboutHT">
+            <RRNavLink tag={RRNavLink} to="/om-ht">
               HÄR
             </RRNavLink>
           </p>
