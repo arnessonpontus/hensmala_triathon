@@ -13,7 +13,7 @@ import Radio from "./components/Radio";
 import Sponsors from "./components/Sponsors";
 import Footer from "./components/Footer";
 
-import { Route, HashRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import ReactGA from "react-ga";
 
 const App = () => {
