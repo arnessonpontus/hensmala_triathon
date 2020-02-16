@@ -23,7 +23,8 @@ class RegisterFormKids extends Component {
     guardianPhone: "",
     guardianEmail: "",
     isCheckboxOneTicked: false,
-    isCheckboxTwoTicked: false
+    isCheckboxTwoTicked: false,
+    isCheckboxThreeTicked: false
   };
 
   constructor(props) {
@@ -56,8 +57,12 @@ class RegisterFormKids extends Component {
   toggleConsent = checkbox => {
     if (checkbox === 1) {
       this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
-    } else {
+    } else if (checkbox === 2) {
       this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
+    } else {
+      this.setState({
+        isCheckboxThreeTicked: !this.state.isCheckboxThreeTicked
+      });
     }
   };
 
@@ -259,7 +264,7 @@ class RegisterFormKids extends Component {
                 required={true}
                 name="guardianName"
                 id="guardianName"
-                placeholder="Lars Svensson"
+                placeholder="Förnamn Efternamn"
                 value={this.state.guardianName}
                 onChange={this.handleChange}
               />
@@ -271,7 +276,7 @@ class RegisterFormKids extends Component {
                 required={true}
                 name="guardianPhone"
                 id="guardianPhone"
-                placeholder="0704554432"
+                placeholder=""
                 value={this.state.guardianPhone}
                 onChange={this.handleChange}
               />
@@ -283,7 +288,7 @@ class RegisterFormKids extends Component {
                 required={true}
                 name="guardianEmail"
                 id="guardianEmail"
-                placeholder="lars.svensson@gmail.com"
+                placeholder="malsman.email@gmail.com"
                 value={this.state.guardianEmail}
                 onChange={this.handleChange}
               />
@@ -295,8 +300,7 @@ class RegisterFormKids extends Component {
                 type="textarea"
                 name="infoKID"
                 id="infoKID"
-                placeholder="T.ex. önskemål att starta i någon speciell
-                startgrupp"
+                placeholder=""
                 value={this.state.infoKID}
                 onChange={this.handleChange}
               />
@@ -320,10 +324,21 @@ class RegisterFormKids extends Component {
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
                 Jag kommer att följa Hensmåla Triathlons{" "}
-                <RRNavLink tag={RRNavLink} to="/om-ht">
+                <RRNavLink tag={RRNavLink} to="/om-ht/regler">
                   tävlingsregler
                 </RRNavLink>{" "}
                 och den anmälningsinformation som finns på denna sida.
+              </Label>
+            </FormGroup>
+            <FormGroup check>
+              <Label for="checkbox3">
+                <Input
+                  className="checkbox3"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(3)}
+                />{" "}
+                Jag kan simma minst 200 meter och kommer ha en vuxen anhörig på
+                plats.
               </Label>
             </FormGroup>
             <Button
@@ -331,7 +346,8 @@ class RegisterFormKids extends Component {
               disabled={
                 !(
                   this.state.isCheckboxOneTicked &&
-                  this.state.isCheckboxTwoTicked
+                  this.state.isCheckboxTwoTicked &&
+                  this.state.isCheckboxThreeTicked
                 )
               }
             >
@@ -350,7 +366,7 @@ class RegisterFormKids extends Component {
             grenarna simmning och löpning individuellt, men där grenarna är
             förkortade. För mer information om sträckorna och tävlingsregler kan
             du gå in{" "}
-            <RRNavLink tag={RRNavLink} to="/om-ht">
+            <RRNavLink tag={RRNavLink} to="/om-ht/hem">
               HÄR
             </RRNavLink>
           </p>

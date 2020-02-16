@@ -13,7 +13,7 @@ import Radio from "./components/Radio";
 import Sponsors from "./components/Sponsors";
 import Footer from "./components/Footer";
 
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
 
 const App = () => {
@@ -27,13 +27,15 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/anmalan" component={Register} />
         <Route path="/media" component={Media} />
-        <Route path="/om-ht" component={AboutHT} />
         <Route path="/om-als" component={AboutALS} />
         <Route path="/videos" component={Videos} />
         <Route path="/foton" component={Photos} />
         <Route path="/artiklar" component={Articles} />
         <Route path="/radio" component={Radio} />
         <Route path="/sponsorer" component={Sponsors} />
+        <Switch>
+          <Route path="/om-ht/:id" component={AboutHT} />
+        </Switch>
       </Router>
       <Footer />
     </div>

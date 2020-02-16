@@ -86,7 +86,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
-            to="/om-ht"
+            to="/om-ht/hem"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             OM HENSMÅLA TRIATLON

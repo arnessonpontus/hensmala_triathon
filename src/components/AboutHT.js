@@ -37,7 +37,43 @@ class AboutHT extends React.Component {
   };
 
   componentDidMount() {
-    window.scrollTo(0, 0);
+    const { id } = this.props.match.params;
+    switch (id) {
+      case "info":
+        setTimeout(() => {
+          document
+            .getElementById("info")
+            .scrollIntoView({ behavior: "smooth" });
+        }, 1500);
+        this.setState({ isInfoOpen: true });
+        break;
+      case "hitta-hit":
+        setTimeout(() => {
+          document
+            .getElementById("info")
+            .scrollIntoView({ behavior: "smooth" });
+        }, 1500);
+        this.setState({ isGetHereOpen: true });
+        break;
+      case "strackor":
+        setTimeout(() => {
+          document
+            .getElementById("hitta-hit")
+            .scrollIntoView({ behavior: "smooth" });
+        }, 1500);
+        this.setState({ isDistancesOpen: true });
+        break;
+      case "regler":
+        setTimeout(() => {
+          document
+            .getElementById("strackor")
+            .scrollIntoView({ behavior: "smooth" });
+        }, 1500);
+        this.setState({ isRulesOpen: true });
+        break;
+      default:
+        break;
+    }
   }
 
   render() {
@@ -49,7 +85,7 @@ class AboutHT extends React.Component {
           alt="HT_banner"
         ></img>
         <Container className="mt-5" style={{ minHeight: "50vh" }}>
-          <div>
+          <div id="info">
             <Button
               outline
               size="lg"
@@ -86,11 +122,21 @@ class AboutHT extends React.Component {
                       grupperna
                     </li>
                   </ul>
+                  <b>För deltagare</b>
+                  <br></br>
+                  Efter loppet är man välkommen att bada i sjön, det finns dock
+                  ingen duch att tillgå.
+                  <br></br>
+                  <br></br>
+                  <b>För alla</b>
+                  <br></br>
+                  Toaletter, både handikap och vanlig, finns på plats att
+                  nyttja. Korv och fika finns till försäljning under dagen.
                 </CardBody>
               </Card>
             </Collapse>
           </div>
-          <div>
+          <div id="hitta-hit">
             <Button
               outline
               size="lg"
@@ -118,7 +164,7 @@ class AboutHT extends React.Component {
               </Card>
             </Collapse>
           </div>
-          <div>
+          <div id="strackor">
             <Button
               outline
               size="lg"
@@ -146,6 +192,7 @@ class AboutHT extends React.Component {
               </Card>
             </Collapse>
             <Button
+              id="regler"
               outline
               size="lg"
               block

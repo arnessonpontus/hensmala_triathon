@@ -282,7 +282,7 @@ class RegisterFormSolo extends Component {
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
                 Jag kommer att följa Hensmåla Triathlons{" "}
-                <RRNavLink tag={RRNavLink} to="/om-ht">
+                <RRNavLink tag={RRNavLink} to="/om-ht/regler">
                   tävlingsregler
                 </RRNavLink>{" "}
                 och den anmälningsinformation som finns på denna sida.
@@ -311,7 +311,7 @@ class RegisterFormSolo extends Component {
             När du anmälder sig som indiviuell deltagare utför du alla tre
             grenar individuellt. För mer information om sträckorna och
             tävlingsregler kan du gå in{" "}
-            <RRNavLink tag={RRNavLink} to="/om-ht">
+            <RRNavLink tag={RRNavLink} to="/om-ht/hem">
               HÄR
             </RRNavLink>
           </p>

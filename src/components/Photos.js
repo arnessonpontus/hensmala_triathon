@@ -25,14 +25,15 @@ class Photos extends React.Component {
                   rel="noopener noreferrer"
                   href={album.src}
                   title={album.title}
+                  style={{ color: "black" }}
                 >
                   <Card>
                     <CardBody>
                       <CardImg
                         src={album.image}
                         style={{ objectFit: "cover" }}
-                        width="320"
-                        height="180"
+                        width="280px"
+                        height="280px"
                         alt={album.title}
                       ></CardImg>
                       <CardTitle className="mt-2">{album.title}</CardTitle>

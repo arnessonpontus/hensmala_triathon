@@ -471,7 +471,7 @@ class RegisterFormTeam extends Component {
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
                 Vi kommer att följa Hensmåla Triathlons{" "}
-                <RRNavLink tag={RRNavLink} to="/om-ht">
+                <RRNavLink tag={RRNavLink} to="/om-ht/regler">
                   tävlingsregler
                 </RRNavLink>{" "}
                 och den anmälningsinformation som finns på denna sida.
@@ -502,7 +502,7 @@ class RegisterFormTeam extends Component {
             Eller innefattar laget endast två personer och en person kör två av
             grenarna. För mer information om sträckorna och tävlingsregler kan
             du gå in{" "}
-            <RRNavLink tag={RRNavLink} to="/om-ht">
+            <RRNavLink tag={RRNavLink} to="/om-ht/hem">
               HÄR
             </RRNavLink>
           </p>
