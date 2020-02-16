@@ -71,6 +71,19 @@ class Register extends Component {
                       Lag
                     </NavLink>
                   </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({
+                        tabLink: true,
+                        active: this.state.activeTab === "3"
+                      })}
+                      onClick={() => {
+                        this.changeTab("3");
+                      }}
+                    >
+                      Barn
+                    </NavLink>
+                  </NavItem>
                 </Nav>
                 <TabContent activeTab={this.state.activeTab}>
                   <TabPane tabId="1">
@@ -81,6 +94,11 @@ class Register extends Component {
 
                   <TabPane tabId="2">
                     <RegisterFormTeam
+                      handleRegistration={this.handleRegistration}
+                    />
+                  </TabPane>
+                  <TabPane tabId="3">
+                    <RegisterFormKids
                       handleRegistration={this.handleRegistration}
                     />
                   </TabPane>

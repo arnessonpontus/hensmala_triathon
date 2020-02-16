@@ -13,10 +13,12 @@ class RegisterFormKids extends Component {
   state = {
     nameKID: "",
     emailKID: "",
-    birthdayKID: "",
+    yearKID: "",
+    monthKID: "",
+    dayKID: "",
     infoKID: "",
     cityKID: "",
-    sexKID: "",
+    genderKID: "",
     guardianName: "",
     guardianPhone: "",
     guardianEmail: "",
@@ -48,11 +50,6 @@ class RegisterFormKids extends Component {
     const name = e.target.name;
     let value = e.target.value;
 
-    if (e.target.name === "sexKID") {
-      let element = document.getElementById("sexSelectionKID");
-      value = element.options[element.selectedIndex].value;
-    }
-
     this.setState({ [name]: value });
   };
 
@@ -62,6 +59,95 @@ class RegisterFormKids extends Component {
     } else {
       this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
     }
+  };
+
+  renderYears = () => {
+    let years = [];
+    for (let i = 2005; i > 1930; i--) {
+      years.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return years;
+  };
+
+  renderMonths = () => {
+    let months = [];
+    months.push(
+      <option value={1} key={0}>
+        Januari
+      </option>
+    );
+    months.push(
+      <option value={2} key={1}>
+        Februari
+      </option>
+    );
+    months.push(
+      <option value={3} key={2}>
+        Mars
+      </option>
+    );
+    months.push(
+      <option value={4} key={3}>
+        April
+      </option>
+    );
+    months.push(
+      <option value={5} key={4}>
+        Maj
+      </option>
+    );
+    months.push(
+      <option value={6} key={5}>
+        Juni
+      </option>
+    );
+    months.push(
+      <option value={7} key={6}>
+        Juli
+      </option>
+    );
+    months.push(
+      <option value={8} key={7}>
+        Augusti
+      </option>
+    );
+    months.push(
+      <option value={9} key={8}>
+        September
+      </option>
+    );
+    months.push(
+      <option value={10} key={9}>
+        Oktober
+      </option>
+    );
+    months.push(
+      <option value={11} key={10}>
+        November
+      </option>
+    );
+    months.push(
+      <option value={12} key={11}>
+        December
+      </option>
+    );
+    return months;
+  };
+
+  renderDays = () => {
+    let days = [];
+    for (let i = 1; i <= 31; i++) {
+      days.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return days;
   };
 
   render() {
@@ -97,27 +183,62 @@ class RegisterFormKids extends Component {
             </FormGroup>
             <FormGroup>
               <Label for="birthdayIDKID">Födelsedatum</Label>
-              <Input
-                required={true}
-                type="date"
-                name="birthdayKID"
-                id="birthdayIDKID"
-                placeholder="date placeholder"
-                onChange={this.handleChange}
-              />
+              <div style={{ display: "flex" }}>
+                <Input
+                  className="mr-2"
+                  required={true}
+                  type="select"
+                  name="yearKID"
+                  id="yearSelectionKID"
+                  onChange={this.handleChange}
+                >
+                  <option disabled selected value>
+                    År
+                  </option>
+                  {this.renderYears()}
+                </Input>
+                <Input
+                  className="ml-2 mr-2"
+                  required={true}
+                  type="select"
+                  name="monthKID"
+                  id="monthSelectionKID"
+                  onChange={this.handleChange}
+                >
+                  <option disabled selected value>
+                    Månad
+                  </option>
+                  {this.renderMonths()}
+                </Input>
+                <Input
+                  className="ml-2"
+                  required={true}
+                  type="select"
+                  name="dayKID"
+                  id="daySelectionKID"
+                  onChange={this.handleChange}
+                >
+                  <option disabled selected value>
+                    Dag
+                  </option>
+                  {this.renderDays()}
+                </Input>
+              </div>
             </FormGroup>
             <FormGroup>
-              <Label for="sexSelectionKID">Kön</Label>
+              <Label for="genderSelectionKID">Kön</Label>
               <Input
                 required={true}
                 type="select"
-                name="sexKID"
-                id="sexSelectionKID"
+                name="genderKID"
+                id="genderSelectionKID"
                 onChange={this.handleChange}
               >
-                <option></option>
-                <option>Man</option>
-                <option>Kvinna</option>
+                <option disabled selected value>
+                  Välj kön
+                </option>
+                <option value="Man">Man</option>
+                <option value="Kvinna">Kvinna</option>
               </Input>
             </FormGroup>
             <FormGroup>
@@ -174,7 +295,7 @@ class RegisterFormKids extends Component {
                 type="textarea"
                 name="infoKID"
                 id="infoKID"
-                placeholder="t.ex. önskemål att starta i någon speciell
+                placeholder="T.ex. önskemål att starta i någon speciell
                 startgrupp"
                 value={this.state.infoKID}
                 onChange={this.handleChange}
@@ -198,11 +319,11 @@ class RegisterFormKids extends Component {
                   type="checkbox"
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
-                Jag kommer att följa den anmälningsinformation och de{" "}
+                Jag kommer att följa Hensmåla Triathlons{" "}
                 <RRNavLink tag={RRNavLink} to="/om-ht">
                   tävlingsregler
                 </RRNavLink>{" "}
-                som finns på denna sida. som finns på denna sida.
+                och den anmälningsinformation som finns på denna sida.
               </Label>
             </FormGroup>
             <Button
@@ -219,15 +340,16 @@ class RegisterFormKids extends Component {
           </Form>
         </Col>
         <Col style={{ marginTop: "5vh" }}>
-          <h3>Anmäl dig för de lite kortare sträckorna</h3>
+          <h3>Nyhet! Anmälan för dig upp till 15 år</h3>
           <b>Startavgift: 100kr </b>
           <i style={{ fontSize: 12 }}>
-            Priset kommer höjas den 30e juni till 200kr
+            Priset kommer höjas den 15e juli till 200kr
           </i>
           <p>
-            När du anmäler sig till Hensmåla Triathlon som barn utför du alla
-            tre grenar individuellt, men där alla grenar är förkortade. För mer
-            information om sträckorna och regler kan du gå in{" "}
+            När du anmäler sig till Hensmåla Triathlon som barn utför du de två
+            grenarna simmning och löpning individuellt, men där grenarna är
+            förkortade. För mer information om sträckorna och tävlingsregler kan
+            du gå in{" "}
             <RRNavLink tag={RRNavLink} to="/om-ht">
               HÄR
             </RRNavLink>

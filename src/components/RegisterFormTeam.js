@@ -24,15 +24,21 @@ class RegisterFormTeam extends Component {
     teamName: "",
     name1: "",
     email1: "",
-    birthday1: "",
+    year1: "",
+    month1: "",
+    day1: "",
     city1: "",
     name2: "",
     email2: "",
-    birthday2: "",
+    year2: "",
+    month2: "",
+    day2: "",
     city2: "",
     name3: "",
     email3: "",
-    birthday3: "",
+    year3: "",
+    month3: "",
+    day3: "",
     city3: "",
     info: "",
     isCheckboxOneTicked: false,
@@ -72,6 +78,95 @@ class RegisterFormTeam extends Component {
     } else {
       this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
     }
+  };
+
+  renderYears = () => {
+    let years = [];
+    for (let i = 2005; i > 1930; i--) {
+      years.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return years;
+  };
+
+  renderMonths = () => {
+    let months = [];
+    months.push(
+      <option value={1} key={0}>
+        Januari
+      </option>
+    );
+    months.push(
+      <option value={2} key={1}>
+        Februari
+      </option>
+    );
+    months.push(
+      <option value={3} key={2}>
+        Mars
+      </option>
+    );
+    months.push(
+      <option value={4} key={3}>
+        April
+      </option>
+    );
+    months.push(
+      <option value={5} key={4}>
+        Maj
+      </option>
+    );
+    months.push(
+      <option value={6} key={5}>
+        Juni
+      </option>
+    );
+    months.push(
+      <option value={7} key={6}>
+        Juli
+      </option>
+    );
+    months.push(
+      <option value={8} key={7}>
+        Augusti
+      </option>
+    );
+    months.push(
+      <option value={9} key={8}>
+        September
+      </option>
+    );
+    months.push(
+      <option value={10} key={9}>
+        Oktober
+      </option>
+    );
+    months.push(
+      <option value={11} key={10}>
+        November
+      </option>
+    );
+    months.push(
+      <option value={12} key={11}>
+        December
+      </option>
+    );
+    return months;
+  };
+
+  renderDays = () => {
+    let days = [];
+    for (let i = 1; i <= 31; i++) {
+      days.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return days;
   };
 
   render() {
@@ -121,14 +216,47 @@ class RegisterFormTeam extends Component {
                 </FormGroup>
                 <FormGroup>
                   <Label for="birthdayID1">Födelsedatum</Label>
-                  <Input
-                    required={true}
-                    type="date"
-                    name="birthday1"
-                    id="birthday1"
-                    placeholder="date placeholder"
-                    onChange={this.handleChange}
-                  />
+                  <div style={{ display: "flex" }}>
+                    <Input
+                      className="mr-2"
+                      required={true}
+                      type="select"
+                      name="year1"
+                      id="yearSelection1"
+                      onChange={this.handleChange}
+                    >
+                      <option disabled selected value>
+                        År
+                      </option>
+                      {this.renderYears()}
+                    </Input>
+                    <Input
+                      className="ml-2 mr-2"
+                      required={true}
+                      type="select"
+                      name="month1"
+                      id="monthSelection1"
+                      onChange={this.handleChange}
+                    >
+                      <option disabled selected value>
+                        Månad
+                      </option>
+                      {this.renderMonths()}
+                    </Input>
+                    <Input
+                      className="ml-2"
+                      required={true}
+                      type="select"
+                      name="day1"
+                      id="daySelection1"
+                      onChange={this.handleChange}
+                    >
+                      <option disabled selected value>
+                        Dag
+                      </option>
+                      {this.renderDays()}
+                    </Input>
+                  </div>
                 </FormGroup>
                 <FormGroup>
                   <Label for="city1"> Ort (klubb)</Label>
@@ -174,14 +302,47 @@ class RegisterFormTeam extends Component {
                 </FormGroup>
                 <FormGroup>
                   <Label for="birthdayID2">Födelsedatum</Label>
-                  <Input
-                    required={true}
-                    type="date"
-                    name="birthday2"
-                    id="birthday2"
-                    placeholder="date placeholder"
-                    onChange={this.handleChange}
-                  />
+                  <div style={{ display: "flex" }}>
+                    <Input
+                      className="mr-2"
+                      required={true}
+                      type="select"
+                      name="year2"
+                      id="yearSelection2"
+                      onChange={this.handleChange}
+                    >
+                      <option disabled selected value>
+                        År
+                      </option>
+                      {this.renderYears()}
+                    </Input>
+                    <Input
+                      className="ml-2 mr-2"
+                      required={true}
+                      type="select"
+                      name="month2"
+                      id="monthSelection2"
+                      onChange={this.handleChange}
+                    >
+                      <option disabled selected value>
+                        Månad
+                      </option>
+                      {this.renderMonths()}
+                    </Input>
+                    <Input
+                      className="ml-2"
+                      required={true}
+                      type="select"
+                      name="day2"
+                      id="daySelection2"
+                      onChange={this.handleChange}
+                    >
+                      <option disabled selected value>
+                        Dag
+                      </option>
+                      {this.renderDays()}
+                    </Input>
+                  </div>
                 </FormGroup>
                 <FormGroup>
                   <Label for="city2"> Ort (klubb)</Label>
@@ -227,13 +388,41 @@ class RegisterFormTeam extends Component {
 
                 <FormGroup>
                   <Label for="birthdayID3">Födelsedatum</Label>
-                  <Input
-                    type="date"
-                    name="birthday3"
-                    id="birthday3"
-                    placeholder="date placeholder"
-                    onChange={this.handleChange}
-                  />
+                  <div style={{ display: "flex" }}>
+                    <Input
+                      className="mr-2"
+                      required={true}
+                      type="select"
+                      name="year3"
+                      id="yearSelection3"
+                      onChange={this.handleChange}
+                    >
+                      <option>År</option>
+                      {this.renderYears()}
+                    </Input>
+                    <Input
+                      className="ml-2 mr-2"
+                      required={true}
+                      type="select"
+                      name="month3"
+                      id="monthSelection3"
+                      onChange={this.handleChange}
+                    >
+                      <option>Månad</option>
+                      {this.renderMonths()}
+                    </Input>
+                    <Input
+                      className="ml-2"
+                      required={true}
+                      type="select"
+                      name="day3"
+                      id="daySelection3"
+                      onChange={this.handleChange}
+                    >
+                      <option>Dag</option>
+                      {this.renderDays()}
+                    </Input>
+                  </div>
                 </FormGroup>
                 <FormGroup>
                   <Label for="city3"> Ort (klubb)</Label>
@@ -257,7 +446,7 @@ class RegisterFormTeam extends Component {
                 type="textarea"
                 name="info"
                 id="info"
-                placeholder="t.ex. önskemål att starta i någon speciell
+                placeholder="T.ex. önskemål att starta i någon speciell
                 startgrupp"
                 value={this.state.info}
                 onChange={this.handleChange}
@@ -281,11 +470,11 @@ class RegisterFormTeam extends Component {
                   type="checkbox"
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
-                Vi kommer att följa den anmälningsinformation och de{" "}
+                Vi kommer att följa Hensmåla Triathlons{" "}
                 <RRNavLink tag={RRNavLink} to="/om-ht">
                   tävlingsregler
                 </RRNavLink>{" "}
-                som finns på denna sida. som finns på denna sida.
+                och den anmälningsinformation som finns på denna sida.
               </Label>
             </FormGroup>
             <Button
@@ -311,7 +500,8 @@ class RegisterFormTeam extends Component {
             När ni anmäler er som lag får sträckorna delas upp inom laget. Detta
             kan innebära att ni är tre som deltar där alla kör en gren var.
             Eller innefattar laget endast två personer och en person kör två av
-            grenarna. För mer information om sträckorna och regler kan du gå in{" "}
+            grenarna. För mer information om sträckorna och tävlingsregler kan
+            du gå in{" "}
             <RRNavLink tag={RRNavLink} to="/om-ht">
               HÄR
             </RRNavLink>

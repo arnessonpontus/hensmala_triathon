@@ -1,16 +1,23 @@
 [
   {
+    "title": "Nyhet för iår: Duathlon för barn!",
+    "text":
+      "Detta året kommer det hållas ett duathlon för barn upp till 15 år. Mer information hittar du på anmälningssidan.",
+    "image": "images/barn-badmossa.jpg",
+    "date": "Sön 17-02-2020"
+  },
+  {
     "title": "Nu öppnar anmälan!",
     "text":
       "Nu öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats!",
     "image": "images/fireworks.png",
-    "date": "Fre 01-24-2020"
+    "date": "Fre 24-01-2020"
   },
   {
     "title": "Första nyheten är en ny hemsida!",
     "text":
       "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig, se resultat och media osv. ",
     "image": "images/hemsida_news.png",
-    "date": "Mån 01-20-2020"
+    "date": "Mån 20-01-2020"
   }
 ]

@@ -13,10 +13,12 @@ class RegisterFormSolo extends Component {
   state = {
     name: "",
     email: "",
-    birthday: "",
+    year: "",
+    month: "",
+    day: "",
     info: "",
     city: "",
-    sex: "",
+    gender: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false
   };
@@ -45,11 +47,6 @@ class RegisterFormSolo extends Component {
     const name = e.target.name;
     let value = e.target.value;
 
-    if (e.target.name === "sexSOLO") {
-      let element = document.getElementById("sexSelectionSOLO");
-      value = element.options[element.selectedIndex].value;
-    }
-
     this.setState({ [name]: value });
   };
 
@@ -59,6 +56,95 @@ class RegisterFormSolo extends Component {
     } else {
       this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
     }
+  };
+
+  renderYears = () => {
+    let years = [];
+    for (let i = 2005; i > 1930; i--) {
+      years.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return years;
+  };
+
+  renderMonths = () => {
+    let months = [];
+    months.push(
+      <option value={1} key={0}>
+        Januari
+      </option>
+    );
+    months.push(
+      <option value={2} key={1}>
+        Februari
+      </option>
+    );
+    months.push(
+      <option value={3} key={2}>
+        Mars
+      </option>
+    );
+    months.push(
+      <option value={4} key={3}>
+        April
+      </option>
+    );
+    months.push(
+      <option value={5} key={4}>
+        Maj
+      </option>
+    );
+    months.push(
+      <option value={6} key={5}>
+        Juni
+      </option>
+    );
+    months.push(
+      <option value={7} key={6}>
+        Juli
+      </option>
+    );
+    months.push(
+      <option value={8} key={7}>
+        Augusti
+      </option>
+    );
+    months.push(
+      <option value={9} key={8}>
+        September
+      </option>
+    );
+    months.push(
+      <option value={10} key={9}>
+        Oktober
+      </option>
+    );
+    months.push(
+      <option value={11} key={10}>
+        November
+      </option>
+    );
+    months.push(
+      <option value={12} key={11}>
+        December
+      </option>
+    );
+    return months;
+  };
+
+  renderDays = () => {
+    let days = [];
+    for (let i = 1; i <= 31; i++) {
+      days.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return days;
   };
 
   render() {
@@ -94,27 +180,62 @@ class RegisterFormSolo extends Component {
             </FormGroup>
             <FormGroup>
               <Label for="birthdayID">Födelsedatum</Label>
-              <Input
-                required={true}
-                type="date"
-                name="birthday"
-                id="birthdaySOLO"
-                placeholder="date placeholder"
-                onChange={this.handleChange}
-              />
+              <div style={{ display: "flex" }}>
+                <Input
+                  className="mr-2"
+                  required={true}
+                  type="select"
+                  name="year"
+                  id="yearSelectionSOLO"
+                  onChange={this.handleChange}
+                >
+                  <option disabled selected value>
+                    År
+                  </option>
+                  {this.renderYears()}
+                </Input>
+                <Input
+                  className="ml-2 mr-2"
+                  required={true}
+                  type="select"
+                  name="month"
+                  id="monthSelectionSOLO"
+                  onChange={this.handleChange}
+                >
+                  <option disabled selected value>
+                    Månad
+                  </option>
+                  {this.renderMonths()}
+                </Input>
+                <Input
+                  className="ml-2"
+                  required={true}
+                  type="select"
+                  name="day"
+                  id="daySelectionSOLO"
+                  onChange={this.handleChange}
+                >
+                  <option disabled selected value>
+                    Dag
+                  </option>
+                  {this.renderDays()}
+                </Input>
+              </div>
             </FormGroup>
             <FormGroup>
-              <Label for="sexSelection">Kön</Label>
+              <Label for="genderSelection">Kön</Label>
               <Input
                 required={true}
                 type="select"
-                name="sex"
-                id="sexSelectionSOLO"
+                name="gender"
+                id="genderSelectionSOLO"
                 onChange={this.handleChange}
               >
-                <option></option>
-                <option>Man</option>
-                <option>Kvinna</option>
+                <option disabled selected value>
+                  Välj kön
+                </option>
+                <option value="Man">Man</option>
+                <option value="Kvinna">Kvinna</option>
               </Input>
             </FormGroup>
 
@@ -136,7 +257,7 @@ class RegisterFormSolo extends Component {
                 type="textarea"
                 name="info"
                 id="infoSOLO"
-                placeholder="t.ex. önskemål att starta i någon speciell
+                placeholder="T.ex. önskemål att starta i någon speciell
                 startgrupp"
                 value={this.state.info}
                 onChange={this.handleChange}
@@ -160,11 +281,11 @@ class RegisterFormSolo extends Component {
                   type="checkbox"
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
-                Jag kommer att följa den anmälningsinformation och de{" "}
+                Jag kommer att följa Hensmåla Triathlons{" "}
                 <RRNavLink tag={RRNavLink} to="/om-ht">
                   tävlingsregler
                 </RRNavLink>{" "}
-                som finns på denna sida.
+                och den anmälningsinformation som finns på denna sida.
               </Label>
             </FormGroup>
             <Button
@@ -188,8 +309,8 @@ class RegisterFormSolo extends Component {
           </i>
           <p>
             När du anmälder sig som indiviuell deltagare utför du alla tre
-            grenar individuellt. För mer information om sträckorna och regler
-            kan du gå in{" "}
+            grenar individuellt. För mer information om sträckorna och
+            tävlingsregler kan du gå in{" "}
             <RRNavLink tag={RRNavLink} to="/om-ht">
               HÄR
             </RRNavLink>

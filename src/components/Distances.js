@@ -6,6 +6,7 @@ class Distances extends Component {
   render() {
     return (
       <div>
+        <h2>Ordinarie tävlingssträckor</h2>
         <Row>
           <Col style={{ marginTop: "5vh" }} md={6}>
             <b>Simning - 340 m</b>
@@ -39,9 +40,10 @@ class Distances extends Component {
           <Col style={{ marginTop: "5vh" }} md={6}>
             <b>Cykling - 9.2 km</b>
             <p>
-              Cyklingen sker runt hensjön. Cyklingen får först börja när
+              Cyklingen sker runt Hensjön. Cyklingen får först börja när
               deltagaren är utanför växlingsområdet, därefter sker turen medurs
-              runt sjön.
+              runt sjön. Det är ca 2 kilometer <b>grusväg</b> under
+              cykelsträckan. Det kan även förekomma lösgrus på vissa ställen.
             </p>
             <p>
               En film på cykelrundan kan du se{" "}
@@ -93,6 +95,7 @@ class Distances extends Component {
             ></img>
           </Col>
         </Row>
+        <KidDistance />
       </div>
     );
   }

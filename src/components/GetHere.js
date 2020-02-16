@@ -9,7 +9,7 @@ class GetHere extends Component {
           <Col style={{ marginTop: "5vh" }} md={6}>
             <b>Hitta till Hensmåla</b>
             <p>
-              Adressen är Hensmåla östergård 31. En liten by utanför Tingsryd
+              Adressen är Hensmåla Östergård 31. En liten by utanför Tingsryd
               längs väg 120.
             </p>
             <b>Parkeringar</b>
