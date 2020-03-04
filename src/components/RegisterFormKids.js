@@ -68,7 +68,7 @@ class RegisterFormKids extends Component {
 
   renderYears = () => {
     let years = [];
-    for (let i = 2005; i > 1930; i--) {
+    for (let i = 2019; i > 1930; i--) {
       years.push(
         <option value={i} key={i}>
           {i}
