@@ -162,7 +162,7 @@ class RegisterFormKids extends Component {
           <Form onSubmit={this.handleSubmit}>
             <h3>Anmälan Barn</h3>
             <FormGroup>
-              <Label for="nameKID">Namn</Label>
+              <Label for="nameKID">Barnets namn</Label>
               <Input
                 required={true}
                 type="text"
@@ -175,9 +175,9 @@ class RegisterFormKids extends Component {
             </FormGroup>
 
             <FormGroup>
-              <Label for="emailKID">Epost</Label>
+              <Label for="emailKID">Barnets epost (valfritt)</Label>
               <Input
-                required={true}
+                required={false}
                 type="emailKID"
                 name="emailKID"
                 id="emailKID"
@@ -187,7 +187,7 @@ class RegisterFormKids extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="birthdayIDKID">Födelsedatum</Label>
+              <Label for="birthdayIDKID">Barnets födelsedatum</Label>
               <div style={{ display: "flex" }}>
                 <Input
                   className="mr-2"
@@ -231,7 +231,7 @@ class RegisterFormKids extends Component {
               </div>
             </FormGroup>
             <FormGroup>
-              <Label for="genderSelectionKID">Kön</Label>
+              <Label for="genderSelectionKID">Barnets kön</Label>
               <Input
                 required={true}
                 type="select"
