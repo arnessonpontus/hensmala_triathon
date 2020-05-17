@@ -6,10 +6,10 @@ class News extends Component {
   render() {
     return (
       <Col className="s mt-5">
-        <Card>
+        <Card style={{ boxShadow: "0px 1px 1px 1px #e3e3e3" }}>
           <CardBody>
             <h2>Nyheter</h2>
-            {newsArc.map(news => {
+            {newsArc.map((news) => {
               return (
                 <div
                   style={{
@@ -23,7 +23,7 @@ class News extends Component {
                     display: "flex",
                     justifyContent: "space-between",
                     flexWrap: "wrap",
-                    boxShadow: "0px 0px 3px 3px #c4c4c4"
+                    boxShadow: "0px 2px 2px 2px #e3e3e3",
                   }}
                 >
                   <Col>
@@ -36,7 +36,7 @@ class News extends Component {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center"
+                      justifyContent: "center",
                     }}
                   >
                     <img
@@ -44,7 +44,7 @@ class News extends Component {
                         minWidth: 200,
                         margin: "1em auto",
                         maxHeight: 200,
-                        objectFit: "contain"
+                        objectFit: "contain",
                       }}
                       width="100%"
                       src={news.image}

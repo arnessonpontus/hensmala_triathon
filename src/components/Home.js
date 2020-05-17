@@ -8,7 +8,7 @@ import {
   Card,
   CardBody,
   CardText,
-  Button
+  Button,
 } from "reactstrap";
 
 class Home extends Component {
@@ -27,7 +27,7 @@ class Home extends Component {
           >
             1 augusti 2020
           </h1>
-          <Card>
+          <Card style={{ boxShadow: "0px 1px 1px 1px #e3e3e3" }}>
             <CardBody>
               <Row>
                 <Col className="my-4" ms={4}>

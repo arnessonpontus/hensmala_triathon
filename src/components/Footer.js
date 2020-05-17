@@ -15,7 +15,7 @@ class Footer extends React.Component {
           marginTop: 50,
           height: "20vh",
           backgroundColor: "#11999E",
-          color: "#F6F6F6"
+          color: "#F6F6F6",
         }}
       >
         <p style={{ color: "white" }}>© 2020 Copyright: Hensmalatriathlon.se</p>
@@ -27,7 +27,7 @@ class Footer extends React.Component {
             borderRadius: 5,
             display: "flex",
             justifyContent: "space-around",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <a
