@@ -12,14 +12,14 @@ import {
   NavItem,
   NavLink,
   TabContent,
-  TabPane
+  TabPane,
 } from "reactstrap";
 
 class Register extends Component {
   // TODO: Form validation
   state = {
     hasRegisterd: false,
-    activeTab: "1"
+    activeTab: "1",
   };
 
   constructor(props) {
@@ -29,11 +29,11 @@ class Register extends Component {
     this.changeTab = this.changeTab.bind(this);
   }
 
-  changeTab = tab => {
+  changeTab = (tab) => {
     if (this.state.activeTab !== tab) this.setState({ activeTab: tab });
   };
 
-  handleRegistration = e => {
+  handleRegistration = (e) => {
     this.setState({ hasRegisterd: !this.state.hasRegisterd });
   };
 
@@ -43,13 +43,23 @@ class Register extends Component {
         {!this.state.hasRegisterd ? (
           <Card className="mt-5">
             <CardBody>
+              <div
+                style={{
+                  minHeight: "50vh",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1>Anmälan är för närvarande stängd. Avvaktar beslut.</h1>
+              </div>
+              {/* 
               <div>
                 <Nav tabs>
                   <NavItem>
                     <NavLink
                       className={classnames({
                         tabLink: true,
-                        active: this.state.activeTab === "1"
+                        active: this.state.activeTab === "1",
                       })}
                       onClick={() => {
                         this.changeTab("1");
@@ -62,7 +72,7 @@ class Register extends Component {
                     <NavLink
                       className={classnames({
                         tabLink: true,
-                        active: this.state.activeTab === "2"
+                        active: this.state.activeTab === "2",
                       })}
                       onClick={() => {
                         this.changeTab("2");
@@ -75,7 +85,7 @@ class Register extends Component {
                     <NavLink
                       className={classnames({
                         tabLink: true,
-                        active: this.state.activeTab === "3"
+                        active: this.state.activeTab === "3",
                       })}
                       onClick={() => {
                         this.changeTab("3");
@@ -104,6 +114,7 @@ class Register extends Component {
                   </TabPane>
                 </TabContent>
               </div>
+              */}
             </CardBody>
           </Card>
         ) : (
