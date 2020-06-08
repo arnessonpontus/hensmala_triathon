@@ -22,10 +22,10 @@ class Home extends Component {
         ></img>
         <Container className="p-4">
           <h1
-            className="mb-5"
-            style={{ fontSize: "70px", color: "#11999E", fontWeight: "bold" }}
+            className="mb-5 text-danger"
+            style={{ fontSize: "40px", fontWeight: "bold" }}
           >
-            1 augusti 2020
+            Hensmåla triathlon 2020 är inställt p.g.a. Covid-19
           </h1>
           <Card style={{ boxShadow: "0px 1px 1px 1px #e3e3e3" }}>
             <CardBody>

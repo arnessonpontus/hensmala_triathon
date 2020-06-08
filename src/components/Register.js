@@ -46,11 +46,14 @@ class Register extends Component {
               <div
                 style={{
                   minHeight: "50vh",
+                  display: "flex",
+                  flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                 }}
               >
-                <h1>Anmälan är för närvarande stängd. Avvaktar beslut.</h1>
+                <h1>Anmälan är tyvärr stängd för i år.</h1>
+                <h4>Välkommen åter till Hensmåla Triathlon 2021.</h4>
               </div>
               {/* 
               <div>
