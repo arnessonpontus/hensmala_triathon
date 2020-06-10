@@ -11,13 +11,13 @@ import {
   DropdownItem,
   DropdownToggle,
   DropdownMenu,
-  Button
+  Button,
 } from "reactstrap";
 
 class Navigation extends React.Component {
   state = {
     isHamburgerOpen: false,
-    isDropdownOpen: false
+    isDropdownOpen: false,
   };
 
   constructor(props) {
@@ -77,6 +77,15 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
+            to="/utmaning"
+            onClick={() => this.setState({ isHamburgerOpen: false })}
+          >
+            UTMANING
+          </NavLink>
+          <NavLink
+            tag={RRNavLink}
+            className="inactive"
+            activeClassName="active"
             to="/om-als"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
@@ -118,7 +127,7 @@ class Navigation extends React.Component {
               RESULTAT
             </DropdownToggle>
             <DropdownMenu>
-              {result_years.map(year => {
+              {result_years.map((year) => {
                 return (
                   <DropdownItem>
                     <a

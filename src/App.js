@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
+import Challenge from "./components/Challenge";
 
 const App = () => {
   ReactGA.initialize("UA-158085908-1");
@@ -26,6 +27,7 @@ const App = () => {
         <Navigation />
         <Route path="/" exact component={Home} />
         <Route path="/anmalan" component={Register} />
+        <Route path="/utmaning" component={Challenge} />
         <Route path="/media" component={Media} />
         <Route path="/om-als" component={AboutALS} />
         <Route path="/videos" component={Videos} />
