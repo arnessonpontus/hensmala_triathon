@@ -83,6 +83,12 @@ const UploadModal = (props) => {
     } else if (!img1) {
       setError("Du måste ladda upp minst en bild!");
       return false;
+    } else if (!name) {
+      setError("Du måste ange ett namn!");
+      return false;
+    } else if (!title) {
+      setError("Du måste ange en titel!");
+      return false;
     } else {
       return true;
     }
