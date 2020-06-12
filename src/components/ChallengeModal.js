@@ -61,9 +61,7 @@ const ChallengeModal = (props) => {
               )}
             </Col>
           </Row>
-
           <br />
-
           <Modal
             isOpen={nestedModal}
             toggle={toggleNested}

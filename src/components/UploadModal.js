@@ -21,7 +21,7 @@ const UploadModal = (props) => {
   const [consentAccept, setConsentAccept] = useState(false);
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setphone] = useState("");
   const [text, setText] = useState("");
   const [img1, setImg1] = useState(null);
   const [img1Url, setImg1Url] = useState("");
@@ -77,17 +77,14 @@ const UploadModal = (props) => {
   };
 
   const checkValidation = () => {
-    if (!email.includes("@")) {
-      setError("Du måste ha en giltig epost!");
+    if (!title) {
+      setError("Du måste ange en titel!");
       return false;
     } else if (!img1) {
       setError("Du måste ladda upp minst en bild!");
       return false;
     } else if (!name) {
       setError("Du måste ange ett namn!");
-      return false;
-    } else if (!title) {
-      setError("Du måste ange en titel!");
       return false;
     } else {
       return true;
@@ -153,8 +150,17 @@ const UploadModal = (props) => {
   const uploadChallenge = (urls) => {
     var now = new Date();
     var date =
-      now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
-    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+      now.getFullYear() +
+      "-" +
+      ("0" + (now.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + now.getDate()).slice(-2);
+    var time =
+      ("0" + now.getHours()).slice(-2) +
+      ":" +
+      ("0" + now.getMinutes()).slice(-2) +
+      ":" +
+      ("0" + now.getSeconds()).slice(-2);
     var dateTime = date + " " + time;
 
     firebase
@@ -162,7 +168,7 @@ const UploadModal = (props) => {
       .ref("/challenges")
       .push({
         name: name,
-        email: email,
+        phone: phone,
         title: title,
         time: dateTime,
         imgs: urls,
@@ -202,6 +208,7 @@ const UploadModal = (props) => {
             <FormGroup>
               <Label for="titel">Titel*</Label>
               <Input
+                placeholder="En härlig runda för ALS"
                 value={title}
                 maxLength="40"
                 required
@@ -214,6 +221,7 @@ const UploadModal = (props) => {
             <FormGroup>
               <Label for="name">Namn*</Label>
               <Input
+                placeholder="Förnamn Efternamn"
                 required
                 maxLength="40"
                 type="text"
@@ -224,16 +232,18 @@ const UploadModal = (props) => {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="email">Epost*</Label>
+              <Label for="phone">Telefon</Label>
               <Input
-                required
-                maxLength="40"
-                type="text"
-                name="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="tel"
+                placeholder="0705773442"
+                name="phone"
+                id="phone"
+                value={phone}
+                onChange={(e) => setphone(e.target.value)}
               />
+              <FormText color="muted">
+                Detta är så vi kan kontakta dig om du vinner.
+              </FormText>
             </FormGroup>
             <FormGroup>
               <Label for="text">Hur var din runda?</Label>
@@ -336,7 +346,7 @@ const UploadModal = (props) => {
         >
           <FormGroup check>
             <div style={{ display: "flex" }}>
-              <Label for="checkbox1">
+              <Label for="checkbox1" className="mr-1">
                 <Input
                   className="checkbox1"
                   type="checkbox"
