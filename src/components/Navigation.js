@@ -129,7 +129,7 @@ class Navigation extends React.Component {
             <DropdownMenu>
               {result_years.map((year) => {
                 return (
-                  <DropdownItem>
+                  <DropdownItem key={year}>
                     <a
                       style={{ color: "black" }}
                       href={

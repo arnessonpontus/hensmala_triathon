@@ -36,7 +36,12 @@ const ChallengeCarousell = (props) => {
         onExited={() => setAnimating(false)}
         key={img}
       >
-        <img width="100%" style={{ objectFit: "contain" }} src={img} />
+        <img
+          width="100%"
+          style={{ objectFit: "contain" }}
+          src={img}
+          alt={img}
+        />
       </CarouselItem>
     );
   });

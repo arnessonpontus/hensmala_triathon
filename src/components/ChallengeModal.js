@@ -11,25 +11,22 @@ import {
 import ChallengeCarousell from "./ChallengeCarousell";
 
 const ChallengeModal = (props) => {
-  const [modal, setModal] = useState(false);
   const [nestedModal, setNestedModal] = useState(false);
   const [closeAll, setCloseAll] = useState(false);
+  const [modal, setModal] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggleModal = () => setModal(!modal);
+
   const toggleNested = () => {
     setNestedModal(!nestedModal);
     setCloseAll(false);
   };
-  const toggleAll = () => {
-    setNestedModal(!nestedModal);
-    setCloseAll(true);
-  };
 
   return (
     <div>
-      <Button onClick={toggle}>Visa mer</Button>
-      <Modal isOpen={modal} toggle={toggle} style={{ minWidth: "80vw" }}>
-        <ModalHeader toggle={toggle}>{props.info.name}</ModalHeader>
+      <Button onClick={toggleModal}>Visa mer</Button>
+      <Modal isOpen={modal} toggle={toggleModal} style={{ minWidth: "80vw" }}>
+        <ModalHeader toggle={toggleModal}>{props.info.name}</ModalHeader>
         <ModalBody>
           <Row>
             <Col xs="12" md="6">
@@ -37,7 +34,7 @@ const ChallengeModal = (props) => {
               <p>
                 <i>{props.info.date}</i>
               </p>
-              <p>{props.info.text}</p>
+              <div style={{ whiteSpace: "pre-wrap" }}>{props.info.text}</div>
             </Col>
             <Col
               xs="12"
@@ -47,16 +44,18 @@ const ChallengeModal = (props) => {
               {props.info.imgs.length > 1 ? (
                 <div>
                   <ChallengeCarousell
+                    toggleNested={toggleNested}
                     userChall={props.info}
-                  ></ChallengeCarousell>
+                  />
                   <i style={{ margin: "auto" }}>
                     Klicka på pilarna för att byta bild
                   </i>
                 </div>
               ) : (
                 <img
+                  onClick={toggleNested}
                   width="100%"
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "contain", cursor: "pointer" }}
                   src={props.info.imgs[0]}
                 />
               )}
@@ -68,13 +67,13 @@ const ChallengeModal = (props) => {
           <Modal
             isOpen={nestedModal}
             toggle={toggleNested}
-            onClosed={closeAll ? toggle : undefined}
+            onClosed={closeAll ? toggleModal : undefined}
           >
-            <img width="100%" src={props.info.img}></img>
+            <img width="100%" src={props.info.imgs[0]}></img>
           </Modal>
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>
+          <Button color="secondary" onClick={toggleModal}>
             Cancel
           </Button>
         </ModalFooter>
