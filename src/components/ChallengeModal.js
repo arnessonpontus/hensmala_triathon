@@ -8,6 +8,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import ChallengeCarousell from "./ChallengeCarousell";
 
 const ChallengeModal = (props) => {
   const [modal, setModal] = useState(false);
@@ -30,17 +31,37 @@ const ChallengeModal = (props) => {
       <Modal isOpen={modal} toggle={toggle} style={{ minWidth: "80vw" }}>
         <ModalHeader toggle={toggle}>{props.info.name}</ModalHeader>
         <ModalBody>
-          <Col>
-            <h2>{props.info.title}</h2>
-            <b>{props.info.ingress}</b>
-            <p>
-              <i>{props.info.date}</i>
-            </p>
-            <p>{props.info.text}</p>
-          </Col>
-          <Col>
-            <img width="100%" src={props.info.img} onClick={toggleNested}></img>
-          </Col>
+          <Row>
+            <Col xs="12" md="6">
+              <h2>{props.info.title}</h2>
+              <p>
+                <i>{props.info.date}</i>
+              </p>
+              <p>{props.info.text}</p>
+            </Col>
+            <Col
+              xs="12"
+              md="6"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              {props.info.imgs.length > 1 ? (
+                <div>
+                  <ChallengeCarousell
+                    userChall={props.info}
+                  ></ChallengeCarousell>
+                  <i style={{ margin: "auto" }}>
+                    Klicka på pilarna för att byta bild
+                  </i>
+                </div>
+              ) : (
+                <img
+                  width="100%"
+                  style={{ objectFit: "contain" }}
+                  src={props.info.imgs[0]}
+                />
+              )}
+            </Col>
+          </Row>
 
           <br />
 

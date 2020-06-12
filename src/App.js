@@ -12,6 +12,8 @@ import Articles from "./components/Articles";
 import Radio from "./components/Radio";
 import Sponsors from "./components/Sponsors";
 import Footer from "./components/Footer";
+import config from "./config";
+import * as firebase from "firebase";
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
@@ -27,7 +29,7 @@ const App = () => {
         <Navigation />
         <Route path="/" exact component={Home} />
         <Route path="/anmalan" component={Register} />
-        <Route path="/utmaning" component={Challenge} />
+        <Route path="/utmaningen" component={Challenge} />
         <Route path="/media" component={Media} />
         <Route path="/om-als" component={AboutALS} />
         <Route path="/videos" component={Videos} />
@@ -43,5 +45,8 @@ const App = () => {
     </div>
   );
 };
+
+// Initialize Firebase
+firebase.initializeApp(config);
 
 export default App;

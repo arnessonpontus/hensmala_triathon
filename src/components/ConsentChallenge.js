@@ -1,3 +1,5 @@
+// This will be removed for when Challenge is no longer needed and get replaced by the original "Consent"
+
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
@@ -9,19 +11,19 @@ const Consent = (props) => {
   return (
     <div>
       <i style={{ color: "#909090", cursor: "pointer" }} onClick={toggle}>
-        Vad betyder detta?
+        villkoren.
       </i>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Information om sparad data</ModalHeader>
         <ModalBody>
-          Hensmåla Triathlon kommer spara uppgifter för att hantera anmälningar
-          till tävlingen. Dessa uppgifter behövs för att kunna hantera alla
-          deltagare och se till att tävlingen blir så bra som möjligt.
+          Hensmåla Triathlon kommer spara namn, text och bilder för att visa för
+          användare av hensmalatriathlon.se. Din epost visas ej men sparas för
+          att kunna kontakta dig i framtiden, dock som längst till 1 augusti
+          2021.
           <br></br>
           <br></br>
           Om du önskar att vi ska ta bort dina uppgifter kan du kontakta
-          hensmala.triathlon@gmail.com. Dock kommer du ej kunna vara med på
-          loppet om detta genomförs innan den 1:e augusti 15.00.
+          hensmala.triathlon@gmail.com.
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>
