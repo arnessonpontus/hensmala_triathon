@@ -12,7 +12,6 @@ import Articles from "./components/Articles";
 import Radio from "./components/Radio";
 import Sponsors from "./components/Sponsors";
 import Footer from "./components/Footer";
-import config from "./config";
 import * as firebase from "firebase"; // Change to only import specific modules
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
@@ -44,6 +43,17 @@ const App = () => {
       <Footer />
     </div>
   );
+};
+
+const config = {
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
 
 // Initialize Firebase
