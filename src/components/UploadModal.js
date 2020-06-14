@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 import ConsentChallenge from "./ConsentChallenge";
 import * as firebase from "firebase";
+import imageCompression from "browser-image-compression";
 
 const UploadModal = (props) => {
   const [modal, setModal] = useState(false);
@@ -66,14 +67,35 @@ const UploadModal = (props) => {
 
   const handleImg1Change = (e) => {
     if (e.target.files[0]) {
-      setImg1(e.target.files[0]);
+      compressImage(e.target.files[0], 1);
     }
   };
 
   const handleImg2Change = (e) => {
     if (e.target.files[0]) {
-      setImg2(e.target.files[0]);
+      compressImage(e.target.files[0], 2);
     }
+  };
+
+  const compressImage = (image, imgNumber) => {
+    const options = {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+
+    // Compresses the image before adding it to state
+    imageCompression(image, options)
+      .then(function (compressedFile) {
+        if (imgNumber == 1) {
+          setImg1(compressedFile);
+        } else {
+          setImg2(compressedFile);
+        }
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
   };
 
   const checkValidation = () => {
@@ -99,8 +121,13 @@ const UploadModal = (props) => {
     if (!checkValidation()) return;
     setLoading(true);
 
-    // take storage from file instead?
-    const uploadTask1 = storage.ref(`images/${img1.name}`).put(img1);
+    if (!img1) return;
+
+    const sessionId = new Date().getTime();
+
+    const uploadTask1 = storage
+      .ref(`images/${sessionId + img1.name}`)
+      .put(img1);
     uploadTask1.on(
       "state_changed",
       (snapshot) => {
@@ -112,13 +139,15 @@ const UploadModal = (props) => {
       () => {
         storage
           .ref("images")
-          .child(img1.name)
+          .child(sessionId + img1.name)
           .getDownloadURL()
           .then((url1) => {
             setImg1Url(url1);
             // Can reduce to one function
             if (img2) {
-              const uploadTask2 = storage.ref(`images/${img2.name}`).put(img2);
+              const uploadTask2 = storage
+                .ref(`images/${sessionId + img2.name}`)
+                .put(img2);
               uploadTask2.on(
                 "state_changed",
                 (snapshot) => {
@@ -130,7 +159,7 @@ const UploadModal = (props) => {
                 () => {
                   storage
                     .ref("images")
-                    .child(img2.name)
+                    .child(sessionId + img2.name)
                     .getDownloadURL()
                     .then((url2) => {
                       uploadChallenge([url1, url2]);
@@ -158,9 +187,7 @@ const UploadModal = (props) => {
     var time =
       ("0" + now.getHours()).slice(-2) +
       ":" +
-      ("0" + now.getMinutes()).slice(-2) +
-      ":" +
-      ("0" + now.getSeconds()).slice(-2);
+      ("0" + now.getMinutes()).slice(-2);
     var dateTime = date + " " + time;
 
     firebase
@@ -168,7 +195,6 @@ const UploadModal = (props) => {
       .ref("/challenges")
       .push({
         name: name,
-        phone: phone,
         title: title,
         time: dateTime,
         imgs: urls,
@@ -178,12 +204,31 @@ const UploadModal = (props) => {
         hasSwim: hasSwim,
         hasBike: hasBike,
       })
-      .then(() => {
-        setLoading(false);
-        props.setHasUpdated(!props.hasUpdated);
-        toggle();
+      .then((snapshot) => {
+        // To prevent reads for phone numbers by firebase rules
+        firebase
+          .database()
+          .ref("/phoneNumbers")
+          .push({
+            challengeID: snapshot.key,
+            phone: phone,
+          })
+          .then(() => {
+            setLoading(false);
+            props.setHasUpdated(!props.hasUpdated);
+            toggle();
+          })
+          .catch((err) => {
+            setLoading(false);
+            setError("Något gick fel.");
+            console.log(err);
+          });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setLoading(false);
+        setError("Något gick fel");
+        console.log(err);
+      });
   };
 
   return (
@@ -236,6 +281,7 @@ const UploadModal = (props) => {
               <Input
                 type="tel"
                 placeholder="0705773442"
+                maxLength="12"
                 name="phone"
                 id="phone"
                 value={phone}
@@ -260,6 +306,7 @@ const UploadModal = (props) => {
               <Input
                 required
                 type="file"
+                accept="image/*"
                 name="img1"
                 id="img1"
                 onChange={handleImg1Change}
@@ -363,6 +410,7 @@ const UploadModal = (props) => {
             disabled={!consentAccept}
             color="success"
             size="lg"
+            style={{ display: "flex", alignItems: "center" }}
           >
             {loading ? <Spinner size="sm" color="light" /> : "Lägg upp"}
           </Button>

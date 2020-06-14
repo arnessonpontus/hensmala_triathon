@@ -12,6 +12,7 @@ class News extends Component {
             {newsArc.map((news) => {
               return (
                 <div
+                  key={news.date}
                   style={{
                     padding: 20,
                     minHeight: 200,

@@ -67,7 +67,10 @@ const Challenge = () => {
           <AboutChallenge />
         </div>
         {loadingChallenges ? (
-          <Spinner style={{ width: "3rem", height: "3rem" }} type="grow" />
+          <Spinner
+            style={{ width: "3rem", height: "3rem", marginTop: 10 }}
+            type="grow"
+          />
         ) : null}
       </div>
 

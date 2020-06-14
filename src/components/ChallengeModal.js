@@ -34,7 +34,9 @@ const ChallengeModal = (props) => {
               <p>
                 <i>{props.info.date}</i>
               </p>
-              <div style={{ whiteSpace: "pre-wrap" }}>{props.info.text}</div>
+              <div style={{ whiteSpace: "pre-wrap", marginBottom: 5 }}>
+                {props.info.text}
+              </div>
             </Col>
             <Col
               xs="12"
