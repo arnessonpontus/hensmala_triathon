@@ -16,6 +16,7 @@ import {
 import ConsentChallenge from "./ConsentChallenge";
 import * as firebase from "firebase";
 import imageCompression from "browser-image-compression";
+import axios from "axios";
 
 const UploadModal = (props) => {
   const [modal, setModal] = useState(false);
@@ -36,7 +37,13 @@ const UploadModal = (props) => {
   const [error, setError] = useState("");
 
   const toggle = () => {
-    setError("");
+    axios
+      .post(
+        "http://us-central1-hensmala-triathlon.cloudfunctions.net/helloWorld"
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    https: setError("");
     setConsentAccept(false);
     setModal(!modal);
   };
