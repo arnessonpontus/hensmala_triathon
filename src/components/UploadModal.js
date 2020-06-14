@@ -39,11 +39,12 @@ const UploadModal = (props) => {
   const toggle = () => {
     axios
       .post(
-        "http://us-central1-hensmala-triathlon.cloudfunctions.net/helloWorld"
+        "https://us-central1-hensmala-triathlon.cloudfunctions.net/helloWorld"
       )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-    https: setError("");
+      .then((res) => alert(res.data))
+      .catch((err) => alert(err));
+
+    setError("");
     setConsentAccept(false);
     setModal(!modal);
   };
