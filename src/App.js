@@ -57,9 +57,9 @@ const prodConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
 
-//const config = process.env.NODE_ENV === "production" ? prodConfig : devConfig;
+const config = process.env.NODE_ENV === "production" ? prodConfig : prodConfig; // TODO: Change one
 
 // Initialize Firebase
-firebase.initializeApp(prodConfig);
+firebase.initializeApp(config);
 
 export default App;
