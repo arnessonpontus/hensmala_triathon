@@ -75,69 +75,74 @@ const Challenge = () => {
       </div>
 
       <CardColumns>
-        {userChallenges.map((challenge, i) => {
-          return (
-            <Card key={i} className="mt-3">
-              <CardImg top src={challenge.imgs[0]} alt="bild-bidrag" />
-              <CardBody>
-                <CardTitle>{challenge.name}</CardTitle>
-                <CardSubtitle>{challenge.title}</CardSubtitle>
-                <br></br>
-                <div
+        {userChallenges
+          .slice(0)
+          .reverse()
+          .map((challenge, i) => {
+            return (
+              <Card key={i} className="mt-3">
+                <CardImg top src={challenge.imgs[0]} alt="bild-bidrag" />
+                <CardBody>
+                  <CardTitle>{challenge.name}</CardTitle>
+                  <CardSubtitle>{challenge.title}</CardSubtitle>
+                  <br></br>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <ChallengeModal info={challenge}></ChallengeModal>
+                    <div>
+                      <i
+                        style={{ color: challenge.hasBike ? "green" : null }}
+                        className="fas fa-biking fa-2x mr-2"
+                      ></i>
+                      <i
+                        style={{ color: challenge.hasSwim ? "green" : null }}
+                        className="fas fa-swimmer fa-2x mr-2"
+                      ></i>
+                      <i
+                        style={{ color: challenge.hasRun ? "green" : null }}
+                        className="fas fa-running fa-2x mr-2"
+                      ></i>
+                    </div>
+                  </div>
+                </CardBody>
+                <CardFooter
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                   }}
+                  className="text-muted"
                 >
-                  <ChallengeModal info={challenge}></ChallengeModal>
-                  <div>
-                    <i
-                      style={{ color: challenge.hasBike ? "green" : null }}
-                      className="fas fa-biking fa-2x mr-2"
-                    ></i>
-                    <i
-                      style={{ color: challenge.hasSwim ? "green" : null }}
-                      className="fas fa-swimmer fa-2x mr-2"
-                    ></i>
-                    <i
-                      style={{ color: challenge.hasRun ? "green" : null }}
-                      className="fas fa-running fa-2x mr-2"
-                    ></i>
-                  </div>
-                </div>
-              </CardBody>
-              <CardFooter
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-                className="text-muted"
-              >
-                {challenge.time}
+                  {challenge.time}
 
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {challenge.hasDonated ? (
-                    <i className="mr-2">Donerat</i>
-                  ) : null}
-                  <i
+                  <span
                     style={{
-                      color: challenge.hasDonated ? "green" : "white",
-                      textShadow: challenge.hasDonated ? null : "0 0 1px #000",
+                      display: "flex",
+                      alignItems: "center",
                     }}
-                    className="fas fa-check-circle fa-2x"
-                  ></i>
-                </span>
-              </CardFooter>
-            </Card>
-          );
-        })}
+                  >
+                    {challenge.hasDonated ? (
+                      <i className="mr-2">Donerat</i>
+                    ) : null}
+                    <i
+                      style={{
+                        color: challenge.hasDonated ? "green" : "white",
+                        textShadow: challenge.hasDonated
+                          ? null
+                          : "0 0 1px #000",
+                      }}
+                      className="fas fa-check-circle fa-2x"
+                    ></i>
+                  </span>
+                </CardFooter>
+              </Card>
+            );
+          })}
       </CardColumns>
     </Container>
   );

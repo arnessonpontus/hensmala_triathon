@@ -12,6 +12,7 @@ import Articles from "./components/Articles";
 import Radio from "./components/Radio";
 import Sponsors from "./components/Sponsors";
 import Footer from "./components/Footer";
+import devConfig from "./config";
 import * as firebase from "firebase"; // Change to only import specific modules
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
@@ -56,7 +57,7 @@ const prodConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
 
-const config = process.env.NODE_ENV === "production" ? prodConfig : prodConfig;
+const config = process.env.NODE_ENV === "production" ? prodConfig : devConfig;
 
 // Initialize Firebase
 firebase.initializeApp(config);
