@@ -381,7 +381,7 @@ const UploadModal = (props) => {
                     value={hasSwim}
                     onClick={() => toggleCheckboxes("hasSwim")}
                   />
-                  Simmning
+                  Simning
                 </Label>
               </FormGroup>
             </FormGroup>
