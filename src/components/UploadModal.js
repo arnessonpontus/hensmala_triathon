@@ -32,6 +32,7 @@ const UploadModal = (props) => {
   const [hasRun, setHasRun] = useState(false);
   const [hasSwim, setHasSwim] = useState(false);
   const [hasBike, setHasBike] = useState(false);
+  const [hasWheelchair, setHasWheelchair] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -58,6 +59,9 @@ const UploadModal = (props) => {
         break;
       case "hasSwim":
         setHasSwim(!hasSwim);
+        break;
+      case "hasWheelchair":
+        setHasWheelchair(!hasWheelchair);
         break;
 
       default:
@@ -203,6 +207,7 @@ const UploadModal = (props) => {
         hasRun: hasRun,
         hasSwim: hasSwim,
         hasBike: hasBike,
+        hasWheelchair: hasWheelchair,
       })
       .then((snapshot) => {
         // To prevent reads for phone numbers by firebase rules
@@ -382,6 +387,16 @@ const UploadModal = (props) => {
                     onClick={() => toggleCheckboxes("hasSwim")}
                   />
                   Simning
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Input
+                    type="checkbox"
+                    value={hasWheelchair}
+                    onClick={() => toggleCheckboxes("hasWheelchair")}
+                  />{" "}
+                  Rullstol (endast för rullstolsbundna)
                 </Label>
               </FormGroup>
             </FormGroup>

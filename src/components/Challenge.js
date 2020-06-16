@@ -107,6 +107,12 @@ const Challenge = () => {
                         style={{ color: challenge.hasRun ? "green" : null }}
                         className="fas fa-running fa-2x mr-2"
                       ></i>
+                      <i
+                        style={{
+                          color: challenge.hasWheelchair ? "green" : null,
+                        }}
+                        className="fas fa-wheelchair fa-2x mr-2"
+                      ></i>
                     </div>
                   </div>
                 </CardBody>

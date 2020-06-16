@@ -19,14 +19,14 @@ const AboutChallenge = (props) => {
           <p>
             2020 är inget vanligt år. Detta innebär tyvärr att det heller inte
             blir ett vanligt Hensmåla Triathlon. Vi uppmanar dock alla att
-            fortsätta röra på sig. Vi har därför i år skapat något vi kallar
-            "Utmaningen"!
+            fortsätta röra på sig även i dessa tider. Vi har därför i år skapat
+            något vi kallar "Utmaningen"!
           </p>
 
           <p>
-            "Triathlonet" du genomför är av valfri längd och antal grenar. Vill
-            du lägger du upp tider och sträcka i fritext-fältet. Du kan också
-            som bild 2 lägga till en skärmdump på din runda.
+            "Triathlonet" genomför du av valfri längd och antal grenar. Om du
+            vill, lägger du upp tider för de sträckor du gjort i fritext-fältet.
+            Du kan också som bild 2 lägga till en skärmdump på din runda.
           </p>
 
           <p>

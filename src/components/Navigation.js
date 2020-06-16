@@ -80,7 +80,7 @@ class Navigation extends React.Component {
             to="/utmaningen"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
-            UTMANING
+            UTMANINGEN
           </NavLink>
           <NavLink
             tag={RRNavLink}

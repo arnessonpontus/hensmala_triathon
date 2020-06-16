@@ -3,9 +3,9 @@ import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
 
-const encode = data => {
+const encode = (data) => {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&");
 };
 
@@ -24,7 +24,7 @@ class RegisterFormKids extends Component {
     guardianEmail: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
-    isCheckboxThreeTicked: false
+    isCheckboxThreeTicked: false,
   };
 
   constructor(props) {
@@ -33,19 +33,19 @@ class RegisterFormKids extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "registerKids", ...this.state })
+      body: encode({ "form-name": "registerKids", ...this.state }),
     })
       .then(() => this.props.handleRegistration())
-      .catch(error => alert(error));
+      .catch((error) => alert(error));
 
     e.preventDefault();
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     e.preventDefault();
 
     const name = e.target.name;
@@ -54,14 +54,14 @@ class RegisterFormKids extends Component {
     this.setState({ [name]: value });
   };
 
-  toggleConsent = checkbox => {
+  toggleConsent = (checkbox) => {
     if (checkbox === 1) {
       this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
     } else if (checkbox === 2) {
       this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
     } else {
       this.setState({
-        isCheckboxThreeTicked: !this.state.isCheckboxThreeTicked
+        isCheckboxThreeTicked: !this.state.isCheckboxThreeTicked,
       });
     }
   };
@@ -363,7 +363,7 @@ class RegisterFormKids extends Component {
           </i>
           <p>
             När du anmäler sig till Hensmåla Triathlon som barn utför du de två
-            grenarna simmning och löpning individuellt, men där grenarna är
+            grenarna simning och löpning individuellt, men där grenarna är
             förkortade. För mer information om sträckorna och tävlingsregler kan
             du gå in{" "}
             <RRNavLink tag={RRNavLink} to="/om-ht/hem">
