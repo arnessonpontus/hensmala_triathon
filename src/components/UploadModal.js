@@ -396,7 +396,7 @@ const UploadModal = (props) => {
                     value={hasWheelchair}
                     onClick={() => toggleCheckboxes("hasWheelchair")}
                   />{" "}
-                  Rullstol (endast för rullstolsbundna)
+                  Rullstol (endast för rullstolsburna)
                 </Label>
               </FormGroup>
             </FormGroup>
