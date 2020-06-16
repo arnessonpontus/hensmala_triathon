@@ -2,18 +2,10 @@ import React, { Component } from "react";
 import RegisterFormSolo from "./RegisterFormSolo";
 import RegisterFormTeam from "./RegisterFormTeam";
 import RegisterFormKids from "./RegisterFormKids";
+import { Link } from "react-router-dom";
 import RegSuccess from "./RegSuccess";
 import classnames from "classnames";
-import {
-  Container,
-  Card,
-  CardBody,
-  Nav,
-  NavItem,
-  NavLink,
-  TabContent,
-  TabPane,
-} from "reactstrap";
+import { Container, Card, CardBody, Button } from "reactstrap";
 
 class Register extends Component {
   // TODO: Form validation
@@ -53,7 +45,9 @@ class Register extends Component {
                 }}
               >
                 <h1>Anmälan är tyvärr stängd för i år.</h1>
-                <h4>Välkommen åter till Hensmåla Triathlon 2021.</h4>
+                <Link to="/utmaningen">
+                  <Button>Gå till Utmaningen istället</Button>
+                </Link>
               </div>
               {/* 
               <div>
