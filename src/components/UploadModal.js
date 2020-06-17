@@ -16,6 +16,8 @@ import {
 import ConsentChallenge from "./ConsentChallenge";
 import * as firebase from "firebase";
 import imageCompression from "browser-image-compression";
+import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const UploadModal = (props) => {
   const [modal, setModal] = useState(false);
@@ -34,6 +36,7 @@ const UploadModal = (props) => {
   const [hasBike, setHasBike] = useState(false);
   const [hasWheelchair, setHasWheelchair] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [recaptchaVeri, setRecaptchaVeri] = useState(false);
   const [error, setError] = useState("");
 
   const toggle = () => {
@@ -237,6 +240,20 @@ const UploadModal = (props) => {
       });
   };
 
+  const onRecaptcha = (value) => {
+    console.log("value: " + value);
+    const body = { value };
+    axios
+      .post(
+        "https://us-central1-hensmala-triathlon.cloudfunctions.net/helloWorld",
+        body
+      )
+      .then((res) => {
+        setRecaptchaVeri(res.data.result);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <Button
@@ -428,6 +445,10 @@ const UploadModal = (props) => {
             </FormGroup>
           </Form>
           {error ? <Alert color="danger">{error}</Alert> : null}
+          <ReCAPTCHA
+            sitekey={process.env.REACT_APP_RECAPTCHA_CLIENT} // Change
+            onChange={onRecaptcha}
+          />
         </ModalBody>
         <ModalFooter
           style={{ display: "flex", justifyContent: "space-between" }}
@@ -448,7 +469,7 @@ const UploadModal = (props) => {
 
           <Button
             onClick={handleSubmit}
-            disabled={!consentAccept}
+            disabled={!consentAccept || !recaptchaVeri}
             color="success"
             size="lg"
             style={{ display: "flex", alignItems: "center" }}
