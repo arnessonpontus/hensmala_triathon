@@ -55,6 +55,7 @@ const ChallengeModal = (props) => {
                 </div>
               ) : (
                 <img
+                  alt="utmaningsbild"
                   onClick={toggleNested}
                   width="100%"
                   style={{ objectFit: "contain", cursor: "pointer" }}
@@ -69,7 +70,11 @@ const ChallengeModal = (props) => {
             toggle={toggleNested}
             onClosed={closeAll ? toggleModal : undefined}
           >
-            <img width="100%" src={props.info.imgs[0]}></img>
+            <img
+              alt="utmaningsbild"
+              width="100%"
+              src={props.info.imgs[0]}
+            ></img>
           </Modal>
         </ModalBody>
         <ModalFooter>

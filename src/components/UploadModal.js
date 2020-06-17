@@ -92,7 +92,7 @@ const UploadModal = (props) => {
     // Compresses the image before adding it to state
     imageCompression(image, options)
       .then(function (compressedFile) {
-        if (imgNumber == 1) {
+        if (imgNumber === 1) {
           setImg1(compressedFile);
           setImg1Loading(false);
         } else {
@@ -321,7 +321,11 @@ const UploadModal = (props) => {
               {img1 ? (
                 <div>
                   <br></br>
-                  <img width={100} src={URL.createObjectURL(img1)}></img>
+                  <img
+                    alt="förhansvisning"
+                    width={100}
+                    src={URL.createObjectURL(img1)}
+                  ></img>
                 </div>
               ) : (
                 <FormText color="muted">
@@ -342,7 +346,11 @@ const UploadModal = (props) => {
               {img2 ? (
                 <div>
                   <br></br>
-                  <img width={100} src={URL.createObjectURL(img2)}></img>
+                  <img
+                    alt="förhansvisning"
+                    width={100}
+                    src={URL.createObjectURL(img2)}
+                  ></img>
                 </div>
               ) : (
                 <FormText color="muted">

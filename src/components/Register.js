@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import RegisterFormSolo from "./RegisterFormSolo";
-import RegisterFormTeam from "./RegisterFormTeam";
-import RegisterFormKids from "./RegisterFormKids";
+//import RegisterFormSolo from "./RegisterFormSolo";
+//import RegisterFormTeam from "./RegisterFormTeam";
+//import RegisterFormKids from "./RegisterFormKids";
 import { Link } from "react-router-dom";
 import RegSuccess from "./RegSuccess";
-import classnames from "classnames";
 import { Container, Card, CardBody, Button } from "reactstrap";
 
 class Register extends Component {
