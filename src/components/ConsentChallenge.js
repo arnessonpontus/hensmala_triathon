@@ -11,7 +11,7 @@ const Consent = (props) => {
   return (
     <div>
       <i style={{ color: "#909090", cursor: "pointer" }} onClick={toggle}>
-        villkoren.
+        Läs vilkoren här.
       </i>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Information om sparad data</ModalHeader>

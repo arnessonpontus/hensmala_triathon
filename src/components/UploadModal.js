@@ -25,9 +25,9 @@ const UploadModal = (props) => {
   const [phone, setphone] = useState("");
   const [text, setText] = useState("");
   const [img1, setImg1] = useState(null);
-  const [img1Url, setImg1Url] = useState("");
+  const [img1Loading, setImg1Loading] = useState(false);
   const [img2, setImg2] = useState(null);
-  const [img2Url, setImg2Url] = useState("");
+  const [img2Loading, setImg2Loading] = useState(false);
   const [hasDonated, setHasDonated] = useState(false);
   const [hasRun, setHasRun] = useState(false);
   const [hasSwim, setHasSwim] = useState(false);
@@ -82,6 +82,7 @@ const UploadModal = (props) => {
   };
 
   const compressImage = (image, imgNumber) => {
+    imgNumber === 1 ? setImg1Loading(true) : setImg2Loading(true);
     const options = {
       maxSizeMB: 0.2,
       maxWidthOrHeight: 1920,
@@ -93,8 +94,10 @@ const UploadModal = (props) => {
       .then(function (compressedFile) {
         if (imgNumber == 1) {
           setImg1(compressedFile);
+          setImg1Loading(false);
         } else {
           setImg2(compressedFile);
+          setImg2Loading(false);
         }
       })
       .catch(function (error) {
@@ -146,7 +149,6 @@ const UploadModal = (props) => {
           .child(sessionId + img1.name)
           .getDownloadURL()
           .then((url1) => {
-            setImg1Url(url1);
             // Can reduce to one function
             if (img2) {
               const uploadTask2 = storage
@@ -167,7 +169,6 @@ const UploadModal = (props) => {
                     .getDownloadURL()
                     .then((url2) => {
                       uploadChallenge([url1, url2]);
-                      setImg1Url(url2);
                     });
                 }
               );
@@ -256,7 +257,7 @@ const UploadModal = (props) => {
           {error ? <Alert color="danger">{error}</Alert> : null}
           <Form>
             <FormGroup>
-              <Label for="titel">Titel*</Label>
+              <Label for="titel">Titel *</Label>
               <Input
                 placeholder="En härlig runda för ALS"
                 value={title}
@@ -269,7 +270,7 @@ const UploadModal = (props) => {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="name">Namn*</Label>
+              <Label for="name">Namn *</Label>
               <Input
                 placeholder="Förnamn Efternamn"
                 required
@@ -307,7 +308,7 @@ const UploadModal = (props) => {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="img1">Bild som representerar utmaningen*</Label>
+              <Label for="img1">Bild som representerar utmaningen *</Label>
               <Input
                 required
                 type="file"
@@ -316,22 +317,39 @@ const UploadModal = (props) => {
                 id="img1"
                 onChange={handleImg1Change}
               />
-              <FormText color="muted">
-                Detta kan vara på dig själv eller din omgivning.
-              </FormText>
+              {img1Loading ? <Spinner type="grow" color="primary" /> : null}
+              {img1 ? (
+                <div>
+                  <br></br>
+                  <img width={100} src={URL.createObjectURL(img1)}></img>
+                </div>
+              ) : (
+                <FormText color="muted">
+                  Detta kan vara på dig själv eller din omgivning.
+                </FormText>
+              )}
             </FormGroup>
             <FormGroup>
               <Label for="img2">Bild på rundan (valfritt) </Label>
               <Input
+                accept="image/*"
                 type="file"
                 name="img2"
                 id="img2"
                 onChange={handleImg2Change}
               />
-              <FormText color="muted">
-                Om du har en app eller löparklocka kan du ta en skärmdump på
-                rundan.
-              </FormText>
+              {img2Loading ? <Spinner type="grow" color="primary" /> : null}
+              {img2 ? (
+                <div>
+                  <br></br>
+                  <img width={100} src={URL.createObjectURL(img2)}></img>
+                </div>
+              ) : (
+                <FormText color="muted">
+                  Om du har en app eller löparklocka kan du ta en skärmdump på
+                  rundan.
+                </FormText>
+              )}
             </FormGroup>
             <FormGroup>
               <FormText color="muted">* obligatoriska fält.</FormText>
@@ -349,7 +367,7 @@ const UploadModal = (props) => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://egnainsamlingar.neuro.se/projects/neuro-10"
+                  href="https://egnainsamlingar.neuro.se/fundraisers/utmaningen1"
                 >
                   {" "}
                   ALS-forskningen
@@ -407,16 +425,16 @@ const UploadModal = (props) => {
           style={{ display: "flex", justifyContent: "space-between" }}
         >
           <FormGroup check>
-            <div style={{ display: "flex" }}>
-              <Label for="checkbox1" className="mr-1">
+            <div>
+              <Label for="checkbox1">
                 <Input
                   className="checkbox1"
                   type="checkbox"
                   onClick={() => toggleConsent()}
                 />{" "}
-                <span>Jag accepterar </span>
+                <span>Jag accepterar villkoren.</span>
+                <ConsentChallenge />
               </Label>
-              <ConsentChallenge />
             </div>
           </FormGroup>
 
