@@ -43,6 +43,7 @@ const UploadModal = (props) => {
     setError("");
     setConsentAccept(false);
     setModal(!modal);
+    setRecaptchaVeri(false);
   };
 
   const toggleConsent = () => {
@@ -241,7 +242,6 @@ const UploadModal = (props) => {
   };
 
   const onRecaptcha = (value) => {
-    console.log("value: " + value);
     const body = { value };
     axios
       .post(
