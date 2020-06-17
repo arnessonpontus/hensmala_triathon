@@ -35,6 +35,7 @@ const UploadModal = (props) => {
   const [hasSwim, setHasSwim] = useState(false);
   const [hasBike, setHasBike] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [recaptchaVeri, setRecaptchaVeri] = useState(false);
   const [error, setError] = useState("");
 
   const toggle = () => {
@@ -242,10 +243,9 @@ const UploadModal = (props) => {
         body
       )
       .then((res) => {
-        console.log(res);
-        alert(res.data);
+        setRecaptchaVeri(res.data.result);
       })
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -405,7 +405,7 @@ const UploadModal = (props) => {
           </Form>
           {error ? <Alert color="danger">{error}</Alert> : null}
           <ReCAPTCHA
-            sitekey=">site-key>" // Change
+            sitekey={process.env.REACT_APP_RECAPTCHA_CLIENT} // Change
             onChange={onRecaptcha}
           />
         </ModalBody>
@@ -428,7 +428,7 @@ const UploadModal = (props) => {
 
           <Button
             onClick={handleSubmit}
-            disabled={!consentAccept}
+            disabled={!consentAccept || !recaptchaVeri}
             color="success"
             size="lg"
             style={{ display: "flex", alignItems: "center" }}
