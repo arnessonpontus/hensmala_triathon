@@ -53,11 +53,11 @@ const Challenge = () => {
           alignItems: "center",
         }}
       >
-        <h1 style={{ fontSize: "9vw" }} className="mt-3 mb-0">
+        <h1 style={{ fontSize: "calc(2em + 7vw)" }} className="mt-3 mb-0">
           Utmaningen
         </h1>
-        <h1 style={{ fontSize: "2vw" }} className="mb-3">
-          <i>Ett komplement till det inställda Hensmåla Triathlon 2020</i>
+        <h1 style={{ fontSize: "calc(1em + 1vw)" }} className="mb-3">
+          <i>Ett alternativ till det inställda Hensmåla Triathlon 2020</i>
         </h1>
         <div style={{ display: "flex" }}>
           <UploadModal
