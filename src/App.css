@@ -8,8 +8,9 @@
 
 .App {
   color: rgb(15, 15, 15);
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background: #F6F6F6;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background: #f6f6f6;
   min-height: 100vh;
 }
 
@@ -34,7 +35,7 @@ a {
   text-decoration: none;
 }
 
-a :hover{
+a :hover {
   filter: opacity(70%);
 }
 
@@ -65,7 +66,7 @@ i {
 }
 
 .nav-link:hover {
-  color:  rgb(201, 197, 197);
+  color: rgb(201, 197, 197);
 }
 
 .navbar-brand:hover {
@@ -73,11 +74,11 @@ i {
 }
 
 .dropdown .dropdown-toggle {
-color: #fff;
+  color: #fff;
 }
 .dropdown .dropdown-toggle:hover {
   color: rgb(201, 197, 197);
-  }
+}
 
 .tabLink:hover {
   cursor: pointer;
@@ -94,85 +95,71 @@ color: #fff;
   flex-wrap: wrap;
 }
 
-.spons-gold{
+.spons-gold {
   height: 200px;
   width: 250px;
-  
 }
-.spons-silver{
+.spons-silver {
   height: 150px;
   width: 200px;
-  
 }
-.spons-brons{
+.spons-brons {
   height: 100px;
   width: 150px;
-  
 }
 
-.spons-img-gold{
+.spons-img-gold {
   max-height: 150px;
   max-width: 200px;
 }
 
-.spons-img-silver{
+.spons-img-silver {
   max-height: 100px;
   max-width: 150px;
 }
-.spons-img-brons{
+.spons-img-brons {
   max-height: 50px;
   max-width: 100px;
 }
 
-.video-wrapper{
-  width: auto; 
+.video-wrapper {
+  width: auto;
   height: auto;
 }
 
-.video-player{
-  padding-top: 56.25%; 
+.video-player {
+  padding-top: 56.25%;
   position: relative;
 }
 
-.article-seperator{
+.article-seperator {
   height: 50px;
-  background-color: #11999E;
+  background-color: #11999e;
 }
 
-.social-container{
+.social-container {
   background-color: #fff;
   width: 50;
   height: 50;
   border-radius: 5;
 }
 
-.donate-home{
+.donate-home {
   visibility: hidden;
   height: 0;
 }
 
-.media-container :hover{
+.media-container :hover {
   filter: opacity(80%);
   text-decoration: none;
 }
 
-
 @media (max-width: 1040px) {
-  .donate{
+  .donate {
     visibility: hidden;
-  } 
-  .donate-home{
+  }
+  .donate-home {
     visibility: visible;
     height: 100%;
   }
 }
-
-
-
-
-
-
-
-
-
-

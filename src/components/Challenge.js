@@ -94,7 +94,11 @@ const Challenge = () => {
                     }}
                   >
                     <ChallengeModal info={challenge}></ChallengeModal>
-                    <div>
+                    <div
+                      style={{
+                        marginLeft: 10,
+                      }}
+                    >
                       <i
                         style={{ color: challenge.hasBike ? "green" : null }}
                         className="fas fa-biking fa-2x mr-2"
