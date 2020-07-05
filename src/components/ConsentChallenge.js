@@ -22,8 +22,8 @@ const Consent = (props) => {
           dock som längst till 1 augusti 2021.
           <br></br>
           <br></br>
-          Om du önskar att vi ska ta bort dina uppgifter kan du kontakta
-          hensmala.triathlon@gmail.com.
+          Om du önskar att vi ska ta bort, eller redigera dina uppgifter kan du
+          kontakta hensmala.triathlon@gmail.com.
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>
