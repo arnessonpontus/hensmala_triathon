@@ -379,27 +379,40 @@ const UploadModal = (props) => {
             <FormGroup>
               <FormText color="muted">* obligatoriska fält.</FormText>
             </FormGroup>
-
-            <FormGroup check>
-              <Label check>
-                <Input
-                  type="checkbox"
-                  name="hasDonated"
-                  value={hasDonated}
-                  onClick={() => toggleCheckboxes("hasDonated")}
-                />{" "}
-                Jag har donerat till
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://egnainsamlingar.neuro.se/fundraisers/utmaningen1"
-                >
-                  {" "}
-                  ALS-forskningen
-                </a>{" "}
-                (valfritt)
-              </Label>
+            <FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    type="checkbox"
+                    name="hasDonated"
+                    value={hasDonated}
+                    onClick={() => toggleCheckboxes("hasDonated")}
+                  />{" "}
+                  Jag har donerat till
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://neuro.se/diagnoser/amyotrofisk-lateralskleros-als/"
+                  >
+                    {" "}
+                    ALS-forskningen
+                  </a>{" "}
+                  (valfritt)
+                </Label>
+              </FormGroup>
             </FormGroup>
+            <FormGroup>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://egnainsamlingar.neuro.se/fundraisers/utmaningen1"
+              >
+                <Button type="button" color="info">
+                  Donera här
+                </Button>
+              </a>
+            </FormGroup>
+
             <FormGroup tag="fieldset">
               <legend>Min runda innehåller:</legend>
               <FormGroup check inline>
@@ -446,7 +459,7 @@ const UploadModal = (props) => {
           </Form>
           {error ? <Alert color="danger">{error}</Alert> : null}
           <ReCAPTCHA
-            sitekey={process.env.REACT_APP_RECAPTCHA_CLIENT} // Change
+            sitekey={process.env.REACT_APP_RECAPTCHA_CLIENT}
             onChange={onRecaptcha}
           />
         </ModalBody>
