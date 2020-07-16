@@ -24,6 +24,9 @@ const Challenge = () => {
   useEffect(() => {
     setUserChallenges([]);
     setLoadingChallenges(true);
+
+    window.scrollTo(0, 0);
+
     firebase
       .database()
       .ref("challenges")

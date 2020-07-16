@@ -36,7 +36,7 @@ class Register extends Component {
             <CardBody>
               <div
                 style={{
-                  minHeight: "50vh",
+                  minHeight: "60vh",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",

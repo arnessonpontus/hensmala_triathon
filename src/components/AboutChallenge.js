@@ -39,11 +39,19 @@ const AboutChallenge = (props) => {
           </p>
           <p>
             Efter 1 augusti kommer vi att lotta ut priser bland alla som lagt in
-            en aktivitet. Donera gärna en slant till vår insamling till{" "}
+            en aktivitet. Donera gärna en slant till vår{" "}
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://egnainsamlingar.neuro.se/projects/neuro-10"
+              href="https://egnainsamlingar.neuro.se/fundraisers/utmaningen1"
+            >
+              insamling
+            </a>{" "}
+            till{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://neuro.se/diagnoser/amyotrofisk-lateralskleros-als/"
             >
               ALS-forskningen
             </a>{" "}
