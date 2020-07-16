@@ -16,10 +16,11 @@ class SponsorSection extends Component {
               className={"spons-" + this.props.sponsType}
               style={{
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               <img
+                style={{ pointerEvents: "none" }}
                 alt={this.props.image}
                 className={"spons-img-" + this.props.sponsType}
                 src={"../../images/sponsorImages/" + this.props.sponsor.image}
@@ -31,7 +32,7 @@ class SponsorSection extends Component {
             className={"spons-" + this.props.sponsType}
             style={{
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <img

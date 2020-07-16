@@ -13,7 +13,7 @@ class Media extends React.Component {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexWrap: "wrap"
+          flexWrap: "wrap",
         }}
       >
         <Link to="/radio">
@@ -76,11 +76,12 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#11999E",
-    borderWidth: 5
+    borderWidth: 5,
+    pointerEvents: "none",
   },
   textStyle: {
-    color: "white"
-  }
+    color: "white",
+  },
 };
 
 export default Media;

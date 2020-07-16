@@ -45,7 +45,7 @@ class Register extends Component {
               >
                 <h1>Anmälan är tyvärr stängd för i år.</h1>
                 <Link to="/utmaningen">
-                  <Button>Gå till Utmaningen istället</Button>
+                  <Button color="info">Gå till Utmaningen istället</Button>
                 </Link>
               </div>
               {/* 

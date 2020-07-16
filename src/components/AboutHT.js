@@ -3,13 +3,14 @@ import { Collapse, Button, CardBody, Card, Container } from "reactstrap";
 import Distances from "./Distances";
 import GetHere from "./GetHere";
 import Rules from "./Rules";
+import { Link } from "react-router-dom";
 
 class AboutHT extends React.Component {
   state = {
     isInfoOpen: false,
     isGetHereOpen: false,
     isDistancesOpen: false,
-    isRulesOpen: false
+    isRulesOpen: false,
   };
 
   constructor(props) {
@@ -17,7 +18,7 @@ class AboutHT extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle = cardType => {
+  toggle = (cardType) => {
     switch (cardType) {
       case "Info":
         this.setState({ isInfoOpen: !this.state.isInfoOpen });
@@ -96,7 +97,7 @@ class AboutHT extends React.Component {
                 marginBottom: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               Generell info
@@ -108,30 +109,16 @@ class AboutHT extends React.Component {
             <Collapse isOpen={this.state.isInfoOpen}>
               <Card>
                 <CardBody>
-                  <h5>
-                    Hensmåla Triathlon gå av stapeln för åttonde året i rad och
-                    vi hoppas det kommer bli bättre än någonsin!
-                  </h5>
-                  <ul className="ml-5">
-                    <li>
-                      Hensmåla Triathlon 2020 kommer att vara den 1:e augusti
-                    </li>
-                    <li>Första start är kl. 15.00</li>
-                    <li>
-                      Det kommer vara fem startgrupper med tre minuter mellan
-                      grupperna
-                    </li>
-                  </ul>
-                  <b>För deltagare</b>
-                  <br></br>
-                  Efter loppet är man välkommen att bada i sjön, det finns dock
-                  ingen duch att tillgå.
-                  <br></br>
-                  <br></br>
-                  <b>För alla</b>
-                  <br></br>
-                  Toaletter, både handikap och vanlig, finns på plats att
-                  nyttja. Korv och fika finns till försäljning under dagen.
+                  <h3>Hensmåla Triathlon är inställt för detta året!</h3>
+                  <b>
+                    Välkomna att kolla in här i framtiden för information om
+                    nästa år.
+                  </b>
+                  <p>
+                    <Link to="/utmaningen">
+                      <Button color="info">Gå till Utmaningen istället</Button>
+                    </Link>
+                  </p>
                 </CardBody>
               </Card>
             </Collapse>
@@ -147,7 +134,7 @@ class AboutHT extends React.Component {
                 marginBottom: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               Hitta hit
@@ -175,7 +162,7 @@ class AboutHT extends React.Component {
                 marginBottom: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               Sträckor
@@ -202,7 +189,7 @@ class AboutHT extends React.Component {
                 marginBottom: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               Tävlingsrelger

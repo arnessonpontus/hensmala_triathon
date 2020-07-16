@@ -15,12 +15,14 @@ class SponsorSection extends Component {
             <CardBody style={{ minHeight: 300 }}>
               <CardImg
                 src={"images/articleThumbnails/reflex_nr5_2015_300.jpg"}
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", pointerEvents: "none" }}
                 width="320"
                 height="180"
                 alt={this.props.article.title}
               ></CardImg>
-              <CardTitle className="mt-2">{this.props.article.title}</CardTitle>
+              <CardTitle style={{ pointerEvents: "none" }} className="mt-2">
+                {this.props.article.title}
+              </CardTitle>
             </CardBody>
           </Card>
         </a>

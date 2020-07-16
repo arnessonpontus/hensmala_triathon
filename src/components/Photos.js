@@ -8,7 +8,7 @@ import {
   CardBody,
   Col,
   CardImg,
-  CardTitle
+  CardTitle,
 } from "reactstrap";
 
 class Photos extends React.Component {
@@ -16,7 +16,7 @@ class Photos extends React.Component {
     return (
       <Container className="pb-4">
         <Row>
-          {photoAlbums.map(album => {
+          {photoAlbums.map((album) => {
             return (
               <Col className="mt-4" md="6">
                 <a
@@ -31,12 +31,17 @@ class Photos extends React.Component {
                     <CardBody>
                       <CardImg
                         src={album.image}
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: "cover", pointerEvents: "none" }}
                         width="280px"
                         height="280px"
                         alt={album.title}
                       ></CardImg>
-                      <CardTitle className="mt-2">{album.title}</CardTitle>
+                      <CardTitle
+                        style={{ pointerEvents: "none" }}
+                        className="mt-2"
+                      >
+                        {album.title}
+                      </CardTitle>
                     </CardBody>
                   </Card>
                 </a>
