@@ -1,5 +1,13 @@
 import React from "react";
-import { Collapse, Button, CardBody, Card, Container } from "reactstrap";
+import {
+  Collapse,
+  Button,
+  CardBody,
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Container,
+} from "reactstrap";
 import Distances from "./Distances";
 import GetHere from "./GetHere";
 import Rules from "./Rules";
@@ -11,6 +19,7 @@ class AboutHT extends React.Component {
     isGetHereOpen: false,
     isDistancesOpen: false,
     isRulesOpen: false,
+    isResultsOpen: false,
   };
 
   constructor(props) {
@@ -30,6 +39,10 @@ class AboutHT extends React.Component {
         break;
       case "Distances":
         this.setState({ isDistancesOpen: !this.state.isDistancesOpen });
+
+        break;
+      case "results":
+        this.setState({ isResultsOpen: !this.state.isResultsOpen });
 
         break;
       default:
@@ -78,6 +91,7 @@ class AboutHT extends React.Component {
   }
 
   render() {
+    const result_years = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
     return (
       <div>
         <img
@@ -202,6 +216,52 @@ class AboutHT extends React.Component {
               <Card>
                 <CardBody>
                   <Rules />
+                </CardBody>
+              </Card>
+            </Collapse>
+            <Button
+              id="results"
+              outline
+              size="lg"
+              block
+              color="secondary"
+              onClick={() => this.toggle("results")}
+              style={{
+                marginBottom: "1rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              Tidigare resultat
+              <img
+                src="../../images/icons/downarrow.svg"
+                alt="arrow down"
+              ></img>
+            </Button>
+            <Collapse isOpen={this.state.isResultsOpen}>
+              <Card>
+                <CardBody>
+                  <ListGroup>
+                    {result_years.map((year) => {
+                      return (
+                        <ListGroupItem
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          key={year}
+                          tag="a"
+                          href={
+                            "/results/" +
+                            year +
+                            "_resultat_hensmala_triathlon.pdf"
+                          }
+                        >
+                          {" "}
+                          {year}
+                        </ListGroupItem>
+                      );
+                    })}
+                  </ListGroup>
                 </CardBody>
               </Card>
             </Collapse>

@@ -1,5 +1,4 @@
 import React from "react";
-//import { Link } from "react-router-dom";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
   NavLink,
@@ -7,17 +6,12 @@ import {
   NavbarToggler,
   Collapse,
   NavbarBrand,
-  Dropdown,
-  DropdownItem,
-  DropdownToggle,
-  DropdownMenu,
   Button,
 } from "reactstrap";
 
 class Navigation extends React.Component {
   state = {
     isHamburgerOpen: false,
-    isDropdownOpen: false,
   };
 
   constructor(props) {
@@ -30,13 +24,7 @@ class Navigation extends React.Component {
     this.setState({ isHamburgerOpen: !this.state.isHamburgerOpen });
   };
 
-  toggleDropdown = () => {
-    this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
-  };
-
   render() {
-    const result_years = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
-
     return (
       <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E" }}>
         <NavbarBrand
@@ -119,32 +107,6 @@ class Navigation extends React.Component {
           >
             SPONSORER
           </NavLink>
-          <Dropdown
-            isOpen={this.state.isDropdownOpen}
-            toggle={this.toggleDropdown}
-          >
-            <DropdownToggle caret color="none" className="results">
-              RESULTAT
-            </DropdownToggle>
-            <DropdownMenu>
-              {result_years.map((year) => {
-                return (
-                  <DropdownItem key={year}>
-                    <a
-                      style={{ color: "black" }}
-                      href={
-                        "/results/" + year + "_resultat_hensmala_triathlon.pdf"
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {year}
-                    </a>
-                  </DropdownItem>
-                );
-              })}
-            </DropdownMenu>
-          </Dropdown>
         </Collapse>
         <a
           className="donate"
