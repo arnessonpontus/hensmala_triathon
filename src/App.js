@@ -1,15 +1,15 @@
 import React from "react";
 import "./App.css";
-import Media from "./components/Media";
+import Media from "./components/media/Media";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
-import AboutALS from "./components/AboutALS";
-import AboutHT from "./components/AboutHT";
-import Videos from "./components/Videos";
-import Photos from "./components/Photos";
-import Register from "./components/Register";
-import Articles from "./components/Articles";
-import Radio from "./components/Radio";
+import AboutALS from "./components/about/AboutALS";
+import AboutHT from "./components/about/AboutHT";
+import Videos from "./components/media/Videos";
+import Photos from "./components/media/Photos";
+import Register from "./components/register/Register";
+import Articles from "./components/media/Articles";
+import Radio from "./components/media/Radio";
 import Sponsors from "./components/Sponsors";
 import Footer from "./components/Footer";
 //import devConfig from "./config";
@@ -17,7 +17,7 @@ import * as firebase from "firebase"; // Change to only import specific modules
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
-import Challenge from "./components/Challenge";
+import Challenge from "./components/challenge/Challenge";
 
 const App = () => {
   ReactGA.initialize("UA-158085908-1");

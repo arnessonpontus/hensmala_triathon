@@ -1,13 +1,13 @@
 import React from "react";
 import YouTube from "react-youtube";
 import ClipLoader from "react-spinners/ClipLoader";
-import videos from "../assets/videos";
+import videos from "../../assets/videos";
 
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
 
 class Videos extends React.Component {
   state = {
-    isVideoLoading: true
+    isVideoLoading: true,
   };
 
   render() {
@@ -15,14 +15,14 @@ class Videos extends React.Component {
       playerVars: {
         height: "100%",
         width: "100%",
-        autoplay: 0
-      }
+        autoplay: 0,
+      },
     };
 
     return (
       <Container className="pb-4">
         <Row>
-          {videos.map(video => {
+          {videos.map((video) => {
             return (
               <Col className="mt-4" md="6">
                 <Card>

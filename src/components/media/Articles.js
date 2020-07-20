@@ -1,11 +1,11 @@
 import React from "react";
-import articles from "../assets/articles";
+import articles from "../../assets/articles";
 import ArticleSection from "./ArticleSection";
 
 import { Row, ButtonGroup, Button } from "reactstrap";
 
 class Articles extends React.Component {
-  onYearTap = year => {
+  onYearTap = (year) => {
     document
       .querySelector(".year-" + year)
       .scrollIntoView({ behavior: "smooth" });
@@ -24,7 +24,7 @@ class Articles extends React.Component {
             zIndex: 1,
             position: "fixed",
             bottom: "15px",
-            right: "15px"
+            right: "15px",
           }}
           onClick={() => this.onToTopTap()}
         >
@@ -41,7 +41,7 @@ class Articles extends React.Component {
         <div className="px-5 pb-5">
           <h3>2019</h3>
           <Row>
-            {articles.nineteen.map(article => {
+            {articles.nineteen.map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>
@@ -50,7 +50,7 @@ class Articles extends React.Component {
         <div className="p-5">
           <h3>2018</h3>
           <Row>
-            {articles.eighteen.map(article => {
+            {articles.eighteen.map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>
@@ -59,7 +59,7 @@ class Articles extends React.Component {
         <div className="p-5">
           <h3>2017</h3>
           <Row>
-            {articles.seventeen.map(article => {
+            {articles.seventeen.map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>
@@ -68,7 +68,7 @@ class Articles extends React.Component {
         <div className="p-5">
           <h3>2016</h3>
           <Row>
-            {articles.sixteen.map(article => {
+            {articles.sixteen.map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>
@@ -77,7 +77,7 @@ class Articles extends React.Component {
         <div className="p-5">
           <h3>2015</h3>
           <Row>
-            {articles.fifteen.map(article => {
+            {articles.fifteen.map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>
@@ -86,7 +86,7 @@ class Articles extends React.Component {
         <div className="p-5">
           <h3>2014</h3>
           <Row>
-            {articles.fourteen.map(article => {
+            {articles.fourteen.map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>
@@ -95,7 +95,7 @@ class Articles extends React.Component {
         <div className="p-5">
           <h3>2013</h3>
           <Row>
-            {articles.thirteen.map(article => {
+            {articles.thirteen.map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>

@@ -1,5 +1,5 @@
 import React from "react";
-import radioShows from "../assets/radioShows";
+import radioShows from "../../assets/radioShows";
 
 import {
   Container,
@@ -9,7 +9,7 @@ import {
   CardBody,
   CardTitle,
   CardText,
-  CardImg
+  CardImg,
 } from "reactstrap";
 
 class Radio extends React.Component {
@@ -17,7 +17,7 @@ class Radio extends React.Component {
     return (
       <Container className="pb-4">
         <Row>
-          {radioShows.map(radioShow => {
+          {radioShows.map((radioShow) => {
             return (
               <Col className="mt-4" md="6">
                 <Card style={{ minHeight: 500 }}>

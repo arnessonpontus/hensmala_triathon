@@ -1,5 +1,5 @@
 import React from "react";
-import photoAlbums from "../assets/photoAlbums";
+import photoAlbums from "../../assets/photoAlbums";
 
 import {
   Container,

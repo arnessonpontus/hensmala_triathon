@@ -3,9 +3,9 @@ import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
 
-const encode = data => {
+const encode = (data) => {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&");
 };
 
@@ -20,7 +20,7 @@ class RegisterFormSolo extends Component {
     city: "",
     gender: "",
     isCheckboxOneTicked: false,
-    isCheckboxTwoTicked: false
+    isCheckboxTwoTicked: false,
   };
 
   constructor(props) {
@@ -29,19 +29,19 @@ class RegisterFormSolo extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "registerSolo", ...this.state })
+      body: encode({ "form-name": "registerSolo", ...this.state }),
     })
       .then(() => this.props.handleRegistration())
-      .catch(error => alert(error));
+      .catch((error) => alert(error));
 
     e.preventDefault();
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     e.preventDefault();
 
     const name = e.target.name;
@@ -50,7 +50,7 @@ class RegisterFormSolo extends Component {
     this.setState({ [name]: value });
   };
 
-  toggleConsent = checkbox => {
+  toggleConsent = (checkbox) => {
     if (checkbox === 1) {
       this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
     } else {
