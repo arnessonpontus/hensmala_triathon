@@ -43,6 +43,10 @@ p {
   color: rgb(15, 15, 15);
 }
 
+.indent {
+  margin-left: 20px;
+}
+
 b {
   color: rgb(15, 15, 15);
 }

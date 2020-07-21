@@ -16,6 +16,7 @@ class Footer extends React.Component {
           height: "20vh",
           backgroundColor: "#11999E",
           color: "#F6F6F6",
+          borderRadius: "0px",
         }}
       >
         <p style={{ color: "white" }}>© 2020 Copyright: Hensmalatriathlon.se</p>

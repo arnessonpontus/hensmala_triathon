@@ -74,6 +74,15 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive"
             activeClassName="active"
+            to="/fortrampet"
+            onClick={() => this.setState({ isHamburgerOpen: false })}
+          >
+            FÖRTRAMPET
+          </NavLink>
+          <NavLink
+            tag={RRNavLink}
+            className="inactive"
+            activeClassName="active"
             to="/om-als"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >

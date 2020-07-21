@@ -18,6 +18,7 @@ import * as firebase from "firebase"; // Change to only import specific modules
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
 import Challenge from "./components/challenge/Challenge";
+import Fortrampet from "./components/Fortrampet";
 
 const App = () => {
   ReactGA.initialize("UA-158085908-1");
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/anmalan" component={Register} />
         <Route path="/utmaningen" component={Challenge} />
+        <Route path="/fortrampet" component={Fortrampet} />
         <Route path="/media" component={Media} />
         <Route path="/om-als" component={AboutALS} />
         <Route path="/videos" component={Videos} />
