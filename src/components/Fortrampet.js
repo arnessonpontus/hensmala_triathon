@@ -51,6 +51,15 @@ const Fortrampet = () => {
                 </b>
               </p>
               <h4>
+                <Badge color="secondary">Behöver jag ta med fika?</Badge>
+              </h4>
+              <p className="indent">
+                <b>
+                  Man behöver inte ha med egen fika. Fikat står uppdukat i
+                  Grönvik på halva vägen och ingår i startavgiften.
+                </b>
+              </p>
+              <h4>
                 <Badge color="secondary">Behövs anmälan?</Badge>
               </h4>
               <p className="indent">
