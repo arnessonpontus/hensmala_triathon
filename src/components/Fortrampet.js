@@ -9,13 +9,13 @@ const Fortrampet = () => {
   }, []);
 
   return (
-    <Container style={{ minHeight: "70vh" }} className="mt-5">
+    <Container className="mt-5">
       <Row>
         <Col style={{ marginBottom: "10px" }}>
           <Card
             style={{
-              height: "100%",
               width: "100%",
+              height: "100%",
               boxShadow: "0px 1px 1px 1px #e3e3e3",
             }}
           >
@@ -85,13 +85,11 @@ const Fortrampet = () => {
         <Col
           style={{
             marginBottom: "10px",
-            display: "flex",
-            justifyContent: "center",
             minWidth: "45vh",
           }}
         >
           <img
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "auto" }}
             src="/images/fortrampet_bike.jpg"
             alt="HT_banner"
           ></img>
