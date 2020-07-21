@@ -73,7 +73,7 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Starten går från garaget hos Arnessons i hensmåla. På den{" "}
+                  Starten går från garaget hos Arnessons i Hensmåla. På den{" "}
                   <RRNavLink tag={RRNavLink} to="/om-ht/hitta-hit">
                     här
                   </RRNavLink>{" "}
