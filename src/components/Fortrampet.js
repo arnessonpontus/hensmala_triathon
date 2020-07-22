@@ -43,6 +43,15 @@ const Fortrampet = () => {
                 intervall för start för att göra det glesare mellan deltagarna.
               </p>
               <h4>
+                <Badge color="secondary">Vad innebär förtrampet?</Badge>
+              </h4>
+              <p className="indent">
+                <b>
+                  Förtrampet innebär att på sin egen cykel ta sig runt Stora
+                  Hensjön i den takt man vill, med valfri fika på vägen.
+                </b>
+              </p>
+              <h4>
                 <Badge color="secondary">När är förtrampet?</Badge>
               </h4>
               <p className="indent">
@@ -86,7 +95,10 @@ const Fortrampet = () => {
                 <Badge color="secondary">Vad kostar det?</Badge>
               </h4>
               <p className="indent">
-                <b>Startavgiften är 100 kr.</b>
+                <b>
+                  Startavgiften är 100 kr som går oavkortat till "Stoppa ALS"
+                  genom NEURO.
+                </b>
               </p>
             </CardBody>
           </Card>
