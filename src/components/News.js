@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { NavLink as RRNavLink } from "react-router-dom";
+
 import { Col, Card, CardBody } from "reactstrap";
 import newsArc from "../assets/news";
+import OneNews from "./OneNews";
 
 class News extends Component {
   render() {
@@ -10,49 +13,17 @@ class News extends Component {
           <CardBody>
             <h2>Nyheter</h2>
             {newsArc.map((news) => {
-              return (
-                <div
-                  key={news.date}
-                  style={{
-                    padding: 20,
-                    minHeight: 200,
-                    marginTop: 20,
-                    borderRadius: 5,
-                    borderWidth: 1,
-                    borderColor: "#d9d7d7",
-                    borderStyle: "solid",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                    boxShadow: "0px 2px 2px 2px #e3e3e3",
-                  }}
+              return news.link ? (
+                <RRNavLink
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tag={RRNavLink}
+                  to={news.link}
                 >
-                  <Col>
-                    <h3>{news.title}</h3>
-                    <p>{news.text}</p>
-
-                    <i style={{ justifySelf: "flex-end" }}>{news.date}</i>
-                  </Col>
-                  <Col
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <img
-                      style={{
-                        minWidth: 200,
-                        margin: "1em auto",
-                        maxHeight: 200,
-                        objectFit: "contain",
-                      }}
-                      width="100%"
-                      src={news.image}
-                      alt={news.image}
-                    ></img>
-                  </Col>
-                </div>
+                  <OneNews news={news} />
+                </RRNavLink>
+              ) : (
+                <OneNews news={news} />
               );
             })}
           </CardBody>
