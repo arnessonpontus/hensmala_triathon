@@ -38,8 +38,8 @@ const AboutChallenge = (props) => {
             köra en eller två grenar också.
           </p>
           <p>
-            Efter 1 augusti kommer vi att lotta ut priser bland alla som lagt in
-            en aktivitet. Donera gärna en slant till vår{" "}
+            Efter 31:e augusti kommer vi att lotta ut priser bland alla som lagt
+            in en aktivitet. Donera gärna en slant till vår{" "}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -58,7 +58,7 @@ const AboutChallenge = (props) => {
             (glöm inte markera detta genom att klicka i "Jag har
             donerat"-knappen.)
           </p>
-          <b>Utmaningen slutar den 1 augusti.</b>
+          <b>Utmaningen slutar den 31:e augusti.</b>
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>
