@@ -28,6 +28,10 @@ class Articles extends React.Component {
           }}
           onClick={() => this.onToTopTap()}
         >
+          <i
+            className="fas fa-chevron-up"
+            style={{ marginLeft: 5, color: "white" }}
+          ></i>{" "}
           Till toppen
         </Button>
         <ButtonGroup size="sm" className="px-5 pb-5">
@@ -37,8 +41,18 @@ class Articles extends React.Component {
           <Button onClick={() => this.onYearTap("2016")}>2016</Button>
           <Button onClick={() => this.onYearTap("2017")}>2017</Button>
           <Button onClick={() => this.onYearTap("2018")}>2018</Button>
+          <Button onClick={() => this.onYearTap("2019")}>2019</Button>
         </ButtonGroup>
         <div className="px-5 pb-5">
+          <h3>2020</h3>
+          <Row>
+            {articles.twenty.map((article) => {
+              return <ArticleSection article={article} />;
+            })}
+          </Row>
+        </div>
+        <div className="year-2019 article-seperator"></div>
+        <div className="p-5">
           <h3>2019</h3>
           <Row>
             {articles.nineteen.map((article) => {

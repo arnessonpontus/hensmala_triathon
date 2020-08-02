@@ -1,5 +1,11 @@
 [
   {
+    "title": "Tack alla som kom på Förtrampet!",
+    "text": "Lördagen den 1:e augusti genomfördes Förtrampet i kalasväder. Tack alla som kom och deltog!",
+    "image": "/images/news/förtrampet_neuro.jpg",
+    "date": "Sön 02-08-2020"
+  },
+  {
     "title": "Nu finns Utmaningen uppe på hemsidan!",
     "text": "Eftersom Hensmåla triathlon 2020 har ställts in skapades Utmaningen. För att läsa mer eller lägga till ett bidrag kan man gå in på Utmaningen i menyn på hemsidan.",
     "image": "thumb.png",
@@ -9,31 +15,31 @@
   {
     "title": "Hensmåla triathlon 2020 är inställt på grund av Covid-19.",
     "text": "Vi måste tyvärr meddela att Hensmåla triathlon detta år är inställt. Även om alternativa corona-anpassade genomföranden har diskuterats, togs beslutet att ställa in årets upplaga. Vi hoppas ni har förståelse för detta och blir ännu mer taggade på att medverka nästa år.",
-    "image": "images/rain1.jpg",
+    "image": "images/news/rain1.jpg",
     "date": "Mån 08-06-2020"
   },
   {
     "title": "Corona - Så är läget.",
     "text": "På grund av Corona är det ännu inte klart hur det blir med årets upplaga av Hensmåla Triathlon. Vi hoppas att kunna utföra evemanget i någon form, men kommer såklart följa de anvisningar som ges. Beslut kommer tas under kommande veckor. ",
-    "image": "images/corona.jpg",
+    "image": "images/news/corona.jpg",
     "date": "Lör 16-05-2020"
   },
   {
     "title": "Nyhet för i år: Duathlon för barn!",
     "text": "Detta året kommer det hållas ett duathlon för barn upp till 15 år. Mer information hittar du på anmälningssidan.",
-    "image": "images/barn-badmossa.jpg",
+    "image": "images/news/barn-badmossa.jpg",
     "date": "Sön 17-02-2020"
   },
   {
     "title": "Nu öppnar anmälan!",
     "text": "Nu öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats!",
-    "image": "images/fireworks.png",
+    "image": "images/news/fireworks.png",
     "date": "Fre 24-01-2020"
   },
   {
     "title": "Första nyheten är en ny hemsida!",
     "text": "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig, se resultat och media osv. ",
-    "image": "images/hemsida_news.png",
+    "image": "images/news/hemsida_news.png",
     "date": "Mån 20-01-2020"
   }
 ]

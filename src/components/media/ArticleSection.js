@@ -11,7 +11,11 @@ class SponsorSection extends Component {
           rel="noopener noreferrer"
           href={"images/articleImages/" + this.props.article.link}
         >
-          <Card>
+          <Card
+            style={{
+              boxShadow: "0px 2px 2px 2px #e3e3e3",
+            }}
+          >
             <CardBody style={{ minHeight: 300 }}>
               <CardImg
                 src={"images/articleThumbnails/reflex_nr5_2015_300.jpg"}
