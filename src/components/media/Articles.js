@@ -34,7 +34,7 @@ class Articles extends React.Component {
           ></i>{" "}
           Till toppen
         </Button>
-        <ButtonGroup size="sm" className="px-5 pb-5">
+        <ButtonGroup size="sm" className="pb-5">
           <Button onClick={() => this.onYearTap("2013")}>2013</Button>
           <Button onClick={() => this.onYearTap("2014")}>2014</Button>
           <Button onClick={() => this.onYearTap("2015")}>2015</Button>
