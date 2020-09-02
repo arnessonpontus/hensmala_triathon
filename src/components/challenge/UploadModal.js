@@ -257,7 +257,8 @@ const UploadModal = (props) => {
   return (
     <div>
       <Button
-        color="success"
+        color="danger"
+        disabled={true}
         style={{
           margin: "auto",
           display: "flex",
@@ -265,8 +266,8 @@ const UploadModal = (props) => {
         }}
         onClick={toggle}
       >
-        Lägg till ditt bidrag
-        <i className="fa fa-plus" style={{ marginLeft: 5, color: "white" }}></i>
+        Utmaningen är nu avslutad
+        {/* <i className="fa fa-plus" style={{ marginLeft: 5, color: "white" }}></i> */}
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Ladda upp bidrag</ModalHeader>
