@@ -1,7 +1,15 @@
 import React from "react";
 import { Col } from "reactstrap";
+import YouTube from "react-youtube";
 
 const OneNews = (props) => {
+  const opts = {
+    playerVars: {
+      height: "100%",
+      width: "100%",
+      autoplay: 0,
+    },
+  };
   return (
     <div
       key={props.news.date}
@@ -27,23 +35,41 @@ const OneNews = (props) => {
       </Col>
       <Col
         style={{
-          pointerEvents: "none",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <img
-          style={{
-            minWidth: 200,
-            margin: "1em auto",
-            maxHeight: 200,
-            objectFit: "contain",
-          }}
-          width="100%"
-          src={props.news.image}
-          alt={props.news.image}
-        ></img>
+        {props.news.video ? (
+          <div
+            className="embed-responsive embed-responsive-16by9"
+            style={{
+              minWidth: 200,
+              margin: "1em auto",
+
+              objectFit: "contain",
+            }}
+          >
+            <YouTube
+              className="embed-responsive-item"
+              videoId={props.news.video}
+              opts={opts}
+              //onReady={() => this.setState({ isVideoLoading: false })}
+            />
+          </div>
+        ) : (
+          <img
+            style={{
+              minWidth: 200,
+              margin: "1em auto",
+              maxHeight: 200,
+              objectFit: "contain",
+            }}
+            width="100%"
+            src={props.news.image}
+            alt={props.news.image}
+          ></img>
+        )}
       </Col>
     </div>
   );
