@@ -18,7 +18,11 @@ class SponsorSection extends Component {
           >
             <CardBody style={{ minHeight: 300 }}>
               <CardImg
-                src={"images/articleThumbnails/reflex_nr5_2015_300.jpg"}
+                src={
+                  this.props.article.thumbnail
+                    ? "images/articleImages/" + this.props.article.thumbnail
+                    : "images/articleImages/default_reflex_nr5_2015_300.jpg"
+                }
                 style={{ objectFit: "cover", pointerEvents: "none" }}
                 width="320"
                 height="180"
