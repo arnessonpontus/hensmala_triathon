@@ -1,13 +1,22 @@
 import React, { Component } from "react";
-//import RegisterFormSolo from "./RegisterFormSolo";
-//import RegisterFormTeam from "./RegisterFormTeam";
-//import RegisterFormKids from "./RegisterFormKids";
-import { Link } from "react-router-dom";
+import RegisterFormSolo from "./RegisterFormSolo";
+import RegisterFormTeam from "./RegisterFormTeam";
+import RegisterFormKids from "./RegisterFormKids";
 import RegSuccess from "./RegSuccess";
-import { Container, Card, CardBody, Button } from "reactstrap";
+import classnames from "classnames";
+
+import {
+  Container,
+  Card,
+  CardBody,
+  Nav,
+  NavItem,
+  NavLink,
+  TabContent,
+  TabPane,
+} from "reactstrap";
 
 class Register extends Component {
-  // TODO: Form validation
   state = {
     hasRegisterd: false,
     activeTab: "1",
@@ -34,21 +43,6 @@ class Register extends Component {
         {!this.state.hasRegisterd ? (
           <Card className="mt-5">
             <CardBody>
-              <div
-                style={{
-                  minHeight: "60vh",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <h1>Anmälan är tyvärr stängd för i år.</h1>
-                <Link to="/utmaningen">
-                  <Button color="info">Gå till Utmaningen istället</Button>
-                </Link>
-              </div>
-              {/* 
               <div>
                 <Nav tabs>
                   <NavItem>
@@ -110,7 +104,6 @@ class Register extends Component {
                   </TabPane>
                 </TabContent>
               </div>
-              */}
             </CardBody>
           </Card>
         ) : (
