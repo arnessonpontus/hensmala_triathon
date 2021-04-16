@@ -15,7 +15,7 @@ class Footer extends React.Component {
           marginTop: 50,
           height: "20vh",
           backgroundColor: "#4287f5",
-          color: "#F6F6F6",
+          color: "#11999E",
           borderRadius: "0px",
         }}
       >
