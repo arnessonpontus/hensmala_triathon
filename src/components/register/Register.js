@@ -7,8 +7,6 @@ import classnames from "classnames";
 
 import {
   Container,
-  Card,
-  CardBody,
   Nav,
   NavItem,
   NavLink,

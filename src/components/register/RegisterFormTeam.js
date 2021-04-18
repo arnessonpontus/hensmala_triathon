@@ -491,11 +491,13 @@ class RegisterFormTeam extends Component {
           </Form>
         </Col>
         <Col style={{ marginTop: "5vh" }}>
-          <h3>Anmäl er som Lag</h3>
-          <b>Startavgift: 500kr </b>
-          <i style={{ fontSize: 12 }}>
-            Priset kommer höjas till 600 kr från och med 15:e juli.
-          </i>
+          <h3>Intresseanmäl er som Lag</h3>
+          <b>
+            Detta är en intresseanmälan till Hensmåla Triathlon 2021. Du behöver
+            inte betala i samband med denna intresseanmälan.
+          </b>
+          <br></br>
+          <br></br>
           <p>
             När ni anmäler er som lag får sträckorna delas upp inom laget. Detta
             kan innebära att ni är tre som deltar där alla kör en gren var.
@@ -505,12 +507,12 @@ class RegisterFormTeam extends Component {
             <RRNavLink tag={RRNavLink} to="/om-ht/hem">
               HÄR
             </RRNavLink>
+            .
           </p>
           <p>
-            Ni kommer få ett mail med ett id-nummer och{" "}
-            <b>betalningsuppgifter</b> då anmälan är gjord. När tävlingen närmar
-            sig kommer yttligare information skickas ut via mail till alla
-            deltagare.
+            När vi vet närmare om evenemanget kommer bli av kommer yttligare
+            information skickas ut via mail till alla deltagare för att kolla om
+            intresset fortfarande är kvar för att delta.
           </p>
           <b>
             Fotografering och videofilmning förekommer, meddela om du inte vill
@@ -519,6 +521,7 @@ class RegisterFormTeam extends Component {
           <br></br>
           <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
+          <i style={{ fontSize: 12 }}>Startavgift: 500kr</i>
         </Col>
       </Row>
     );

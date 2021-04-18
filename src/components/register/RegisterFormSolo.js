@@ -302,24 +302,27 @@ class RegisterFormSolo extends Component {
           </Form>
         </Col>
         <Col style={{ marginTop: "5vh" }}>
-          <h3>Anmäl dig som indiviuell deltagare</h3>
-          <b>Startavgift: 300kr </b>
-          <i style={{ fontSize: 12 }}>
-            Priset kommer höjas till 400 kr från och med 15:e juli.
-          </i>
+          <h3>Intresseanmäl dig som indiviuell deltagare</h3>
+          <b>
+            Detta är en intresseanmälan till Hensmåla Triathlon 2021. Du behöver
+            inte betala i samband med denna intresseanmälan.
+          </b>
+          <br></br>
+          <br></br>
+
           <p>
-            När du anmälder sig som indiviuell deltagare utför du alla tre
-            grenar individuellt. För mer information om sträckorna och
-            tävlingsregler kan du gå in{" "}
+            När du anmäler sig som indiviuell deltagare utför du alla tre grenar
+            individuellt. För mer information om sträckorna och tävlingsregler
+            kan du gå in{" "}
             <RRNavLink tag={RRNavLink} to="/om-ht/hem">
               HÄR
             </RRNavLink>
+            .
           </p>
           <p>
-            Du kommer få ett mail med ett id-nummer och{" "}
-            <b>betalningsuppgifter</b> då anmälan är gjord. När tävlingen närmar
-            sig kommer yttligare information skickas ut via mail till alla
-            deltagare.
+            När vi vet närmare om evenemanget kommer bli av kommer yttligare
+            information skickas ut via mail till alla deltagare för att kolla om
+            intresset fortfarande är kvar för att delta.
           </p>
           <b>
             Fotografering och videofilmning förekommer, meddela om du inte vill
@@ -328,6 +331,7 @@ class RegisterFormSolo extends Component {
           <br></br>
           <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
+          <i style={{ fontSize: 12 }}>Startavgift: 300kr</i>
         </Col>
       </Row>
     );

@@ -356,19 +356,18 @@ class RegisterFormKids extends Component {
           </Form>
         </Col>
         <Col style={{ marginTop: "5vh" }}>
-          <h3>Nyhet! Anmälan för dig upp till 15 år</h3>
-          <b>Startavgift: 100kr </b>
-          <i style={{ fontSize: 12 }}>
-            Priset kommer höjas den 15e juli till 200kr
-          </i>
+          <h3>Nyhet! Intresseanmälan för dig upp till 15 år</h3>
+
           <p>
-            När du anmäler sig till Hensmåla Triathlon som barn utför du de två
+            Detta är en intresseanmälan till Hensmåla Triathlon 2021. När du
+            anmäler sig till Hensmåla Triathlon som barn utför du de två
             grenarna simning och löpning individuellt, men där grenarna är
             förkortade. För mer information om sträckorna och tävlingsregler kan
             du gå in{" "}
             <RRNavLink tag={RRNavLink} to="/om-ht/hem">
               HÄR
             </RRNavLink>
+            .
           </p>
           <b>
             Alla som deltar måste kunna simma 200m. Det är föräldrarnas ansvar
@@ -377,18 +376,18 @@ class RegisterFormKids extends Component {
           <br></br>
           <br></br>
           <p>
-            Du kommer få ett mail med ett id-nummer och{" "}
-            <b>betalningsuppgifter</b> då anmälan är gjord. När tävlingen närmar
-            sig kommer yttligare information skickas ut via mail till alla
-            deltagare.
+            När vi vet närmare om evenemanget kommer bli av kommer yttligare
+            information skickas ut via mail till alla deltagare för att kolla om
+            intresset fortfarande är kvar för att delta.
           </p>
           <b>
-            Fotografering och videofilmning förekommer, meddela om du inte vill
-            vara med.
+            Fotografering och videofilmning kommer att förekomma, meddela om du
+            inte vill vara med.
           </b>
           <br></br>
           <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
+          <i style={{ fontSize: 12 }}>Startavgift: 100kr</i>
         </Col>
       </Row>
     );

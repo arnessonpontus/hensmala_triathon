@@ -24,7 +24,7 @@ const OneNews = (props) => {
           <i style={{ justifySelf: "flex-end" }}>{props.news.date}</i>
         </Row>
         <Row>
-          {props.news.link ? (
+          {props.news.link && props.news.linkName ? (
             <RRNavLink
               style={{ textDecoration: "none" }}
               target="_blank"
@@ -32,7 +32,9 @@ const OneNews = (props) => {
               tag={RRNavLink}
               to={props.news.link}
             >
-              <Button style={{ marginTop: 4 }}>Läs mer</Button>
+              <Button style={{ marginTop: 4 }}>
+                Gå till {props.news.linkName}
+              </Button>
             </RRNavLink>
           ) : null}
         </Row>

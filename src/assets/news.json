@@ -1,5 +1,13 @@
 [
   {
+    "title": "Intresseanmälan till 2021",
+    "text": "Vi vet ännu inte helt om det kan bli ett fysiskt Hensmåla Triathlon år 2021. Det finns dock nu en intresseanmälan uppe på fliken anmälan där man kan anmäla sitt intresse till att delta på Hensmåla Triathlon 2021 på plats! Om man gör en intresseanmälan ser vi hur intresset är för att hålla ett fysiskt triathon i år.",
+    "image": "/images/news/covid.jpg",
+    "link": "/anmalan",
+    "linkName": "Anmälan",
+    "date": "Sön 17-04-2021"
+  },
+  {
     "title": "Caroline Ingre",
     "text": "Caroline Ingre är överläkare i neurologi och ALS-specialist vid Karolinska Universitetssjukhuset samt leder ALS Treatment Center Karolinska. Här berättar hon om var Hensmåla Triathlons insamlade pengar går till.",
     "image": "",
@@ -29,7 +37,8 @@
     "text": "Eftersom Hensmåla triathlon 2020 har ställts in skapades Utmaningen. För att läsa mer eller lägga till ett bidrag kan man gå in på Utmaningen i menyn på hemsidan.",
     "image": "thumb.png",
     "date": "Lör 04-07-2020",
-    "link": "/utmaningen"
+    "link": "/utmaningen",
+    "linkName": "Utmaningen"
   },
   {
     "title": "Hensmåla triathlon 2020 är inställt på grund av Covid-19.",
