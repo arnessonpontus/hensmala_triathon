@@ -21,6 +21,7 @@ class Radio extends React.Component {
                 >
                   <div>
                     <img
+                      alt={radioShow.title}
                       width="100%"
                       height="200px"
                       style={{ objectFit: "cover", marginBottom: "10px" }}

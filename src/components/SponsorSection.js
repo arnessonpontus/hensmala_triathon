@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { Card } from "reactstrap";
-
 class SponsorSection extends Component {
   render() {
     return (

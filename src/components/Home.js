@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import News from "./News";
 
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardText,
-  Button,
-} from "reactstrap";
+import { Container, Row, Col, Card, CardBody, Button } from "reactstrap";
 
 class Home extends Component {
   render() {

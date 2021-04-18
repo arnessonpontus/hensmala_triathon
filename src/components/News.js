@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
 
 import { Col } from "reactstrap";
 import newsArc from "../assets/news";

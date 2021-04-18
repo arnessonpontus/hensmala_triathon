@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Card, CardBody, Col, CardImg, CardTitle } from "reactstrap";
+import { Col } from "reactstrap";
 
 class SponsorSection extends Component {
   render() {
