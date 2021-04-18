@@ -11,28 +11,22 @@ class SponsorSection extends Component {
           rel="noopener noreferrer"
           href={"images/articleImages/" + this.props.article.link}
         >
-          <Card
-            style={{
-              boxShadow: "0px 2px 2px 2px #e3e3e3",
-            }}
-          >
-            <CardBody style={{ minHeight: 300 }}>
-              <CardImg
-                src={
-                  this.props.article.thumbnail
-                    ? "images/articleImages/" + this.props.article.thumbnail
-                    : "images/articleImages/default_reflex_nr5_2015_300.jpg"
-                }
-                style={{ objectFit: "cover", pointerEvents: "none" }}
-                width="320"
-                height="180"
-                alt={this.props.article.title}
-              ></CardImg>
-              <CardTitle style={{ pointerEvents: "none" }} className="mt-2">
-                {this.props.article.title}
-              </CardTitle>
-            </CardBody>
-          </Card>
+          <div className="card-box-hoverable" style={{ height: 350 }}>
+            <img
+              src={
+                this.props.article.thumbnail
+                  ? "images/articleImages/" + this.props.article.thumbnail
+                  : "images/articleImages/default_reflex_nr5_2015_300.jpg"
+              }
+              style={{ objectFit: "cover", pointerEvents: "none" }}
+              width="100%"
+              height="80%"
+              alt={this.props.article.title}
+            ></img>
+            <h6 style={{ pointerEvents: "none" }} className="mt-2">
+              {this.props.article.title}
+            </h6>
+          </div>
         </a>
       </Col>
     );

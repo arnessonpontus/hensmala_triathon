@@ -21,44 +21,36 @@ class Home extends Component {
           alt="HT_banner"
         ></img>
         <Container className="p-4">
-          <h1
-            className="mb-5 text-danger"
-            style={{ fontSize: "40px", fontWeight: "bold" }}
-          >
-            Hensmåla triathlon 2020 är inställt p.g.a. Covid-19
-          </h1>
-          <Card style={{ boxShadow: "0px 1px 1px 1px #e3e3e3" }}>
-            <CardBody>
-              <Row>
-                <Col className="my-4" ms={4}>
-                  <h2>Välkommen till Hensmåla Triathlon</h2>
-                  <CardText>
-                    I det fina småländska landskapet arrangeras årligen ett
-                    minitriathlon till förmån för ALS-forskningen. Alla sträckor
-                    är anpassade till den vackra Stora Hensjön och Hensmålas
-                    landskap.
-                    <br></br>
-                    <br></br>
-                    På de första sju åren har strax över <b>700 000 kr</b>{" "}
-                    samlats in och skänks till ALS-forskningen denom NEURO. De
-                    två sista åren har gåvan riktats mot Stoppa ALS och ALS
-                    Treatment Center Karolinska.
-                    <br></br>
-                    <br></br>
-                    2019 skänktes <b>161 891kr</b>.
-                  </CardText>
-                </Col>
+          <div className="card-box">
+            <Row>
+              <Col className="my-4" ms={4}>
+                <h2>Välkommen till Hensmåla Triathlon</h2>
+                <p>
+                  I det fina småländska landskapet arrangeras årligen ett
+                  minitriathlon till förmån för ALS-forskningen. Alla sträckor
+                  är anpassade till den vackra Stora Hensjön och Hensmålas
+                  landskap.
+                  <br></br>
+                  <br></br>
+                  På de första sju åren har strax över <b>700 000 kr</b> samlats
+                  in och skänks till ALS-forskningen denom NEURO. De två sista
+                  åren har gåvan riktats mot Stoppa ALS och ALS Treatment Center
+                  Karolinska.
+                  <br></br>
+                  <br></br>
+                  2019 skänktes <b>161 891kr</b>.
+                </p>
+              </Col>
 
-                <Col className="text-center mt-4 my-auto" ms={4}>
-                  <img
-                    width="250px"
-                    src="/images/hona_1500.jpg"
-                    alt="hensmala_triathlon"
-                  ></img>
-                </Col>
-              </Row>
-            </CardBody>
-          </Card>
+              <Col className="text-center mt-4 my-auto" ms={4}>
+                <img
+                  width="250px"
+                  src="/images/hona_1500.jpg"
+                  alt="hensmala_triathlon"
+                ></img>
+              </Col>
+            </Row>
+          </div>
           <Row className="donate-home">
             <Col className=" mt-5">
               <Card className="align-items-center">

@@ -1,6 +1,7 @@
 import React from "react";
-import { Col } from "reactstrap";
+import { Col, Row, Button } from "reactstrap";
 import YouTube from "react-youtube";
+import { NavLink as RRNavLink } from "react-router-dom";
 
 const OneNews = (props) => {
   const opts = {
@@ -11,27 +12,30 @@ const OneNews = (props) => {
     },
   };
   return (
-    <div
-      key={props.news.date}
-      style={{
-        padding: 20,
-        minHeight: 200,
-        marginTop: 20,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: "#d9d7d7",
-        borderStyle: "solid",
-        display: "flex",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        boxShadow: "0px 2px 2px 2px #e3e3e3",
-      }}
-    >
-      <Col style={{ pointerEvents: "none" }}>
-        <h3>{props.news.title}</h3>
-        <p>{props.news.text}</p>
-
-        <i style={{ justifySelf: "flex-end" }}>{props.news.date}</i>
+    <div key={props.news.date} className="card-box">
+      <Col>
+        <Row>
+          <h3>{props.news.title}</h3>
+        </Row>
+        <Row>
+          <p>{props.news.text}</p>
+        </Row>
+        <Row>
+          <i style={{ justifySelf: "flex-end" }}>{props.news.date}</i>
+        </Row>
+        <Row>
+          {props.news.link ? (
+            <RRNavLink
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              rel="noopener noreferrer"
+              tag={RRNavLink}
+              to={props.news.link}
+            >
+              <Button style={{ marginTop: 4 }}>Läs mer</Button>
+            </RRNavLink>
+          ) : null}
+        </Row>
       </Col>
       <Col
         style={{

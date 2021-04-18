@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 import ClipLoader from "react-spinners/ClipLoader";
 import videos from "../../assets/videos";
 
-import { Container, Row, Col, Card, CardBody } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 class Videos extends React.Component {
   state = {
@@ -25,8 +25,15 @@ class Videos extends React.Component {
           {videos.map((video) => {
             return (
               <Col className="mt-4" md="6">
-                <Card>
-                  <CardBody>
+                <div className="card-box">
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                    }}
+                  >
                     <ClipLoader
                       className="spinner"
                       sizeUnit={"px"}
@@ -34,18 +41,17 @@ class Videos extends React.Component {
                       color={"black"}
                       loading={this.state.isVideoLoading}
                     />
-                    <div className="embed-responsive embed-responsive-16by9">
-                      <YouTube
-                        className="embed-responsive-item"
-                        videoId={video.id}
-                        opts={opts}
-                        onReady={() => this.setState({ isVideoLoading: false })}
-                      />
-                    </div>
+                  </div>
 
-                    <h4 className="mt-2">{video.title}</h4>
-                  </CardBody>
-                </Card>
+                  <div className="embed-responsive embed-responsive-16by9">
+                    <YouTube
+                      className="embed-responsive-item"
+                      videoId={video.id}
+                      opts={opts}
+                      onReady={() => this.setState({ isVideoLoading: false })}
+                    />
+                  </div>
+                </div>
               </Col>
             );
           })}

@@ -11,10 +11,12 @@ class SponsorSection extends Component {
             target="_blank"
             rel="noopener noreferrer"
             href={this.props.sponsor.link}
+            className="card-box-hoverable"
           >
-            <Card
+            <div
               className={"spons-" + this.props.sponsType}
               style={{
+                display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
@@ -25,22 +27,25 @@ class SponsorSection extends Component {
                 className={"spons-img-" + this.props.sponsType}
                 src={"../../images/sponsorImages/" + this.props.sponsor.image}
               ></img>
-            </Card>
+            </div>
           </a>
         ) : (
-          <Card
-            className={"spons-" + this.props.sponsType}
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img
-              alt={this.props.image}
-              className={"spons-img-" + this.props.sponsType}
-              src={"../../images/sponsorImages/" + this.props.sponsor.image}
-            ></img>
-          </Card>
+          <div className="card-box-hoverable">
+            <div
+              className={"spons-" + this.props.sponsType}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                alt={this.props.image}
+                className={"spons-img-" + this.props.sponsType}
+                src={"../../images/sponsorImages/" + this.props.sponsor.image}
+              ></img>
+            </div>
+          </div>
         )}
       </div>
     );

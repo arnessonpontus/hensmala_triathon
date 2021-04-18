@@ -41,71 +41,69 @@ class Register extends Component {
     return (
       <Container>
         {!this.state.hasRegisterd ? (
-          <Card className="mt-5">
-            <CardBody>
-              <div>
-                <Nav tabs>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        tabLink: true,
-                        active: this.state.activeTab === "1",
-                      })}
-                      onClick={() => {
-                        this.changeTab("1");
-                      }}
-                    >
-                      Indivuduell
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        tabLink: true,
-                        active: this.state.activeTab === "2",
-                      })}
-                      onClick={() => {
-                        this.changeTab("2");
-                      }}
-                    >
-                      Lag
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        tabLink: true,
-                        active: this.state.activeTab === "3",
-                      })}
-                      onClick={() => {
-                        this.changeTab("3");
-                      }}
-                    >
-                      Barn
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-                <TabContent activeTab={this.state.activeTab}>
-                  <TabPane tabId="1">
-                    <RegisterFormSolo
-                      handleRegistration={this.handleRegistration}
-                    />
-                  </TabPane>
+          <div className="card-box">
+            <div>
+              <Nav tabs>
+                <NavItem>
+                  <NavLink
+                    className={classnames({
+                      tabLink: true,
+                      active: this.state.activeTab === "1",
+                    })}
+                    onClick={() => {
+                      this.changeTab("1");
+                    }}
+                  >
+                    Indivuduell
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({
+                      tabLink: true,
+                      active: this.state.activeTab === "2",
+                    })}
+                    onClick={() => {
+                      this.changeTab("2");
+                    }}
+                  >
+                    Lag
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({
+                      tabLink: true,
+                      active: this.state.activeTab === "3",
+                    })}
+                    onClick={() => {
+                      this.changeTab("3");
+                    }}
+                  >
+                    Barn
+                  </NavLink>
+                </NavItem>
+              </Nav>
+              <TabContent activeTab={this.state.activeTab}>
+                <TabPane tabId="1">
+                  <RegisterFormSolo
+                    handleRegistration={this.handleRegistration}
+                  />
+                </TabPane>
 
-                  <TabPane tabId="2">
-                    <RegisterFormTeam
-                      handleRegistration={this.handleRegistration}
-                    />
-                  </TabPane>
-                  <TabPane tabId="3">
-                    <RegisterFormKids
-                      handleRegistration={this.handleRegistration}
-                    />
-                  </TabPane>
-                </TabContent>
-              </div>
-            </CardBody>
-          </Card>
+                <TabPane tabId="2">
+                  <RegisterFormTeam
+                    handleRegistration={this.handleRegistration}
+                  />
+                </TabPane>
+                <TabPane tabId="3">
+                  <RegisterFormKids
+                    handleRegistration={this.handleRegistration}
+                  />
+                </TabPane>
+              </TabContent>
+            </div>
+          </div>
         ) : (
           <RegSuccess handleRegistration={this.handleRegistration} />
         )}

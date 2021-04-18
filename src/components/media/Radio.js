@@ -1,16 +1,7 @@
 import React from "react";
 import radioShows from "../../assets/radioShows";
 
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  CardImg,
-} from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 class Radio extends React.Component {
   render() {
@@ -20,20 +11,32 @@ class Radio extends React.Component {
           {radioShows.map((radioShow) => {
             return (
               <Col className="mt-4" md="6">
-                <Card style={{ minHeight: 500 }}>
-                  <CardBody>
-                    <CardImg
-                      style={{ maxHeight: 200, objectFit: "cover" }}
+                <div
+                  className="card-box"
+                  style={{
+                    minHeight: 500,
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div>
+                    <img
+                      width="100%"
+                      height="200px"
+                      style={{ objectFit: "cover", marginBottom: "10px" }}
                       src={radioShow.image}
-                    ></CardImg>
-                    <CardTitle className="mt-4">{radioShow.title}</CardTitle>
-                    <CardText>{radioShow.text}</CardText>
+                    ></img>
+                    <div>
+                      <h4>{radioShow.title}</h4>
 
-                    <audio controls src={radioShow.radioSrc}>
-                      Din webläsare stödjer ej ljudelementet
-                    </audio>
-                  </CardBody>
-                </Card>
+                      <p>{radioShow.text}</p>
+                    </div>
+                  </div>
+
+                  <audio controls src={radioShow.radioSrc}>
+                    Din webläsare stödjer ej ljudelementet
+                  </audio>
+                </div>
               </Col>
             );
           })}

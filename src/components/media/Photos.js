@@ -1,15 +1,7 @@
 import React from "react";
 import photoAlbums from "../../assets/photoAlbums";
 
-import {
-  Container,
-  Row,
-  Card,
-  CardBody,
-  Col,
-  CardImg,
-  CardTitle,
-} from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 class Photos extends React.Component {
   render() {
@@ -27,23 +19,18 @@ class Photos extends React.Component {
                   title={album.title}
                   style={{ color: "black" }}
                 >
-                  <Card>
-                    <CardBody>
-                      <CardImg
-                        src={album.image}
-                        style={{ objectFit: "cover", pointerEvents: "none" }}
-                        width="280px"
-                        height="280px"
-                        alt={album.title}
-                      ></CardImg>
-                      <CardTitle
-                        style={{ pointerEvents: "none" }}
-                        className="mt-2"
-                      >
-                        {album.title}
-                      </CardTitle>
-                    </CardBody>
-                  </Card>
+                  <div className="card-box-hoverable" style={{ height: 350 }}>
+                    <img
+                      src={album.image}
+                      style={{ objectFit: "cover", pointerEvents: "none" }}
+                      width="100%"
+                      height="80%"
+                      alt={album.title}
+                    ></img>
+                    <h5 style={{ pointerEvents: "none" }} className="mt-2">
+                      {album.title}
+                    </h5>
+                  </div>
                 </a>
               </Col>
             );
