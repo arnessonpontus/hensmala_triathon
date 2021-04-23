@@ -3,22 +3,16 @@ import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
 
-const encode = (data) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-};
-
-class RegisterFormKids extends Component {
+class RegisterForms extends Component {
   state = {
-    nameKID: "",
-    emailKID: "",
-    yearKID: "",
-    monthKID: "",
-    dayKID: "",
-    infoKID: "",
-    cityKID: "",
-    genderKID: "",
+    name: "",
+    email: "",
+    year: "",
+    month: "",
+    day: "",
+    info: "",
+    city: "",
+    gender: "",
     guardianName: "",
     guardianPhone: "",
     guardianEmail: "",
@@ -34,15 +28,22 @@ class RegisterFormKids extends Component {
   }
 
   handleSubmit = (e) => {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "registerKids", ...this.state }),
-    })
-      .then(() => this.props.handleRegistration())
-      .catch((error) => alert(error));
-
     e.preventDefault();
+
+    fetch("/.netlify/functions/writeToSpreadsheet/?type=kids", {
+      method: "POST",
+      body: JSON.stringify(this.state),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          this.props.handleRegistration();
+        } else {
+          alert(
+            "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmaltriathlon@gmail.com."
+          );
+        }
+      })
+      .catch((error) => alert(error));
   };
 
   handleChange = (e) => {
@@ -162,39 +163,39 @@ class RegisterFormKids extends Component {
           <Form onSubmit={this.handleSubmit}>
             <h3>Anmälan Barn</h3>
             <FormGroup>
-              <Label for="nameKID">Barnets namn</Label>
+              <Label for="name">Barnets namn</Label>
               <Input
                 required={true}
                 type="text"
-                name="nameKID"
-                id="nameKID"
+                name="name"
+                id="name"
                 placeholder="Förnamn Efternamn"
-                value={this.state.nameKID}
+                value={this.state.name}
                 onChange={this.handleChange}
               />
             </FormGroup>
 
             <FormGroup>
-              <Label for="emailKID">Barnets epost (valfritt)</Label>
+              <Label for="email">Barnets epost (valfritt)</Label>
               <Input
                 required={false}
-                type="emailKID"
-                name="emailKID"
-                id="emailKID"
+                type="email"
+                name="email"
+                id="email"
                 placeholder="din.email@gmail.com"
-                value={this.state.emailKID}
+                value={this.state.email}
                 onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup>
-              <Label for="birthdayIDKID">Barnets födelsedatum</Label>
+              <Label for="birthdayID">Barnets födelsedatum</Label>
               <div style={{ display: "flex" }}>
                 <Input
                   className="mr-2"
                   required={true}
                   type="select"
-                  name="yearKID"
-                  id="yearSelectionKID"
+                  name="year"
+                  id="yearSelection"
                   onChange={this.handleChange}
                 >
                   <option disabled selected value>
@@ -206,8 +207,8 @@ class RegisterFormKids extends Component {
                   className="ml-2 mr-2"
                   required={true}
                   type="select"
-                  name="monthKID"
-                  id="monthSelectionKID"
+                  name="month"
+                  id="monthSelection"
                   onChange={this.handleChange}
                 >
                   <option disabled selected value>
@@ -219,8 +220,8 @@ class RegisterFormKids extends Component {
                   className="ml-2"
                   required={true}
                   type="select"
-                  name="dayKID"
-                  id="daySelectionKID"
+                  name="day"
+                  id="daySelection"
                   onChange={this.handleChange}
                 >
                   <option disabled selected value>
@@ -231,12 +232,12 @@ class RegisterFormKids extends Component {
               </div>
             </FormGroup>
             <FormGroup>
-              <Label for="genderSelectionKID">Barnets kön</Label>
+              <Label for="genderSelection">Barnets kön</Label>
               <Input
                 required={true}
                 type="select"
-                name="genderKID"
-                id="genderSelectionKID"
+                name="gender"
+                id="genderSelection"
                 onChange={this.handleChange}
               >
                 <option disabled selected value>
@@ -247,13 +248,13 @@ class RegisterFormKids extends Component {
               </Input>
             </FormGroup>
             <FormGroup>
-              <Label for="cityKID"> Ort (klubb)</Label>
+              <Label for="city"> Ort (klubb)</Label>
               <Input
                 type="text"
-                name="cityKID"
-                id="cityKID"
+                name="city"
+                id="city"
                 placeholder="Hensmåla löparförening"
-                value={this.state.cityKID}
+                value={this.state.city}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -295,13 +296,13 @@ class RegisterFormKids extends Component {
             </FormGroup>
 
             <FormGroup>
-              <Label for="infoKID">Information</Label>
+              <Label for="info">Information</Label>
               <Input
                 type="textarea"
-                name="infoKID"
-                id="infoKID"
+                name="info"
+                id="info"
                 placeholder=""
-                value={this.state.infoKID}
+                value={this.state.info}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -394,4 +395,4 @@ class RegisterFormKids extends Component {
   }
 }
 
-export default RegisterFormKids;
+export default RegisterForms;

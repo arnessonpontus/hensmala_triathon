@@ -3,12 +3,6 @@ import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
 
-const encode = (data) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-};
-
 class RegisterFormSolo extends Component {
   state = {
     name: "",
@@ -30,15 +24,22 @@ class RegisterFormSolo extends Component {
   }
 
   handleSubmit = (e) => {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "registerSolo", ...this.state }),
-    })
-      .then(() => this.props.handleRegistration())
-      .catch((error) => alert(error));
-
     e.preventDefault();
+
+    fetch("/.netlify/functions/writeToSpreadsheet/?type=solo", {
+      method: "POST",
+      body: JSON.stringify(this.state),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          this.props.handleRegistration();
+        } else {
+          alert(
+            "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmaltriathlon@gmail.com."
+          );
+        }
+      })
+      .catch((error) => alert(error));
   };
 
   handleChange = (e) => {
