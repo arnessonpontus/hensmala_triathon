@@ -1,7 +1,17 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Row,
+  Col,
+  Spinner,
+} from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
+import { DayPicker, MonthPicker, YearPicker } from "../FormUtils";
 
 class RegisterForms extends Component {
   state = {
@@ -27,25 +37,6 @@ class RegisterForms extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    fetch("/.netlify/functions/writeToSpreadsheet/?type=kids", {
-      method: "POST",
-      body: JSON.stringify(this.state),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          this.props.handleRegistration();
-        } else {
-          alert(
-            "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmaltriathlon@gmail.com."
-          );
-        }
-      })
-      .catch((error) => alert(error));
-  };
-
   handleChange = (e) => {
     e.preventDefault();
 
@@ -67,100 +58,13 @@ class RegisterForms extends Component {
     }
   };
 
-  renderYears = () => {
-    let years = [];
-    for (let i = 2019; i > 1930; i--) {
-      years.push(
-        <option value={i} key={i}>
-          {i}
-        </option>
-      );
-    }
-    return years;
-  };
-
-  renderMonths = () => {
-    let months = [];
-    months.push(
-      <option value={1} key={0}>
-        Januari
-      </option>
-    );
-    months.push(
-      <option value={2} key={1}>
-        Februari
-      </option>
-    );
-    months.push(
-      <option value={3} key={2}>
-        Mars
-      </option>
-    );
-    months.push(
-      <option value={4} key={3}>
-        April
-      </option>
-    );
-    months.push(
-      <option value={5} key={4}>
-        Maj
-      </option>
-    );
-    months.push(
-      <option value={6} key={5}>
-        Juni
-      </option>
-    );
-    months.push(
-      <option value={7} key={6}>
-        Juli
-      </option>
-    );
-    months.push(
-      <option value={8} key={7}>
-        Augusti
-      </option>
-    );
-    months.push(
-      <option value={9} key={8}>
-        September
-      </option>
-    );
-    months.push(
-      <option value={10} key={9}>
-        Oktober
-      </option>
-    );
-    months.push(
-      <option value={11} key={10}>
-        November
-      </option>
-    );
-    months.push(
-      <option value={12} key={11}>
-        December
-      </option>
-    );
-    return months;
-  };
-
-  renderDays = () => {
-    let days = [];
-    for (let i = 1; i <= 31; i++) {
-      days.push(
-        <option value={i} key={i}>
-          {i}
-        </option>
-      );
-    }
-    return days;
-  };
-
   render() {
     return (
       <Row>
         <Col style={{ marginTop: "5vh" }} md={6}>
-          <Form onSubmit={this.handleSubmit}>
+          <Form
+            onSubmit={(e) => this.props.handleSubmit(e, "kids", this.state)}
+          >
             <h3>Anmälan Barn</h3>
             <FormGroup>
               <Label for="name">Barnets namn</Label>
@@ -190,45 +94,12 @@ class RegisterForms extends Component {
             <FormGroup>
               <Label for="birthdayID">Barnets födelsedatum</Label>
               <div style={{ display: "flex" }}>
-                <Input
-                  className="mr-2"
-                  required={true}
-                  type="select"
-                  name="year"
-                  id="yearSelection"
-                  onChange={this.handleChange}
-                >
-                  <option disabled selected value>
-                    År
-                  </option>
-                  {this.renderYears()}
-                </Input>
-                <Input
-                  className="ml-2 mr-2"
-                  required={true}
-                  type="select"
-                  name="month"
-                  id="monthSelection"
-                  onChange={this.handleChange}
-                >
-                  <option disabled selected value>
-                    Månad
-                  </option>
-                  {this.renderMonths()}
-                </Input>
-                <Input
-                  className="ml-2"
-                  required={true}
-                  type="select"
-                  name="day"
-                  id="daySelection"
-                  onChange={this.handleChange}
-                >
-                  <option disabled selected value>
-                    Dag
-                  </option>
-                  {this.renderDays()}
-                </Input>
+                <YearPicker handleChange={this.handleChange} elemName="year" />
+                <MonthPicker
+                  handleChange={this.handleChange}
+                  elemName="month"
+                />
+                <DayPicker handleChange={this.handleChange} elemName="day" />
               </div>
             </FormGroup>
             <FormGroup>
@@ -344,6 +215,7 @@ class RegisterForms extends Component {
             </FormGroup>
             <Button
               className="mt-4"
+              style={{ minWidth: "140px" }}
               disabled={
                 !(
                   this.state.isCheckboxOneTicked &&
@@ -352,7 +224,11 @@ class RegisterForms extends Component {
                 )
               }
             >
-              Anmäl mig!
+              {this.props.loading ? (
+                <Spinner size="sm" color="info" />
+              ) : (
+                "Anmäl mig!"
+              )}
             </Button>
           </Form>
         </Col>

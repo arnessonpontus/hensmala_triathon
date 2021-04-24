@@ -18,21 +18,44 @@ class Register extends Component {
   state = {
     hasRegisterd: false,
     activeTab: "1",
+    loading: false,
   };
 
   constructor(props) {
     super(props);
 
-    this.handleRegistration = this.handleRegistration.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleDoneRegistration = this.toggleDoneRegistration.bind(this);
   }
 
   changeTab = (tab) => {
     if (this.state.activeTab !== tab) this.setState({ activeTab: tab });
   };
 
-  handleRegistration = (e) => {
+  toggleDoneRegistration = (e) => {
     this.setState({ hasRegisterd: !this.state.hasRegisterd });
+  };
+
+  handleSubmit = (e, formType, data) => {
+    e.preventDefault();
+    this.setState({ loading: true });
+
+    fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          this.toggleDoneRegistration();
+        } else {
+          alert(
+            "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmaltriathlon@gmail.com."
+          );
+        }
+      })
+      .catch((error) => alert(error))
+      .finally(() => this.setState({ loading: false }));
   };
 
   render() {
@@ -85,25 +108,28 @@ class Register extends Component {
               <TabContent activeTab={this.state.activeTab}>
                 <TabPane tabId="1">
                   <RegisterFormSolo
-                    handleRegistration={this.handleRegistration}
+                    handleSubmit={this.handleSubmit}
+                    loading={this.state.loading}
                   />
                 </TabPane>
 
                 <TabPane tabId="2">
                   <RegisterFormTeam
-                    handleRegistration={this.handleRegistration}
+                    handleSubmit={this.handleSubmit}
+                    loading={this.state.loading}
                   />
                 </TabPane>
                 <TabPane tabId="3">
                   <RegisterFormKids
-                    handleRegistration={this.handleRegistration}
+                    handleSubmit={this.handleSubmit}
+                    loading={this.state.loading}
                   />
                 </TabPane>
               </TabContent>
             </div>
           </div>
         ) : (
-          <RegSuccess handleRegistration={this.handleRegistration} />
+          <RegSuccess toggleDoneRegistration={this.toggleDoneRegistration} />
         )}
       </Container>
     );
