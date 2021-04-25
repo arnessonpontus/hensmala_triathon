@@ -9,8 +9,8 @@ class News extends Component {
     return (
       <Col className="s mt-5">
         <h2>Nyheter</h2>
-        {newsArc.map((news) => {
-          return <OneNews news={news} />;
+        {newsArc.map((news, i) => {
+          return <OneNews key={i} news={news} />;
         })}
       </Col>
     );
