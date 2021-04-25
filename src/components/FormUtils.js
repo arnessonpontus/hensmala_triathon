@@ -12,7 +12,6 @@ export const YearPicker = (props) => {
       required={true}
       type="select"
       name={props.elemName}
-      id="yearSelection"
       onChange={props.handleChange}
     >
       <option disabled selected value>
@@ -50,7 +49,6 @@ export const MonthPicker = (props) => {
       required={true}
       type="select"
       name={props.elemName}
-      id="monthSelection"
       onChange={props.handleChange}
     >
       <option disabled selected value>
@@ -78,7 +76,6 @@ export const DayPicker = (props) => {
       required={true}
       type="select"
       name={props.elemName}
-      id="daySelection"
       onChange={props.handleChange}
     >
       <option disabled selected value>

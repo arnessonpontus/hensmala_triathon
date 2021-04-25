@@ -71,7 +71,7 @@ class Register extends Component {
             body: JSON.stringify(token),
           })
             .then((res) => {
-              if (res.status == 200) {
+              if (res.status === 200) {
                 res.json().then((res) => {
                   if (res.data.score > 0.5) {
                     this.sendRegistration(formType, data);

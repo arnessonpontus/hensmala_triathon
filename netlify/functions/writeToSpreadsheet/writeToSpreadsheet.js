@@ -1,10 +1,13 @@
 if (!process.env.NETLIFY) {
   require("dotenv").config();
 }
+var moment = require("moment-timezone");
 
 // required env vars
-if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
-if (!process.env.GOOGLE_PRIVATE_KEY) throw new Error("no GOOGLE_PRIVATE_KEY env var set");
+if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
+  throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
+if (!process.env.GOOGLE_PRIVATE_KEY)
+  throw new Error("no GOOGLE_PRIVATE_KEY env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO)
   // spreadsheet key is the long id in the sheets URL
   throw new Error("no GOOGLE_SPREADSHEET_ID_SOLO env var set");
@@ -19,20 +22,16 @@ const { GoogleSpreadsheet } = require("google-spreadsheet");
 
 function handleBirthday(type, data) {
   if (type == "team") {
-    data["birthday1"] = data["year1"] + "-" + data["month1"] + "-" + data["day1"];
-    data["birthday2"] = data["year2"] + "-" + data["month2"] + "-" + data["day2"];
-    data["birthday3"] = data["year3"] + "-" + data["month3"] + "-" + data["day3"];
+    data["birthday1"] =
+      data["year1"] + "-" + data["month1"] + "-" + data["day1"];
+    data["birthday2"] =
+      data["year2"] + "-" + data["month2"] + "-" + data["day2"];
+    data["birthday3"] =
+      data["year3"] + "-" + data["month3"] + "-" + data["day3"];
   } else {
     data["birthday"] = data["year"] + "-" + data["month"] + "-" + data["day"];
   }
   return data;
-}
-
-function getCurrentTime() {
-  var today = new Date();
-  var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  return date + " " + time;
 }
 
 exports.handler = async (event, context, callback) => {
@@ -75,7 +74,7 @@ exports.handler = async (event, context, callback) => {
 
     data = handleBirthday(registerType, data);
     data["id"] = idType + (idNumber + 1).toString();
-    data["time"] = getCurrentTime();
+    data["time"] = moment().tz("Europe/Stockholm").format();
 
     const addedRow = await sheet.addRow(data);
 
