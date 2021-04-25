@@ -221,7 +221,7 @@ class RegisterForms extends Component {
                   this.state.isCheckboxOneTicked &&
                   this.state.isCheckboxTwoTicked &&
                   this.state.isCheckboxThreeTicked
-                )
+                ) || this.props.loading
               }
             >
               {this.props.loading ? (

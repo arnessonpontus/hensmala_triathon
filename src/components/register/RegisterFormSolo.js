@@ -167,7 +167,7 @@ class RegisterFormSolo extends Component {
                 !(
                   this.state.isCheckboxOneTicked &&
                   this.state.isCheckboxTwoTicked
-                )
+                ) || this.props.loading
               }
             >
               {this.props.loading ? (

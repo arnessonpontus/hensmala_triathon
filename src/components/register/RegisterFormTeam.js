@@ -208,7 +208,7 @@ class RegisterFormTeam extends Component {
                 <FormGroup>
                   <Label for="name3">Namn</Label>
                   <Input
-                    required={true}
+                    required={false}
                     type="text"
                     name="name3"
                     id="name3"
@@ -306,7 +306,7 @@ class RegisterFormTeam extends Component {
                 !(
                   this.state.isCheckboxOneTicked &&
                   this.state.isCheckboxTwoTicked
-                )
+                ) || this.props.loading
               }
             >
               {this.props.loading ? (
