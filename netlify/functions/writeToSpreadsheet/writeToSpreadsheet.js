@@ -19,6 +19,7 @@ if (!process.env.GOOGLE_SPREADSHEET_ID_KIDS)
   throw new Error("no GOOGLE_SPREADSHEET_ID_KIDS env var set");
 
 const { GoogleSpreadsheet } = require("google-spreadsheet");
+const sendEmail = require("./emailSender");
 
 function handleBirthday(type, data) {
   if (type == "team") {
@@ -73,6 +74,8 @@ exports.handler = async (event, context, callback) => {
     const idNumber = parseInt(id.substring(1));
 
     data = handleBirthday(registerType, data);
+
+    // Not the best id solution but nice looking instead of random
     data["id"] = idType + (idNumber + 1).toString();
     data["time"] = moment().tz("Europe/Stockholm").format();
 
@@ -80,6 +83,7 @@ exports.handler = async (event, context, callback) => {
 
     if (addedRow) {
       console.log("Success adding row");
+      sendEmail(addedRow);
       return {
         statusCode: 200,
         body: JSON.stringify({
