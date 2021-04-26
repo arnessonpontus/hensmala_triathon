@@ -83,11 +83,11 @@ exports.handler = async (event, context, callback) => {
 
     if (addedRow) {
       console.log("Success adding row");
-      sendEmail(addedRow);
+      const email_sent = await sendEmail(addedRow);
       return {
         statusCode: 200,
         body: JSON.stringify({
-          message: `Row added`,
+          message: `Row added. Email sent: ${email_sent}`,
         }),
       };
     } else {
