@@ -1,4 +1,11 @@
 var nodemailer = require("nodemailer");
+
+// required env vars
+if (!process.env.EMAILER_USER) throw new Error("no EMAILER_USER env var set");
+// required env vars
+if (!process.env.EMAILER_PASSWORD)
+  throw new Error("no EMAILER_PASSWORD env var set");
+
 function sendEmail(addedRow) {
   var transporter = nodemailer.createTransport({
     service: "gmail",
@@ -42,15 +49,16 @@ function sendEmail(addedRow) {
   const email = addedRow.email ? addedRow.email : addedRow.email1;
 
   var mailOptions = {
-    from: "Hensmåla Triathlon",
+    from: process.env.EMAILER_USER,
     to: email,
     subject: "Tack för din amälan!",
     html: html,
   };
 
+  console.log("Sending email...");
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      console.log(error);
+      console.log("Error sending email: ", error);
     } else {
       console.log("Email sent: " + info.response);
     }
