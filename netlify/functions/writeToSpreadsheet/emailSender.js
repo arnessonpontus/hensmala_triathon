@@ -10,22 +10,23 @@ if (!process.env.EMAILER_PASSWORD)
   throw new Error("no EMAILER_PASSWORD env var set");
 
 function sendEmail(addedRow) {
-  var transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAILER_USER,
-      pass: process.env.EMAILER_PASSWORD,
-    },
-  });
+  return new Promise((resolve, reject) => {
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAILER_USER,
+        pass: process.env.EMAILER_PASSWORD,
+      },
+    });
 
-  let name = "";
-  if (addedRow.name) {
-    name = addedRow.name.split(" ")[0];
-  } else if (addedRow.teamName) {
-    name = addedRow.teamName;
-  }
+    let name = "";
+    if (addedRow.name) {
+      name = addedRow.name.split(" ")[0];
+    } else if (addedRow.teamName) {
+      name = addedRow.teamName;
+    }
 
-  let html = `
+    let html = `
   <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head> 
@@ -49,22 +50,25 @@ function sendEmail(addedRow) {
     </b>
   `;
 
-  const email = addedRow.email ? addedRow.email : addedRow.email1;
+    const email = addedRow.email ? addedRow.email : addedRow.email1;
 
-  var mailOptions = {
-    from: process.env.EMAILER_USER,
-    to: email,
-    subject: "Tack för din amälan!",
-    html: html,
-  };
+    var mailOptions = {
+      from: process.env.EMAILER_USER,
+      to: email,
+      subject: "Tack för din amälan!",
+      html: html,
+    };
 
-  console.log("Sending email...");
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log("Error sending email: ", error);
-    } else {
-      console.log("Email sent to: " + email + " : " + info.response);
-    }
+    console.log("Sending email...");
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log("Error sending email: ", error);
+        reject();
+      } else {
+        console.log("Email sent to : " + email + " : " + info.response);
+        resolve();
+      }
+    });
   });
 }
 
