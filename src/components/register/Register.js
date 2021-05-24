@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import RegisterFormSolo from "./RegisterFormSolo";
-import RegisterFormTeam from "./RegisterFormTeam";
-import RegisterFormKids from "./RegisterFormKids";
 import RegSuccess from "./RegSuccess";
-import classnames from "classnames";
 
 import {
   Container,
@@ -13,6 +9,7 @@ import {
   TabContent,
   TabPane,
 } from "reactstrap";
+import RegisterForm2021 from "./RegisterForm2021";
 
 class Register extends Component {
   state = {
@@ -97,70 +94,12 @@ class Register extends Component {
     return (
       <Container>
         {!this.state.hasRegisterd ? (
-          <div className="card-box">
+          <div className="card-box" style={{ marginTop: 20 }}>
             <div>
-              <Nav tabs>
-                <NavItem>
-                  <NavLink
-                    className={classnames({
-                      tabLink: true,
-                      active: this.state.activeTab === "1",
-                    })}
-                    onClick={() => {
-                      this.changeTab("1");
-                    }}
-                  >
-                    Indivuduell
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    className={classnames({
-                      tabLink: true,
-                      active: this.state.activeTab === "2",
-                    })}
-                    onClick={() => {
-                      this.changeTab("2");
-                    }}
-                  >
-                    Lag
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    className={classnames({
-                      tabLink: true,
-                      active: this.state.activeTab === "3",
-                    })}
-                    onClick={() => {
-                      this.changeTab("3");
-                    }}
-                  >
-                    Barn
-                  </NavLink>
-                </NavItem>
-              </Nav>
-              <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1">
-                  <RegisterFormSolo
-                    handleSubmit={this.handleSubmit}
-                    loading={this.state.loading}
-                  />
-                </TabPane>
-
-                <TabPane tabId="2">
-                  <RegisterFormTeam
-                    handleSubmit={this.handleSubmit}
-                    loading={this.state.loading}
-                  />
-                </TabPane>
-                <TabPane tabId="3">
-                  <RegisterFormKids
-                    handleSubmit={this.handleSubmit}
-                    loading={this.state.loading}
-                  />
-                </TabPane>
-              </TabContent>
+              <RegisterForm2021
+                handleSubmit={this.handleSubmit}
+                loading={this.state.loading}
+              />
             </div>
           </div>
         ) : (

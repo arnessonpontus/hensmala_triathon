@@ -13,7 +13,7 @@ import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
 import { DayPicker, MonthPicker, YearPicker } from "../FormUtils";
 
-class RegisterForms extends Component {
+class RegisterFormSolo extends Component {
   state = {
     name: "",
     email: "",
@@ -23,12 +23,8 @@ class RegisterForms extends Component {
     info: "",
     city: "",
     gender: "",
-    guardianName: "",
-    guardianPhone: "",
-    guardianEmail: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
-    isCheckboxThreeTicked: false,
   };
 
   constructor(props) {
@@ -49,12 +45,8 @@ class RegisterForms extends Component {
   toggleConsent = (checkbox) => {
     if (checkbox === 1) {
       this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
-    } else if (checkbox === 2) {
-      this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
     } else {
-      this.setState({
-        isCheckboxThreeTicked: !this.state.isCheckboxThreeTicked,
-      });
+      this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
     }
   };
 
@@ -63,16 +55,16 @@ class RegisterForms extends Component {
       <Row>
         <Col style={{ marginTop: "5vh" }} md={6}>
           <Form
-            onSubmit={(e) => this.props.handleSubmit(e, "kids", this.state)}
+            onSubmit={(e) => this.props.handleSubmit(e, "solo", this.state)}
           >
-            <h3>Anmälan Barn</h3>
+            <h3>Anmälan 2021</h3>
             <FormGroup>
-              <Label for="name">Barnets namn</Label>
+              <Label for="name">Namn</Label>
               <Input
                 required={true}
                 type="text"
                 name="name"
-                id="name"
+                id="nameSOLO"
                 placeholder="Förnamn Efternamn"
                 value={this.state.name}
                 onChange={this.handleChange}
@@ -80,19 +72,19 @@ class RegisterForms extends Component {
             </FormGroup>
 
             <FormGroup>
-              <Label for="email">Barnets epost (valfritt)</Label>
+              <Label for="email">Epost</Label>
               <Input
-                required={false}
+                required={true}
                 type="email"
                 name="email"
-                id="email"
+                id="emailSOLO"
                 placeholder="din.email@gmail.com"
                 value={this.state.email}
                 onChange={this.handleChange}
               />
             </FormGroup>
             <FormGroup>
-              <Label for="birthdayID">Barnets födelsedatum</Label>
+              <Label for="birthdayID">Födelsedatum</Label>
               <div style={{ display: "flex" }}>
                 <YearPicker handleChange={this.handleChange} elemName="year" />
                 <MonthPicker
@@ -103,12 +95,12 @@ class RegisterForms extends Component {
               </div>
             </FormGroup>
             <FormGroup>
-              <Label for="genderSelection">Barnets kön</Label>
+              <Label for="genderSelection">Kön</Label>
               <Input
                 required={true}
                 type="select"
                 name="gender"
-                id="genderSelection"
+                id="genderSelectionSOLO"
                 onChange={this.handleChange}
               >
                 <option disabled selected value>
@@ -118,50 +110,15 @@ class RegisterForms extends Component {
                 <option value="Kvinna">Kvinna</option>
               </Input>
             </FormGroup>
+
             <FormGroup>
               <Label for="city"> Ort (klubb)</Label>
               <Input
                 type="text"
                 name="city"
-                id="city"
+                id="citySOLO"
                 placeholder="Hensmåla löparförening"
                 value={this.state.city}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="guardianName"> Målsmans namn</Label>
-              <Input
-                type="text"
-                required={true}
-                name="guardianName"
-                id="guardianName"
-                placeholder="Förnamn Efternamn"
-                value={this.state.guardianName}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="guardianPhone"> Målsmans telefonnummer</Label>
-              <Input
-                type="tel"
-                required={true}
-                name="guardianPhone"
-                id="guardianPhone"
-                placeholder=""
-                value={this.state.guardianPhone}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="guardianEmail"> Målsmans epost</Label>
-              <Input
-                type="email"
-                required={true}
-                name="guardianEmail"
-                id="guardianEmail"
-                placeholder="malsman.email@gmail.com"
-                value={this.state.guardianEmail}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -171,8 +128,9 @@ class RegisterForms extends Component {
               <Input
                 type="textarea"
                 name="info"
-                id="info"
-                placeholder=""
+                id="infoSOLO"
+                placeholder="T.ex. önskemål att starta i någon speciell
+                startgrupp"
                 value={this.state.info}
                 onChange={this.handleChange}
               />
@@ -202,25 +160,13 @@ class RegisterForms extends Component {
                 och den anmälningsinformation som finns på denna sida.
               </Label>
             </FormGroup>
-            <FormGroup check>
-              <Label for="checkbox3">
-                <Input
-                  className="checkbox3"
-                  type="checkbox"
-                  onClick={() => this.toggleConsent(3)}
-                />{" "}
-                Jag kan simma minst 200 meter och kommer ha en vuxen anhörig på
-                plats.
-              </Label>
-            </FormGroup>
             <Button
               className="mt-4"
               style={{ minWidth: "140px" }}
               disabled={
                 !(
                   this.state.isCheckboxOneTicked &&
-                  this.state.isCheckboxTwoTicked &&
-                  this.state.isCheckboxThreeTicked
+                  this.state.isCheckboxTwoTicked
                 ) || this.props.loading
               }
             >
@@ -231,44 +177,48 @@ class RegisterForms extends Component {
               )}
             </Button>
           </Form>
+          <small>
+            This site is protected by reCAPTCHA and the Google{" "}
+            <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
+            <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
+            apply.
+          </small>
         </Col>
         <Col style={{ marginTop: "5vh" }}>
-          <h3>Nyhet! Intresseanmälan för dig upp till 15 år</h3>
+          <h3>Intresseanmäl dig som indiviuell deltagare</h3>
+          <b>
+            Detta är en intresseanmälan till Hensmåla Triathlon 2021. Du behöver
+            inte betala i samband med denna intresseanmälan.
+          </b>
+          <br></br>
+          <br></br>
 
           <p>
-            Detta är en intresseanmälan till Hensmåla Triathlon 2021. När du
-            anmäler sig till Hensmåla Triathlon som barn utför du de två
-            grenarna simning och löpning individuellt, men där grenarna är
-            förkortade. För mer information om sträckorna och tävlingsregler kan
-            du gå in{" "}
+            När du anmäler sig som indiviuell deltagare utför du alla tre grenar
+            individuellt. För mer information om sträckorna och tävlingsregler
+            kan du gå in{" "}
             <RRNavLink tag={RRNavLink} to="/om-ht/hem">
               HÄR
             </RRNavLink>
             .
           </p>
-          <b>
-            Alla som deltar måste kunna simma 200m. Det är föräldrarnas ansvar
-            att detta uppfylls.
-          </b>
-          <br></br>
-          <br></br>
           <p>
             När vi vet närmare om evenemanget kommer bli av kommer yttligare
             information skickas ut via mail till alla deltagare för att kolla om
             intresset fortfarande är kvar för att delta.
           </p>
           <b>
-            Fotografering och videofilmning kommer att förekomma, meddela om du
-            inte vill vara med.
+            Fotografering och videofilmning förekommer, meddela om du inte vill
+            vara med.
           </b>
           <br></br>
           <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-          <i style={{ fontSize: 12 }}>Startavgift: 100kr</i>
+          <i style={{ fontSize: 12 }}>Startavgift: 300kr</i>
         </Col>
       </Row>
     );
   }
 }
 
-export default RegisterForms;
+export default RegisterFormSolo;
