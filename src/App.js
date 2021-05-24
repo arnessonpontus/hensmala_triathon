@@ -17,7 +17,7 @@ import * as firebase from "firebase"; // Change to only import specific modules
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
-import Challenge from "./components/challenge/Challenge";
+import Challenge from "./components/challenge/CoronaEdition";
 import Fortrampet from "./components/Fortrampet";
 
 const App = () => {
