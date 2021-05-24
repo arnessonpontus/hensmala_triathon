@@ -1,23 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Card } from "reactstrap";
+import { NavLink as RRNavLink } from "react-router-dom";
+
+import { Container } from "reactstrap";
 
 class Media extends React.Component {
   render() {
     return (
-      <Container
-        className="media-container"
-        style={{
-          paddingTop: 40,
-          minHeight: "70vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <Link to="/radio">
-          <Card style={styles.cardStyle} className="text-center m-2">
+      <Container className="media-container">
+        <RRNavLink
+          to="/radio"
+          style={styles.cardStyle}
+          className="card-box-hoverable"
+        >
+          <div>
             <h3 style={styles.textStyle}>RADIO</h3>
             <img
               height="80px"
@@ -25,44 +20,50 @@ class Media extends React.Component {
               src="/images/radio.svg"
               alt="radio"
             ></img>
-          </Card>
-        </Link>
+          </div>
+        </RRNavLink>
 
-        <Link to="/artiklar">
-          <Card style={styles.cardStyle} className="text-center m-2">
-            <h3 style={styles.textStyle}>ARTIKLAR</h3>
-            <img
-              height="80px"
-              width="80px"
-              src="/images/article.svg"
-              alt="article"
-            ></img>
-          </Card>
-        </Link>
+        <RRNavLink
+          to="/artiklar"
+          style={styles.cardStyle}
+          className="card-box-hoverable"
+        >
+          <h3 style={styles.textStyle}>ARTIKLAR</h3>
+          <img
+            height="80px"
+            width="80px"
+            src="/images/article.svg"
+            alt="article"
+          ></img>
+        </RRNavLink>
 
-        <Link to="/videos">
-          <Card style={styles.cardStyle} className="text-center m-2">
-            <h3 style={styles.textStyle}>VIDEOS</h3>
-            <img
-              height="80px"
-              width="80px"
-              src="/images/video.svg"
-              alt="video"
-            ></img>
-          </Card>
-        </Link>
+        <RRNavLink
+          to="/videos"
+          style={styles.cardStyle}
+          className="card-box-hoverable"
+        >
+          <h3 style={styles.textStyle}>VIDEOS</h3>
+          <img
+            height="80px"
+            width="80px"
+            src="/images/video.svg"
+            alt="video"
+          ></img>
+        </RRNavLink>
 
-        <Link to="/foton">
-          <Card style={styles.cardStyle} className="text-center m-2">
-            <h3 style={styles.textStyle}>FOTON</h3>
-            <img
-              height="80px"
-              width="80px"
-              src="/images/camera.svg"
-              alt="camera"
-            ></img>
-          </Card>
-        </Link>
+        <RRNavLink
+          to="/foton"
+          style={styles.cardStyle}
+          className="card-box-hoverable"
+        >
+          <h3 style={styles.textStyle}>FOTON</h3>
+          <img
+            height="80px"
+            width="80px"
+            src="/images/camera.svg"
+            alt="camera"
+          ></img>
+        </RRNavLink>
       </Container>
     );
   }
@@ -72,15 +73,16 @@ const styles = {
   cardStyle: {
     minWidth: 250,
     minHeight: 200,
-    display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#11999E",
-    borderWidth: 5,
-    pointerEvents: "none",
+    marginLeft: 10,
+    marginRight: 10,
+    textDecoration: "none",
   },
   textStyle: {
-    color: "white",
+    color: "#414242",
+    fontWeight: "bold",
   },
 };
 

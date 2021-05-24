@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SponsorSection from "./SponsorSection";
 
-import sponsors from "../assets/sponsors";
+import sponsors from "../../assets/sponsors";
 
 import { Container } from "reactstrap";
 
@@ -10,17 +10,17 @@ class Sponsors extends Component {
     return (
       <Container>
         <div className="spons-container">
-          {sponsors.gold.map(sponsor => {
+          {sponsors.gold.map((sponsor) => {
             return <SponsorSection sponsor={sponsor} sponsType="gold" />;
           })}
         </div>
         <div className="spons-container">
-          {sponsors.silver.map(sponsor => {
+          {sponsors.silver.map((sponsor) => {
             return <SponsorSection sponsor={sponsor} sponsType="silver" />;
           })}
         </div>
         <div className="spons-container">
-          {sponsors.brons.map(sponsor => {
+          {sponsors.brons.map((sponsor) => {
             return <SponsorSection sponsor={sponsor} sponsType="brons" />;
           })}
         </div>

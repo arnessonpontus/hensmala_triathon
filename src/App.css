@@ -1,3 +1,7 @@
+@import "./components/challenge/challenge.css";
+@import "./components/sponsor/sponsor.css";
+@import "./components/media/media.css";
+
 *,
 *::before,
 *::after {
@@ -56,120 +60,18 @@ i {
   text-decoration: none;
 }
 
-.video {
-  margin: 2vh;
-}
-
 .active {
   color: #d3d1d1;
   text-decoration: none;
 }
 
-.nav-link:hover {
-  color: rgb(201, 197, 197);
-}
-
-.navbar-brand:hover {
-  color: rgb(201, 197, 197);
-}
-
-.dropdown .dropdown-toggle {
-  color: #fff;
-}
-.dropdown .dropdown-toggle:hover {
-  color: rgb(201, 197, 197);
-}
-
-.tabLink:hover {
-  cursor: pointer;
-}
-
-.card-title {
+.nav-title {
   font-weight: bold;
-  font-size: 30;
+  transition: all 0.1s ease-out;
 }
 
-.spons-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.spons-gold {
-  height: 200px;
-  width: 250px;
-}
-.spons-silver {
-  height: 150px;
-  width: 200px;
-}
-.spons-brons {
-  height: 100px;
-  width: 150px;
-}
-
-.spons-img-gold {
-  max-height: 150px;
-  max-width: 200px;
-}
-
-.spons-img-silver {
-  max-height: 100px;
-  max-width: 150px;
-}
-.spons-img-brons {
-  max-height: 50px;
-  max-width: 100px;
-}
-
-.video-wrapper {
-  width: auto;
-  height: auto;
-}
-
-.video-player {
-  padding-top: 56.25%;
-  position: relative;
-}
-
-.article-seperator {
-  height: 50px;
-  background-color: #11999e;
-}
-
-.social-container {
-  background-color: #fff;
-  width: 50;
-  height: 50;
-  border-radius: 5;
-}
-
-.donate-home {
-  visibility: hidden;
-  height: 0;
-}
-
-.media-container :hover {
-  filter: opacity(80%);
-  text-decoration: none;
-}
-
-.onenews {
-  transition: "transform 0.2s ease-in-out";
-}
-
-.onenews :hover {
-  transform: translatex(5px);
-}
-
-@media (max-width: 1040px) {
-  .donate {
-    visibility: hidden;
-  }
-  .donate-home {
-    visibility: visible;
-    height: 100%;
-  }
+.nav-title:hover {
+  color: rgb(201, 197, 197);
 }
 
 .card-box {
@@ -177,7 +79,7 @@ i {
   position: relative;
   box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
   background-color: white;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 32px 24px;
   margin: 12px 0px 12px 0px;
   text-decoration: none;
@@ -189,15 +91,45 @@ i {
   position: relative;
   box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
   background-color: white;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 32px 24px;
   margin: 12px 0px 12px 0px;
   text-decoration: none;
   flex-wrap: wrap;
   transition: all 0.2s ease-out;
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-decoration: none;
 }
 
 .card-box-hoverable:hover {
   transform: scale(1.05);
   box-shadow: 0px 6px 10px rgba(38, 38, 38, 0.2);
+}
+
+.social-container {
+  background-color: #fff;
+  width: 50;
+  height: 50;
+  border-radius: 5;
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+.donate-home {
+  visibility: hidden;
+  height: 0;
+}
+
+@media (max-width: 1200px) {
+  .donate {
+    visibility: hidden;
+  }
+  .donate-home {
+    visibility: visible;
+    height: 100%;
+  }
 }

@@ -7,12 +7,12 @@ class GetHere extends Component {
       <div>
         <Row>
           <Col style={{ marginTop: "5vh" }} md={6}>
-            <b>Hitta till Hensmåla</b>
+            <h3>Hitta till Hensmåla</h3>
             <p>
               Adressen är Hensmåla Östergård 31. En liten by utanför Tingsryd
               längs väg 120.
             </p>
-            <b>Parkeringar</b>
+            <h3>Parkeringar</h3>
             <p>
               Parkeringar finns på åkrar i närheten till tävlingsområdet.
               Skyltar och funktionärer visar parkeringsplatser.
@@ -23,7 +23,7 @@ class GetHere extends Component {
               marginTop: "5vh",
               marginBottom: "5vh",
               display: "flex",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <div className="mapouter">

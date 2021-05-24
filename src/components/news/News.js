@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Col } from "reactstrap";
-import newsArc from "../assets/news";
+import newsArc from "../../assets/news";
 import OneNews from "./OneNews";
 
 class News extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import News from "./News";
+import News from "./news/News";
 
 import { Container, Row, Col, Card, CardBody, Button } from "reactstrap";
 

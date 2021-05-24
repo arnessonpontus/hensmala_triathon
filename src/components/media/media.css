@@ -1,0 +1,13 @@
+.article-seperator {
+  height: 50px;
+  background-color: #11999e;
+}
+
+.media-container {
+  padding-top: 40;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

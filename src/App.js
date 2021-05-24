@@ -10,7 +10,7 @@ import Photos from "./components/media/Photos";
 import Register from "./components/register/Register";
 import Articles from "./components/media/Articles";
 import Radio from "./components/media/Radio";
-import Sponsors from "./components/Sponsors";
+import Sponsors from "./components/sponsor/Sponsors";
 import Footer from "./components/Footer";
 //import devConfig from "./config";
 import * as firebase from "firebase"; // Change to only import specific modules
