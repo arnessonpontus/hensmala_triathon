@@ -64,7 +64,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive nav-title"
             activeClassName="active"
-            to="/utmaningen"
+            to="/corona-edition"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             CORONA EDITION

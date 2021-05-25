@@ -1,35 +1,22 @@
 import React, { Component } from "react";
 import RegSuccess from "./RegSuccess";
 
-import {
-  Container,
-  Nav,
-  NavItem,
-  NavLink,
-  TabContent,
-  TabPane,
-} from "reactstrap";
+import { Container } from "reactstrap";
 import RegisterForm2021 from "./RegisterForm2021";
 
 class Register extends Component {
   state = {
     hasRegisterd: false,
-    activeTab: "1",
     loading: false,
   };
 
   constructor(props) {
     super(props);
 
-    this.changeTab = this.changeTab.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.sendRegistration = this.sendRegistration.bind(this);
     this.toggleDoneRegistration = this.toggleDoneRegistration.bind(this);
   }
-
-  changeTab = (tab) => {
-    if (this.state.activeTab !== tab) this.setState({ activeTab: tab });
-  };
 
   toggleDoneRegistration = (e) => {
     this.setState({ hasRegisterd: !this.state.hasRegisterd });

@@ -128,11 +128,6 @@ class AboutHT extends React.Component {
                     Välkomna att kolla in här i framtiden för information om
                     nästa år.
                   </b>
-                  <p>
-                    <Link to="/utmaningen">
-                      <Button color="info">Gå till Utmaningen istället</Button>
-                    </Link>
-                  </p>
                 </CardBody>
               </Card>
             </Collapse>

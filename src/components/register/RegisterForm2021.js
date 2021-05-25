@@ -13,7 +13,7 @@ import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
 import { DayPicker, MonthPicker, YearPicker } from "../FormUtils";
 
-class RegisterFormSolo extends Component {
+class RegisterForm2021 extends Component {
   state = {
     name: "",
     email: "",
@@ -21,8 +21,10 @@ class RegisterFormSolo extends Component {
     month: "",
     day: "",
     info: "",
-    city: "",
     gender: "",
+    groupSize: 1,
+    city: "",
+    time: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
   };
@@ -53,18 +55,21 @@ class RegisterFormSolo extends Component {
   render() {
     return (
       <Row>
-        <Col style={{ marginTop: "5vh" }} md={6}>
+        <Col style={{ marginTop: "2vh" }} md={6}>
           <Form
-            onSubmit={(e) => this.props.handleSubmit(e, "solo", this.state)}
+            onSubmit={(e) =>
+              this.props.handleSubmit(e, "corona-edition", this.state)
+            }
           >
             <h3>Anmälan 2021</h3>
+            <i>Anmäl enskilt eller en grupp</i>
             <FormGroup>
               <Label for="name">Namn</Label>
               <Input
                 required={true}
                 type="text"
                 name="name"
-                id="nameSOLO"
+                id="name"
                 placeholder="Förnamn Efternamn"
                 value={this.state.name}
                 onChange={this.handleChange}
@@ -77,7 +82,7 @@ class RegisterFormSolo extends Component {
                 required={true}
                 type="email"
                 name="email"
-                id="emailSOLO"
+                id="email"
                 placeholder="din.email@gmail.com"
                 value={this.state.email}
                 onChange={this.handleChange}
@@ -100,7 +105,7 @@ class RegisterFormSolo extends Component {
                 required={true}
                 type="select"
                 name="gender"
-                id="genderSelectionSOLO"
+                id="genderSelection"
                 onChange={this.handleChange}
               >
                 <option disabled selected value>
@@ -110,15 +115,44 @@ class RegisterFormSolo extends Component {
                 <option value="Kvinna">Kvinna</option>
               </Input>
             </FormGroup>
+            <FormGroup>
+              <Label for="groupSize">Antal personer i gruppen</Label>
+              <Input
+                required={true}
+                type="select"
+                name="groupSize"
+                onChange={this.handleChange}
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((num, i) => {
+                  return (
+                    <option value={num} key={i}>
+                      {num}
+                    </option>
+                  );
+                })}
+              </Input>
+            </FormGroup>
 
             <FormGroup>
               <Label for="city"> Ort (klubb)</Label>
               <Input
                 type="text"
                 name="city"
-                id="citySOLO"
+                id="city"
                 placeholder="Hensmåla löparförening"
                 value={this.state.city}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label for="time">Önskad tid</Label>
+              <Input
+                type="text"
+                name="time"
+                id="time"
+                placeholder="T.ex. 15.00 2021-06-07"
+                value={this.state.time}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -128,9 +162,8 @@ class RegisterFormSolo extends Component {
               <Input
                 type="textarea"
                 name="info"
-                id="infoSOLO"
-                placeholder="T.ex. önskemål att starta i någon speciell
-                startgrupp"
+                id="info"
+                placeholder="Övriga önskemål eller information"
                 value={this.state.info}
                 onChange={this.handleChange}
               />
@@ -184,41 +217,56 @@ class RegisterFormSolo extends Component {
             apply.
           </small>
         </Col>
-        <Col style={{ marginTop: "5vh" }}>
-          <h3>Intresseanmäl dig som indiviuell deltagare</h3>
+        <Col style={{ marginTop: "2vh" }}>
+          <h3>Anmälan till Hensmåla Triathlon 2021 - Corona Edition</h3>
           <b>
-            Detta är en intresseanmälan till Hensmåla Triathlon 2021. Du behöver
-            inte betala i samband med denna intresseanmälan.
+            Gå{" "}
+            <RRNavLink tag={RRNavLink} to="/corona-edition">
+              hit
+            </RRNavLink>{" "}
+            för att läsa mer om årets lopp. En kort sammanfattning av processen
+            för årets lopp följer nedan:
           </b>
           <br></br>
           <br></br>
-
+          <ol style={{ paddingLeft: 0, listStylePosition: "inside" }}>
+            <li>Evenemanget sker från 2:e juni - 16:e juli</li>
+            <li>
+              Anmäl dig eller din grupp här och ange vilken tid du vill komma
+            </li>
+            <li>Genomför loppet</li>
+            <li>
+              Ladda upp tid, bild och valfri text (kan döljas från hemsidan)
+            </li>
+            <li>De 8 snabbaste bjuds in till final den 18:e juli</li>
+          </ol>
           <p>
-            När du anmäler sig som indiviuell deltagare utför du alla tre grenar
-            individuellt. För mer information om sträckorna och tävlingsregler
-            kan du gå in{" "}
-            <RRNavLink tag={RRNavLink} to="/om-ht/hem">
-              HÄR
+            Årets Hensmåla Triathlon 2021 - Corona Edition är lite annorlunda
+            från både vanliga år, och förra årets "Utmaningen". Tanken med årets
+            lopp är att separera detagarna så mycket det går, medan fortfarande
+            möjliggöra att kunna köra den ordinarie rundan. Årets evenemang
+            stäcker sig därför över en längre period och grupper om max 8
+            personer kör vid samma tillfälle. När man anmält vilken tid man ska
+            komma och genomföra loppet, kör man rundan och sedan laddar upp
+            tiderna{" "}
+            <RRNavLink tag={RRNavLink} to="/corona-edition">
+              här
             </RRNavLink>
-            .
+            . De 8 bästa kommer sedan bli inbjudna till en final.
           </p>
-          <p>
-            När vi vet närmare om evenemanget kommer bli av kommer yttligare
-            information skickas ut via mail till alla deltagare för att kolla om
-            intresset fortfarande är kvar för att delta.
-          </p>
+
           <b>
-            Fotografering och videofilmning förekommer, meddela om du inte vill
-            vara med.
+            Fotografering och videofilmning kan förekomma, meddela om du inte
+            vill vara med.
           </b>
           <br></br>
           <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-          <i style={{ fontSize: 12 }}>Startavgift: 300kr</i>
+          <i style={{ fontSize: 12 }}>Startavgift: 250kr</i>
         </Col>
       </Row>
     );
   }
 }
 
-export default RegisterFormSolo;
+export default RegisterForm2021;

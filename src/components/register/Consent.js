@@ -16,12 +16,12 @@ const Consent = (props) => {
         <ModalBody>
           Hensmåla Triathlon kommer spara uppgifter för att hantera anmälningar
           till tävlingen. Dessa uppgifter behövs för att kunna hantera alla
-          deltagare och se till att tävlingen blir så bra som möjligt.
+          deltagare och se till att evemanget blir så bra som möjligt.
           <br></br>
           <br></br>
           Om du önskar att vi ska ta bort dina uppgifter kan du kontakta
           hensmala.triathlon@gmail.com. Dock kommer du ej kunna vara med på
-          loppet om detta genomförs innan den 1:e augusti 15.00.
+          loppet om detta genomförs innan den 2:e juni.
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>

@@ -32,22 +32,49 @@ function sendEmail(addedRow) {
 <head> 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sunday Confirm Email</title>
+  <title>HT Confirm Email</title>
+  </head>
   <style type="text/css">
-  h1 {
-      color: #fff;
-  }
   </style>
-
-    <h1>
-        Tack för din anmälan till Hensmåla Triathlon 2021, ${name}!
-    </h1>
+  <div>
+    <h1>Hej ${name}!</h1>
+    <h2>
+        Tack för din anmälan till Hensmåla Triathlon 2021 - Corona Edition!
+    </h2>
     <p>
-        Vi ses i 10e juli!
+        Din tid kommer nu att utvärderas av oss och se till så att den inte krockar med för många andra deltagare.
     </p>
-    <b>
-        Ditt ID är ${addedRow.id}
-    </b>
+    <p>
+    Vi kommer efter detta att skicka ut ett mail med inbetalningsuppgifter och dylikt. Här är dina uppgifter:
+    </p>
+    <ul>
+      <li>
+        Namn: <b>${addedRow.name}</b>
+      </li>
+      <li>
+        Epost: <b>${addedRow.email}</b>
+      </li>
+      <li>
+        Födelsedatum: <b>${addedRow.birthday}</b>
+      </li>
+      <li>
+        Kön: <b>${addedRow.gender}</b>
+      </li>
+      <li>
+        Ort/klubb: <b>${addedRow.city}</b>
+      </li>
+      <li>
+        Antal personer som ska köra tillsammans: <b>${addedRow.groupSize}</b>
+      </li>
+      <li>
+        Övrig information: <b>${addedRow.info}</b>
+      </li>
+    </ul>
+    <div style='direction: ltr; display: flex; flex-direction: column;'>
+      <img src="https://www.hensmalatriathlon.se/images/hona_1500.jpg" alt="Logga" style='margin:auto; height:auto; max-width:120px;'/>
+    </div>
+    <p>Lycka till!</p>
+    </div>
   `;
 
     const email = addedRow.email ? addedRow.email : addedRow.email1;

@@ -8,15 +8,9 @@ if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
   throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
 if (!process.env.GOOGLE_PRIVATE_KEY)
   throw new Error("no GOOGLE_PRIVATE_KEY env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO)
+if (!process.env.GOOGLE_SPREADSHEET_ID_2021)
   // spreadsheet key is the long id in the sheets URL
-  throw new Error("no GOOGLE_SPREADSHEET_ID_SOLO env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM)
-  // spreadsheet key is the long id in the sheets URL
-  throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_KIDS)
-  // spreadsheet key is the long id in the sheets URL
-  throw new Error("no GOOGLE_SPREADSHEET_ID_KIDS env var set");
+  throw new Error("no GOOGLE_SPREADSHEET_ID_2021 env var set");
 
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const sendEmail = require("./emailSender");
@@ -40,20 +34,7 @@ exports.handler = async (event, context, callback) => {
 
   const registerType = event.queryStringParameters.type;
 
-  switch (registerType) {
-    case "solo":
-      spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_SOLO;
-      break;
-    case "team":
-      spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TEAM;
-      break;
-    case "kids":
-      spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_KIDS;
-      break;
-    default:
-      console.log("The type given is not valid!");
-      break;
-  }
+  spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_2021;
 
   try {
     const doc = new GoogleSpreadsheet(spreadsheetID);
@@ -68,16 +49,21 @@ exports.handler = async (event, context, callback) => {
     let data = JSON.parse(event.body);
 
     const rows = await sheet.getRows();
+
     const lastRow = rows[rows.length - 1];
-    const id = lastRow.id;
-    const idType = id.substring(0, 1);
+
+    const id = lastRow ? lastRow.id : "0";
+    //const idType = id.substring(0, 1);
+
     const idNumber = parseInt(id.substring(1));
 
     data = handleBirthday(registerType, data);
 
+    console.log(data);
+
     // Not the best id solution but nice looking instead of random
-    data["id"] = idType + (idNumber + 1).toString();
-    data["time"] = moment().tz("Europe/Stockholm").format();
+    data["id"] = (idNumber ? idNumber : 0 + 1).toString();
+    data["uploadTime"] = moment().tz("Europe/Stockholm").format();
 
     const addedRow = await sheet.addRow(data);
 
