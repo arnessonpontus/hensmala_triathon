@@ -33,6 +33,7 @@ class RegisterForm2021 extends Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.scrollToInfo = this.scrollToInfo.bind(this);
   }
 
   handleChange = (e) => {
@@ -42,6 +43,12 @@ class RegisterForm2021 extends Component {
     let value = e.target.value;
 
     this.setState({ [name]: value });
+  };
+
+  scrollToInfo = () => {
+    document
+      .getElementById("submitButton")
+      .scrollIntoView({ behavior: "smooth" });
   };
 
   toggleConsent = (checkbox) => {
@@ -61,8 +68,14 @@ class RegisterForm2021 extends Component {
               this.props.handleSubmit(e, "corona-edition", this.state)
             }
           >
-            <h3>Anmälan 2021</h3>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <h3>Anmälan 2021</h3>
+              <div onClick={this.scrollToInfo} className="scroll-to-info-btn">
+                Visa info<i className="fas fa-angle-down angle-down"></i>
+              </div>
+            </div>
             <i>Anmäl enskilt eller en grupp</i>
+
             <FormGroup>
               <Label for="name">Namn</Label>
               <Input
@@ -187,13 +200,18 @@ class RegisterForm2021 extends Component {
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
                 Jag kommer att följa Hensmåla Triathlons{" "}
-                <RRNavLink tag={RRNavLink} to="/om-ht/regler">
+                <RRNavLink
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  to="/om-ht/regler"
+                >
                   tävlingsregler
                 </RRNavLink>{" "}
                 och den anmälningsinformation som finns på denna sida.
               </Label>
             </FormGroup>
             <Button
+              id="submitButton"
               className="mt-4"
               style={{ minWidth: "140px" }}
               disabled={
@@ -218,6 +236,7 @@ class RegisterForm2021 extends Component {
           </small>
         </Col>
         <Col style={{ marginTop: "2vh" }}>
+          <hr className="register-divider"></hr>
           <h3>Anmälan till Hensmåla Triathlon 2021 - Corona Edition</h3>
           <b>
             Gå{" "}

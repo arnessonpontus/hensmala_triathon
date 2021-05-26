@@ -24,17 +24,35 @@ class SponsorSection extends Component {
               height="80%"
               alt={this.props.article.title}
             ></img>
-            <h5
-              style={{ color: "black", fontWeight: "bold", textAlign: "left" }}
-              className="mt-2"
-            >
-              {this.props.article.title}
-            </h5>
+            <div style={styles.titleContainer}>
+              <h5
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  textAlign: "left",
+                }}
+                className="mt-2"
+              >
+                {this.props.article.title}
+              </h5>
+            </div>
           </div>
         </a>
       </Col>
     );
   }
 }
+
+const styles = {
+  titleContainer: {
+    maxHeight: 100,
+    wordWrap: "break-word",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+    display: "-webkit-box",
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: "vertical",
+  },
+};
 
 export default SponsorSection;

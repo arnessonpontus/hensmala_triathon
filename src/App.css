@@ -1,6 +1,7 @@
 @import "./components/challenge/coronaEdition.css";
 @import "./components/sponsor/sponsor.css";
 @import "./components/media/media.css";
+@import "./components/register/register.css";
 
 *,
 *::before,
@@ -101,11 +102,18 @@ i {
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
   text-decoration: none;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform;
 }
 
 .card-box-hoverable:hover {
-  transform: scale(1.05);
   box-shadow: 0px 6px 10px rgba(38, 38, 38, 0.2);
+  -webkit-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
+  -moz-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
+  -o-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
+  -ms-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
+  transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
 }
 
 .social-container {
