@@ -14,6 +14,12 @@
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
   will-change: transform;
+  background-color: white;
+}
+
+.button-style:active {
+  transition: none;
+  filter: brightness(85%);
 }
 
 .button-style:hover {

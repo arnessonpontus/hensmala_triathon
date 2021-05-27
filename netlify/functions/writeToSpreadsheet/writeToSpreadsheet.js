@@ -6,8 +6,7 @@ var moment = require("moment-timezone");
 // required env vars
 if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
   throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
-if (!process.env.GOOGLE_PRIVATE_KEY)
-  throw new Error("no GOOGLE_PRIVATE_KEY env var set");
+if (!process.env.GOOGLE_PRIVATE_KEY) throw new Error("no GOOGLE_PRIVATE_KEY env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_2021)
   // spreadsheet key is the long id in the sheets URL
   throw new Error("no GOOGLE_SPREADSHEET_ID_2021 env var set");
@@ -15,24 +14,20 @@ if (!process.env.GOOGLE_SPREADSHEET_ID_2021)
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const sendEmail = require("./emailSender");
 
-function handleBirthday(type, data) {
-  if (type == "team") {
-    data["birthday1"] =
-      data["year1"] + "-" + data["month1"] + "-" + data["day1"];
-    data["birthday2"] =
-      data["year2"] + "-" + data["month2"] + "-" + data["day2"];
-    data["birthday3"] =
-      data["year3"] + "-" + data["month3"] + "-" + data["day3"];
-  } else {
-    data["birthday"] = data["year"] + "-" + data["month"] + "-" + data["day"];
-  }
+function handleBirthday(data) {
+  const month = parseInt(data["month"]) < 10 ? "0" + data["month"] : data["month"];
+  const day = parseInt(data["day"]) < 10 ? "0" + data["day"] : data["day"];
+
+  data["birthday"] = data["year"] + "-" + month + "-" + day;
+
   return data;
 }
 
 exports.handler = async (event, context, callback) => {
   let spreadsheetID = "";
 
-  const registerType = event.queryStringParameters.type;
+  // Not used this year
+  // const registerType = event.queryStringParameters.type;
 
   spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_2021;
 
@@ -57,7 +52,7 @@ exports.handler = async (event, context, callback) => {
 
     const idNumber = parseInt(id.substring(1));
 
-    data = handleBirthday(registerType, data);
+    data = handleBirthday(data);
 
     console.log(data);
 

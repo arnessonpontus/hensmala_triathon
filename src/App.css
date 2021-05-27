@@ -107,6 +107,11 @@ i {
   will-change: transform;
 }
 
+.card-box-hoverable:active {
+  transition: none;
+  filter: brightness(85%);
+}
+
 .card-box-hoverable:hover {
   box-shadow: 0px 6px 10px rgba(38, 38, 38, 0.2);
   -webkit-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);

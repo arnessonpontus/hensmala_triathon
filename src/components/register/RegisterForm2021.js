@@ -161,6 +161,7 @@ class RegisterForm2021 extends Component {
             <FormGroup>
               <Label for="time">Önskad tid</Label>
               <Input
+                required={true}
                 type="text"
                 name="time"
                 id="time"

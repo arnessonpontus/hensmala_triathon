@@ -5,6 +5,7 @@ import UploadModal from "./UploadModal";
 import * as firebase from "firebase";
 import EntryCard from "./EntryCard";
 import { NavLink as RRNavLink } from "react-router-dom";
+import About2021 from "./About2021";
 
 const Challenge = () => {
   useEffect(() => {
@@ -42,10 +43,8 @@ const Challenge = () => {
           marginTop: 20,
         }}
       >
-        <div className="button-style">
-          <span>Om årets lopp</span>
-          <i className="fas fa-lightbulb icon-style"></i>
-        </div>
+        <About2021 />
+
         <RRNavLink
           className="button-style"
           style={{

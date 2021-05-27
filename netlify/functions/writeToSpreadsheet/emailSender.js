@@ -64,7 +64,10 @@ function sendEmail(addedRow) {
         Ort/klubb: <b>${addedRow.city}</b>
       </li>
       <li>
-        Antal personer som ska köra tillsammans: <b>${addedRow.groupSize}</b>
+        Tid för genomförande: <b>${addedRow.time}</b>
+      </li>
+      <li>
+        Antal personer i gruppen: <b>${addedRow.groupSize}</b>
       </li>
       <li>
         Övrig information: <b>${addedRow.info}</b>

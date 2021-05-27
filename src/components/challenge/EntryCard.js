@@ -79,7 +79,7 @@ const styles = {
   },
   userTextBoxStyle: {
     width: "70%",
-    maxHeight: 100,
+    maxHeight: 80,
     wordWrap: "break-word",
     textOverflow: "ellipsis",
     overflow: "hidden",
