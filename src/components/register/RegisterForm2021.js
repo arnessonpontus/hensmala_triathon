@@ -159,7 +159,7 @@ class RegisterForm2021 extends Component {
             </FormGroup>
 
             <FormGroup>
-              <Label for="time">Önskad tid</Label>
+              <Label for="time">Önskad starttid och datum</Label>
               <Input
                 required={true}
                 type="text"
@@ -206,7 +206,7 @@ class RegisterForm2021 extends Component {
                   rel="noopener noreferrer"
                   to="/om-ht/regler"
                 >
-                  tävlingsregler
+                  regler
                 </RRNavLink>{" "}
                 och den anmälningsinformation som finns på denna sida.
               </Label>
@@ -258,8 +258,14 @@ class RegisterForm2021 extends Component {
             <li>
               Ladda upp tid, bild och valfri text (kan döljas från hemsidan)
             </li>
-            <li>De 8 snabbaste bjuds in till final den 18:e juli</li>
+            <li>De snabbaste bjuds in till final den 18:e juli</li>
           </ol>
+          <i>
+            Evenemanget sker i år utan funktionärer. Därför är det väldigt
+            viktigt att vara extra aktsam vid vägövergångar och simmning.
+          </i>
+          <br></br>
+          <br></br>
           <p>
             Årets Hensmåla Triathlon 2021 - Corona Edition är lite annorlunda
             från både vanliga år, och förra årets "Utmaningen". Tanken med årets
@@ -272,7 +278,7 @@ class RegisterForm2021 extends Component {
             <RRNavLink tag={RRNavLink} to="/corona-edition">
               här
             </RRNavLink>
-            . De 8 bästa kommer sedan bli inbjudna till en final.
+            . De med snabbaste tider kommer sedan bli inbjudna till en final.
           </p>
 
           <b>
