@@ -95,7 +95,12 @@ const ChallengeModal = (props) => {
         className="card-box"
         isOpen={modal}
         toggle={toggleModal}
-        style={{ minWidth: "80vw", padding: 15 }}
+        style={{
+          minWidth: "80vw",
+          padding: 15,
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
       >
         <div style={styles.closeButtonstyle} onClick={toggleModal}>
           X
