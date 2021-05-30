@@ -33,7 +33,7 @@ class Home extends Component {
               <Col className="text-center mt-4 my-auto" ms={4}>
                 <img
                   width="250px"
-                  src="/images/corona_hen.jpg"
+                  src="/images/corona_hen.png"
                   alt="hensmala_triathlon"
                 ></img>
               </Col>

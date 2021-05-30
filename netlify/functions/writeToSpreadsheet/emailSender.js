@@ -73,10 +73,8 @@ function sendEmail(addedRow) {
         Övrig information: <b>${addedRow.info}</b>
       </li>
     </ul>
-    <div style='direction: ltr; display: flex; flex-direction: column;'>
-      <img src="https://www.hensmalatriathlon.se/images/corona_hen.jpg" alt="Logga" style='margin:auto; height:auto; max-width:120px;'/>
-    </div>
     <p>Lycka till!</p>
+    <img src="https://www.hensmalatriathlon.se/images/corona_hen.png" alt="Logga" width="200px"'/>
     </div>
   `;
 
