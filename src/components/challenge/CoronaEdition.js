@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-import { NavLink } from "reactstrap";
 import UploadModal from "./UploadModal";
 import * as firebase from "firebase";
-import EntryCard from "./EntryCard";
 import { NavLink as RRNavLink } from "react-router-dom";
 import About2021 from "./About2021";
+import EntryModal from "./EntryModal";
 
 const Challenge = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const entries = [1, 2, 3, 4, 5, 6, 7];
+  const entries = [
+    "/images/fortrampet_bike.jpg",
+    "/images/news/barn-badmossa.jpg",
+    "/images/barn_lopning.png",
+    "/images/eva_kronobergare.jpg",
+    "/images/simning.jpg",
+  ];
+
+  const exampleTexts = [
+    "Detta är ett exempel på hur det kommer se ut när deltagare kommer lägga upp. Det går som sagt att dölja sin tid och placering så att det inte syns på hemsidan.",
+    "Ett till exempel med mindre lite text.",
+    "",
+    "Bra runda",
+    "Detta är ett exempel på hur det kommer se ut när deltagare kommer lägga upp. Det går som sagt att dölja sin tid och placering så att det inte syns på hemsidan.",
+  ];
 
   return (
     <div style={{ padding: "0px 20px 0px 20px" }}>
@@ -57,7 +70,10 @@ const Challenge = () => {
           <span>Anmälan</span>
         </RRNavLink>
 
-        <div className="button-style upload-button">
+        <div
+          onClick={() => alert("Uppladdning inte tillåten ännu.")}
+          className="button-style upload-button"
+        >
           <span>Ladda upp bidrag</span>
           <i className="fas fa-upload icon-style"></i>
         </div>
@@ -71,11 +87,17 @@ const Challenge = () => {
           minHeight: "70vh",
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "space-around",
+          justifyContent: "center",
         }}
       >
-        {entries.map((entry) => {
-          return <EntryCard id={entry} />;
+        {entries.map((img, i) => {
+          return (
+            <EntryModal
+              id={i + 1}
+              image={img}
+              participantText={exampleTexts[i]}
+            />
+          );
         })}
       </div>
     </div>

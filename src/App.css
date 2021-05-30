@@ -87,6 +87,10 @@ i {
   flex-wrap: wrap;
 }
 
+.card-box > div {
+  border: none;
+}
+
 .card-box-hoverable {
   display: flex;
   position: relative;
