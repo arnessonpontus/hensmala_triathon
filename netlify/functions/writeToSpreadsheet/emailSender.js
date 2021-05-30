@@ -74,7 +74,7 @@ function sendEmail(addedRow) {
       </li>
     </ul>
     <div style='direction: ltr; display: flex; flex-direction: column;'>
-      <img src="https://www.hensmalatriathlon.se/images/hona_1500.jpg" alt="Logga" style='margin:auto; height:auto; max-width:120px;'/>
+      <img src="https://www.hensmalatriathlon.se/images/corona_hen.jpg" alt="Logga" style='margin:auto; height:auto; max-width:120px;'/>
     </div>
     <p>Lycka till!</p>
     </div>

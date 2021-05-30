@@ -27,16 +27,13 @@ class Home extends Component {
                   Sedan 2012 har vi samlat in strax över 800 000kr och skänkt
                   till ALS forskningen. De tre sista åren har gåvan riktats mot
                   Stoppa ALS och ALS Treatment Center Karolinska.
-                  <br></br>
-                  <br></br>
-                  2019 skänktes <b>161 891kr</b>.
                 </p>
               </Col>
 
               <Col className="text-center mt-4 my-auto" ms={4}>
                 <img
                   width="250px"
-                  src="/images/hona_1500.jpg"
+                  src="/images/corona_hen.jpg"
                   alt="hensmala_triathlon"
                 ></img>
               </Col>
