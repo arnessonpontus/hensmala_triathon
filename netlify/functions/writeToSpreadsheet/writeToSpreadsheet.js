@@ -6,7 +6,8 @@ var moment = require("moment-timezone");
 // required env vars
 if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
   throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
-if (!process.env.GOOGLE_PRIVATE_KEY) throw new Error("no GOOGLE_PRIVATE_KEY env var set");
+if (!process.env.GOOGLE_PRIVATE_KEY)
+  throw new Error("no GOOGLE_PRIVATE_KEY env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_2021)
   // spreadsheet key is the long id in the sheets URL
   throw new Error("no GOOGLE_SPREADSHEET_ID_2021 env var set");
@@ -15,7 +16,8 @@ const { GoogleSpreadsheet } = require("google-spreadsheet");
 const sendEmail = require("./emailSender");
 
 function handleBirthday(data) {
-  const month = parseInt(data["month"]) < 10 ? "0" + data["month"] : data["month"];
+  const month =
+    parseInt(data["month"]) < 10 ? "0" + data["month"] : data["month"];
   const day = parseInt(data["day"]) < 10 ? "0" + data["day"] : data["day"];
 
   data["birthday"] = data["year"] + "-" + month + "-" + day;
@@ -58,7 +60,9 @@ exports.handler = async (event, context, callback) => {
 
     // Not the best id solution but nice looking instead of random
     data["id"] = (idNumber ? idNumber : 0 + 1).toString();
-    data["uploadTime"] = moment().tz("Europe/Stockholm").format();
+    data["uploadTime"] = moment()
+      .tz("Europe/Stockholm")
+      .format("YYYY-MM-DD HH:mm");
 
     const addedRow = await sheet.addRow(data);
 

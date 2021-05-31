@@ -86,9 +86,11 @@ const EntryCard = (props) => {
           <h6 style={{ fontWeight: "bold" }}>Förnamn Efternamn</h6>
           <p style={{ fontSize: 12 }}>{props.participantText}</p>
         </div>
-        <div style={styles.medalStyle}>{props.id}</div>
+        <div style={styles.medalStyle}>{props.id == 4 ? "?" : props.id}</div>
       </div>
-      <span style={styles.timeStyle}>1h 23m 56s</span>
+      <span style={styles.timeStyle}>
+        {props.id == 4 ? "*****" : "1h 23m 56s"}
+      </span>
       <span style={styles.dateStyle}>2021-07-12</span>
     </div>
   );

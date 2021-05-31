@@ -83,8 +83,9 @@ function sendEmail(addedRow) {
     var mailOptions = {
       from: process.env.EMAILER_USER,
       to: email,
-      subject: "Tack för din amälan!",
+      subject: "Tack för din anmälan!",
       html: html,
+      bcc: [process.env.EMAILER_USER],
     };
 
     console.log("Sending email...");

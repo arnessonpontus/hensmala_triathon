@@ -139,9 +139,14 @@ const ChallengeModal = (props) => {
               <h4 style={{ fontWeight: "bold" }}>Förnamn Efternamn</h4>
               <p style={{ fontSize: 16 }}>{props.participantText}</p>
             </div>
-            <div style={styles.medalStyle}>{props.id}</div>
+            <div style={styles.medalStyle}>
+              {props.id == 4 ? "?" : props.id}
+            </div>
           </div>
-          <span style={styles.timeStyle}>1h 23m 56s</span>
+          <span style={styles.timeStyle}>
+            {" "}
+            {props.id == 4 ? "*****" : "1h 23m 56s"}
+          </span>
           <i style={styles.dateStyle}>2021-07-12</i>
         </div>
       </Modal>
