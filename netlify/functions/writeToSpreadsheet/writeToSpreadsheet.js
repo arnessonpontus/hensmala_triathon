@@ -27,6 +27,7 @@ function handleBirthday(data) {
 
 exports.handler = async (event, context, callback) => {
   let spreadsheetID = "";
+  console.log("Running sheet netlify function...");
 
   // Not used this year
   // const registerType = event.queryStringParameters.type;

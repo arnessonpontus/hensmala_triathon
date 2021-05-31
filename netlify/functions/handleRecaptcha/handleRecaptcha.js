@@ -1,6 +1,7 @@
 const rp = require("request-promise");
 
 exports.handler = async (event, context, callback) => {
+  console.log("Running recaptcha netlify function...");
   const secret = process.env.REACT_APP_RECAPTCHA_SECRET;
   const token = JSON.parse(event.body);
 
