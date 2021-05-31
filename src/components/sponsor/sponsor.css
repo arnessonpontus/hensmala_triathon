@@ -1,0 +1,32 @@
+.spons-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.spons-gold {
+  height: 200px;
+  width: 250px;
+}
+.spons-silver {
+  height: 150px;
+  width: 200px;
+}
+.spons-brons {
+  height: 100px;
+  width: 150px;
+}
+
+.spons-img-gold {
+  max-height: 150px;
+  max-width: 200px;
+}
+
+.spons-img-silver {
+  max-height: 100px;
+  max-width: 150px;
+}
+.spons-img-brons {
+  max-height: 50px;
+  max-width: 100px;
+}

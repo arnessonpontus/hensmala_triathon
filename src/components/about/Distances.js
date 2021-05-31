@@ -11,9 +11,8 @@ class Distances extends Component {
           <Col style={{ marginTop: "5vh" }} md={6}>
             <b>Simning - 340 m</b>
             <p>
-              Simningen sker runt lillön. Starten sker i vattnet och deltagarna
-              väntar bakom startsnöret till startskottet går. Därefter är det
-              medurs varv runt ön som gäller.
+              Simningen sker runt lillön. Starten sker i vattnet vid stranden.
+              Därefter är det medurs varv runt ön som gäller.
             </p>
             <p>
               En film på simningen kan du se{" "}
@@ -26,7 +25,7 @@ class Distances extends Component {
             style={{
               marginTop: "5vh",
               display: "flex",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <img
@@ -41,9 +40,10 @@ class Distances extends Component {
             <b>Cykling - 9.2 km</b>
             <p>
               Cyklingen sker runt Hensjön. Cyklingen får först börja när
-              deltagaren är utanför växlingsområdet, därefter sker turen medurs
-              runt sjön. Det är ca 2 kilometer <b>grusväg</b> under
-              cykelsträckan. Det kan även förekomma lösgrus på vissa ställen.
+              deltagaren är utanför växlingsområdet, alltså på grusvägen,
+              därefter sker turen medurs runt sjön. Det är ca 2 kilometer{" "}
+              <b>grusväg</b> under cykelsträckan. Det kan även förekomma lösgrus
+              på vissa ställen.
             </p>
             <p>
               En film på cykelrundan kan du se{" "}
@@ -56,7 +56,7 @@ class Distances extends Component {
             style={{
               marginTop: "5vh",
               display: "flex",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <img
@@ -70,8 +70,9 @@ class Distances extends Component {
           <Col style={{ marginTop: "5vh" }} md={6}>
             <b>Löpning - 6.5 km</b>
             <p>
-              Löpningen sker i de djupa småländska skogarna. I början av
-              löpningen är mördarbacken. Efter den är det en lek.
+              Löpningen sker i skogen på andra sidan vägen. Var{" "}
+              <b>väldigt uppmärksam</b> på fordon när vägen behöver korsars vid
+              bägge tillfällena.
             </p>
             <p>
               En film på löprundan kan du se{" "}
@@ -85,7 +86,7 @@ class Distances extends Component {
               marginTop: "5vh",
               display: "flex",
               justifyContent: "center",
-              marginBottom: "5vh"
+              marginBottom: "5vh",
             }}
           >
             <img

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import News from "./News";
+import News from "./news/News";
 
 import { Container, Row, Col, Card, CardBody, Button } from "reactstrap";
 
@@ -24,20 +24,16 @@ class Home extends Component {
                   landskap.
                   <br></br>
                   <br></br>
-                  På de första sju åren har strax över <b>700 000 kr</b> samlats
-                  in och skänks till ALS-forskningen denom NEURO. De två sista
-                  åren har gåvan riktats mot Stoppa ALS och ALS Treatment Center
-                  Karolinska.
-                  <br></br>
-                  <br></br>
-                  2019 skänktes <b>161 891kr</b>.
+                  Sedan 2012 har vi samlat in strax över 800 000kr och skänkt
+                  till ALS forskningen. De tre sista åren har gåvan riktats mot
+                  Stoppa ALS och ALS Treatment Center Karolinska.
                 </p>
               </Col>
 
               <Col className="text-center mt-4 my-auto" ms={4}>
                 <img
                   width="250px"
-                  src="/images/hona_1500.jpg"
+                  src="/images/corona_hen.png"
                   alt="hensmala_triathlon"
                 ></img>
               </Col>

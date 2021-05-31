@@ -121,17 +121,25 @@ class AboutHT extends React.Component {
               ></img>
             </Button>
             <Collapse isOpen={this.state.isInfoOpen}>
-              <Card>
+              <Card style={styles.infoBoxStyle}>
                 <CardBody>
-                  <h3>Hensmåla Triathlon är inställt för detta året!</h3>
-                  <b>
-                    Välkomna att kolla in här i framtiden för information om
-                    nästa år.
-                  </b>
+                  <h3>Hensmåla Triathlon går i år som Corona Edition</h3>
                   <p>
-                    <Link to="/utmaningen">
-                      <Button color="info">Gå till Utmaningen istället</Button>
-                    </Link>
+                    I det fina småländska landskapet arrangeras årligen ett
+                    minitriathlon till förmån för ALS-forskningen. Alla sträckor
+                    är anpassade till den vackra Stora Hensjön och Hensmålas
+                    landskap.
+                    <br></br>
+                    <br></br>
+                    Sedan 2012 har vi samlat in strax över 800 000kr och skänkt
+                    till ALS forskningen. De tre sista åren har gåvan riktats
+                    mot Stoppa ALS och ALS Treatment Center Karolinska.
+                    <br></br>
+                    <br></br>
+                    2019 skänktes <b>161 891kr</b>.<br></br>
+                    <br></br>
+                    Detta år är loppet anpassat till det osäkra läget och
+                    genomförs i små grupper utan publik eller funktionärer.
                   </p>
                 </CardBody>
               </Card>
@@ -158,7 +166,7 @@ class AboutHT extends React.Component {
               ></img>
             </Button>
             <Collapse isOpen={this.state.isGetHereOpen}>
-              <Card>
+              <Card style={styles.infoBoxStyle}>
                 <CardBody>
                   <GetHere />
                 </CardBody>
@@ -186,7 +194,7 @@ class AboutHT extends React.Component {
               ></img>
             </Button>
             <Collapse isOpen={this.state.isDistancesOpen}>
-              <Card>
+              <Card style={styles.infoBoxStyle}>
                 <CardBody>
                   <Distances />
                 </CardBody>
@@ -206,14 +214,14 @@ class AboutHT extends React.Component {
                 alignItems: "center",
               }}
             >
-              Tävlingsrelger
+              Relger
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"
               ></img>
             </Button>
             <Collapse isOpen={this.state.isRulesOpen}>
-              <Card>
+              <Card style={styles.infoBoxStyle}>
                 <CardBody>
                   <Rules />
                 </CardBody>
@@ -240,7 +248,7 @@ class AboutHT extends React.Component {
               ></img>
             </Button>
             <Collapse isOpen={this.state.isResultsOpen}>
-              <Card>
+              <Card style={styles.infoBoxStyle}>
                 <CardBody>
                   <ListGroup>
                     {result_years.map((year) => {
@@ -271,5 +279,11 @@ class AboutHT extends React.Component {
     );
   }
 }
+
+const styles = {
+  infoBoxStyle: {
+    marginBottom: 20,
+  },
+};
 
 export default AboutHT;

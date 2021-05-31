@@ -30,9 +30,8 @@ class Navigation extends React.Component {
         <NavbarBrand
           tag={RRNavLink}
           color="light"
-          className="inactive"
+          className="inactive nav-title"
           activeClassName="active"
-          style={{}}
           exact={true}
           to="/"
           onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -54,7 +53,7 @@ class Navigation extends React.Component {
         <Collapse isOpen={this.state.isHamburgerOpen} navbar>
           <NavLink
             tag={RRNavLink}
-            className="inactive"
+            className="inactive nav-title"
             activeClassName="active"
             to="/anmalan"
             onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -63,16 +62,16 @@ class Navigation extends React.Component {
           </NavLink>
           <NavLink
             tag={RRNavLink}
-            className="inactive"
+            className="inactive nav-title"
             activeClassName="active"
-            to="/utmaningen"
+            to="/corona-edition"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
-            UTMANINGEN
+            CORONA EDITION
           </NavLink>
           <NavLink
             tag={RRNavLink}
-            className="inactive"
+            className="inactive nav-title"
             activeClassName="active"
             to="/fortrampet"
             onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -81,7 +80,7 @@ class Navigation extends React.Component {
           </NavLink>
           <NavLink
             tag={RRNavLink}
-            className="inactive"
+            className="inactive nav-title"
             activeClassName="active"
             to="/om-als"
             onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -90,7 +89,7 @@ class Navigation extends React.Component {
           </NavLink>
           <NavLink
             tag={RRNavLink}
-            className="inactive"
+            className="inactive nav-title"
             activeClassName="active"
             to="/om-ht/hem"
             onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -100,7 +99,7 @@ class Navigation extends React.Component {
 
           <NavLink
             tag={RRNavLink}
-            className="inactive"
+            className="inactive nav-title"
             activeClassName="active"
             to="/media"
             onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -109,7 +108,7 @@ class Navigation extends React.Component {
           </NavLink>
           <NavLink
             tag={RRNavLink}
-            className="inactive"
+            className="inactive nav-title"
             activeClassName="active"
             to="/sponsorer"
             onClick={() => this.setState({ isHamburgerOpen: false })}

@@ -10,14 +10,14 @@ import Photos from "./components/media/Photos";
 import Register from "./components/register/Register";
 import Articles from "./components/media/Articles";
 import Radio from "./components/media/Radio";
-import Sponsors from "./components/Sponsors";
+import Sponsors from "./components/sponsor/Sponsors";
 import Footer from "./components/Footer";
 //import devConfig from "./config";
 import * as firebase from "firebase"; // Change to only import specific modules
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
-import Challenge from "./components/challenge/Challenge";
+import CoronaEdition from "./components/challenge/CoronaEdition";
 import Fortrampet from "./components/Fortrampet";
 
 const App = () => {
@@ -30,7 +30,7 @@ const App = () => {
         <Navigation />
         <Route path="/" exact component={Home} />
         <Route path="/anmalan" component={Register} />
-        <Route path="/utmaningen" component={Challenge} />
+        <Route path="/corona-edition" component={CoronaEdition} />
         <Route path="/fortrampet" component={Fortrampet} />
         <Route path="/media" component={Media} />
         <Route path="/om-als" component={AboutALS} />

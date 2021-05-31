@@ -17,17 +17,20 @@ class Photos extends React.Component {
                   rel="noopener noreferrer"
                   href={album.src}
                   title={album.title}
-                  style={{ color: "black" }}
+                  style={{
+                    color: "black",
+                    textDecoration: "none",
+                  }}
                 >
                   <div className="card-box-hoverable" style={{ height: 350 }}>
                     <img
                       src={album.image}
-                      style={{ objectFit: "cover", pointerEvents: "none" }}
+                      style={{ objectFit: "cover" }}
                       width="100%"
                       height="80%"
                       alt={album.title}
                     ></img>
-                    <h5 style={{ pointerEvents: "none" }} className="mt-2">
+                    <h5 className="mt-2" style={{ fontWeight: "bold" }}>
                       {album.title}
                     </h5>
                   </div>

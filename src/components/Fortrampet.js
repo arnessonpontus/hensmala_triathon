@@ -112,7 +112,7 @@ const Fortrampet = () => {
           <img
             style={{ width: "100%", height: "auto" }}
             src="/images/fortrampet_bike.jpg"
-            alt="HT_banner"
+            alt="fortrampet"
           ></img>
         </Col>
       </Row>

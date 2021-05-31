@@ -10,14 +10,14 @@ class RegSuccess extends Component {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <h2>Tack för din anmälan!</h2>
         <Button
           style={{ backgroundColor: "#11999E" }}
           onClick={() => {
-            this.props.handleRegistration();
+            this.props.toggleDoneRegistration();
           }}
         >
           Registrera fler

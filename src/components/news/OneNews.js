@@ -21,15 +21,13 @@ const OneNews = (props) => {
           <p>{props.news.text}</p>
         </Row>
         <Row>
-          <i style={{ justifySelf: "flex-end" }}>{props.news.date}</i>
+          <i>{props.news.date}</i>
         </Row>
         <Row>
           {props.news.link && props.news.linkName ? (
             <RRNavLink
-              style={{ textDecoration: "none" }}
               target="_blank"
               rel="noopener noreferrer"
-              tag={RRNavLink}
               to={props.news.link}
             >
               <Button style={{ marginTop: 4 }}>
@@ -52,7 +50,6 @@ const OneNews = (props) => {
             style={{
               minWidth: 200,
               margin: "1em auto",
-
               objectFit: "contain",
             }}
           >

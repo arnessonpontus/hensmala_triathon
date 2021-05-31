@@ -1,0 +1,35 @@
+.register-divider {
+  border-top: 3px solid #bbb;
+}
+
+@keyframes angleJump {
+  0% {
+    transform: translate(0%, -10%) scale(1.2, 0.8);
+  }
+  30%,
+  70% {
+    transform: translate(0%, -50%) scale(1, 1);
+  }
+  100% {
+    transform: translate(0%, -10%) scale(1.2, 0.8);
+  }
+}
+
+.angle-down {
+  animation: angleJump 2s infinite;
+}
+
+.scroll-to-info-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 770px) {
+  .scroll-to-info-btn {
+    display: none;
+  }
+  .register-divider {
+    display: none;
+  }
+}
