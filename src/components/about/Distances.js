@@ -71,8 +71,8 @@ class Distances extends Component {
             <b>Löpning - 6.5 km</b>
             <p>
               Löpningen sker i skogen på andra sidan vägen. Var{" "}
-              <b>väldigt uppmärksam</b> på fordon när vägen behöver korsars vid
-              bägge tillfällena.
+              <b>väldigt uppmärksam</b> på fordon när vägen behöver korsas vid
+              två tillfällen.
             </p>
             <p>
               En film på löprundan kan du se{" "}

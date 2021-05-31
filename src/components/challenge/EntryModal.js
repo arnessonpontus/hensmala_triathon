@@ -67,11 +67,11 @@ const ChallengeModal = (props) => {
       width: 60,
       height: 60,
       backgroundColor:
-        props.id == 1
+        props.id === 1
           ? "#E6CF5C"
-          : props.id == 2
+          : props.id === 2
           ? "#C0C0C0"
-          : props.id == 3
+          : props.id === 3
           ? "#B98555"
           : "#ddeaeb",
       display: "flex",
@@ -140,12 +140,12 @@ const ChallengeModal = (props) => {
               <p style={{ fontSize: 16 }}>{props.participantText}</p>
             </div>
             <div style={styles.medalStyle}>
-              {props.id == 4 ? "?" : props.id}
+              {props.id === 5 ? "?" : props.id}
             </div>
           </div>
           <span style={styles.timeStyle}>
             {" "}
-            {props.id == 4 ? "*****" : "1h 23m 56s"}
+            {props.id === 5 ? "*****" : "1h 23m 56s"}
           </span>
           <i style={styles.dateStyle}>2021-07-12</i>
         </div>

@@ -26,21 +26,23 @@ const AboutChallenge = (props) => {
           <h4>Allmänt</h4>
           <p>
             Även 2021 är ett annorlunda år. Detta innebär tyvärr att det heller
-            inte kan bli ett helt vanligt Hensmåla Triathlon. Vi annordnar dock
-            i år en variant som är mer lik den version ni är vana vid! Loppet
-            genomförs i år enskilt eller i grupper på plats, men utan publik och
-            funktionärer.
+            inte kan bli ett helt vanligt Hensmåla Triathlon. Vi anordnar dock i
+            år en variant som är mer lik den version ni är vana vid! Loppet
+            genomförs i år enskilt eller i grupper på plats, men mestadels utan
+            publik och funktionärer.
           </p>
           <h4>Viktigt att Tänka på</h4>
           <p>
-            Eftersom loppet genomförs utan funktionärer är det extra viktigt att
-            vara uppmärksam både i trafiken när vägen ska korsas och vid
-            simningen. Tänk på att bilar kan komma i hög fart, så rusa inte över
-            utan att noggrant se er för innan. Vid simningen rekommenderar vi
-            att ni har någon som kan vara med i följebåt (båt med livboj finns
-            att låna vid stranden). Skriv i informationsfältet vid anmälan om ni
-            vill ha förklaring av sträckor, har andra frågor, eller om ni
-            behöver någon som ror så kan vi försöka hjälpa till.
+            Eftersom loppet genomförs mestadels helt utan funktionärer är det
+            extra viktigt att vara uppmärksam både i trafiken när vägen ska
+            korsas och vid simningen. Tänk på att bilar kan komma i hög fart, så
+            rusa inte över utan att noggrant se er för innan. Vid simningen
+            rekommenderar vi att ni har någon som kan vara med i följebåt (båt
+            med livboj finns att låna vid stranden). Skriv i informationsfältet
+            vid anmälan om ni vill ha förklaring av sträckor, har andra frågor,
+            eller om ni behöver någon som ror så kan vi försöka hjälpa till. Den
+            3:e och 4:e juli kommer några funtionärer finnas på plats som kan
+            hjälpa till.
           </p>
 
           <h4>Innan Loppet</h4>
@@ -61,7 +63,7 @@ const AboutChallenge = (props) => {
           </p>
           <h4>Under Loppet</h4>
           <p>
-            Starten sker som vanligt från vattnet vid standen, sedan de är det
+            Starten sker som vanligt från vattnet vid stranden, sedan är det
             nästan exakt de vanliga sträckorna som gäller. För att se ordinarie
             sträckor kan man titta{" "}
             <RRNavLink

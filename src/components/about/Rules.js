@@ -24,8 +24,8 @@ class Rules extends Component {
         <h4>Löpning</h4>
         <p>
           Löpning sker på grus, gräs, skogsstig och en kort sträcka på asfalt.
-          Inga fuktionärer finns tillgängliga så det är <b>mycket viktigt</b>{" "}
-          att vara väldigt försiktig vid kornsing av väg!
+          Inga funktionärer finns tillgängliga så det är <b>mycket viktigt</b>{" "}
+          att vara väldigt försiktig vid korsning av väg!
         </p>
 
         <p>

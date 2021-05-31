@@ -20,8 +20,8 @@ const Consent = (props) => {
           <br></br>
           <br></br>
           Om du önskar att vi ska ta bort dina uppgifter kan du kontakta
-          hensmala.triathlon@gmail.com. Dock kommer du ej kunna vara med på
-          loppet om detta genomförs innan den 2:e juni.
+          hensmala.triathlon@gmail.com. Dock kommer du då ej kunna vara med på
+          loppet.
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>

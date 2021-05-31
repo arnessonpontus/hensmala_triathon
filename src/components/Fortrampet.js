@@ -30,11 +30,12 @@ const Fortrampet = () => {
               >
                 <h2 style={{ fontSize: "50px" }}>Förtrampet</h2>
                 <h3>
-                  <Badge color="info">Går även 2020</Badge>
+                  <Badge color="info">Går även 2021</Badge>
                 </h3>
               </div>
               <b>
-                Stöd ALS-forskningen, men i egen takt och ett fikabröd i handen.
+                Stöd ALS-forskningen, men i egen takt och med fikastopp på
+                vägen.
               </b>
               <br></br>
               <br></br>
@@ -43,7 +44,7 @@ const Fortrampet = () => {
                 intervall för start för att göra det glesare mellan deltagarna.
               </p>
               <h4>
-                <Badge color="secondary">Vad innebär förtrampet?</Badge>
+                <Badge color="secondary">Vad innebär Förtrampet?</Badge>
               </h4>
               <p className="indent">
                 <b>
@@ -52,11 +53,11 @@ const Fortrampet = () => {
                 </b>
               </p>
               <h4>
-                <Badge color="secondary">När är förtrampet?</Badge>
+                <Badge color="secondary">När är Förtrampet?</Badge>
               </h4>
               <p className="indent">
                 <b>
-                  Det är fri start från 09:00 till 12:00 den 1:e augusti 2020.
+                  Det är fri start från 09:00 till 12:00 den 10:e juli 2021.
                 </b>
               </p>
               <h4>
@@ -73,8 +74,8 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Nej ingen anmälan krävs. Det är bara att dyka upp den 1:e
-                  augusti.
+                  Nej ingen anmälan krävs. Det är bara att dyka upp den 10:e
+                  juli.
                 </b>
               </p>
               <h4>
@@ -96,8 +97,11 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Startavgiften är 100 kr som går oavkortat till "Stoppa ALS"
-                  genom NEURO.
+                  Startavgiften är 100kr (eller valfri summa därutöver{" "}
+                  <span aria-label="party" role="img">
+                    🎉
+                  </span>
+                  ) som går oavkortat till "Stoppa ALS" genom NEURO.
                 </b>
               </p>
             </CardBody>

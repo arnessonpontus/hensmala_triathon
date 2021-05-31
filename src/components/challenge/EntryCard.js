@@ -51,11 +51,11 @@ const EntryCard = (props) => {
       width: 40,
       height: 40,
       backgroundColor:
-        props.id == 1
+        props.id === 1
           ? "#E6CF5C"
-          : props.id == 2
+          : props.id === 2
           ? "#C0C0C0"
-          : props.id == 3
+          : props.id === 3
           ? "#B98555"
           : "#ddeaeb",
       display: "flex",
@@ -86,10 +86,10 @@ const EntryCard = (props) => {
           <h6 style={{ fontWeight: "bold" }}>Förnamn Efternamn</h6>
           <p style={{ fontSize: 12 }}>{props.participantText}</p>
         </div>
-        <div style={styles.medalStyle}>{props.id == 4 ? "?" : props.id}</div>
+        <div style={styles.medalStyle}>{props.id === 5 ? "?" : props.id}</div>
       </div>
       <span style={styles.timeStyle}>
-        {props.id == 4 ? "*****" : "1h 23m 56s"}
+        {props.id === 5 ? "*****" : "1h 23m 56s"}
       </span>
       <span style={styles.dateStyle}>2021-07-12</span>
     </div>

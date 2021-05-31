@@ -27,6 +27,7 @@ class RegisterForm2021 extends Component {
     time: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
+    isCheckboxThreeTicked: false,
   };
 
   constructor(props) {
@@ -54,8 +55,12 @@ class RegisterForm2021 extends Component {
   toggleConsent = (checkbox) => {
     if (checkbox === 1) {
       this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
-    } else {
+    } else if (checkbox === 2) {
       this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
+    } else {
+      this.setState({
+        isCheckboxThreeTicked: !this.state.isCheckboxThreeTicked,
+      });
     }
   };
 
@@ -211,6 +216,17 @@ class RegisterForm2021 extends Component {
                 och den anmälningsinformation som finns på denna sida.
               </Label>
             </FormGroup>
+            <FormGroup check>
+              <Label for="checkbox3">
+                <Input
+                  className="checkbox3"
+                  type="checkbox"
+                  onClick={() => this.toggleConsent(3)}
+                />{" "}
+                Jag accepterar att bilder och filmer sparas och kan användas på
+                internet.
+              </Label>
+            </FormGroup>
             <Button
               id="submitButton"
               className="mt-4"
@@ -218,7 +234,8 @@ class RegisterForm2021 extends Component {
               disabled={
                 !(
                   this.state.isCheckboxOneTicked &&
-                  this.state.isCheckboxTwoTicked
+                  this.state.isCheckboxTwoTicked &&
+                  this.state.isCheckboxThreeTicked
                 ) || this.props.loading
               }
             >
@@ -258,23 +275,25 @@ class RegisterForm2021 extends Component {
             <li>
               Ladda upp tid, bild och valfri text (kan döljas från hemsidan)
             </li>
-            <li>De snabbaste bjuds in till final den 18:e juli</li>
+            <li>
+              De snabbaste bjuds in till final den 18:e juli (genomförs med
+              funktionärer)
+            </li>
           </ol>
           <i>
             Evenemanget sker i år utan funktionärer. Därför är det väldigt
-            viktigt att vara extra aktsam vid vägövergångar och simmning.
+            viktigt att vara extra aktsam vid vägövergångar och simning.
           </i>
           <br></br>
           <br></br>
           <p>
             Årets Hensmåla Triathlon 2021 - Corona Edition är lite annorlunda
             från både vanliga år, och förra årets "Utmaningen". Tanken med årets
-            lopp är att separera detagarna så mycket det går, medan fortfarande
-            möjliggöra att kunna köra den ordinarie rundan. Årets evenemang
-            stäcker sig därför över en längre period och grupper om max 8
-            personer kör vid samma tillfälle. När man anmält vilken tid man ska
-            komma och genomföra loppet, kör man rundan och sedan laddar upp
-            tiderna{" "}
+            lopp är att separera deltagarna så mycket det går, medan fortfarande
+            kunna köra den ordinarie rundan. Årets evenemang sträcker sig därför
+            över en längre period och grupper om max 8 personer kör vid samma
+            tillfälle. När tid för genomförande är bestämt, kör man rundan och
+            efteråt laddar upp sitt resultat på hemsidan{" "}
             <RRNavLink tag={RRNavLink} to="/corona-edition">
               här
             </RRNavLink>

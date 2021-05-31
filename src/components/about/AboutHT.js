@@ -11,7 +11,6 @@ import {
 import Distances from "./Distances";
 import GetHere from "./GetHere";
 import Rules from "./Rules";
-import { Link } from "react-router-dom";
 
 class AboutHT extends React.Component {
   state = {
@@ -132,14 +131,13 @@ class AboutHT extends React.Component {
                     <br></br>
                     <br></br>
                     Sedan 2012 har vi samlat in strax över 800 000kr och skänkt
-                    till ALS forskningen. De tre sista åren har gåvan riktats
+                    till ALS forskningen. De tre senaste åren har gåvan riktats
                     mot Stoppa ALS och ALS Treatment Center Karolinska.
                     <br></br>
                     <br></br>
-                    2019 skänktes <b>161 891kr</b>.<br></br>
-                    <br></br>
                     Detta år är loppet anpassat till det osäkra läget och
-                    genomförs i små grupper utan publik eller funktionärer.
+                    genomförs i små grupper mestadels utan publik eller
+                    funktionärer.
                   </p>
                 </CardBody>
               </Card>

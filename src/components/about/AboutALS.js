@@ -5,12 +5,12 @@ import {
   CardBody,
   Card,
   Container,
-  CardTitle
+  CardTitle,
 } from "reactstrap";
 class AboutALS extends React.Component {
   state = {
     isALSOpen: false,
-    isNeuroOpen: false
+    isNeuroOpen: false,
   };
 
   constructor(props) {
@@ -52,7 +52,7 @@ class AboutALS extends React.Component {
                 marginBottom: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               Om ALS
@@ -82,26 +82,6 @@ class AboutALS extends React.Component {
                     Varje år insjuknar cirka 200 personer i Sverige. Tendens
                     till ökning på senare tid. De flesta som insjuknar är mellan
                     50 och 70 år.
-                    <br />
-                    <br />
-                    I slutet av oktober 2018 hände det äntligen, ALS Treatment
-                    Center Karolinska blev verklighet! Centret har satt upp
-                    infrastruktur samt anställt och utbildat personal. Centret
-                    har nu också kunnat delta i sin första studie (REFALS). Det
-                    är en stor internationell multicenterstudie. Upp till 45
-                    ALS-drabbade från hela Sverige kommer kunna inkluderas i
-                    studien, vars mål är att utvärdera effekten av Levosimendan
-                    på andningsmuskelaturen.
-                    <br />
-                    <br />
-                    Dock återstår mycket arbete för att ALS Treatment Center
-                    Karolinska skall bli den långsiktiga satsning som målet
-                    alltid varit. Insamlingen har hittills nått halvvägs till
-                    det första delmålet på 1,5 miljoner kronor. Ett långsiktigt
-                    center kommer att kunna ta emot ytterligare kliniska studier
-                    och möjliggöra att ännu fler drabbade kan få anledning att
-                    hoppas på mer tid med sina nära och kära. Alla gåvor till
-                    insamlingen, stora som små, tas tacksamt emot. Neuro - ALS
                   </p>
                   <CardTitle style={{ fontSize: 30 }}>
                     Stoppa ALS och ALS Treatment Center Karolinska
@@ -165,7 +145,7 @@ class AboutALS extends React.Component {
                 marginBottom: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               Om Neuro
