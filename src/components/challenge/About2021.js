@@ -41,7 +41,7 @@ const AboutChallenge = (props) => {
             med livboj finns att låna vid stranden). Skriv i informationsfältet
             vid anmälan om ni vill ha förklaring av sträckor, har andra frågor,
             eller om ni behöver någon som ror så kan vi försöka hjälpa till. Den
-            3:e och 4:e juli kommer några funtionärer finnas på plats som kan
+            3:e och 4:e juli kommer några funktionärer finnas på plats som kan
             hjälpa till.
           </p>
 

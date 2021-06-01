@@ -300,10 +300,6 @@ class RegisterForm2021 extends Component {
             . De med snabbaste tider kommer sedan bli inbjudna till en final.
           </p>
 
-          <b>
-            Fotografering och videofilmning kan förekomma, meddela om du inte
-            vill vara med.
-          </b>
           <br></br>
           <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
