@@ -300,8 +300,6 @@ class RegisterForm2021 extends Component {
             . De med snabbaste tider kommer sedan bli inbjudna till en final.
           </p>
 
-          <br></br>
-          <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
           <i style={{ fontSize: 12 }}>Startavgift: 250kr</i>
         </Col>
