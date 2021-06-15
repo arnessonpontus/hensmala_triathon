@@ -27,7 +27,7 @@ const OneNews = (props) => {
           </Row>
           <Row>
             {props.news.link && props.news.linkName ? (
-              props.news.link.substring(0, 4) == "http" ? (
+              props.news.link.substring(0, 4) === "http" ? (
                 <a
                   target="_blank"
                   rel="noopener noreferrer"

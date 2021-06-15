@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Button,
   Modal,
@@ -16,77 +16,47 @@ import {
 import ConsentChallenge from "./ConsentChallenge";
 import * as firebase from "firebase";
 import imageCompression from "browser-image-compression";
-import axios from "axios";
-import ReCAPTCHA from "react-google-recaptcha";
+import { TimePicker } from "../TimeUtils";
 
 const UploadModal = (props) => {
   const [modal, setModal] = useState(false);
   const [consentAccept, setConsentAccept] = useState(false);
-  const [title, setTitle] = useState("");
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setphone] = useState("");
   const [text, setText] = useState("");
-  const [img1, setImg1] = useState(null);
-  const [img1Loading, setImg1Loading] = useState(false);
-  const [img2, setImg2] = useState(null);
-  const [img2Loading, setImg2Loading] = useState(false);
-  const [hasDonated, setHasDonated] = useState(false);
-  const [hasRun, setHasRun] = useState(false);
-  const [hasSwim, setHasSwim] = useState(false);
-  const [hasBike, setHasBike] = useState(false);
-  const [hasWheelchair, setHasWheelchair] = useState(false);
+  const [imgs, setImgs] = useState([null]);
+  const [imgLoading, setImgLoading] = useState([false]);
+  const [hour, setHour] = useState(0);
+  const [min, setMin] = useState(0);
+  const [sec, setSec] = useState(0);
+  const [hideResults, setHideResults] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [recaptchaVeri, setRecaptchaVeri] = useState(false);
   const [error, setError] = useState("");
 
   const toggle = () => {
     setError("");
     setConsentAccept(false);
+    setHideResults(false);
     setModal(!modal);
-    setRecaptchaVeri(false);
   };
 
-  const toggleConsent = () => {
-    setConsentAccept(!consentAccept);
+  const addImage = () => {
+    setImgs([...imgs, null]);
+    setImgLoading([...imgLoading, false]);
   };
 
-  const toggleCheckboxes = (type) => {
-    switch (type) {
-      case "hasDonated":
-        setHasDonated(!hasDonated);
-        break;
-      case "hasRun":
-        setHasRun(!hasRun);
-        break;
-      case "hasBike":
-        setHasBike(!hasBike);
-        break;
-      case "hasSwim":
-        setHasSwim(!hasSwim);
-        break;
-      case "hasWheelchair":
-        setHasWheelchair(!hasWheelchair);
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  const handleImg1Change = (e) => {
+  const handleImgChange = (e, imgNumber) => {
     if (e.target.files[0]) {
-      compressImage(e.target.files[0], 1);
-    }
-  };
-
-  const handleImg2Change = (e) => {
-    if (e.target.files[0]) {
-      compressImage(e.target.files[0], 2);
+      compressImage(e.target.files[0], imgNumber);
     }
   };
 
   const compressImage = (image, imgNumber) => {
-    imgNumber === 1 ? setImg1Loading(true) : setImg2Loading(true);
+    let newLoadingArr = [...imgLoading];
+    newLoadingArr[imgNumber] = true;
+    setImgLoading(newLoadingArr);
+
     const options = {
       maxSizeMB: 0.2,
       maxWidthOrHeight: 1920,
@@ -96,13 +66,13 @@ const UploadModal = (props) => {
     // Compresses the image before adding it to state
     imageCompression(image, options)
       .then(function (compressedFile) {
-        if (imgNumber === 1) {
-          setImg1(compressedFile);
-          setImg1Loading(false);
-        } else {
-          setImg2(compressedFile);
-          setImg2Loading(false);
-        }
+        let newImgs = [...imgs];
+        newImgs[imgNumber] = compressedFile;
+        setImgs(newImgs);
+
+        let newLoadingArr = [...imgLoading];
+        newLoadingArr[imgNumber] = false;
+        setImgLoading(newLoadingArr);
       })
       .catch(function (error) {
         console.log(error.message);
@@ -110,14 +80,14 @@ const UploadModal = (props) => {
   };
 
   const checkValidation = () => {
-    if (!title) {
-      setError("Du måste ange en titel!");
-      return false;
-    } else if (!img1) {
+    if (!imgs[0]) {
       setError("Du måste ladda upp minst en bild!");
       return false;
     } else if (!name) {
       setError("Du måste ange ett namn!");
+      return false;
+    } else if (!hour || !min || !sec) {
+      setError("Du måste ange genomförandets tid!");
       return false;
     } else {
       return true;
@@ -132,59 +102,42 @@ const UploadModal = (props) => {
     if (!checkValidation()) return;
     setLoading(true);
 
-    if (!img1) return;
-
     const sessionId = new Date().getTime();
 
-    const uploadTask1 = storage
-      .ref(`images/${sessionId + img1.name}`)
-      .put(img1);
-    uploadTask1.on(
-      "state_changed",
-      (snapshot) => {
-        // Can set progress/loading here
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(sessionId + img1.name)
-          .getDownloadURL()
-          .then((url1) => {
-            // Can reduce to one function
-            if (img2) {
-              const uploadTask2 = storage
-                .ref(`images/${sessionId + img2.name}`)
-                .put(img2);
-              uploadTask2.on(
-                "state_changed",
-                (snapshot) => {
-                  // Can set progress/loading here
-                },
-                (error) => {
-                  console.log(error);
-                },
-                () => {
-                  storage
-                    .ref("images")
-                    .child(sessionId + img2.name)
-                    .getDownloadURL()
-                    .then((url2) => {
-                      uploadChallenge([url1, url2]);
-                    });
-                }
-              );
-            } else {
-              uploadChallenge([url1]);
-            }
-          });
-      }
-    );
+    const urls = [];
+    const validImgs = imgs.filter((img) => img != null);
+    const uploadImgs = new Promise((resolve, reject) => {
+      validImgs.forEach((img, i) => {
+        const uploadTask = storage
+          .ref(`images_2021/${sessionId + img.name}`)
+          .put(img);
+
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // Can set progress/loading here
+          },
+          (error) => {
+            console.log(error);
+          },
+          () => {
+            storage
+              .ref("images_2021")
+              .child(sessionId + img.name)
+              .getDownloadURL()
+              .then((url) => {
+                urls.push(url);
+                if (i === validImgs.length - 1) resolve();
+              });
+          }
+        );
+      });
+    });
+    uploadImgs.then(() => {
+      uploadChallenge(urls);
+    });
   };
 
-  // TODO: security and error checking
   const uploadChallenge = (urls) => {
     var now = new Date();
     var date =
@@ -198,34 +151,31 @@ const UploadModal = (props) => {
       ":" +
       ("0" + now.getMinutes()).slice(-2);
     var dateTime = date + " " + time;
-
     firebase
       .database()
-      .ref("/challenges")
+      .ref("/entries")
       .push({
         name: name,
-        title: title,
-        time: dateTime,
+        raceTime: hour * 60 * 60 + min * 60 + sec,
+        uploadTime: dateTime,
         imgs: urls,
         text: text,
-        hasDonated: hasDonated,
-        hasRun: hasRun,
-        hasSwim: hasSwim,
-        hasBike: hasBike,
-        hasWheelchair: hasWheelchair,
+        hideResults: hideResults,
       })
       .then((snapshot) => {
         // To prevent reads for phone numbers by firebase rules
         firebase
           .database()
-          .ref("/phoneNumbers")
+          .ref("/contactInfo")
           .push({
             challengeID: snapshot.key,
+            name: name,
+            email: email,
             phone: phone,
           })
           .then(() => {
             setLoading(false);
-            props.setHasUpdated(!props.hasUpdated);
+            props.setHasUpdated(true);
             toggle();
           })
           .catch((err) => {
@@ -241,52 +191,23 @@ const UploadModal = (props) => {
       });
   };
 
-  const onRecaptcha = (value) => {
-    const body = { value };
-    axios
-      .post(
-        "https://us-central1-hensmala-triathlon.cloudfunctions.net/helloWorld",
-        body
-      )
-      .then((res) => {
-        setRecaptchaVeri(res.data.result);
-      })
-      .catch((err) => console.log(err));
+  const removeImg = (idx) => {
+    const newImgs = [...imgs];
+    newImgs.splice(idx, 1);
+    setImgs(newImgs);
   };
 
   return (
     <div>
-      <Button
-        color="danger"
-        disabled={true}
-        style={{
-          margin: "auto",
-          display: "flex",
-          alignItems: "center",
-        }}
-        onClick={toggle}
-      >
-        Utmaningen är nu avslutad
-        {/* <i className="fa fa-plus" style={{ marginLeft: 5, color: "white" }}></i> */}
-      </Button>
+      <div onClick={toggle} className="button-style upload-button">
+        <span>Ladda upp bidrag</span>
+        <i className="fas fa-upload icon-style"></i>
+      </div>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Ladda upp bidrag</ModalHeader>
         <ModalBody>
           {error ? <Alert color="danger">{error}</Alert> : null}
           <Form>
-            <FormGroup>
-              <Label for="titel">Titel *</Label>
-              <Input
-                placeholder="En härlig runda för ALS"
-                value={title}
-                maxLength="40"
-                required
-                type="text"
-                name="titel"
-                id="titel"
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </FormGroup>
             <FormGroup>
               <Label for="name">Namn *</Label>
               <Input
@@ -298,6 +219,122 @@ const UploadModal = (props) => {
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label for="text">Frivillig text om rundan</Label>
+              <Input
+                type="textarea"
+                name="text"
+                id="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="name">Tid det tog att genomföra *</Label>
+              <div style={{ display: "flex" }}>
+                <TimePicker
+                  handleChange={(e) => setHour(parseInt(e.target.value))}
+                  elemName="Timmar"
+                />
+                <TimePicker
+                  handleChange={(e) => setMin(parseInt(e.target.value))}
+                  elemName="Minuter"
+                />
+                <TimePicker
+                  handleChange={(e) => setSec(parseInt(e.target.value))}
+                  elemName="Sekunder"
+                />
+              </div>
+            </FormGroup>
+            <FormGroup>
+              <Label for={"img0"}>Bild *</Label>
+              {imgs.map((img, i) => {
+                return (
+                  <div key={i}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      {imgLoading[i] ? (
+                        <Spinner type="grow" color="primary" />
+                      ) : null}
+                      {img ? (
+                        <div onClick={() => removeImg(i)}>
+                          <img
+                            style={{ marginTop: 5, marginBottom: 20 }}
+                            alt="förhansvisning"
+                            width={100}
+                            src={URL.createObjectURL(img)}
+                          ></img>
+                        </div>
+                      ) : null}
+
+                      <label
+                        htmlFor={"img" + i}
+                        className="button-style"
+                        style={{ marginLeft: 0 }}
+                      >
+                        {!img ? (
+                          <Fragment>
+                            <span>Välj bild</span>
+                            <i className="fas fa-image icon-style"></i>
+                          </Fragment>
+                        ) : (
+                          <Fragment>
+                            <span>Ändra bild</span>
+                            <i className="fas fa-pen icon-style"></i>
+                          </Fragment>
+                        )}
+                      </label>
+                      <Input
+                        required={i === 0 ? true : false}
+                        type="file"
+                        accept="image/*"
+                        name="img"
+                        id={"img" + i}
+                        onChange={(e) => handleImgChange(e, i)}
+                        style={{ display: "none" }}
+                      />
+                    </div>
+                    {imgs.length - 1 === i ? (
+                      <p>
+                        <div
+                          className="button-style"
+                          style={{
+                            width: 120,
+                            height: 30,
+                            textDecoration: "none",
+                            backgroundColor: "#11999E",
+                            color: "white",
+                            marginLeft: 0,
+                          }}
+                          onClick={addImage}
+                        >
+                          + Lägg till fler
+                        </div>
+                      </p>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </FormGroup>
+
+            <FormGroup>
+              <Label for="titel">Email</Label>
+              <Input
+                placeholder="din.email@mail.com"
+                value={email}
+                maxLength="60"
+                type="email"
+                name="email"
+                id="email"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormGroup>
             <FormGroup>
@@ -312,157 +349,24 @@ const UploadModal = (props) => {
                 onChange={(e) => setphone(e.target.value)}
               />
               <FormText color="muted">
-                Detta är så vi kan kontakta dig om du vinner.
+                Dessa är så vi kan kontakta dig om du vinner. Kommer ej visas.
               </FormText>
             </FormGroup>
-            <FormGroup>
-              <Label for="text">Hur var din runda?</Label>
-              <Input
-                type="textarea"
-                name="text"
-                id="text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="img1">Bild som representerar utmaningen *</Label>
-              <Input
-                required
-                type="file"
-                accept="image/*"
-                name="img1"
-                id="img1"
-                onChange={handleImg1Change}
-              />
-              {img1Loading ? <Spinner type="grow" color="primary" /> : null}
-              {img1 ? (
-                <div>
-                  <br></br>
-                  <img
-                    alt="förhansvisning"
-                    width={100}
-                    src={URL.createObjectURL(img1)}
-                  ></img>
-                </div>
-              ) : (
-                <FormText color="muted">
-                  Detta kan vara på dig själv eller din omgivning.
-                </FormText>
-              )}
-            </FormGroup>
-            <FormGroup>
-              <Label for="img2">Bild på rundan (valfritt) </Label>
-              <Input
-                accept="image/*"
-                type="file"
-                name="img2"
-                id="img2"
-                onChange={handleImg2Change}
-              />
-              {img2Loading ? <Spinner type="grow" color="primary" /> : null}
-              {img2 ? (
-                <div>
-                  <br></br>
-                  <img
-                    alt="förhansvisning"
-                    width={100}
-                    src={URL.createObjectURL(img2)}
-                  ></img>
-                </div>
-              ) : (
-                <FormText color="muted">
-                  Om du har en app eller löparklocka kan du ta en skärmdump på
-                  rundan.
-                </FormText>
-              )}
+            <FormGroup check inline>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  value={hideResults}
+                  onClick={() => setHideResults(!hideResults)}
+                />{" "}
+                Dölj mitt resultat från hemsidan
+              </Label>
             </FormGroup>
             <FormGroup>
               <FormText color="muted">* obligatoriska fält.</FormText>
             </FormGroup>
-            <FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input
-                    type="checkbox"
-                    name="hasDonated"
-                    value={hasDonated}
-                    onClick={() => toggleCheckboxes("hasDonated")}
-                  />{" "}
-                  Jag har donerat till
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://neuro.se/diagnoser/amyotrofisk-lateralskleros-als/"
-                  >
-                    {" "}
-                    ALS-forskningen
-                  </a>{" "}
-                  (valfritt)
-                </Label>
-              </FormGroup>
-            </FormGroup>
-            <FormGroup>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://egnainsamlingar.neuro.se/fundraisers/utmaningen1"
-              >
-                <Button type="button" color="info">
-                  Donera här
-                </Button>
-              </a>
-            </FormGroup>
-
-            <FormGroup tag="fieldset">
-              <legend>Min runda innehåller:</legend>
-              <FormGroup check inline>
-                <Label check>
-                  <Input
-                    type="checkbox"
-                    value={hasRun}
-                    onClick={() => toggleCheckboxes("hasRun")}
-                  />{" "}
-                  Löpning
-                </Label>
-              </FormGroup>
-              <FormGroup check inline>
-                <Label check>
-                  <Input
-                    type="checkbox"
-                    value={hasBike}
-                    onClick={() => toggleCheckboxes("hasBike")}
-                  />{" "}
-                  Cykling
-                </Label>
-              </FormGroup>
-              <FormGroup check inline>
-                <Label check>
-                  <Input
-                    type="checkbox"
-                    value={hasSwim}
-                    onClick={() => toggleCheckboxes("hasSwim")}
-                  />
-                  Simning
-                </Label>
-              </FormGroup>
-              <FormGroup check inline>
-                <Label check>
-                  <Input
-                    type="checkbox"
-                    value={hasWheelchair}
-                    onClick={() => toggleCheckboxes("hasWheelchair")}
-                  />{" "}
-                  Rullstol (endast för rullstolsburna)
-                </Label>
-              </FormGroup>
-            </FormGroup>
           </Form>
           {error ? <Alert color="danger">{error}</Alert> : null}
-          <ReCAPTCHA
-            sitekey={process.env.REACT_APP_RECAPTCHA_CLIENT}
-            onChange={onRecaptcha}
-          />
         </ModalBody>
         <ModalFooter
           style={{ display: "flex", justifyContent: "space-between" }}
@@ -473,7 +377,7 @@ const UploadModal = (props) => {
                 <Input
                   className="checkbox1"
                   type="checkbox"
-                  onClick={() => toggleConsent()}
+                  onClick={() => setConsentAccept(!consentAccept)}
                 />{" "}
                 <span>Jag accepterar villkoren.</span>
                 <ConsentChallenge />
@@ -483,7 +387,7 @@ const UploadModal = (props) => {
 
           <Button
             onClick={handleSubmit}
-            disabled={!consentAccept || !recaptchaVeri}
+            disabled={!consentAccept}
             color="success"
             size="lg"
             style={{ display: "flex", alignItems: "center" }}

@@ -91,3 +91,37 @@ export const DayPicker = (props) => {
     </Input>
   );
 };
+
+export const TimePicker = (props) => {
+  const choises = [...Array(60).keys()];
+
+  return (
+    <Input
+      className="mr-2"
+      required={true}
+      type="select"
+      name={props.elemName}
+      onChange={props.handleChange}
+    >
+      <option disabled selected value>
+        {props.elemName}
+      </option>
+      {choises.map((choise) => {
+        return (
+          <option value={choise} key={choise}>
+            {choise}
+          </option>
+        );
+      })}
+    </Input>
+  );
+};
+
+export const secToHMS = (value) => {
+  const sec = parseInt(value, 10); // convert value to number if it's string
+  let hours = Math.floor(sec / 3600); // get hours
+  let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+  let seconds = sec - hours * 3600 - minutes * 60; //  get seconds
+
+  return hours + "h " + minutes + "m " + seconds + "s"; // Return is HH : MM : SS
+};

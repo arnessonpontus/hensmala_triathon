@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "./Consent";
-import { DayPicker, MonthPicker, YearPicker } from "../FormUtils";
+import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 
 class RegisterForm2021 extends Component {
   state = {

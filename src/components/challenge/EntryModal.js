@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Modal } from "reactstrap";
+import { secToHMS } from "../TimeUtils";
 import EntryCard from "./EntryCard";
 
 const ChallengeModal = (props) => {
@@ -23,7 +24,7 @@ const ChallengeModal = (props) => {
       height: 350,
       position: "absolute",
       top: 0,
-      backgroundImage: `url(${props.image})`,
+      backgroundImage: `url(${props.entry.imgs[0]})`,
       filter: "blur(50px)",
     },
     userTextBoxStyle: {
@@ -67,11 +68,11 @@ const ChallengeModal = (props) => {
       width: 60,
       height: 60,
       backgroundColor:
-        props.id === 1
+        props.entry.placement === 1
           ? "#E6CF5C"
-          : props.id === 2
+          : props.entry.placement === 2
           ? "#C0C0C0"
-          : props.id === 3
+          : props.entry.placement === 3
           ? "#B98555"
           : "#ddeaeb",
       display: "flex",
@@ -88,8 +89,7 @@ const ChallengeModal = (props) => {
       <EntryCard
         onClick={toggleModal}
         id={props.id}
-        image={props.image}
-        participantText={props.participantText}
+        entry={props.entry}
       ></EntryCard>
       <Modal
         className="card-box"
@@ -121,7 +121,7 @@ const ChallengeModal = (props) => {
             >
               <img
                 style={styles.imgStyle}
-                src={props.image}
+                src={props.entry.imgs[0]}
                 alt="deltagarbild"
               ></img>
             </a>
@@ -136,18 +136,18 @@ const ChallengeModal = (props) => {
             }}
           >
             <div style={styles.userTextBoxStyle}>
-              <h4 style={{ fontWeight: "bold" }}>Förnamn Efternamn</h4>
-              <p style={{ fontSize: 16 }}>{props.participantText}</p>
+              <h4 style={{ fontWeight: "bold" }}>{props.entry.name}</h4>
+              <p style={{ fontSize: 16 }}>{props.entry.text}</p>
             </div>
             <div style={styles.medalStyle}>
-              {props.id === 5 ? "?" : props.id}
+              {props.entry.hideResults ? "?" : props.entry.placement}
             </div>
           </div>
           <span style={styles.timeStyle}>
             {" "}
-            {props.id === 5 ? "*****" : "1h 23m 56s"}
+            {props.entry.hideResults ? "*****" : secToHMS(props.entry.raceTime)}
           </span>
-          <i style={styles.dateStyle}>2021-07-12</i>
+          <i style={styles.dateStyle}>{props.entry.uploadTime}</i>
         </div>
       </Modal>
     </Fragment>
