@@ -67,9 +67,6 @@ function sendEmail(addedRow) {
         Tid för genomförande: <b>${addedRow.time}</b>
       </li>
       <li>
-        Antal personer i gruppen: <b>${addedRow.groupSize}</b>
-      </li>
-      <li>
         Övrig information: <b>${addedRow.info}</b>
       </li>
     </ul>

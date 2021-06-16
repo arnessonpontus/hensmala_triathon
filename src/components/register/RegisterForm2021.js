@@ -22,7 +22,6 @@ class RegisterForm2021 extends Component {
     day: "",
     info: "",
     gender: "",
-    groupSize: 1,
     city: "",
     time: "",
     isCheckboxOneTicked: false,
@@ -79,7 +78,6 @@ class RegisterForm2021 extends Component {
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
-            <i>Anmäl enskilt eller en grupp</i>
 
             <FormGroup>
               <Label for="name">Namn</Label>
@@ -133,23 +131,6 @@ class RegisterForm2021 extends Component {
                 <option value="Kvinna">Kvinna</option>
               </Input>
             </FormGroup>
-            <FormGroup>
-              <Label for="groupSize">Antal personer i gruppen</Label>
-              <Input
-                required={true}
-                type="select"
-                name="groupSize"
-                onChange={this.handleChange}
-              >
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((num, i) => {
-                  return (
-                    <option value={num} key={i}>
-                      {num}
-                    </option>
-                  );
-                })}
-              </Input>
-            </FormGroup>
 
             <FormGroup>
               <Label for="city"> Ort (klubb)</Label>
@@ -182,7 +163,7 @@ class RegisterForm2021 extends Component {
                 type="textarea"
                 name="info"
                 id="info"
-                placeholder="Övriga önskemål eller information"
+                placeholder="T.ex. vilka du vill köra samtidigt som eller övrig info"
                 value={this.state.info}
                 onChange={this.handleChange}
               />
@@ -268,9 +249,7 @@ class RegisterForm2021 extends Component {
           <br></br>
           <ol style={{ paddingLeft: 0, listStylePosition: "inside" }}>
             <li>Evenemanget sker från 2:e juli - 16:e juli</li>
-            <li>
-              Anmäl dig eller din grupp här och ange vilken tid du vill komma
-            </li>
+            <li>Anmäl dig här och ange vilken tid du vill komma</li>
             <li>Genomför loppet</li>
             <li>
               Ladda upp tid, bild och valfri text (kan döljas från hemsidan)

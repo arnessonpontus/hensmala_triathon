@@ -136,7 +136,7 @@ class AboutHT extends React.Component {
                     <br></br>
                     <br></br>
                     Detta år är loppet anpassat till det osäkra läget och
-                    genomförs i små grupper mestadels utan publik eller
+                    genomförs i mindre grupper, mestadels utan publik eller
                     funktionärer.
                   </p>
                 </CardBody>
