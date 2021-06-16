@@ -250,7 +250,7 @@ class RegisterForm2021 extends Component {
           <ol style={{ paddingLeft: 0, listStylePosition: "inside" }}>
             <li>Evenemanget sker från 2:e juli - 16:e juli</li>
             <li>Anmäl dig här och ange vilken tid du vill komma</li>
-            <li>Genomför loppet</li>
+            <li>Genomför loppet (och ta gärna bilder)</li>
             <li>
               Ladda upp tid, bild och valfri text (kan döljas från hemsidan)
             </li>

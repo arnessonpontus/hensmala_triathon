@@ -47,9 +47,11 @@ const AboutChallenge = (props) => {
 
           <h4>Innan Loppet</h4>
           <p>
-            Man kan anmäla och tillsammans genomföra loppet med som mest 8
-            personer åt gången. Triathlonet genomför du vid valfri tid mellan
-            datumen 2/7 - 16/7, som du specificerar vid anmälan. Efter att tiden
+            Man startar loppet med som mest 8 personer åt gången och alla ska
+            anmäla sig individuellt. Triathlonet genomför du vid valfri tid
+            mellan datumen 2/7 - 16/7, som du specificerar vid anmälan. Om ni är
+            flera i ett gäng som tänkt köra samtidigt kan det vara bra att
+            skriva deras namn i informationsfältet vid anmälan. Efter att tiden
             blivit godkänd och startavgiften betald är du välkommen att
             genomföra loppet på plats. För att hitta hit kan du kolla{" "}
             <RRNavLink
@@ -73,7 +75,8 @@ const AboutChallenge = (props) => {
             >
               här
             </RRNavLink>
-            .
+            . Ta gärna en eller flera bilder på dig själv eller din omgivning
+            för att ladda upp tillsammans med resultatet senare.
           </p>
           <p>Deltagarna registrerar sin egen tid, tidtagarur finns att låna.</p>
           <h4>Efter Loppet</h4>
@@ -81,7 +84,8 @@ const AboutChallenge = (props) => {
             Alla som har genomfört loppet laddar sedan upp sitt resultat,
             tillsammans med bild och text om man vill, på denna sidan. Om man
             inte vill visa sin tid eller placering kan man välja att dölja
-            detta.
+            detta, med den medföljande effekten av att inte kunna vara med i
+            finalen.
           </p>
 
           <p>
