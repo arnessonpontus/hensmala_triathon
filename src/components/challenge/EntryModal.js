@@ -145,7 +145,11 @@ const ChallengeModal = (props) => {
           </div>
           <span style={styles.timeStyle}>
             {" "}
-            {props.entry.hideResults ? "*****" : secToHMS(props.entry.raceTime)}
+            {props.entry.hideResults ? (
+              <i>Tid dold</i>
+            ) : (
+              secToHMS(props.entry.raceTime)
+            )}
           </span>
           <i style={styles.dateStyle}>{props.entry.uploadTime}</i>
         </div>

@@ -19,7 +19,7 @@ const Consent = (props) => {
           Hensmåla Triathlon kommer spara namn, text och bilder för att visa för
           användare av hensmalatriathlon.se. Ditt telefonnummer och email visas
           ej, men sparas för att kunna kontakta dig i framtiden om du vinner ett
-          pris, dock som längst till 1 augusti 2021.
+          pris, dock som längst till 1 augusti 2022z.
           <br></br>
           <br></br>
           Om du önskar att vi ska ta bort, eller redigera dina uppgifter kan du

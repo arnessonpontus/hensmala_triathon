@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 
 import UploadModal from "./UploadModal";
 import { NavLink as RRNavLink } from "react-router-dom";
@@ -6,12 +6,22 @@ import About2021 from "./About2021";
 import EntryModal from "./EntryModal";
 import * as firebase from "firebase";
 import Spinner from "../../../node_modules/reactstrap/es/Spinner";
+import {
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+} from "reactstrap";
 
 const CoronaEdition = () => {
   const [userEntries, setUserEntries] = useState([]);
+  const [hiddenUserEntries, setHiddenUserEntries] = useState([]);
   const [loadingEntries, setLoadingEntries] = useState(false);
-
+  const [orderBy, setOrderBy] = useState("time");
   const [hasUpdated, setHasUpdated] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   const placements = useRef([]);
 
@@ -19,70 +29,40 @@ const CoronaEdition = () => {
     window.scrollTo(0, 0);
     setUserEntries([]);
     setLoadingEntries(true);
+    placements.current = [];
 
     firebase
       .database()
       .ref("entries")
-      .orderByChild("time")
+      .orderByChild(orderBy)
       .once("value", (snapshot) => {
         snapshot.forEach((child) => {
           const childWithUid = { ...child.val(), uid: child.key };
-          placements.current.push(childWithUid.raceTime);
-          setUserEntries((userEntries) => [...userEntries, childWithUid]);
+
+          if (!childWithUid.hideResults) {
+            placements.current.push(childWithUid.raceTime);
+          }
+
+          if (orderBy === "time") {
+            setUserEntries((userEntries) => [...userEntries, childWithUid]);
+          } else {
+            if (!childWithUid.hideResults) {
+              setUserEntries((userEntries) => [...userEntries, childWithUid]);
+            } else {
+              setHiddenUserEntries((hiddenUserEntries) => [
+                ...hiddenUserEntries,
+                childWithUid,
+              ]);
+            }
+          }
         });
       })
       .then(() => {
         placements.current.sort((a, b) => a - b);
+
         setLoadingEntries(false);
       });
-  }, [hasUpdated]);
-
-  const testEntries = [
-    {
-      name: "Exempel Exempelsson",
-      raceTime: 5243,
-      uploadTime: "2021-04-02 08.32",
-      imgs: ["/images/fortrampet_bike.jpg"],
-      text: "Detta är ett exempel på hur det kommer se ut när deltagare kommer lägga upp. Det går som sagt att dölja sin tid och placering så att det inte syns på hemsidan.",
-      hideResults: false,
-    },
-    {
-      name: "Exempel Exempelsson",
-      raceTime: 3243,
-      uploadTime: "2021-02-02 08.32",
-      imgs: ["/images/news/barn-badmossa.jpg"],
-      text: "Ett till exempel med mindre lite text.",
-      hideResults: false,
-    },
-    {
-      name: "Exempel Exempelsson",
-      raceTime: 1943,
-      uploadTime: "2021-02-02 08.32",
-      imgs: ["/images/barn_lopning.png"],
-      text: "",
-      hideResults: false,
-    },
-    {
-      name: "Exempel Exempelsson",
-      raceTime: 6243,
-      uploadTime: "2021-02-02 08.32",
-      imgs: ["/images/eva_kronobergare.jpg"],
-      text: "Bra runda",
-      hideResults: false,
-    },
-    {
-      name: "Exempel Exempelsson",
-      raceTime: 3243,
-      uploadTime: "2021-02-02 09.32",
-      imgs: ["/images/simning.jpg"],
-      text: "Detta är ett exempel på hur det kommer se ut när deltagare kommer lägga upp. Det går som sagt att dölja sin tid och placering så att det inte syns på hemsidan.",
-      hideResults: true,
-    },
-  ];
-
-  const testPlacements = useRef(
-    [5243, 3243, 1943, 6243, 3243].sort((a, b) => a - b)
-  );
+  }, [hasUpdated, orderBy]);
 
   return (
     <div style={{ padding: "0px 20px 0px 20px" }}>
@@ -129,7 +109,33 @@ const CoronaEdition = () => {
 
         <UploadModal setHasUpdated={setHasUpdated} />
       </div>
-
+      <UncontrolledDropdown
+        isOpen={dropdownOpen}
+        toggle={toggle}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 20,
+        }}
+      >
+        <DropdownToggle tag="div" caret className="sorting-toggle">
+          Sortera efter
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={() => setOrderBy("time")}
+            active={orderBy === "time"}
+          >
+            Nyast
+          </DropdownItem>
+          <DropdownItem
+            onClick={() => setOrderBy("raceTime")}
+            active={orderBy === "raceTime"}
+          >
+            Placering
+          </DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
       <div
         style={{
           marginLeft: "auto",
@@ -146,17 +152,26 @@ const CoronaEdition = () => {
             style={{ width: "3rem", height: "3rem", marginTop: 10 }}
             type="grow"
           />
-        ) : userEntries.length > 0 ? (
-          userEntries.map((entry, i) => {
-            entry.placement = placements.current.indexOf(entry.raceTime) + 1;
-            return <EntryModal key={i} id={i + 1} entry={entry} />;
-          })
+        ) : orderBy === "time" ? (
+          userEntries
+            .slice(0)
+            .reverse()
+            .map((entry, i) => {
+              entry.placement = placements.current.indexOf(entry.raceTime) + 1;
+              return <EntryModal key={i} id={i + 1} entry={entry} />;
+            })
         ) : (
-          testEntries.map((entry, i) => {
-            entry.placement =
-              testPlacements.current.indexOf(entry.raceTime) + 1;
-            return <EntryModal key={i} id={i + 1} entry={entry} />;
-          })
+          <Fragment>
+            {userEntries.map((entry, i) => {
+              entry.placement = placements.current.indexOf(entry.raceTime) + 1;
+              return <EntryModal key={i} id={i + 1} entry={entry} />;
+            })}
+
+            {hiddenUserEntries.map((entry, i) => {
+              entry.placement = placements.current.indexOf(entry.raceTime) + 1;
+              return <EntryModal key={i} id={i + 1} entry={entry} />;
+            })}
+          </Fragment>
         )}
       </div>
     </div>

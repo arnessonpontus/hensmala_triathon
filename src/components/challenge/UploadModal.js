@@ -27,9 +27,9 @@ const UploadModal = (props) => {
   const [text, setText] = useState("");
   const [imgs, setImgs] = useState([null]);
   const [imgLoading, setImgLoading] = useState([false]);
-  const [hour, setHour] = useState(0);
-  const [min, setMin] = useState(0);
-  const [sec, setSec] = useState(0);
+  const [hour, setHour] = useState(-1);
+  const [min, setMin] = useState(-1);
+  const [sec, setSec] = useState(-1);
   const [hideResults, setHideResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -86,7 +86,7 @@ const UploadModal = (props) => {
     } else if (!name) {
       setError("Du måste ange ett namn!");
       return false;
-    } else if (!hour || !min || !sec) {
+    } else if (hour === -1 || min === -1 || sec === -1) {
       setError("Du måste ange genomförandets tid!");
       return false;
     } else {
@@ -193,7 +193,12 @@ const UploadModal = (props) => {
 
   const removeImg = (idx) => {
     const newImgs = [...imgs];
-    newImgs.splice(idx, 1);
+    if (idx === 0) {
+      newImgs[0] = null;
+    } else {
+      newImgs.splice(idx, 1);
+    }
+
     setImgs(newImgs);
   };
 
@@ -349,8 +354,12 @@ const UploadModal = (props) => {
                 onChange={(e) => setphone(e.target.value)}
               />
               <FormText color="muted">
-                Dessa är så vi kan kontakta dig om du vinner. Kommer ej visas.
+                Dessa är så vi kan kontakta dig om du vinner. Kommer ej att
+                visas.
               </FormText>
+            </FormGroup>
+            <FormGroup>
+              <FormText color="bold">* obligatoriska fält.</FormText>
             </FormGroup>
             <FormGroup check inline>
               <Label check>
@@ -359,12 +368,12 @@ const UploadModal = (props) => {
                   value={hideResults}
                   onClick={() => setHideResults(!hideResults)}
                 />{" "}
-                Dölj mitt resultat från hemsidan
+                Dölj min placering och tid från hemsidan
               </Label>
             </FormGroup>
-            <FormGroup>
-              <FormText color="muted">* obligatoriska fält.</FormText>
-            </FormGroup>
+            <FormText color="muted">
+              Om du döljer detta kommer du ej kunna vara med i finalen.
+            </FormText>
           </Form>
           {error ? <Alert color="danger">{error}</Alert> : null}
         </ModalBody>

@@ -96,7 +96,11 @@ const EntryCard = (props) => {
         </div>
       </div>
       <span style={styles.timeStyle}>
-        {props.entry.hideResults ? "*****" : secToHMS(props.entry.raceTime)}
+        {props.entry.hideResults ? (
+          <i>Tid dold</i>
+        ) : (
+          secToHMS(props.entry.raceTime)
+        )}
       </span>
       <span style={styles.dateStyle}>{props.entry.uploadTime}</span>
     </div>
