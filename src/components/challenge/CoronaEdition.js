@@ -1,31 +1,69 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 
 import UploadModal from "./UploadModal";
-import * as firebase from "firebase";
 import { NavLink as RRNavLink } from "react-router-dom";
 import About2021 from "./About2021";
 import EntryModal from "./EntryModal";
+import * as firebase from "firebase";
+import Spinner from "../../../node_modules/reactstrap/es/Spinner";
+import {
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+} from "reactstrap";
 
-const Challenge = () => {
+const CoronaEdition = () => {
+  const [userEntries, setUserEntries] = useState([]);
+  const [hiddenUserEntries, setHiddenUserEntries] = useState([]);
+  const [loadingEntries, setLoadingEntries] = useState(false);
+  const [orderBy, setOrderBy] = useState("time");
+  const [hasUpdated, setHasUpdated] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+  const placements = useRef([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    setUserEntries([]);
+    setHiddenUserEntries([]);
+    setLoadingEntries(true);
+    placements.current = [];
 
-  const entries = [
-    "/images/fortrampet_bike.jpg",
-    "/images/news/barn-badmossa.jpg",
-    "/images/barn_lopning.png",
-    "/images/eva_kronobergare.jpg",
-    "/images/simning.jpg",
-  ];
+    firebase
+      .database()
+      .ref("entries")
+      .orderByChild(orderBy)
+      .once("value", (snapshot) => {
+        snapshot.forEach((child) => {
+          const childWithUid = { ...child.val(), uid: child.key };
 
-  const exampleTexts = [
-    "Detta är ett exempel på hur det kommer se ut när deltagare kommer lägga upp. Det går som sagt att dölja sin tid och placering så att det inte syns på hemsidan.",
-    "Ett till exempel med mindre lite text.",
-    "",
-    "Bra runda",
-    "Detta är ett exempel på hur det kommer se ut när deltagare kommer lägga upp. Det går som sagt att dölja sin tid och placering så att det inte syns på hemsidan.",
-  ];
+          if (!childWithUid.hideResults) {
+            placements.current.push(childWithUid.raceTime);
+          }
+
+          if (orderBy === "time") {
+            setUserEntries((userEntries) => [...userEntries, childWithUid]);
+          } else {
+            if (!childWithUid.hideResults) {
+              setUserEntries((userEntries) => [...userEntries, childWithUid]);
+            } else {
+              setHiddenUserEntries((hiddenUserEntries) => [
+                ...hiddenUserEntries,
+                childWithUid,
+              ]);
+            }
+          }
+        });
+      })
+      .then(() => {
+        placements.current.sort((a, b) => a - b);
+
+        setLoadingEntries(false);
+      });
+  }, [hasUpdated, orderBy]);
 
   return (
     <div style={{ padding: "0px 20px 0px 20px" }}>
@@ -70,15 +108,35 @@ const Challenge = () => {
           <span>Anmälan</span>
         </RRNavLink>
 
-        <div
-          onClick={() => alert("Uppladdning inte tillåten ännu.")}
-          className="button-style upload-button"
-        >
-          <span>Ladda upp bidrag</span>
-          <i className="fas fa-upload icon-style"></i>
-        </div>
+        <UploadModal setHasUpdated={setHasUpdated} />
       </div>
-
+      <UncontrolledDropdown
+        isOpen={dropdownOpen}
+        toggle={toggle}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 20,
+        }}
+      >
+        <DropdownToggle tag="div" caret className="sorting-toggle">
+          Sortera efter
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={() => setOrderBy("time")}
+            active={orderBy === "time"}
+          >
+            Nyast
+          </DropdownItem>
+          <DropdownItem
+            onClick={() => setOrderBy("raceTime")}
+            active={orderBy === "raceTime"}
+          >
+            Placering
+          </DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
       <div
         style={{
           marginLeft: "auto",
@@ -90,18 +148,35 @@ const Challenge = () => {
           justifyContent: "center",
         }}
       >
-        {entries.map((img, i) => {
-          return (
-            <EntryModal
-              id={i + 1}
-              image={img}
-              participantText={exampleTexts[i]}
-            />
-          );
-        })}
+        {loadingEntries ? (
+          <Spinner
+            style={{ width: "3rem", height: "3rem", marginTop: 10 }}
+            type="grow"
+          />
+        ) : orderBy === "time" ? (
+          userEntries
+            .slice(0)
+            .reverse()
+            .map((entry, i) => {
+              entry.placement = placements.current.indexOf(entry.raceTime) + 1;
+              return <EntryModal key={i} id={i + 1} entry={entry} />;
+            })
+        ) : (
+          <Fragment>
+            {userEntries.map((entry, i) => {
+              entry.placement = placements.current.indexOf(entry.raceTime) + 1;
+              return <EntryModal key={i} id={i + 1} entry={entry} />;
+            })}
+
+            {hiddenUserEntries.map((entry, i) => {
+              entry.placement = placements.current.indexOf(entry.raceTime) + 1;
+              return <EntryModal key={i} id={i + 1} entry={entry} />;
+            })}
+          </Fragment>
+        )}
       </div>
     </div>
   );
 };
 
-export default Challenge;
+export default CoronaEdition;

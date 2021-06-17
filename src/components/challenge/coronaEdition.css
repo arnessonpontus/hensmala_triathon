@@ -36,6 +36,21 @@
   color: inherit;
 }
 
+.sorting-toggle {
+  cursor: pointer;
+}
+
+.sorting-toggle:hover {
+  color: rgb(107, 107, 107);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #11999e !important;
+}
+
 @media (max-width: 1200px) {
   .upload-button {
     position: fixed;
