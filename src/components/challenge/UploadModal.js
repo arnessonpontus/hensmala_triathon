@@ -34,6 +34,17 @@ const UploadModal = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const handleUpload = () => {
+    toggle();
+    setEmail("");
+    setName("");
+    setphone("");
+    setText("");
+    setImgs([null]);
+    setHour(-1);
+    setMin(-1);
+    setSec(-1);
+  };
   const toggle = () => {
     setError("");
     setConsentAccept(false);
@@ -176,7 +187,7 @@ const UploadModal = (props) => {
           .then(() => {
             setLoading(false);
             props.setHasUpdated(true);
-            toggle();
+            handleUpload();
           })
           .catch((err) => {
             setLoading(false);

@@ -28,6 +28,7 @@ const CoronaEdition = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setUserEntries([]);
+    setHiddenUserEntries([]);
     setLoadingEntries(true);
     placements.current = [];
 
