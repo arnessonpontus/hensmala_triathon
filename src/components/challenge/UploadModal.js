@@ -107,12 +107,7 @@ const UploadModal = (props) => {
 
   const storage = firebase.storage();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!checkValidation()) return;
-    setLoading(true);
-
+  const storeAndUpload = () => {
     const sessionId = new Date().getTime();
 
     const validImgs = imgs.filter((img) => img != null);
@@ -156,6 +151,45 @@ const UploadModal = (props) => {
       .catch((e) => {
         console.log(`Some failed `, e);
       });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!checkValidation()) return;
+    setLoading(true);
+
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute("6LcKIqQZAAAAAK88TdJkAsZAOZ4YLSf7VFqtXMNz", {
+          action: "submit",
+        })
+        .then((token) => {
+          fetch(`/.netlify/functions/handleRecaptcha/`, {
+            method: "POST",
+            body: JSON.stringify(token),
+          })
+            .then((res) => {
+              if (res.status === 200) {
+                res.json().then((res) => {
+                  if (res.data.score > 0.5) {
+                    storeAndUpload();
+                  } else {
+                    alert("Är du en robot? Testa igen.");
+                    setLoading(false);
+                  }
+                });
+              } else {
+                alert("Något gick fel.");
+                setLoading(false);
+              }
+            })
+            .catch((err) => {
+              setLoading(false);
+              console.log(err);
+            });
+        });
+    });
   };
 
   const uploadChallenge = (urls) => {
