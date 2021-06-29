@@ -7,7 +7,7 @@
     },
     {
       "title": "Länsförsäkringar",
-      "image": "lf.jpg",
+      "image": "lf_small.jpg",
       "link": "https://www.lansforsakringar.se/kronoberg/privat/"
     },
 
@@ -54,6 +54,11 @@
   ],
 
   "silver": [
+    {
+      "title": "Korpalycke",
+      "image": "korpalycke.jpg",
+      "link": "https://korpalyckefastighets.se/"
+    },
     {
       "title": "Lohilo",
       "image": "lohilo_logo.png",
