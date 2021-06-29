@@ -1,10 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Modal } from "reactstrap";
 import { secToHMS } from "../TimeUtils";
+import ChallengeCarousell from "./ChallengeCarousell";
 import EntryCard from "./EntryCard";
 
 const ChallengeModal = (props) => {
   const [modal, setModal] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -24,7 +27,7 @@ const ChallengeModal = (props) => {
       height: 350,
       position: "absolute",
       top: 0,
-      backgroundImage: `url(${props.entry.imgs[0]})`,
+      backgroundImage: `url(${props.entry.imgs[activeIndex]})`,
       filter: "blur(50px)",
     },
     userTextBoxStyle: {
@@ -113,20 +116,35 @@ const ChallengeModal = (props) => {
               alignItems: "center",
             }}
           >
-            <a
-              href={props.image}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ overflow: "hidden" }}
-            >
-              <img
-                style={styles.imgStyle}
-                src={props.entry.imgs[0]}
-                alt="deltagarbild"
-              ></img>
-            </a>
+            {props.entry.imgs.length > 1 ? (
+              <div>
+                <ChallengeCarousell
+                  imgs={props.entry.imgs}
+                  activeIndex={activeIndex}
+                  setActiveIndex={setActiveIndex}
+                  animating={animating}
+                  setAnimating={setAnimating}
+                />
+              </div>
+            ) : (
+              <Fragment>
+                <div style={styles.imgBackgroundStyle}></div>
+
+                <a
+                  href={props.entry.imgs[0]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ overflow: "hidden" }}
+                >
+                  <img
+                    style={styles.imgStyle}
+                    src={props.entry.imgs[0]}
+                    alt="deltagarbild"
+                  ></img>
+                </a>
+              </Fragment>
+            )}
           </div>
-          <div style={styles.imgBackgroundStyle}></div>
 
           <div
             style={{

@@ -280,7 +280,7 @@ class RegisterForm2021 extends Component {
           </p>
 
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-          <i style={{ fontSize: 12 }}>Startavgift: 250kr</i>
+          <b style={{ fontSize: 20 }}>Startavgift: 250kr</b>
         </Col>
       </Row>
     );

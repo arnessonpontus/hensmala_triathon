@@ -115,38 +115,47 @@ const UploadModal = (props) => {
 
     const sessionId = new Date().getTime();
 
-    const urls = [];
     const validImgs = imgs.filter((img) => img != null);
-    const uploadImgs = new Promise((resolve, reject) => {
-      validImgs.forEach((img, i) => {
-        const uploadTask = storage
-          .ref(`images_2021/${sessionId + img.name}`)
-          .put(img);
 
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            // Can set progress/loading here
-          },
-          (error) => {
-            console.log(error);
-          },
-          () => {
-            storage
-              .ref("images_2021")
-              .child(sessionId + img.name)
-              .getDownloadURL()
-              .then((url) => {
-                urls.push(url);
-                if (i === validImgs.length - 1) resolve();
-              });
-          }
-        );
+    Promise.all(
+      validImgs.map((img) => {
+        return new Promise((resolve, reject) => {
+          const uploadTask = firebase
+            .storage()
+            .ref(`images_2021/${sessionId + img.name}`)
+            .put(img);
+
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              // Can set progress/loading here
+            },
+            (error) => {
+              console.log(error);
+            },
+            () => {
+              storage
+                .ref("images_2021")
+                .child(sessionId + img.name)
+                .getDownloadURL()
+                .then((url) => {
+                  resolve(url);
+                })
+                .catch((e) => {
+                  console.log(e);
+                  reject();
+                });
+            }
+          );
+        });
+      })
+    )
+      .then((urls) => {
+        uploadChallenge(urls);
+      })
+      .catch((e) => {
+        console.log(`Some failed `, e);
       });
-    });
-    uploadImgs.then(() => {
-      uploadChallenge(urls);
-    });
   };
 
   const uploadChallenge = (urls) => {
@@ -162,6 +171,8 @@ const UploadModal = (props) => {
       ":" +
       ("0" + now.getMinutes()).slice(-2);
     var dateTime = date + " " + time;
+    console.log(JSON.stringify(urls));
+    console.log(urls.length);
     firebase
       .database()
       .ref("/entries")
@@ -318,7 +329,7 @@ const UploadModal = (props) => {
                         style={{ display: "none" }}
                       />
                     </div>
-                    {imgs.length - 1 === i ? (
+                    {imgs.length - 1 === i && imgs.length < 5 ? (
                       <p>
                         <div
                           className="button-style"

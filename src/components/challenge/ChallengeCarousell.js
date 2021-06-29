@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Carousel,
   CarouselItem,
@@ -7,20 +7,38 @@ import {
 } from "reactstrap";
 
 const ChallengeCarousell = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  const { animating, activeIndex, setAnimating, setActiveIndex } = props;
+
+  const styles = {
+    imgStyle: {
+      height: 350,
+      width: "100%",
+      objectFit: "contain",
+      position: "relative",
+      zIndex: 1,
+      boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
+    },
+    imgBackgroundStyle: {
+      width: "100%",
+      height: 350,
+      position: "absolute",
+      top: 0,
+      backgroundImage: `url(${props.imgs[activeIndex]})`,
+      filter: "blur(50px)",
+    },
+  };
 
   const next = () => {
     if (animating) return;
     const nextIndex =
-      activeIndex === props.userChall.imgs.length - 1 ? 0 : activeIndex + 1;
+      activeIndex === props.imgs.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
     const nextIndex =
-      activeIndex === 0 ? props.userChall.imgs.length - 1 : activeIndex - 1;
+      activeIndex === 0 ? props.imgs.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
 
@@ -29,47 +47,53 @@ const ChallengeCarousell = (props) => {
     setActiveIndex(newIndex);
   };
 
-  const slides = props.userChall.imgs.map((img) => {
+  const slides = props.imgs.map((img) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={img}
       >
-        <img
-          width="100%"
-          style={{ objectFit: "contain" }}
-          src={img}
-          alt={img}
-        />
+        <a
+          href={img}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ overflow: "hidden" }}
+        >
+          <img style={styles.imgStyle} src={img} alt="deltagarbild"></img>
+        </a>
       </CarouselItem>
     );
   });
 
   return (
-    <Carousel
-      interval={false}
-      activeIndex={activeIndex}
-      next={next}
-      previous={previous}
-    >
-      <CarouselIndicators
-        items={props.userChall.imgs}
+    <Fragment>
+      <div style={styles.imgBackgroundStyle}></div>
+
+      <Carousel
+        interval={false}
         activeIndex={activeIndex}
-        onClickHandler={goToIndex}
-      />
-      {slides}
-      <CarouselControl
-        direction="prev"
-        directionText="Previous"
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        direction="next"
-        directionText="Next"
-        onClickHandler={next}
-      />
-    </Carousel>
+        next={next}
+        previous={previous}
+      >
+        <CarouselIndicators
+          items={props.imgs}
+          activeIndex={activeIndex}
+          onClickHandler={goToIndex}
+        />
+        {slides}
+        <CarouselControl
+          direction="prev"
+          directionText="Previous"
+          onClickHandler={previous}
+        />
+        <CarouselControl
+          direction="next"
+          directionText="Next"
+          onClickHandler={next}
+        />
+      </Carousel>
+    </Fragment>
   );
 };
 
