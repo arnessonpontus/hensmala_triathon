@@ -9,7 +9,7 @@ class Sponsors extends Component {
   render() {
     return (
       <Container>
-        <div className="spons-container">
+        <div className="spons-container" style={{ paddingTop: "20px" }}>
           {sponsors.gold.map((sponsor) => {
             return <SponsorSection sponsor={sponsor} sponsType="gold" />;
           })}

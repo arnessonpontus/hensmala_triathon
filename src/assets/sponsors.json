@@ -1,6 +1,17 @@
 {
   "gold": [
     {
+      "title": "",
+      "image": "stewes.png",
+      "link": "http://www.stewesservice.se/"
+    },
+    {
+      "title": "Länsförsäkringar",
+      "image": "lf.jpg",
+      "link": "https://www.lansforsakringar.se/kronoberg/privat/"
+    },
+
+    {
       "title": "Lions",
       "image": "lions.png",
       "link": "https://lionsclubs.org/sv"
@@ -44,9 +55,14 @@
 
   "silver": [
     {
-      "title": "Länsförsäkringar",
-      "image": "lf.png",
-      "link": "https://www.lansforsakringar.se/kronoberg/privat/"
+      "title": "Lohilo",
+      "image": "lohilo_logo.png",
+      "link": "https://lohilo.com/"
+    },
+    {
+      "title": "Svenskt kosttillskott",
+      "image": "svenskt_kosttillskott_logo.png",
+      "link": "https://www.svensktkosttillskott.se/"
     },
     {
       "title": "Trensums",
@@ -103,11 +119,7 @@
       "image": "glass-factory.png",
       "link": "https://www.theglassfactory.se"
     },
-    {
-      "title": "",
-      "image": "stewes.png",
-      "link": "http://www.stewesservice.se/"
-    },
+
     {
       "title": "",
       "image": "liljegrens.png",
@@ -234,7 +246,7 @@
     },
     {
       "title": "",
-      "image": "lindas-har.png",
+      "image": "lindas-haratelje.png",
       "link": "https://www.facebook.com/Lindasharatelje/"
     },
     {
