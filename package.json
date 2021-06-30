@@ -19,10 +19,12 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.2.0",
+    "react-slick": "^0.28.1",
     "react-spinners": "^0.6.1",
     "react-youtube": "^7.13.1",
     "reactstrap": "^8.9.0",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

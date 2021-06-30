@@ -6,8 +6,6 @@ import EntryCard from "./EntryCard";
 
 const ChallengeModal = (props) => {
   const [modal, setModal] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -20,15 +18,6 @@ const ChallengeModal = (props) => {
       objectFit: "contain",
       position: "relative",
       zIndex: 1,
-      boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
-    },
-    imgBackgroundStyle: {
-      width: "100%",
-      height: 350,
-      position: "absolute",
-      top: 0,
-      backgroundImage: `url(${props.entry.imgs[activeIndex]})`,
-      filter: "blur(50px)",
     },
     userTextBoxStyle: {
       width: "70%",
@@ -50,8 +39,8 @@ const ChallengeModal = (props) => {
     },
     closeButtonstyle: {
       position: "absolute",
-      top: 0,
-      right: 0,
+      top: -25,
+      right: -25,
       backgroundColor: "#11999E",
       width: 30,
       height: 30,
@@ -100,7 +89,7 @@ const ChallengeModal = (props) => {
         toggle={toggleModal}
         style={{
           minWidth: "80vw",
-          padding: 15,
+          padding: 30,
           marginLeft: "auto",
           marginRight: "auto",
         }}
@@ -109,42 +98,26 @@ const ChallengeModal = (props) => {
           X
         </div>
         <div style={{ minHeight: "85vh" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {props.entry.imgs.length > 1 ? (
-              <div>
-                <ChallengeCarousell
-                  imgs={props.entry.imgs}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
-                  animating={animating}
-                  setAnimating={setAnimating}
-                />
-              </div>
-            ) : (
-              <Fragment>
-                <div style={styles.imgBackgroundStyle}></div>
-
-                <a
-                  href={props.entry.imgs[0]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ overflow: "hidden" }}
-                >
-                  <img
-                    style={styles.imgStyle}
-                    src={props.entry.imgs[0]}
-                    alt="deltagarbild"
-                  ></img>
-                </a>
-              </Fragment>
-            )}
-          </div>
+          {props.entry.imgs.length > 1 ? (
+            <div>
+              <ChallengeCarousell imgs={props.entry.imgs} />
+            </div>
+          ) : (
+            <div className="entry-modal-background">
+              <a
+                href={props.entry.imgs[0]}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ overflow: "hidden" }}
+              >
+                <img
+                  style={styles.imgStyle}
+                  src={props.entry.imgs[0]}
+                  alt="deltagarbild"
+                ></img>
+              </a>
+            </div>
+          )}
 
           <div
             style={{

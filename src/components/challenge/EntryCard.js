@@ -18,7 +18,7 @@ const EntryCard = (props) => {
     },
     imgBackgroundStyle: {
       width: "100%",
-      backgroundColor: "gray",
+      backgroundColor: "lightgray",
       height: 150,
       display: "flex",
       justifyContent: "center",
