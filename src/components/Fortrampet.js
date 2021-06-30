@@ -57,7 +57,7 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Det är fri start från 09:00 till 12:00 den 10:e juli 2021.
+                  Det är fri start från 09:00 till 12:00 den 11:e juli 2021.
                 </b>
               </p>
               <h4>
@@ -74,7 +74,7 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Nej ingen anmälan krävs. Det är bara att dyka upp den 10:e
+                  Nej ingen anmälan krävs. Det är bara att dyka upp den 11:e
                   juli.
                 </b>
               </p>
