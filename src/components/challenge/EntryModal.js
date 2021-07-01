@@ -24,13 +24,13 @@ const ChallengeModal = (props) => {
     },
     timeStyle: {
       position: "absolute",
-      bottom: -10,
+      bottom: -20,
       left: 0,
       fontWeight: "bold",
     },
     dateStyle: {
       position: "absolute",
-      bottom: -10,
+      bottom: -20,
       right: 0,
     },
     exampleText: {
@@ -89,6 +89,8 @@ const ChallengeModal = (props) => {
         toggle={toggleModal}
         style={{
           minWidth: "80vw",
+          maxWidth: "90vw",
+
           padding: 30,
           marginLeft: "auto",
           marginRight: "auto",
@@ -97,7 +99,7 @@ const ChallengeModal = (props) => {
         <div style={styles.closeButtonstyle} onClick={toggleModal}>
           X
         </div>
-        <div style={{ minHeight: "85vh" }}>
+        <div style={{ minHeight: "75vh" }}>
           {props.entry.imgs.length > 1 ? (
             <div>
               <ChallengeCarousell imgs={props.entry.imgs} />

@@ -5,12 +5,29 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 const ChallengeCarousell = (props) => {
+  function CustomArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          height: 200,
+          display: "flex",
+          alignItems: "center",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    prevArrow: <CustomArrow />,
+    nextArrow: <CustomArrow />,
   };
   const styles = {
     imgStyle: {
