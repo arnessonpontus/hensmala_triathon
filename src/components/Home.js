@@ -7,11 +7,13 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <img
-          style={{ width: "100%" }}
-          src="/images/ht_banner_smaller.jpg"
-          alt="HT_banner"
-        ></img>
+        <div className="banner-wrapper">
+          <img
+            className="banner"
+            src="/images/ht_banner_resized.jpg"
+            alt="HT_banner"
+          ></img>
+        </div>
         <Container className="p-4">
           <div className="card-box">
             <Row>

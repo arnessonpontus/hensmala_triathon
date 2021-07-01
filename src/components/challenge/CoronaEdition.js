@@ -27,7 +27,7 @@ const CoronaEdition = () => {
   const hasUploaded = () => {
     setHasUpdated(true);
     setSnackbarVisible(true);
-    setTimeout(() => dismissSnackbar(), 7000);
+    setTimeout(() => dismissSnackbar(), 9000);
   };
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);

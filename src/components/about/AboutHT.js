@@ -93,11 +93,13 @@ class AboutHT extends React.Component {
     const result_years = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
     return (
       <div>
-        <img
-          style={{ width: "100%" }}
-          src="/images/about-ht.jpg"
-          alt="HT_banner"
-        ></img>
+        <div className="banner-wrapper">
+          <img
+            className="banner"
+            src="/images/about-ht.jpg"
+            alt="about_HT_banner"
+          ></img>
+        </div>
         <Container className="mt-5" style={{ minHeight: "50vh" }}>
           <div id="info">
             <Button

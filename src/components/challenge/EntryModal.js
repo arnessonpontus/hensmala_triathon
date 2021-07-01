@@ -101,7 +101,7 @@ const ChallengeModal = (props) => {
         </div>
         <div style={{ minHeight: "75vh" }}>
           {props.entry.imgs.length > 1 ? (
-            <div>
+            <div style={{ marginBottom: 20 }}>
               <ChallengeCarousell imgs={props.entry.imgs} />
             </div>
           ) : (
