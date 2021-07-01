@@ -141,6 +141,15 @@ i {
   height: 0;
 }
 
+.consent-button {
+  color: #909090;
+  cursor: pointer;
+}
+
+.consent-button:hover {
+  color: #3f3f3f;
+}
+
 @media (max-width: 1200px) {
   .donate {
     visibility: hidden;

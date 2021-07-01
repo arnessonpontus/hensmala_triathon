@@ -13,10 +13,10 @@ import {
   Spinner,
   Alert,
 } from "reactstrap";
-import ConsentChallenge from "./ConsentChallenge";
 import * as firebase from "firebase";
 import imageCompression from "browser-image-compression";
 import { TimePicker } from "../TimeUtils";
+import Consent from "../Consent";
 
 const UploadModal = (props) => {
   const [modal, setModal] = useState(false);
@@ -391,6 +391,7 @@ const UploadModal = (props) => {
               <Input
                 placeholder="din.email@mail.com"
                 value={email}
+                required
                 maxLength="60"
                 type="email"
                 name="email"
@@ -436,19 +437,32 @@ const UploadModal = (props) => {
         <ModalFooter
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <FormGroup check>
-            <div>
-              <Label for="checkbox1">
+          <div>
+            <FormGroup check inline>
+              <Label check>
                 <Input
-                  className="checkbox1"
+                  value={consentAccept}
                   type="checkbox"
                   onClick={() => setConsentAccept(!consentAccept)}
                 />{" "}
-                <span>Jag accepterar villkoren.</span>
-                <ConsentChallenge />
+                Jag accepterar villkoren
               </Label>
-            </div>
-          </FormGroup>
+            </FormGroup>
+            <Consent
+              buttonText="Läs vilkoren här"
+              title="Information om sparad data"
+            >
+              Hensmåla Triathlon kommer spara namn, text och bilder för att visa
+              här på hemsidan och möjligtvis andra plattformar. Ditt
+              telefonnummer och email visas ej, men sparas för att kunna
+              kontakta dig i framtiden om du vinner ett pris, dock som längst
+              till 1 augusti 2022.
+              <br></br>
+              <br></br>
+              Om du önskar att vi ska ta bort, eller redigera dina uppgifter kan
+              du kontakta hensmala.triathlon@gmail.com.
+            </Consent>
+          </div>
 
           <Button
             onClick={handleSubmit}
@@ -459,6 +473,12 @@ const UploadModal = (props) => {
           >
             {loading ? <Spinner size="sm" color="light" /> : "Lägg upp"}
           </Button>
+          <small>
+            This site is protected by reCAPTCHA and the Google{" "}
+            <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
+            <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
+            apply.
+          </small>
         </ModalFooter>
       </Modal>
     </div>
