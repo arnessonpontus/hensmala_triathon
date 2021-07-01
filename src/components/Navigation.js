@@ -39,7 +39,7 @@ class Navigation extends React.Component {
           <img
             src="/images/nav_hona.png"
             alt="hona"
-            style={{ width: 30, marginRight: 10 }}
+            style={{ width: 20, marginRight: 10 }}
           ></img>
           Hensmåla Triathlon
         </NavbarBrand>

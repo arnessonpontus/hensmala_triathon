@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Modal } from "reactstrap";
+import { secToHMS } from "../TimeUtils";
+import ChallengeCarousell from "./ChallengeCarousell";
 import EntryCard from "./EntryCard";
 
 const ChallengeModal = (props) => {
@@ -16,28 +18,19 @@ const ChallengeModal = (props) => {
       objectFit: "contain",
       position: "relative",
       zIndex: 1,
-      boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
-    },
-    imgBackgroundStyle: {
-      width: "100%",
-      height: 350,
-      position: "absolute",
-      top: 0,
-      backgroundImage: `url(${props.image})`,
-      filter: "blur(50px)",
     },
     userTextBoxStyle: {
       width: "70%",
     },
     timeStyle: {
       position: "absolute",
-      bottom: -10,
+      bottom: -20,
       left: 0,
       fontWeight: "bold",
     },
     dateStyle: {
       position: "absolute",
-      bottom: -10,
+      bottom: -20,
       right: 0,
     },
     exampleText: {
@@ -46,8 +39,8 @@ const ChallengeModal = (props) => {
     },
     closeButtonstyle: {
       position: "absolute",
-      top: 0,
-      right: 0,
+      top: -25,
+      right: -25,
       backgroundColor: "#11999E",
       width: 30,
       height: 30,
@@ -67,11 +60,11 @@ const ChallengeModal = (props) => {
       width: 60,
       height: 60,
       backgroundColor:
-        props.id === 1
+        props.entry.placement === 1
           ? "#E6CF5C"
-          : props.id === 2
+          : props.entry.placement === 2
           ? "#C0C0C0"
-          : props.id === 3
+          : props.entry.placement === 3
           ? "#B98555"
           : "#ddeaeb",
       display: "flex",
@@ -88,8 +81,7 @@ const ChallengeModal = (props) => {
       <EntryCard
         onClick={toggleModal}
         id={props.id}
-        image={props.image}
-        participantText={props.participantText}
+        entry={props.entry}
       ></EntryCard>
       <Modal
         className="card-box"
@@ -97,7 +89,9 @@ const ChallengeModal = (props) => {
         toggle={toggleModal}
         style={{
           minWidth: "80vw",
-          padding: 15,
+          maxWidth: "90vw",
+
+          padding: 30,
           marginLeft: "auto",
           marginRight: "auto",
         }}
@@ -105,28 +99,27 @@ const ChallengeModal = (props) => {
         <div style={styles.closeButtonstyle} onClick={toggleModal}>
           X
         </div>
-        <div style={{ minHeight: "85vh" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <a
-              href={props.image}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ overflow: "hidden" }}
-            >
-              <img
-                style={styles.imgStyle}
-                src={props.image}
-                alt="deltagarbild"
-              ></img>
-            </a>
-          </div>
-          <div style={styles.imgBackgroundStyle}></div>
+        <div style={{ minHeight: "75vh" }}>
+          {props.entry.imgs.length > 1 ? (
+            <div style={{ marginBottom: 20 }}>
+              <ChallengeCarousell imgs={props.entry.imgs} />
+            </div>
+          ) : (
+            <div className="entry-modal-background">
+              <a
+                href={props.entry.imgs[0]}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ overflow: "hidden" }}
+              >
+                <img
+                  style={styles.imgStyle}
+                  src={props.entry.imgs[0]}
+                  alt="deltagarbild"
+                ></img>
+              </a>
+            </div>
+          )}
 
           <div
             style={{
@@ -136,18 +129,22 @@ const ChallengeModal = (props) => {
             }}
           >
             <div style={styles.userTextBoxStyle}>
-              <h4 style={{ fontWeight: "bold" }}>Förnamn Efternamn</h4>
-              <p style={{ fontSize: 16 }}>{props.participantText}</p>
+              <h4 style={{ fontWeight: "bold" }}>{props.entry.name}</h4>
+              <p style={{ fontSize: 16 }}>{props.entry.text}</p>
             </div>
             <div style={styles.medalStyle}>
-              {props.id === 5 ? "?" : props.id}
+              {props.entry.hideResults ? "?" : props.entry.placement}
             </div>
           </div>
           <span style={styles.timeStyle}>
             {" "}
-            {props.id === 5 ? "*****" : "1h 23m 56s"}
+            {props.entry.hideResults ? (
+              <i>Tid dold</i>
+            ) : (
+              secToHMS(props.entry.raceTime)
+            )}
           </span>
-          <i style={styles.dateStyle}>2021-07-12</i>
+          <i style={styles.dateStyle}>{props.entry.uploadTime}</i>
         </div>
       </Modal>
     </Fragment>

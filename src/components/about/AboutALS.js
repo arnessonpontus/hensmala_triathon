@@ -35,11 +35,13 @@ class AboutALS extends React.Component {
   render() {
     return (
       <div>
-        <img
-          style={{ width: "100%" }}
-          src="/images/about-als.jpg"
-          alt="Neuro"
-        ></img>
+        <div className="banner-wrapper">
+          <img
+            className="banner"
+            src="/images/about-als.jpg"
+            alt="neuro-banner"
+          ></img>
+        </div>
         <Container className="mt-5" style={{ minHeight: "50vh" }}>
           <div>
             <Button

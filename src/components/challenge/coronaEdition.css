@@ -36,6 +36,33 @@
   color: inherit;
 }
 
+.sorting-toggle {
+  cursor: pointer;
+}
+
+.sorting-toggle:hover {
+  color: rgb(107, 107, 107);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #11999e !important;
+}
+
+.slick-arrow.slick-prev:before,
+.slick-arrow.slick-next:before {
+  color: black;
+}
+
+.entry-modal-background {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  background-color: lightgray;
+}
+
 @media (max-width: 1200px) {
   .upload-button {
     position: fixed;
