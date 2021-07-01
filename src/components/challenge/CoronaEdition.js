@@ -5,7 +5,7 @@ import { NavLink as RRNavLink } from "react-router-dom";
 import About2021 from "./About2021";
 import EntryModal from "./EntryModal";
 import * as firebase from "firebase";
-import Spinner from "../../../node_modules/reactstrap/es/Spinner";
+import { Alert, Spinner } from "reactstrap";
 import {
   DropdownToggle,
   DropdownMenu,
@@ -20,6 +20,15 @@ const CoronaEdition = () => {
   const [orderBy, setOrderBy] = useState("time");
   const [hasUpdated, setHasUpdated] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+
+  const dismissSnackbar = () => setSnackbarVisible(false);
+
+  const hasUploaded = () => {
+    setHasUpdated(true);
+    setSnackbarVisible(true);
+    setTimeout(() => dismissSnackbar(), 7000);
+  };
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -108,7 +117,7 @@ const CoronaEdition = () => {
           <span>Anmälan</span>
         </RRNavLink>
 
-        <UploadModal setHasUpdated={setHasUpdated} />
+        <UploadModal hasUploaded={hasUploaded} />
       </div>
       <UncontrolledDropdown
         isOpen={dropdownOpen}
@@ -175,6 +184,25 @@ const CoronaEdition = () => {
           </Fragment>
         )}
       </div>
+      <Alert
+        color="success"
+        isOpen={snackbarVisible}
+        toggle={dismissSnackbar}
+        style={{
+          position: "fixed",
+          bottom: 20,
+          left: "50%",
+          transform: "translateX(-50%)",
+          minWidth: "40%",
+          textAlign: "center",
+        }}
+      >
+        Ditt bidrag har laddats up!{" "}
+        <span aria-label="party" role="img">
+          🎉
+        </span>{" "}
+        <p>Maila hensmala.triathlon@gmail.com om något behöver ändras.</p>
+      </Alert>
     </div>
   );
 };

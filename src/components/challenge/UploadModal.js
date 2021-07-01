@@ -35,6 +35,7 @@ const UploadModal = (props) => {
   const [error, setError] = useState("");
 
   const handleUpload = () => {
+    props.hasUploaded();
     toggle();
     setEmail("");
     setName("");
@@ -231,7 +232,6 @@ const UploadModal = (props) => {
           })
           .then(() => {
             setLoading(false);
-            props.setHasUpdated(true);
             handleUpload();
           })
           .catch((err) => {
@@ -265,10 +265,11 @@ const UploadModal = (props) => {
         <i className="fas fa-upload icon-style"></i>
       </div>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Ladda upp bidrag</ModalHeader>
-        <ModalBody>
-          {error ? <Alert color="danger">{error}</Alert> : null}
-          <Form>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <ModalHeader toggle={toggle}>Ladda upp bidrag</ModalHeader>
+          <ModalBody>
+            {error ? <Alert color="danger">{error}</Alert> : null}
+
             <FormGroup>
               <Label for="name">Namn *</Label>
               <Input
@@ -326,7 +327,25 @@ const UploadModal = (props) => {
                         <Spinner type="grow" color="primary" />
                       ) : null}
                       {img ? (
-                        <div onClick={() => removeImg(i)}>
+                        <div style={{ position: "relative" }}>
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: -4,
+                              right: -4,
+                              cursor: "pointer",
+                            }}
+                            onClick={() => removeImg(i)}
+                          >
+                            <i
+                              style={{
+                                color: "tomato",
+                                backgroundColor: "white",
+                                borderRadius: "50%",
+                              }}
+                              className="fas fa-times-circle"
+                            ></i>
+                          </div>
                           <img
                             style={{ marginTop: 5, marginBottom: 20 }}
                             alt="förhansvisning"
@@ -354,7 +373,6 @@ const UploadModal = (props) => {
                         )}
                       </label>
                       <Input
-                        required={i === 0 ? true : false}
                         type="file"
                         accept="image/*"
                         name="img"
@@ -431,55 +449,57 @@ const UploadModal = (props) => {
             <FormText color="muted">
               Om du döljer detta kommer du ej kunna vara med i finalen.
             </FormText>
-          </Form>
-          {error ? <Alert color="danger">{error}</Alert> : null}
-        </ModalBody>
-        <ModalFooter
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <div>
-            <FormGroup check inline>
-              <Label check>
-                <Input
-                  value={consentAccept}
-                  type="checkbox"
-                  onClick={() => setConsentAccept(!consentAccept)}
-                />{" "}
-                Jag accepterar villkoren
-              </Label>
-            </FormGroup>
-            <Consent
-              buttonText="Läs vilkoren här"
-              title="Information om sparad data"
-            >
-              Hensmåla Triathlon kommer spara namn, text och bilder för att visa
-              här på hemsidan och möjligtvis andra plattformar. Ditt
-              telefonnummer och email visas ej, men sparas för att kunna
-              kontakta dig i framtiden om du vinner ett pris, dock som längst
-              till 1 augusti 2022.
-              <br></br>
-              <br></br>
-              Om du önskar att vi ska ta bort, eller redigera dina uppgifter kan
-              du kontakta hensmala.triathlon@gmail.com.
-            </Consent>
-          </div>
 
-          <Button
-            onClick={handleSubmit}
-            disabled={!consentAccept}
-            color="success"
-            size="lg"
-            style={{ display: "flex", alignItems: "center" }}
+            {error ? <Alert color="danger">{error}</Alert> : null}
+          </ModalBody>
+          <ModalFooter
+            style={{ display: "flex", justifyContent: "space-between" }}
           >
-            {loading ? <Spinner size="sm" color="light" /> : "Lägg upp"}
-          </Button>
-          <small>
-            This site is protected by reCAPTCHA and the Google{" "}
-            <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
-            <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
-            apply.
-          </small>
-        </ModalFooter>
+            <div>
+              <FormGroup check inline>
+                <Label check>
+                  <Input
+                    value={consentAccept}
+                    type="checkbox"
+                    onClick={() => setConsentAccept(!consentAccept)}
+                  />{" "}
+                  Jag accepterar villkoren
+                </Label>
+              </FormGroup>
+              <Consent
+                buttonText="Läs vilkoren här"
+                title="Information om sparad data"
+              >
+                Hensmåla Triathlon kommer spara namn, text och bilder för att
+                visa här på hemsidan och möjligtvis andra plattformar. Ditt
+                telefonnummer och email visas ej, men sparas för att kunna
+                kontakta dig i framtiden om du vinner ett pris, dock som längst
+                till 1 augusti 2022.
+                <br></br>
+                <br></br>
+                Om du önskar att vi ska ta bort, eller redigera dina uppgifter
+                kan du kontakta hensmala.triathlon@gmail.com.
+              </Consent>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={!consentAccept}
+              color="success"
+              size="lg"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              {loading ? <Spinner size="sm" color="light" /> : "Lägg upp"}
+            </Button>
+            <small>
+              This site is protected by reCAPTCHA and the Google{" "}
+              <a href="https://policies.google.com/privacy">Privacy Policy</a>{" "}
+              and{" "}
+              <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
+              apply.
+            </small>
+          </ModalFooter>
+        </Form>
       </Modal>
     </div>
   );
