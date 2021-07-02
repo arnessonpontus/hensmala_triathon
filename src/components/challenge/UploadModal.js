@@ -98,7 +98,7 @@ const UploadModal = (props) => {
     } else if (!name) {
       setError("Du måste ange ett namn!");
       return false;
-    } else if (hour === -1 || min === -1 || sec === -1) {
+    } else if (!hideResults && (hour === -1 || min === -1 || sec === -1)) {
       setError("Du måste ange genomförandets tid!");
       return false;
     } else {
