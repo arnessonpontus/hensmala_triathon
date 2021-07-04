@@ -130,7 +130,9 @@ const ChallengeModal = (props) => {
           >
             <div style={styles.userTextBoxStyle}>
               <h4 style={{ fontWeight: "bold" }}>{props.entry.name}</h4>
-              <p style={{ fontSize: 16 }}>{props.entry.text}</p>
+              <p style={{ fontSize: 16, whiteSpace: "pre-line" }}>
+                {props.entry.text}
+              </p>
             </div>
             <div style={styles.medalStyle}>
               {props.entry.hideResults ? "?" : props.entry.placement}

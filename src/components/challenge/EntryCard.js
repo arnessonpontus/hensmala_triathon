@@ -89,7 +89,9 @@ const EntryCard = (props) => {
       >
         <div style={styles.userTextBoxStyle}>
           <h6 style={{ fontWeight: "bold" }}>{props.entry.name}</h6>
-          <p style={{ fontSize: 12 }}>{props.entry.text}</p>
+          <p style={{ fontSize: 12, whiteSpace: "pre-line" }}>
+            {props.entry.text}
+          </p>
         </div>
         <div style={styles.medalStyle}>
           {props.entry.hideResults ? "?" : props.entry.placement}
