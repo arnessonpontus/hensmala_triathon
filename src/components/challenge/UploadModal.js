@@ -381,7 +381,7 @@ const UploadModal = (props) => {
                         style={{ display: "none" }}
                       />
                     </div>
-                    {imgs.length - 1 === i && imgs.length < 5 ? (
+                    {imgs.length - 1 === i && imgs.length < 8 ? (
                       <p>
                         <div
                           className="button-style"
