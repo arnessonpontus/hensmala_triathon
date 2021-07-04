@@ -13,6 +13,10 @@ const ChallengeCarousell = (props) => {
         style={{
           ...style,
           height: 200,
+          width: 40,
+          marginLeft: 5,
+          marginRight: 5,
+          zIndex: 2,
           display: "flex",
           alignItems: "center",
         }}
