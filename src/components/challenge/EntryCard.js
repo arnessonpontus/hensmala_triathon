@@ -24,6 +24,17 @@ const EntryCard = (props) => {
       justifyContent: "center",
       alignItems: "center",
     },
+    multImgIndicator: {
+      position: "absolute",
+      top: 10,
+      right: 15,
+      textAlign: "center",
+    },
+    multImgNumber: {
+      fontSize: 10,
+      marginTop: -6,
+      color: "#5c5c5c",
+    },
     userTextBoxStyle: {
       width: "70%",
       maxHeight: 80,
@@ -73,6 +84,13 @@ const EntryCard = (props) => {
       onClick={props.onClick}
     >
       <div style={styles.imgBackgroundStyle}>
+        {props.entry.imgs.length > 1 ? (
+          <span style={styles.multImgIndicator}>
+            <i className="fas fa-images "></i>
+            <p style={styles.multImgNumber}>{props.entry.imgs.length}</p>
+          </span>
+        ) : null}
+
         <img
           style={styles.imgStyle}
           src={props.entry.imgs[0]}
