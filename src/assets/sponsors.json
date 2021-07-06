@@ -1,26 +1,29 @@
 {
   "gold": [
     {
-      "title": "",
-      "image": "stewes_frame.jpg",
-      "link": "http://www.stewesservice.se/"
+      "title": "Sparbanken Eken",
+      "image": "sparbanken.png",
+      "link": "https://www.sparbankeneken.se/"
+    },
+    {
+      "title": "Lions",
+      "image": "lions.png",
+      "link": "https://lionsclubs.org/sv"
     },
     {
       "title": "Länsförsäkringar",
       "image": "lf_small.jpg",
       "link": "https://www.lansforsakringar.se/kronoberg/privat/"
     },
-
-    {
-      "title": "Sparbanken Eken",
-      "image": "sparbanken.png",
-      "link": "https://www.sparbankeneken.se/"
-    },
-
     {
       "title": "Konga mekaniska",
       "image": "km.png",
       "link": "http://www.kongamek.se/"
+    },
+    {
+      "title": "",
+      "image": "stewes_frame.jpg",
+      "link": "http://www.stewesservice.se/"
     }
   ],
 
@@ -42,7 +45,7 @@
     },
     {
       "title": "",
-      "image": "anders-bisterhult.png",
+      "image": "anders.png",
       "link": ""
     },
     {
@@ -58,6 +61,11 @@
   ],
 
   "brons": [
+    {
+      "title": "Holtab",
+      "image": "holtab.png",
+      "link": "https://www.holtab.se/"
+    },
     {
       "title": "Xylem",
       "image": "xylem.png",
