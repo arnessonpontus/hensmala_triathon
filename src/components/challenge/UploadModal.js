@@ -70,7 +70,7 @@ const UploadModal = (props) => {
     setImgLoading(newLoadingArr);
 
     const options = {
-      maxSizeMB: 0.2,
+      maxSizeMB: 0.3,
       maxWidthOrHeight: 1920,
       useWebWorker: true,
     };
