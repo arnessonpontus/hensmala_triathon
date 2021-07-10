@@ -45,7 +45,10 @@ function sendEmail(addedRow) {
         Din tid kommer nu att utvärderas av oss och se till så att den inte krockar med för många andra deltagare.
     </p>
     <p>
-    Vi kommer efter detta att skicka ut ett mail med inbetalningsuppgifter och dylikt. Här är dina uppgifter:
+      Betala 250kr till bankgiro 386-6563 eller swisha till 1236882088.
+    </p>
+    <p>
+      Vi kommer efter detta att skicka ut ett mail med vidare information. Här är dina uppgifter:
     </p>
     <ul>
       <li>

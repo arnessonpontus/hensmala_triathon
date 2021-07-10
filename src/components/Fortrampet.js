@@ -101,7 +101,8 @@ const Fortrampet = () => {
                   <span aria-label="party" role="img">
                     🎉
                   </span>
-                  ) som går oavkortat till "Stoppa ALS" genom NEURO.
+                  ) som går oavkortat till "Stoppa ALS" genom NEURO. Betala till
+                  bankgiro 386-6563 eller swisha till 1236882088.
                 </b>
               </p>
             </CardBody>
