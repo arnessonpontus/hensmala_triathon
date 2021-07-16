@@ -57,6 +57,16 @@
       "title": "",
       "image": "glass-factory.png",
       "link": "https://www.theglassfactory.se"
+    },
+    {
+      "title": "",
+      "image": "nelson.jpg",
+      "link": "https://www.nelsongarden.se"
+    },
+    {
+      "title": "Elias",
+      "image": "elias.jpg",
+      "link": "http://www.eliasab.se"
     }
   ],
 
