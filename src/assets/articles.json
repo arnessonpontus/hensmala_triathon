@@ -1,5 +1,12 @@
 {
-  "twenty": [
+  "2021": [
+    {
+      "title": "Hensmåla Triathlon gick i mål - med 75000 kronor",
+      "link": "2021/smp_hel.jpeg",
+      "thumbnail": "2021/smp_hel_thumb.jpeg"
+    }
+  ],
+  "2020": [
     {
       "title": "Trots inställda tävlingen - de samlade in 100 000 kr till ALS-forskningen",
       "link": "2020/SMP-2020-12-10.pdf",
@@ -11,7 +18,7 @@
       "thumbnail": "2020/img20200731_thumb.jpg"
     }
   ],
-  "nineteen": [
+  "2019": [
     {
       "title": "Hensmålas tävling är en riktig folkfest, måndag 22 juli 2019",
       "link": "2019/smalandsposten_190722.pdf",
@@ -24,7 +31,7 @@
     }
   ],
 
-  "eighteen": [
+  "2018": [
     {
       "title": "125 000 kronor från 6:e Hensmåla Triathlon till nya ALS-forskningscentret, tisdag 2 oktober 2018",
       "link": "2018/neuro_2018-10-02.pdf",
@@ -46,7 +53,7 @@
       "thumbnail": ""
     }
   ],
-  "seventeen": [
+  "2017": [
     {
       "title": "Reflex, nr 5, 2017",
       "link": "2017/reflex_nr5_2017.jpg",
@@ -98,7 +105,7 @@
       "thumbnail": ""
     }
   ],
-  "sixteen": [
+  "2016": [
     {
       "title": "Nya Allehanda, nr 10, 2016",
       "link": "2016/nya_allehanda_nr10_2016.jpg",
@@ -125,7 +132,7 @@
       "thumbnail": ""
     }
   ],
-  "fifteen": [
+  "2015": [
     {
       "title": "Reflex, nr 5, 2015",
       "link": "2015/reflex_nr5_2015.jpg",
@@ -147,7 +154,7 @@
       "thumbnail": ""
     }
   ],
-  "fourteen": [
+  "2014": [
     {
       "title": "Smålandsposten, onsdag 6 augusti 2014",
       "link": "2014/smalandsposten_6_aug_2014.pdf",
@@ -164,7 +171,7 @@
       "thumbnail": ""
     }
   ],
-  "thirteen": [
+  "2013": [
     {
       "title": "Smålandsposten, fredag 2 augusti 2013",
       "link": "2013/FAL1845_20130829_0137_001.pdf",

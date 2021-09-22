@@ -1,10 +1,20 @@
-import React from "react";
+import React, { Fragment } from "react";
 import articles from "../../assets/articles";
 import ArticleSection from "./ArticleSection";
 
-import { Row, ButtonGroup, Button } from "reactstrap";
+import { Row, Button } from "reactstrap";
+import ButtonDropdown from "../../../node_modules/reactstrap/es/ButtonDropdown";
+import DropdownItem from "../../../node_modules/reactstrap/es/DropdownItem";
+import DropdownMenu from "../../../node_modules/reactstrap/es/DropdownMenu";
+import DropdownToggle from "../../../node_modules/reactstrap/es/DropdownToggle";
 
 class Articles extends React.Component {
+  state = {
+    isDropdownOpen: false,
+  };
+
+  prevYears = ["2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
+
   onYearTap = (year) => {
     document
       .querySelector(".year-" + year)
@@ -13,6 +23,10 @@ class Articles extends React.Component {
 
   onToTopTap = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  toggle = () => {
+    this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   };
 
   render() {
@@ -34,86 +48,43 @@ class Articles extends React.Component {
           ></i>{" "}
           Till toppen
         </Button>
-        <ButtonGroup size="sm" className="pb-5">
-          <Button onClick={() => this.onYearTap("2013")}>2013</Button>
-          <Button onClick={() => this.onYearTap("2014")}>2014</Button>
-          <Button onClick={() => this.onYearTap("2015")}>2015</Button>
-          <Button onClick={() => this.onYearTap("2016")}>2016</Button>
-          <Button onClick={() => this.onYearTap("2017")}>2017</Button>
-          <Button onClick={() => this.onYearTap("2018")}>2018</Button>
-          <Button onClick={() => this.onYearTap("2019")}>2019</Button>
-        </ButtonGroup>
+        <ButtonDropdown
+          className="pb-5"
+          isOpen={this.state.isDropdownOpen}
+          toggle={this.toggle}
+        >
+          <DropdownToggle caret>Choose year</DropdownToggle>
+          <DropdownMenu>
+            {this.prevYears.map((year) => (
+              <DropdownItem onClick={() => this.onYearTap(year)}>
+                {year}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </ButtonDropdown>
         <div className="px-5 pb-5">
-          <h3>2020</h3>
+          <h3>2021</h3>
           <Row>
-            {articles.twenty.map((article) => {
+            {articles["2021"].map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>
         </div>
-        <div className="year-2019 article-seperator"></div>
-        <div className="p-5">
-          <h3>2019</h3>
-          <Row>
-            {articles.nineteen.map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
-        <div className="year-2018 article-seperator"></div>
-        <div className="p-5">
-          <h3>2018</h3>
-          <Row>
-            {articles.eighteen.map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
-        <div className="year-2017 article-seperator"></div>
-        <div className="p-5">
-          <h3>2017</h3>
-          <Row>
-            {articles.seventeen.map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
-        <div className="year-2016 article-seperator"></div>
-        <div className="p-5">
-          <h3>2016</h3>
-          <Row>
-            {articles.sixteen.map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
-        <div className="year-2015 article-seperator"></div>
-        <div className="p-5">
-          <h3>2015</h3>
-          <Row>
-            {articles.fifteen.map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
-        <div className="year-2014 article-seperator"></div>
-        <div className="p-5">
-          <h3>2014</h3>
-          <Row>
-            {articles.fourteen.map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
-        <div className="year-2013 article-seperator"></div>
-        <div className="p-5">
-          <h3>2013</h3>
-          <Row>
-            {articles.thirteen.map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
+        {this.prevYears.map((year) => {
+          return (
+            <Fragment>
+              <div className={`year-${year} article-seperator`}></div>
+              <div className="p-5">
+                <h3>{year}</h3>
+                <Row>
+                  {articles[year].map((article) => {
+                    return <ArticleSection article={article} />;
+                  })}
+                </Row>
+              </div>
+            </Fragment>
+          );
+        })}
         <div className="article-seperator"></div>
       </div>
     );
