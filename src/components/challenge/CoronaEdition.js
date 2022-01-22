@@ -4,7 +4,9 @@ import UploadModal from "./UploadModal";
 import { NavLink as RRNavLink } from "react-router-dom";
 import About2021 from "./About2021";
 import EntryModal from "./EntryModal";
-import * as firebase from "firebase";
+import firebase from "firebase/compat/app"
+import "firebase/compat/storage"
+import "firebase/compat/database"
 import { Alert, Spinner } from "reactstrap";
 import {
   DropdownToggle,
@@ -84,7 +86,7 @@ const CoronaEdition = () => {
           marginBottom: "-10px",
         }}
       >
-        Hensmåla Triathlon 2021
+        HENSMÅLA TRIATHLON 2021
       </h1>
       <h1
         style={{

@@ -13,7 +13,7 @@ import {
   Spinner,
   Alert,
 } from "reactstrap";
-import * as firebase from "firebase";
+import firebase from "firebase/compat/app"
 import imageCompression from "browser-image-compression";
 import { TimePicker } from "../TimeUtils";
 import Consent from "../Consent";

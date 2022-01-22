@@ -13,7 +13,8 @@ import Radio from "./components/media/Radio";
 import Sponsors from "./components/sponsor/Sponsors";
 import Footer from "./components/Footer";
 //import devConfig from "./config";
-import * as firebase from "firebase"; // Change to only import specific modules
+import firebase from "firebase/compat/app"; // Change to only import specific modules
+
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
