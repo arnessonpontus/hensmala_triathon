@@ -13,8 +13,7 @@
 
 .App {
   color: rgb(15, 15, 15);
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: #f6f6f6;
   min-height: 100vh;
 }
@@ -23,34 +22,24 @@ label {
   color: rgb(0, 0, 0);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+}
+
 h1 {
-  color: rgb(15, 15, 15);
   text-align: center;
 }
 
-h2 {
-  color: rgb(15, 15, 15);
-}
-
-h3 {
-  color: rgb(15, 15, 15);
-}
 
 a {
   text-decoration: none;
 }
 
-p {
-  color: rgb(15, 15, 15);
-}
 
 .indent {
   margin-left: 20px;
 }
 
-b {
-  color: rgb(15, 15, 15);
-}
 
 i {
   color: rgb(71, 71, 71);
