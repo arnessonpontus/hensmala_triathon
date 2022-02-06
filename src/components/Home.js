@@ -26,7 +26,7 @@ class Home extends Component {
                   landskap.
                   <br></br>
                   <br></br>
-                  Sedan 2012 har vi samlat in strax över 800 000kr och skänkt
+                  Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
                   till ALS forskningen. De tre sista åren har gåvan riktats mot
                   Stoppa ALS och ALS Treatment Center Karolinska.
                 </p>

@@ -19,7 +19,7 @@ class Footer extends React.Component {
           borderRadius: "0px",
         }}
       >
-        <p style={{ color: "white" }}>© 2021 Copyright: Hensmalatriathlon.se</p>
+        <p style={{ color: "white" }}>© 2022 Copyright: Hensmalatriathlon.se</p>
         <div
           style={{
             width: 200,

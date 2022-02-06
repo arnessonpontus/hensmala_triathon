@@ -132,14 +132,9 @@ class AboutHT extends React.Component {
                     landskap.
                     <br></br>
                     <br></br>
-                    Sedan 2012 har vi samlat in strax över 800 000kr och skänkt
+                    Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
                     till ALS forskningen. De tre senaste åren har gåvan riktats
                     mot Stoppa ALS och ALS Treatment Center Karolinska.
-                    <br></br>
-                    <br></br>
-                    Detta år är loppet anpassat till det osäkra läget och
-                    genomförs i mindre grupper, mestadels utan publik eller
-                    funktionärer.
                   </p>
                 </CardBody>
               </Card>

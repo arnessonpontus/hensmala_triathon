@@ -32,7 +32,7 @@ class Register extends Component {
           this.toggleDoneRegistration();
         } else {
           alert(
-            "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmaltriathlon@gmail.com."
+            "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmalatriathlon@gmail.com."
           );
         }
       })
@@ -81,13 +81,14 @@ class Register extends Component {
     return (
       <Container>
         {!this.state.hasRegisterd ? (
-          <div className="card-box" style={{ marginTop: 20 }}>
-            <div>
+          <div className="card-box" style={{ marginTop: 20, height: "80vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <h2>Anmälan för 2022 kommer strax</h2>
+            {/* <div>
               <RegisterForm2021
                 handleSubmit={this.handleSubmit}
                 loading={this.state.loading}
               />
-            </div>
+            </div> */}
           </div>
         ) : (
           <RegSuccess toggleDoneRegistration={this.toggleDoneRegistration} />
