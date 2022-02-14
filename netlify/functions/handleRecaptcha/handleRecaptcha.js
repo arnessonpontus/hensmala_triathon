@@ -1,4 +1,4 @@
-const rp = require("request-promise");
+const axios = require("axios");
 
 exports.handler = async (event, context, callback) => {
   console.log("Running recaptcha netlify function...");
@@ -6,20 +6,12 @@ exports.handler = async (event, context, callback) => {
   const token = JSON.parse(event.body);
 
   try {
-    const result = await rp({
-      uri: "https://recaptcha.google.com/recaptcha/api/siteverify",
-      method: "POST",
-      formData: {
-        secret: secret,
-        response: token,
-      },
-      json: true,
-    });
+    const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`);
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        data: result,
+        data: result.data,
       }),
     };
   } catch {
