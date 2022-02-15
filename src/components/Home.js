@@ -28,7 +28,7 @@ class Home extends Component {
                   <br></br>
                   Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
                   till ALS forskningen. De tre sista åren har gåvan riktats mot
-                  Stoppa ALS och ALS Treatment Center Karolinska.
+                  Stoppa ALS och ALS Treatment Center Karolinska. 
                 </p>
               </Col>
 

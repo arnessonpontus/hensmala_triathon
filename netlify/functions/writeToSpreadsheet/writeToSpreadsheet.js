@@ -8,31 +8,55 @@ if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
   throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
 if (!process.env.GOOGLE_PRIVATE_KEY)
   throw new Error("no GOOGLE_PRIVATE_KEY env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_2021)
+if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO_2022)
   // spreadsheet key is the long id in the sheets URL
-  throw new Error("no GOOGLE_SPREADSHEET_ID_2021 env var set");
+  throw new Error("no GOOGLE_SPREADSHEET_ID_SOLO_2022 env var set");
+if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM_2022)
+  // spreadsheet key is the long id in the sheets URL
+  throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM_2022 env var set");
 
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const sendEmail = require("./emailSender");
 
-function handleBirthday(data) {
-  const month =
-    parseInt(data["month"]) < 10 ? "0" + data["month"] : data["month"];
-  const day = parseInt(data["day"]) < 10 ? "0" + data["day"] : data["day"];
+function appendZero(str) {
+  return parseInt(str) < 10 ? "0" + str : str;
+}
 
-  data["birthday"] = data["year"] + "-" + month + "-" + day;
+function handleBirthday(data, type) {
+  if (type == "team") {
+    data["birthday1"] =
+      data["year1"] + "-" + appendZero(data["month1"]) + "-" + appendZero(data["day1"]);
+    data["birthday2"] =
+      data["year2"] + "-" + appendZero(data["month2"]) + "-" + appendZero(data["day2"]);
+    data["birthday3"] =
+      data["year3"] + "-" + appendZero(data["month3"]) + "-" + appendZero(data["day3"]);
+  } else {
+    data["birthday"] = data["year"] + "-" + appendZero(data["month"]) + "-" + appendZero(data["day"]);
+  }
 
   return data;
 }
 
 exports.handler = async (event, context, callback) => {
   let spreadsheetID = "";
+  let idType  = "";
   console.log("Running sheet netlify function...");
 
-  // Not used this year
-  // const registerType = event.queryStringParameters.type;
+  const registerType = event.queryStringParameters.type;
 
-  spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_2021;
+  switch (registerType) {
+    case "solo":
+      spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_SOLO_2022;
+      idType = "S";
+      break;
+    case "team":
+      spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TEAM_2022;
+      idType = "T";
+      break;
+    default:
+      console.log("The type given is not valid!");
+      break;
+  }
 
   try {
     const doc = new GoogleSpreadsheet(spreadsheetID);
@@ -47,29 +71,24 @@ exports.handler = async (event, context, callback) => {
     let data = JSON.parse(event.body);
 
     const rows = await sheet.getRows();
-
     const lastRow = rows[rows.length - 1];
 
-    const id = lastRow ? lastRow.id : "0";
-    //const idType = id.substring(0, 1);
+    // Get the number only and not the letter
+    const idNumber = lastRow ? parseInt(lastRow.id.substring(1)) : 0;
 
-    const idNumber = parseInt(id.substring(1));
+    data = handleBirthday(data, registerType);
 
-    data = handleBirthday(data);
-
-    console.log(data);
-
-    // Not the best id solution but nice looking instead of random
-    data["id"] = (idNumber ? idNumber : 0 + 1).toString();
+    data["id"] = idType + (idNumber + 1).toString();
     data["uploadTime"] = moment()
       .tz("Europe/Stockholm")
       .format("YYYY-MM-DD HH:mm");
 
     const addedRow = await sheet.addRow(data);
+    console.log(addedRow)
 
     if (addedRow) {
       console.log("Success adding row");
-      const email_sent = await sendEmail(addedRow);
+      const email_sent = await sendEmail(addedRow, registerType);
       return {
         statusCode: 200,
         body: JSON.stringify({

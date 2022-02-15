@@ -25,6 +25,38 @@
   align-items: center;
 }
 
+.register-tabs {
+  display: flex;
+  position: relative;
+}
+
+.register-tab {
+  text-align: center;
+  width: 100px;
+  cursor: pointer;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.register-tab:hover {
+	color: rgb(99, 99, 99);
+}
+
+
+.tab-underline {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 50%;
+		height: 3px;
+		background-color: #11999E;
+		transform-origin: 0 0;
+		transition: transform .25s;
+}
+.tab-underline.second {
+  transform: translateX(100%);
+}
+
 @media (min-width: 770px) {
   .scroll-to-info-btn {
     display: none;
