@@ -8,22 +8,37 @@ import {
   Row,
   Col,
   Spinner,
+  Card,
+  CardBody
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "../Consent";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 
-class RegisterForm2021 extends Component {
+// TODO: Complete with correct state
+
+class RegisterFormTeam extends Component {
   state = {
-    name: "",
-    email: "",
-    year: "",
-    month: "",
-    day: "",
+    teamName: "",
+    name1: "",
+    email1: "",
+    year1: "",
+    month1: "",
+    day1: "",
+    city1: "",
+    name2: "",
+    email2: "",
+    year2: "",
+    month2: "",
+    day2: "",
+    city2: "",
+    name3: "",
+    email3: "",
+    year3: "",
+    month3: "",
+    day3: "",
+    city3: "",
     info: "",
-    gender: "",
-    city: "",
-    time: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
     isCheckboxThreeTicked: false,
@@ -63,100 +78,104 @@ class RegisterForm2021 extends Component {
     }
   };
 
+  renderMemberFields = () => {
+    return ["1", "2", "3"].map((num) => {
+      return(
+      <div style={{marginBottom: "20px"}}>
+        <Label for={`teamMember${num}`}>Lagmedlem {num}</Label>
+        {num === "3" ? <i> (Ej för lag med endast två deltagare)</i> : null} 
+        <i></i>
+          <Card id={`teamMember${num}`} style={{ backgroundColor: `#dfeff${num*3}` }}>
+            <CardBody>
+              <FormGroup>
+                <Label for={`name${num}`}>Namn</Label>
+                <Input
+                  required={true}
+                  type="text"
+                  name={`name${num}`}
+                  id={`name${num}`}
+                  placeholder="Förnamn Efternamn"
+                  value={this.state[`name${num}`]}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for={`email${num}`}>Epost</Label>
+                <Input
+                  required={true}
+                  type="email"
+                  name={`email${num}`}
+                  id={`email${num}`}
+                  placeholder="din.email@gmail.com"
+                  value={this.state[`email${num}`]}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for={`birthdayID${num}`}>Födelsedatum</Label>
+                <div style={{ display: "flex" }}>
+                  <YearPicker
+                    handleChange={this.handleChange}
+                    elemName={`year${num}`}
+                  />
+                  <MonthPicker
+                    handleChange={this.handleChange}
+                    elemName={`month${num}`}
+                  />
+                  <DayPicker
+                    handleChange={this.handleChange}
+                    elemName={`day${num}`}
+                  />
+                </div>
+              </FormGroup>
+              <FormGroup>
+                <Label for={`city${num}`}> Ort (klubb)</Label>
+                <Input
+                  type="text"
+                  name={`city${num}`}
+                  id={`city${num}`}
+                  placeholder="Hensmåla löparförening"
+                  value={this.state[`city${num}`]}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+            </CardBody>
+          </Card>
+        </div>
+        )
+    })
+  }
+            
+
   render() {
     return (
       <Row>
         <Col style={{ marginTop: "2vh" }} md={6}>
           <Form
             onSubmit={(e) =>
-              this.props.handleSubmit(e, "corona-edition", this.state)
+              this.props.handleSubmit(e, "team", this.state)
             }
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Anmälan 2021</h3>
+              <h3>Anmälan 2021 Lag</h3>
               <div onClick={this.scrollToInfo} className="scroll-to-info-btn">
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
 
             <FormGroup>
-              <Label for="name">Namn</Label>
+              <Label for="teamName">Lagnamn</Label>
               <Input
                 required={true}
                 type="text"
-                name="name"
-                id="name"
-                placeholder="Förnamn Efternamn"
-                value={this.state.name}
+                name="teamName"
+                id="teamName"
+                placeholder="Gubbaflås"
+                value={this.state.teamName}
                 onChange={this.handleChange}
               />
             </FormGroup>
-
-            <FormGroup>
-              <Label for="email">Epost</Label>
-              <Input
-                required={true}
-                type="email"
-                name="email"
-                id="email"
-                placeholder="din.email@gmail.com"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="birthdayID">Födelsedatum</Label>
-              <div style={{ display: "flex" }}>
-                <YearPicker handleChange={this.handleChange} elemName="year" />
-                <MonthPicker
-                  handleChange={this.handleChange}
-                  elemName="month"
-                />
-                <DayPicker handleChange={this.handleChange} elemName="day" />
-              </div>
-            </FormGroup>
-            <FormGroup>
-              <Label for="genderSelection">Kön</Label>
-              <Input
-                required={true}
-                type="select"
-                name="gender"
-                id="genderSelection"
-                onChange={this.handleChange}
-              >
-                <option disabled selected value>
-                  Välj kön
-                </option>
-                <option value="Man">Man</option>
-                <option value="Kvinna">Kvinna</option>
-              </Input>
-            </FormGroup>
-
-            <FormGroup>
-              <Label for="city"> Ort (klubb)</Label>
-              <Input
-                type="text"
-                name="city"
-                id="city"
-                placeholder="Hensmåla löparförening"
-                value={this.state.city}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label for="time">Önskad starttid och datum</Label>
-              <Input
-                required={true}
-                type="text"
-                name="time"
-                id="time"
-                placeholder="T.ex. 15.00 2021-06-07"
-                value={this.state.time}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
+            {this.renderMemberFields()}
             <FormGroup>
               <Label for="info">Information</Label>
               <Input
@@ -303,4 +322,4 @@ class RegisterForm2021 extends Component {
   }
 }
 
-export default RegisterForm2021;
+export default RegisterFormTeam;

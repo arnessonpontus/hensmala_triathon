@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import RegSuccess from "./RegSuccess";
-
 import { Container } from "reactstrap";
-import RegisterForm2021 from "./RegisterForm2021";
+import RegisterFormSolo from "./RegisterFormSolo";
+import RegisterFormTeam from "./RegisterFormTeam";
+import classnames from "classnames";
 
 class Register extends Component {
   state = {
     hasRegisterd: false,
     loading: false,
+    activeTab: 0
   };
 
   constructor(props) {
@@ -81,14 +83,28 @@ class Register extends Component {
     return (
       <Container>
         {!this.state.hasRegisterd ? (
-          <div className="card-box" style={{ marginTop: 20, height: "80vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <h2>Anmälan för 2022 kommer strax</h2>
-            {/* <div>
-              <RegisterForm2021
-                handleSubmit={this.handleSubmit}
-                loading={this.state.loading}
-              />
-            </div> */}
+          <div className="card-box" style={{ marginTop: 40 }}>
+            <div className="register-tabs">
+              <div onClick={() => this.setState({ activeTab: 0 })} className="register-tab">
+                Individuell
+              </div>
+              <div onClick={() => this.setState({ activeTab: 1 })} className="register-tab">
+                Lag
+              </div>
+              <div className={classnames("tab-underline", {second: this.state.activeTab === 1})}></div>
+            </div>
+            {
+              this.state.activeTab === 0 ?
+                <RegisterFormSolo
+                  handleSubmit={this.handleSubmit}
+                  loading={this.state.loading}
+                />
+                :
+                <RegisterFormTeam
+                  handleSubmit={this.handleSubmit}
+                  loading={this.state.loading}
+                />
+            }
           </div>
         ) : (
           <RegSuccess toggleDoneRegistration={this.toggleDoneRegistration} />
