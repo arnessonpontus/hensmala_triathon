@@ -16,13 +16,19 @@
 }
 
 .angle-down {
+  margin-top: 4px;
   animation: angleJump 2s infinite;
+  color: #11999E;
 }
 
 .scroll-to-info-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #11999E;
+  font-weight: bold;
 }
 
 .register-tabs {
@@ -38,10 +44,66 @@
   text-decoration: none;
 }
 
+.extra-donation {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .register-tab:hover {
 	color: rgb(99, 99, 99);
 }
 
+.shirt-select {
+  border-style: dashed;
+  border-color: rgb(214, 214, 214);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.shirt-row {
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.delete-icon {
+  width: 50px;
+  cursor: pointer;
+}
+
+.add-shirt-button {
+  width: 130px !important;
+  height: 30px !important;
+  text-decoration: none;
+  background-color: #11999E;
+  color: white;
+  margin-top: 5px;
+}
+
+.donation-item {
+  width: 80px !important;
+  height: 40px;
+  padding: 5px !important;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.donation-item.selected {
+  background-color: rgb(50, 165, 50);
+  color: white;
+}
+
+
+.optional-donation-button {
+  width: 184px !important;
+}
+
+.optional-donation-input {
+  margin-left: 10px;
+}
 
 .tab-underline {
 		position: absolute;

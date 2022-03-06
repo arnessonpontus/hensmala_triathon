@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Container } from "reactstrap";
+import { Container } from "reactstrap";
 
 class RegSuccess extends Component {
   render() {
@@ -11,17 +11,23 @@ class RegSuccess extends Component {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          textAlign: "center"
         }}
       >
         <h2>Tack för din anmälan!</h2>
-        <Button
-          style={{ backgroundColor: "#11999E" }}
+        <div
+          className="button-style"
+          style={{
+            textDecoration: "none",
+            backgroundColor: "#11999E",
+            color: "white",
+          }}
           onClick={() => {
             this.props.toggleDoneRegistration();
           }}
         >
           Registrera fler
-        </Button>
+        </div>
       </Container>
     );
   }

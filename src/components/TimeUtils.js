@@ -9,7 +9,7 @@ export const YearPicker = (props) => {
   return (
     <Input
       className="mr-2"
-      required={true}
+      required={props.required}
       type="select"
       name={props.elemName}
       onChange={props.handleChange}
@@ -46,7 +46,7 @@ export const MonthPicker = (props) => {
   return (
     <Input
       className="ml-2 mr-2"
-      required={true}
+      required={props.required}
       type="select"
       name={props.elemName}
       onChange={props.handleChange}
@@ -73,7 +73,7 @@ export const DayPicker = (props) => {
   return (
     <Input
       className="ml-2"
-      required={true}
+      required={props.required}
       type="select"
       name={props.elemName}
       onChange={props.handleChange}

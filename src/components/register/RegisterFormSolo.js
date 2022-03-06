@@ -8,10 +8,16 @@ import {
   Row,
   Col,
   Spinner,
+  FormText
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "../Consent";
+import ShirtSelect from "./ShirtSelect";
+import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
+
+const SHIRT_PRICE = 250;
+const REGISTER_FEE = 250;
 
 class RegisterFormSolo extends Component {
   state = {
@@ -26,6 +32,8 @@ class RegisterFormSolo extends Component {
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
     isCheckboxThreeTicked: false,
+    shirts: [],
+    extraDonation: 0
   };
 
   constructor(props) {
@@ -62,24 +70,28 @@ class RegisterFormSolo extends Component {
     }
   };
 
+  calcTotalCost = () => {
+    return REGISTER_FEE + this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt) => prevVal + (shirt.size && shirt.amount ? shirt.amount : 0), 0) * SHIRT_PRICE;
+  }
+
   render() {
     return (
       <Row>
         <Col style={{ marginTop: "2vh" }} md={6}>
           <Form
             onSubmit={(e) =>
-              this.props.handleSubmit(e, "solo", this.state)
+              this.props.handleSubmit(e, "solo", this.state, this.calcTotalCost())
             }
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Anmälan 2021 Individuell</h3>
+              <h3>Anmälan 2022 Individuell</h3>
               <div onClick={this.scrollToInfo} className="scroll-to-info-btn">
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
 
             <FormGroup>
-              <Label for="name">Namn</Label>
+              <Label for="name">Namn*</Label>
               <Input
                 required={true}
                 type="text"
@@ -92,7 +104,7 @@ class RegisterFormSolo extends Component {
             </FormGroup>
 
             <FormGroup>
-              <Label for="email">Epost</Label>
+              <Label for="email">Epost*</Label>
               <Input
                 required={true}
                 type="email"
@@ -104,18 +116,25 @@ class RegisterFormSolo extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="birthdayID">Födelsedatum</Label>
+              <Label for="birthdayID">Födelsedatum*</Label>
               <div style={{ display: "flex" }}>
-                <YearPicker handleChange={this.handleChange} elemName="year" />
+                <YearPicker 
+                  reqired={true} 
+                  handleChange={this.handleChange} 
+                  elemName="year" />
                 <MonthPicker
+                  reqired={true}
                   handleChange={this.handleChange}
                   elemName="month"
                 />
-                <DayPicker handleChange={this.handleChange} elemName="day" />
+                <DayPicker 
+                reqired={true} 
+                handleChange={this.handleChange} 
+                elemName="day" />
               </div>
             </FormGroup>
             <FormGroup>
-              <Label for="genderSelection">Kön</Label>
+              <Label for="genderSelection">Kön*</Label>
               <Input
                 required={true}
                 type="select"
@@ -153,6 +172,19 @@ class RegisterFormSolo extends Component {
                 value={this.state.info}
                 onChange={this.handleChange}
               />
+            </FormGroup>
+            <FormGroup>
+                <Label for="shirt-select">Lägg till tshirt ({SHIRT_PRICE}kr st)</Label>
+              <div className="shirt-select">
+                <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
+              </div>
+            </FormGroup>
+            <FormGroup>
+              <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
+              <ExtraDonation setDonation={(donationAmount) => this.setState({extraDonation: donationAmount})}/>
+            </FormGroup>
+            <FormGroup>
+              <FormText color="bold">* obligatoriska fält.</FormText>
             </FormGroup>
             <FormGroup check>
               <Label for="checkbox1">
@@ -207,6 +239,10 @@ class RegisterFormSolo extends Component {
                 internet.
               </Label>
             </FormGroup>
+            <FormGroup>
+              <Label for="totalAmountToPay">Totalt att betala:</Label>
+              <h5>{this.calcTotalCost()}kr</h5>
+            </FormGroup>
             <Button
               id="submitButton"
               className="mt-4"
@@ -235,54 +271,38 @@ class RegisterFormSolo extends Component {
         </Col>
         <Col style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>
-          <h3>Anmälan till Hensmåla Triathlon 2021 - Corona Edition</h3>
+          <h3>Anmäl dig som individuell deltagare</h3>      
+          <p>
+            När du anmälder sig som individuell deltagare utför du alla tre
+            grenar individuellt. För mer information om sträckorna och
+            tävlingsregler kan du gå in{" "}
+            <RRNavLink 
+              target="_blank"
+              rel="noopener noreferrer" 
+              tag={RRNavLink} 
+              to="/om-ht/hem">
+              HÄR
+            </RRNavLink>.
+          </p>
+          <p>
+            Du kommer få ett mail ett bekräftelse-email med din angiva information och{" "}
+            <b>betalningsuppgifter</b> då anmälan är gjord. Betala gärna direkt i samband med anmälan. När tävlingen närmar
+            sig kommer yttligare information skickas ut via mail till alla
+            deltagare.
+          </p>
           <b>
-            Gå{" "}
-            <RRNavLink tag={RRNavLink} to="/corona-edition">
-              hit
-            </RRNavLink>{" "}
-            för att läsa mer om årets lopp. En kort sammanfattning av processen
-            för årets lopp följer nedan:
+            Fotografering och videofilmning förekommer, meddela om du inte vill
+            vara med.
           </b>
           <br></br>
           <br></br>
-          <ol style={{ paddingLeft: 0, listStylePosition: "inside" }}>
-            <li>Evenemanget sker från 2:e juli - 16:e juli</li>
-            <li>Anmäl dig här och ange vilken tid du vill komma</li>
-            <li>
-              Betala 250kr till bankgiro 386-6563 eller swisha till 1236882088
-            </li>
-            <li>Genomför loppet (och ta gärna bilder)</li>
-            <li>
-              Ladda upp tid, bild och valfri text (kan döljas från hemsidan)
-            </li>
-            <li>
-              De snabbaste bjuds in till final den 18:e juli (genomförs med
-              funktionärer)
-            </li>
-          </ol>
-          <i>
-            Evenemanget sker i år utan funktionärer. Därför är det väldigt
-            viktigt att vara extra aktsam vid vägövergångar och simning.
-          </i>
-          <br></br>
-          <br></br>
-          <p>
-            Årets Hensmåla Triathlon 2021 - Corona Edition är lite annorlunda
-            från både vanliga år, och förra årets "Utmaningen". Tanken med årets
-            lopp är att separera deltagarna så mycket det går, medan fortfarande
-            kunna köra den ordinarie rundan. Årets evenemang sträcker sig därför
-            över en längre period och grupper om max 8 personer kör vid samma
-            tillfälle. När tid för genomförande är bestämt, kör man rundan och
-            efteråt laddar upp sitt resultat på hemsidan{" "}
-            <RRNavLink tag={RRNavLink} to="/corona-edition">
-              här
-            </RRNavLink>
-            . De med snabbaste tider kommer sedan bli inbjudna till en final.
-          </p>
-
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-          <b style={{ fontSize: 20 }}>Startavgift: 250kr</b>
+          <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
+          <p>
+            <i style={{ fontSize: 12 }}>
+              Priset kommer höjas till 400 kr från och med 15:e juli.
+            </i>
+          </p>
         </Col>
       </Row>
     );

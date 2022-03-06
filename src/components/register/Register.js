@@ -24,6 +24,22 @@ class Register extends Component {
     this.setState({ hasRegisterd: !this.state.hasRegisterd });
   };
 
+    // Stringify the shirt selection for easier storage
+    shirtArrayToString = (shirts) => {
+      let shirtStr = ""
+      let numConverted = 0;
+      shirts.forEach((shirt) => {
+        if (shirt.size !== null && shirt.amount !== null) {
+          if (numConverted++ === 0) {
+            shirtStr += shirt.amount + shirt.size;
+          } else {
+            shirtStr += ", " + shirt.amount + shirt.size;
+          }
+        }
+      });
+      return shirtStr;
+    }
+
   sendRegistration = (formType, data) => {
     fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}`, {
       method: "POST",
@@ -42,9 +58,16 @@ class Register extends Component {
       .finally(() => this.setState({ loading: false }));
   };
 
-  handleSubmit = (e, formType, data) => {
+  handleSubmit = (e, formType, data, totalToPay) => {
     e.preventDefault();
     this.setState({ loading: true });
+
+    // Deep copy and replace shirts array to string for easier handling
+    const dataToSend = JSON.parse(JSON.stringify(data));
+    dataToSend.shirts = this.shirtArrayToString(dataToSend.shirts);
+
+    // Add total cost to easier see correct payment has been made
+    dataToSend["totalToPay"] = totalToPay;
 
     window.grecaptcha.ready(() => {
       window.grecaptcha
@@ -60,7 +83,7 @@ class Register extends Component {
               if (res.status === 200) {
                 res.json().then((res) => {
                   if (res.data.score > 0.5) {
-                    this.sendRegistration(formType, data);
+                    this.sendRegistration(formType, dataToSend);
                   } else {
                     alert("Är du en robot? Testa igen.");
                     this.setState({ loading: false });

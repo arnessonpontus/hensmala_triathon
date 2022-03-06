@@ -28,6 +28,11 @@ function sendEmail(addedRow, registerType) {
       subject: "Tack för din anmälan!",
       html: getHtml(addedRow, registerType),
       bcc: [process.env.EMAILER_USER],
+      attachments: [{
+        filename: 'logga.png',
+        path: __dirname +'/logga.png',
+        cid: 'logo'
+   }]
     };
 
     console.log("Sending email...");
@@ -62,7 +67,7 @@ function getHtml(data, type) {
                   Tack för din anmälan till Hensmåla Triathlon 2022!
               </h2>
               <p>
-                  Betala 250kr till bankgiro 386-6563 eller swisha till 1236882088.
+                  Betala <b>${data.totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1236882088.
               </p>
               <p>
                   Vi kommer framöver att skicka ut ett mail med vidare information. Här är dina uppgifter:
@@ -84,11 +89,17 @@ function getHtml(data, type) {
                   Ort/klubb: <b>${data.city}</b>
               </li>
               <li>
+                  Tröjor: <b>${data.shirts}</b>
+              </li>
+              <li>
+                  Extra donation: <b>${data.extraDonation}kr</b>
+              </li>
+              <li>
                   Övrig information: <b>${data.info}</b>
               </li>
               </ul>
               <p>Vi ses den 23e Juli!</p>
-              <img src="https://www.hensmalatriathlon.se/images/corona_hen.png" alt="Logga" width="200px"'/>
+              <img src="cid:logo" alt="Logga" width="200px"'/>
           </div>
       `;
   } else {
@@ -108,7 +119,7 @@ function getHtml(data, type) {
                   Tack för er anmälan till Hensmåla Triathlon 2022!
               </h2>
               <p>
-                  Betala 400kr till bankgiro 386-6563 eller swisha till 1236882088.
+                  Betala <b>${data.totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1236882088.
               </p>
               <p>
                   Vi kommer framöver att skicka ut ett mail med vidare information. Här är era uppgifter:
@@ -159,13 +170,20 @@ function getHtml(data, type) {
                       Ort/klubb: <b>${data.city3}</b>
                   </li>
               </ul>`
-               : null}
-              <li>
-                  Övrig information: <b>${data.info}</b>
-              </li>
+               : ""}
+            <b>Övrigt</b>
+            <li>
+                Tröjor: <b>${data.shirts}</b>
+            </li>
+            <li>
+                Extra donation: <b>${data.extraDonation}kr</b>
+            </li>
+            <li>
+                Övrig information: <b>${data.info}</b>
+            </li>
               
-              <p>Vi ses den 23e Juli!</p>
-              <img src="https://www.hensmalatriathlon.se/images/corona_hen.png" alt="Logga" width="200px"'/>
+            <p>Vi ses den 23e Juli!</p>
+            <img src="cid:logo" alt="Logga" width="200px"'/>
           </div>
       `;
   }
