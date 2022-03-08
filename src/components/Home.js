@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import News from "./news/News";
+import Countdown from "react-countdown";
 
-import { Container, Row, Col, Card, CardBody, Button } from "reactstrap";
+import { Container, Row, Col} from "reactstrap";
+
+const countdownRenderer = ({ days, hours, minutes, seconds, completed }) => {
+  if (completed) {
+    return <span className="countdown">Vi är igång!</span>;
+  } else {
+    return <span className="countdown">{days} dagar kvar</span>;
+  }
+};
 
 class Home extends Component {
   render() {
@@ -13,6 +22,9 @@ class Home extends Component {
             src="/images/ht_banner_resized.jpg"
             alt="HT_banner"
           ></img>
+          <div className="center-absolute">
+            <Countdown renderer={countdownRenderer} date={new Date('July 23, 2022 15:00:00')}></Countdown>
+          </div>
         </div>
         <Container className="p-4">
           <div className="card-box">
@@ -27,38 +39,19 @@ class Home extends Component {
                   <br></br>
                   <br></br>
                   Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
-                  till ALS forskningen. De tre sista åren har gåvan riktats mot
-                  Stoppa ALS och ALS Treatment Center Karolinska. 
+                  till ALS forskningen. Hjälp oss att nå miljonen! Vill du inte vara med och tävla? Swisha din gåva till <b>1234048781</b>.
                 </p>
               </Col>
 
               <Col className="text-center mt-4 my-auto" ms={4}>
                 <img
                   width="250px"
-                  src="/images/corona_hen.png"
+                  src="/images/qr_swish.svg"
                   alt="hensmala_triathlon"
                 ></img>
               </Col>
             </Row>
           </div>
-          <Row className="donate-home">
-            <Col className=" mt-5">
-              <Card className="align-items-center">
-                <CardBody>
-                  <a
-                    className="donate-home"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://egnainsamlingar.neuro.se/projects/neuro-10"
-                  >
-                    <Button style={{ backgroundColor: "#11999E" }}>
-                      DONERA TILL ALS
-                    </Button>
-                  </a>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
           <Row>
             <News />
           </Row>

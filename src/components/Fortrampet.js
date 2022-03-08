@@ -102,7 +102,7 @@ const Fortrampet = () => {
                     🎉
                   </span>
                   ) som går oavkortat till "Stoppa ALS" genom NEURO. Betala till
-                  bankgiro 386-6563 eller swisha till 1236882088.
+                  bankgiro 386-6563 eller swisha till 1234048781.
                 </b>
               </p>
             </CardBody>

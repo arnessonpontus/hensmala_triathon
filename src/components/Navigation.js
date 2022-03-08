@@ -30,7 +30,7 @@ class Navigation extends React.Component {
         <NavbarBrand
           tag={RRNavLink}
           color="light"
-          className="inactive nav-title"
+          className="inactive nav-title brand-title"
           activeClassName="active"
           exact={true}
           to="/"

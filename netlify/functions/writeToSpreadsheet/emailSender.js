@@ -67,7 +67,7 @@ function getHtml(data, type) {
                   Tack för din anmälan till Hensmåla Triathlon 2022!
               </h2>
               <p>
-                  Betala <b>${data.totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1236882088.
+                  Betala <b>${data.totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
               </p>
               <p>
                   Vi kommer framöver att skicka ut ett mail med vidare information. Här är dina uppgifter:
@@ -119,7 +119,7 @@ function getHtml(data, type) {
                   Tack för er anmälan till Hensmåla Triathlon 2022!
               </h2>
               <p>
-                  Betala <b>${data.totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1236882088.
+                  Betala <b>${data.totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
               </p>
               <p>
                   Vi kommer framöver att skicka ut ett mail med vidare information. Här är era uppgifter:
