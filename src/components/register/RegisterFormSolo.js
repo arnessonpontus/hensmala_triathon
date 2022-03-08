@@ -271,10 +271,14 @@ class RegisterFormSolo extends Component {
         </Col>
         <Col style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>
-          <h3>Anmäl dig som individuell deltagare</h3>      
+          <h3>Anmäl dig Hensmåla Triathlon 2022</h3>
+          <b>Datum: 23 juli</b>
+          <p>
+            Ett motionslopp för alla, motionär som elit. Få en härlig dag i Hensmålas vackra natur med simning (340m), cykling (9.2km), löpning (6.5km) och samtidigt bidra till ALS-forskningen.
+          </p>
           <p>
             När du anmälder sig som individuell deltagare utför du alla tre
-            grenar individuellt. För mer information om sträckorna och
+            grenar på egen hand. För mer information om sträckorna och
             tävlingsregler kan du gå in{" "}
             <RRNavLink 
               target="_blank"
@@ -300,7 +304,7 @@ class RegisterFormSolo extends Component {
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
           <p>
             <i style={{ fontSize: 12 }}>
-              Priset kommer höjas till 400 kr från och med 15:e juli.
+              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 31:e maj.
             </i>
           </p>
         </Col>

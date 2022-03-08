@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
-import KidDistance from "./KidsDistance";
 
 class Distances extends Component {
   render() {
@@ -96,7 +95,6 @@ class Distances extends Component {
             ></img>
           </Col>
         </Row>
-        <KidDistance />
       </div>
     );
   }

@@ -299,6 +299,7 @@ class RegisterFormTeam extends Component {
         <Col style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>          
           <h3>Anmäl er som Lag</h3>
+          <b>Datum: 23 juli</b>
           <p>
             När ni anmäler er som lag får sträckorna delas upp inom laget. Detta
             kan innebära att ni är tre som deltar där alla kör en gren var.
@@ -319,14 +320,17 @@ class RegisterFormTeam extends Component {
             sig kommer yttligare information skickas ut via mail till alla
             deltagare.
           </p>
+          <b>
+            Fotografering och videofilmning förekommer, meddela om du inte vill
+            vara med.
+          </b>
           <br></br>
-          <br></br>
-
+          <br></br>   
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
           <p>
             <i style={{ fontSize: 12 }}>
-              Priset kommer höjas till 600 kr från och med 15:e juli.
+              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 31:e maj.
             </i>
           </p>
         </Col>

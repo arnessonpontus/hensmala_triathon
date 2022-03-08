@@ -30,7 +30,7 @@ const Fortrampet = () => {
               >
                 <h2 style={{ fontSize: "50px" }}>Förtrampet</h2>
                 <h3>
-                  <Badge color="info">Går även 2021</Badge>
+                  <Badge color="info">Går även 2022</Badge>
                 </h3>
               </div>
               <b>
@@ -57,7 +57,7 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Det är fri start från 09:00 till 12:00 den 11:e juli 2021.
+                  Det är fri start från 09:00 till 12:00 den 17:e juli 2022.
                 </b>
               </p>
               <h4>

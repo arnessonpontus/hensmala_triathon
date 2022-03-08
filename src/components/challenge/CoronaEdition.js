@@ -106,20 +106,6 @@ const CoronaEdition = () => {
         }}
       >
         <About2021 />
-
-        <RRNavLink
-          className="button-style"
-          style={{
-            textDecoration: "none",
-            backgroundColor: "#11999E",
-            color: "white",
-          }}
-          to="/anmalan"
-        >
-          <span>Anmälan</span>
-        </RRNavLink>
-
-        <UploadModal hasUploaded={hasUploaded} />
       </div>
       <UncontrolledDropdown
         isOpen={dropdownOpen}

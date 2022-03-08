@@ -124,12 +124,17 @@ class AboutHT extends React.Component {
             <Collapse isOpen={this.state.isInfoOpen}>
               <Card style={styles.infoBoxStyle}>
                 <CardBody>
-                  <h3>Hensmåla Triathlon går i år som Corona Edition</h3>
+                  <h3>Hensmåla Triathlon går i år som vanligt!</h3>
                   <p>
                     I det fina småländska landskapet arrangeras årligen ett
                     minitriathlon till förmån för ALS-forskningen. Alla sträckor
                     är anpassade till den vackra Stora Hensjön och Hensmålas
                     landskap.
+                    <br></br>
+                    <br></br>
+                    Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
+                    till ALS forskningen. De tre senaste åren har gåvan riktats
+                    mot Stoppa ALS och ALS Treatment Center Karolinska.
                     <br></br>
                     <br></br>
                     Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
