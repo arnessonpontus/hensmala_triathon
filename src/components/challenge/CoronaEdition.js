@@ -1,7 +1,4 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
-
-import UploadModal from "./UploadModal";
-import { NavLink as RRNavLink } from "react-router-dom";
 import About2021 from "./About2021";
 import EntryModal from "./EntryModal";
 import firebase from "firebase/compat/app"

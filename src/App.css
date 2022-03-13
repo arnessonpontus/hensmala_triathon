@@ -81,7 +81,7 @@ i {
   position: absolute;
   top: 0px;
   left: 0px;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .center-absolute {
@@ -206,12 +206,8 @@ i {
   transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1490px) {
   .donate {
     visibility: hidden;
-  }
-  .donate-home {
-    visibility: visible;
-    height: 100%;
   }
 }

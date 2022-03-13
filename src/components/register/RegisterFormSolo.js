@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import {
-  Button,
   Form,
   FormGroup,
   Label,
   Input,
   Row,
   Col,
-  Spinner,
   FormText
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
@@ -15,6 +13,8 @@ import Consent from "../Consent";
 import ShirtSelect from "./ShirtSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
+import RegisterButton from "./RegisterButton";
+import { scrollToInfo } from './Utils';
 
 const SHIRT_PRICE = 250;
 const REGISTER_FEE = 250;
@@ -36,13 +36,6 @@ class RegisterFormSolo extends Component {
     extraDonation: 0
   };
 
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-    this.scrollToInfo = this.scrollToInfo.bind(this);
-  }
-
   handleChange = (e) => {
     e.preventDefault();
 
@@ -50,12 +43,6 @@ class RegisterFormSolo extends Component {
     let value = e.target.value;
 
     this.setState({ [name]: value });
-  };
-
-  scrollToInfo = () => {
-    document
-      .getElementById("submitButton")
-      .scrollIntoView({ behavior: "smooth" });
   };
 
   toggleConsent = (checkbox) => {
@@ -85,7 +72,7 @@ class RegisterFormSolo extends Component {
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h3>Anmälan 2022 Individuell</h3>
-              <div onClick={this.scrollToInfo} className="scroll-to-info-btn">
+              <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
@@ -174,7 +161,7 @@ class RegisterFormSolo extends Component {
               />
             </FormGroup>
             <FormGroup>
-                <Label for="shirt-select">Lägg till tshirt ({SHIRT_PRICE}kr st)</Label>
+                <Label for="shirt-select">Lägg till t-shirt ({SHIRT_PRICE}kr st)</Label>
               <div className="shirt-select">
                 <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
               </div>
@@ -233,24 +220,17 @@ class RegisterFormSolo extends Component {
               <Label for="totalAmountToPay">Totalt att betala:</Label>
               <h5>{this.calcTotalCost()}kr</h5>
             </FormGroup>
-            <Button
-              id="submitButton"
-              className="mt-4"
-              style={{ minWidth: "140px" }}
-              disabled={
-                !(
-                  this.state.isCheckboxOneTicked &&
-                  this.state.isCheckboxTwoTicked &&
-                  this.state.isCheckboxThreeTicked
-                ) || this.props.loading
-              }
-            >
-              {this.props.loading ? (
-                <Spinner size="sm" color="info" />
-              ) : (
-                "Anmäl mig!"
-              )}
-            </Button>
+          <RegisterButton
+            text="Anmäl mig!" 
+            disabled={
+              !(
+                this.state.isCheckboxOneTicked &&
+                this.state.isCheckboxTwoTicked &&
+                this.state.isCheckboxThreeTicked
+              ) || this.props.loading
+            }
+            loading={this.props.loading}
+          />
           </Form>
           <small>
             This site is protected by reCAPTCHA and the Google{" "}
@@ -259,7 +239,7 @@ class RegisterFormSolo extends Component {
             apply.
           </small>
         </Col>
-        <Col style={{ marginTop: "2vh" }}>
+        <Col id="info-text" style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>
           <h3>Anmäl dig Hensmåla Triathlon 2022</h3>
           <b>Datum: 23 juli</b>

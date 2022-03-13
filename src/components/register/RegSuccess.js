@@ -23,7 +23,7 @@ class RegSuccess extends Component {
             color: "white",
           }}
           onClick={() => {
-            this.props.toggleDone();
+            this.props.onGoBack();
           }}
         >
           {this.props.type === "register" ? "Registrera fler" : "Beställ mer"}

@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 import RegisterFormSolo from "./RegisterFormSolo";
 import RegisterFormTeam from "./RegisterFormTeam";
 import classnames from "classnames";
-import { shirtArrayToString } from "./Utils"
+import { handleSubmit } from "./Utils"
 class Register extends Component {
   state = {
     hasRegisterd: false,
@@ -12,79 +12,17 @@ class Register extends Component {
     activeTab: 0
   };
 
-  constructor(props) {
-    super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.sendRegistration = this.sendRegistration.bind(this);
-    this.toggleDone = this.toggleDone.bind(this);
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
 
   toggleDone = (e) => {
     this.setState({ hasRegisterd: !this.state.hasRegisterd });
-  };
+  }
 
-  sendRegistration = (formType, data) => {
-    fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}`, {
-      method: "POST",
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          this.toggleDone();
-        } else {
-          alert(
-            "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmalatriathlon@gmail.com."
-          );
-        }
-      })
-      .catch((error) => alert(error))
-      .finally(() => this.setState({ loading: false }));
-  };
-
-  handleSubmit = (e, formType, data, totalToPay) => {
-    e.preventDefault();
-    this.setState({ loading: true });
-
-    // Deep copy and replace shirts array to string for easier handling
-    const dataToSend = JSON.parse(JSON.stringify(data));
-    dataToSend.shirts = shirtArrayToString(dataToSend.shirts);
-
-    // Add total cost to easier see correct payment has been made
-    dataToSend["totalToPay"] = totalToPay;
-
-    window.grecaptcha.ready(() => {
-      window.grecaptcha
-        .execute("6LcKIqQZAAAAAK88TdJkAsZAOZ4YLSf7VFqtXMNz", {
-          action: "submit",
-        })
-        .then((token) => {
-          fetch(`/.netlify/functions/handleRecaptcha/`, {
-            method: "POST",
-            body: JSON.stringify(token),
-          })
-            .then((res) => {
-              if (res.status === 200) {
-                res.json().then((res) => {
-                  if (res.data.score > 0.5) {
-                    this.sendRegistration(formType, dataToSend);
-                  } else {
-                    alert("Är du en robot? Testa igen.");
-                    this.setState({ loading: false });
-                  }
-                });
-              } else {
-                alert("Något gick fel.");
-                this.setState({ loading: false });
-              }
-            })
-            .catch((err) => {
-              this.setState({ loading: false });
-              console.log(err);
-            });
-        });
-    });
-  };
+  handleRegSubmit = (e, type, data, totalToPay) => {
+    handleSubmit(e, type, data, totalToPay, (val) => this.setState({loading: val}), () => this.toggleDone());
+  }
 
   render() {
     return (
@@ -103,18 +41,18 @@ class Register extends Component {
             {
               this.state.activeTab === 0 ?
                 <RegisterFormSolo
-                  handleSubmit={this.handleSubmit}
+                  handleSubmit={this.handleRegSubmit}
                   loading={this.state.loading}
                 />
                 :
                 <RegisterFormTeam
-                  handleSubmit={this.handleSubmit}
+                  handleSubmit={this.handleRegSubmit}
                   loading={this.state.loading}
                 />
             }
           </div>
         ) : (
-          <RegSuccess type="register" toggleDone={this.toggleDone} />
+          <RegSuccess type="register" onGoBack={this.toggleDone} />
         )}
       </Container>
     );

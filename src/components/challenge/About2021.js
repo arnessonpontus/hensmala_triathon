@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { NavLink as RRNavLink } from "react-router-dom";
 
 const AboutChallenge = (props) => {
   const [modal, setModal] = useState(false);

@@ -64,7 +64,7 @@ class Navigation extends React.Component {
             tag={RRNavLink}
             className="inactive nav-title"
             activeClassName="active"
-            to="/tshirt"
+            to="/bestall-t-shirt"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
             BESTÄLL TSHIRT

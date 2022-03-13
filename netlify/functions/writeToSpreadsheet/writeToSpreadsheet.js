@@ -56,7 +56,7 @@ exports.handler = async (event, context, callback) => {
       break;
     case "tshirt_order":
       spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER;
-      idType = "";
+      idType = "O";
       break;
     default:
       console.log("The type given is not valid!");
