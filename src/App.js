@@ -20,6 +20,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
 import CoronaEdition from "./components/challenge/CoronaEdition";
 import Fortrampet from "./components/Fortrampet";
+import OrderShirt from "./components/register/OrderShirt";
 
 const App = () => {
   ReactGA.initialize("UA-158085908-1");
@@ -31,6 +32,7 @@ const App = () => {
         <Navigation />
         <Route path="/" exact component={Home} />
         <Route path="/anmalan" component={Register} />
+        <Route path="/tshirt" component={OrderShirt} />
         <Route path="/corona-edition" component={CoronaEdition} />
         <Route path="/fortrampet" component={Fortrampet} />
         <Route path="/media" component={Media} />

@@ -36,9 +36,9 @@ const ShirtSelect = (props) => {
   return (
     <div className="shirt-component" id="shirt-select">
       <ModalImage
-        small={"/images/shirt_double_side.png"}
-        large={"/images/shirt_double_side.png"}
-        alt={"Tröja fram"}
+        small={"/images/tshirt_2022_mockup_small.png"}
+        large={"/images/tshirt_2022_mockup_large.png"}
+        alt={"Tröja 2022"}
         hideDownload={true}
         hideZoom={false}
         className="modal-image"

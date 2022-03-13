@@ -8,12 +8,13 @@ if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
   throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
 if (!process.env.GOOGLE_PRIVATE_KEY)
   throw new Error("no GOOGLE_PRIVATE_KEY env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO_2022)
   // spreadsheet key is the long id in the sheets URL
+if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO_2022)
   throw new Error("no GOOGLE_SPREADSHEET_ID_SOLO_2022 env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM_2022)
-  // spreadsheet key is the long id in the sheets URL
   throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM_2022 env var set");
+if (!process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER)
+  throw new Error("no GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER env var set");
 
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const sendEmail = require("./emailSender");
@@ -30,7 +31,7 @@ function handleBirthday(data, type) {
       data["year2"] + "-" + appendZero(data["month2"]) + "-" + appendZero(data["day2"]);
     data["birthday3"] =
       data["year3"] + "-" + appendZero(data["month3"]) + "-" + appendZero(data["day3"]);
-  } else {
+  } else if (type == "solo") {
     data["birthday"] = data["year"] + "-" + appendZero(data["month"]) + "-" + appendZero(data["day"]);
   }
 
@@ -52,6 +53,10 @@ exports.handler = async (event, context, callback) => {
     case "team":
       spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TEAM_2022;
       idType = "T";
+      break;
+    case "tshirt_order":
+      spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER;
+      idType = "";
       break;
     default:
       console.log("The type given is not valid!");

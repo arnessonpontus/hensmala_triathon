@@ -197,17 +197,7 @@ class RegisterFormSolo extends Component {
                 <Consent
                   buttonText="Vad betyder detta?"
                   title="Information om sparad data"
-                >
-                  Hensmåla Triathlon kommer spara uppgifter för att hantera
-                  anmälningar till tävlingen. Dessa uppgifter behövs för att
-                  kunna hantera alla deltagare och se till att evemanget blir så
-                  bra som möjligt.
-                  <br></br>
-                  <br></br>
-                  Om du önskar att vi ska ta bort dina uppgifter kan du kontakta
-                  hensmala.triathlon@gmail.com. Dock kommer du då ej kunna vara
-                  med på loppet.
-                </Consent>
+                />
               </Label>
             </FormGroup>
             <FormGroup check>

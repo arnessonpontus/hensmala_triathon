@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 import RegisterFormSolo from "./RegisterFormSolo";
 import RegisterFormTeam from "./RegisterFormTeam";
 import classnames from "classnames";
-
+import { shirtArrayToString } from "./Utils"
 class Register extends Component {
   state = {
     hasRegisterd: false,
@@ -17,28 +17,12 @@ class Register extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.sendRegistration = this.sendRegistration.bind(this);
-    this.toggleDoneRegistration = this.toggleDoneRegistration.bind(this);
+    this.toggleDone = this.toggleDone.bind(this);
   }
 
-  toggleDoneRegistration = (e) => {
+  toggleDone = (e) => {
     this.setState({ hasRegisterd: !this.state.hasRegisterd });
   };
-
-    // Stringify the shirt selection for easier storage
-    shirtArrayToString = (shirts) => {
-      let shirtStr = ""
-      let numConverted = 0;
-      shirts.forEach((shirt) => {
-        if (shirt.size !== null && shirt.amount !== null) {
-          if (numConverted++ === 0) {
-            shirtStr += shirt.amount + shirt.size;
-          } else {
-            shirtStr += ", " + shirt.amount + shirt.size;
-          }
-        }
-      });
-      return shirtStr;
-    }
 
   sendRegistration = (formType, data) => {
     fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}`, {
@@ -47,7 +31,7 @@ class Register extends Component {
     })
       .then((res) => {
         if (res.status === 200) {
-          this.toggleDoneRegistration();
+          this.toggleDone();
         } else {
           alert(
             "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmalatriathlon@gmail.com."
@@ -64,7 +48,7 @@ class Register extends Component {
 
     // Deep copy and replace shirts array to string for easier handling
     const dataToSend = JSON.parse(JSON.stringify(data));
-    dataToSend.shirts = this.shirtArrayToString(dataToSend.shirts);
+    dataToSend.shirts = shirtArrayToString(dataToSend.shirts);
 
     // Add total cost to easier see correct payment has been made
     dataToSend["totalToPay"] = totalToPay;
@@ -130,7 +114,7 @@ class Register extends Component {
             }
           </div>
         ) : (
-          <RegSuccess toggleDoneRegistration={this.toggleDoneRegistration} />
+          <RegSuccess type="register" toggleDone={this.toggleDone} />
         )}
       </Container>
     );

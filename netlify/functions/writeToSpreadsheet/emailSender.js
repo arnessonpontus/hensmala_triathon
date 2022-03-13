@@ -22,10 +22,12 @@ function sendEmail(addedRow, registerType) {
     // TODO: Send to all members?
     const email = addedRow.email ? addedRow.email : addedRow.email1;
 
-    var mailOptions = {
+    const mailSubject = registerType === "tshirt_order" ? "Tack för din beställning!" : "Tack för din anmälan!"
+
+    const mailOptions = {
       from: process.env.EMAILER_USER,
       to: email,
-      subject: "Tack för din anmälan!",
+      subject: mailSubject,
       html: getHtml(addedRow, registerType),
       bcc: [process.env.EMAILER_USER],
       attachments: [{
@@ -102,7 +104,7 @@ function getHtml(data, type) {
               <img src="cid:logo" alt="Logga" width="200px"'/>
           </div>
       `;
-  } else {
+  } else if (type === "team") {
       html = `
           <!DOCTYPE html>
           <html xmlns="http://www.w3.org/1999/xhtml">
@@ -186,6 +188,49 @@ function getHtml(data, type) {
             <img src="cid:logo" alt="Logga" width="200px"'/>
           </div>
       `;
+  } else {
+        html = `
+        <!DOCTYPE html>
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HT Confirm Email</title>
+        </head>
+        <style type="text/css">
+        </style>
+        <div>
+            <h1>Hej ${data.name.split(" ")[0]}!</h1>
+            <h2>
+                Tack för din beställning av tshirt för Hensmåla Triathlon 2022!
+            </h2>
+            <p>
+                Betala <b>${data.totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781. När vi ser din beställning och verifierar din betalning lägger vi undan din beställning.
+            </p>
+            <p>
+                Här är dina uppgifter:
+            </p>
+            <ul>
+            <li>
+                Namn: <b>${data.name}</b>
+            </li>
+            <li>
+                Epost: <b>${data.email}</b>
+            </li>
+            <li>
+                Tröjor: <b>${data.shirts}</b>
+            </li>
+            <li>
+                Extra donation: <b>${data.extraDonation}kr</b>
+            </li>
+            <li>
+                Övrig information: <b>${data.info}</b>
+            </li>
+            </ul>
+            <p>Förhoppningsvis ses vi 23:e juli!</p>
+            <img src="cid:logo" alt="Logga" width="200px"'/>
+        </div>
+    `;
   }
 
   return html;

@@ -14,7 +14,7 @@ class RegSuccess extends Component {
           textAlign: "center"
         }}
       >
-        <h2>Tack för din anmälan!</h2>
+        <h2>{this.props.type === "register" ? "Tack för din anmälan!" : "Tack för din beställning!"}</h2>
         <div
           className="button-style"
           style={{
@@ -23,10 +23,10 @@ class RegSuccess extends Component {
             color: "white",
           }}
           onClick={() => {
-            this.props.toggleDoneRegistration();
+            this.props.toggleDone();
           }}
         >
-          Registrera fler
+          {this.props.type === "register" ? "Registrera fler" : "Beställ mer"}
         </div>
       </Container>
     );
