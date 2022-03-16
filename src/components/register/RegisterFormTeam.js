@@ -163,7 +163,11 @@ class RegisterFormTeam extends Component {
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
-
+            <p>
+              <b>
+                <i>Sista dag för anmälan med t-shirt är 23:e maj</i>
+              </b>
+            </p>
             <FormGroup>
               <Label for="teamName">Lagnamn*</Label>
               <Input

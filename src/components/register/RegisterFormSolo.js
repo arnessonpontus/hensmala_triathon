@@ -71,12 +71,17 @@ class RegisterFormSolo extends Component {
             }
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Anmälan 2022 Individuell</h3>
+              
               <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
-
+            <h3>Anmälan 2022 Individuell</h3>
+            <p>
+              <b>
+                <i>Sista dag för anmälan med t-shirt är 23:e maj</i>
+              </b>
+            </p>
             <FormGroup>
               <Label for="name">Namn*</Label>
               <Input

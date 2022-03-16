@@ -27,7 +27,7 @@ class Home extends Component {
             alt="HT_banner"
           ></img>
           <div className="center-absolute">
-            <Countdown renderer={countdownRenderer} date={new Date('July 23, 2022 15:00:00')}></Countdown>
+            <Countdown renderer={countdownRenderer} date={new Date('July 23, 2022 00:00:00')}></Countdown>
           </div>
         </div>
         <Container className="p-4">

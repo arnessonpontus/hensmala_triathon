@@ -17,15 +17,11 @@ import firebase from "firebase/compat/app"; // Change to only import specific mo
 
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import ReactGA from "react-ga";
 import CoronaEdition from "./components/challenge/CoronaEdition";
 import Fortrampet from "./components/Fortrampet";
 import OrderShirt from "./components/register/OrderShirt";
 
 const App = () => {
-  ReactGA.initialize("UA-158085908-1");
-  ReactGA.pageview(window.location.pathname + window.location.search);
-
   return (
     <div className="App">
       <Router>

@@ -14,15 +14,14 @@ const Consent = (props) => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{props.title}</ModalHeader>
         <ModalBody>
-          Hensmåla Triathlon kommer spara uppgifter för att hantera
-          anmälningar till tävlingen. Dessa uppgifter behövs för att
-          kunna hantera alla deltagare och se till att evemanget blir så
-          bra som möjligt.
+          Hensmåla Triathlon kommer spara de angivna uppgifterna för att hantera
+          anmälningar till tävlingen och beställningar av t-shirts. Dessa uppgifter behövs för att
+          kunna kontakta och hantera alla personer som kommer på loppet eller beställer t-shirts.
           <br></br>
           <br></br>
-          Om du önskar att vi ska ta bort dina uppgifter kan du kontakta
+          Om du önskar att vi ska ta bort dina uppgifter tidigare kan du kontakta
           hensmala.triathlon@gmail.com. Dock kommer du då ej kunna vara
-          med på loppet.
+          med på loppet eller ta emot din t-shirt.
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>
