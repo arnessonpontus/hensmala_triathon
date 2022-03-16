@@ -26,7 +26,7 @@ class Navigation extends React.Component {
 
   render() {
     return (
-      <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E" }}>
+      <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 1 }}>
         <NavbarBrand
           tag={RRNavLink}
           color="light"

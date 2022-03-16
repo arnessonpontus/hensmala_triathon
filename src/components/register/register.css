@@ -21,6 +21,10 @@
   color: #11999E;
 }
 
+.thumbnail-shirt {
+  cursor: pointer;
+}
+
 .scroll-to-info-btn {
   display: flex;
   flex-direction: column;

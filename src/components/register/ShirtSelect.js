@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Input } from "reactstrap";
-import ModalImage from "react-modal-image";
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 
 const ShirtSelect = (props) => {
   const [shirts, setShirts] = useState([{size: null, amount: null}]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
   const amounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -35,14 +37,14 @@ const ShirtSelect = (props) => {
 
   return (
     <div className="shirt-component" id="shirt-select">
-      <ModalImage
-        small={"/images/tshirt_2022_mockup_small.png"}
-        large={"/images/tshirt_2022_mockup_large.png"}
-        alt={"Tröja 2022"}
-        hideDownload={true}
-        hideZoom={false}
-        className="modal-image"
-      />
+      <img width="100%" class="thumbnail-shirt" src="/images/tshirt_2022_mockup_small.png" onClick={() => setIsOpen(true)}></img>
+      {isOpen && (
+          <Lightbox
+            wrapperClassName="lightbox"
+            mainSrc="/images/tshirt_2022_mockup_large.png"
+            onCloseRequest={() => setIsOpen(false)}
+          />
+        )}
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           
