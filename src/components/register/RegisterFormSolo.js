@@ -71,15 +71,15 @@ class RegisterFormSolo extends Component {
             }
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <h3>Anmälan 2022 Individuell</h3>
               
               <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
-            <h3>Anmälan 2022 Individuell</h3>
             <p>
               <b>
-                <i>Sista dag för anmälan med t-shirt är 23:e maj</i>
+                <i>Sista dag för beställning av t-shirt är 23:e maj</i>
               </b>
             </p>
             <FormGroup>
@@ -181,7 +181,7 @@ class RegisterFormSolo extends Component {
             <FormGroup check>
               <Label for="checkbox1">
                 <Input
-                  className="checkbox1"
+                  id="checkbox1"
                   type="checkbox"
                   onClick={() => this.toggleConsent(1)}
                 />{" "}
@@ -195,7 +195,7 @@ class RegisterFormSolo extends Component {
             <FormGroup check>
               <Label for="checkbox2">
                 <Input
-                  className="checkbox2"
+                  id="checkbox2"
                   type="checkbox"
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
@@ -213,7 +213,7 @@ class RegisterFormSolo extends Component {
             <FormGroup check>
               <Label for="checkbox3">
                 <Input
-                  className="checkbox3"
+                  id="checkbox3"
                   type="checkbox"
                   onClick={() => this.toggleConsent(3)}
                 />{" "}
@@ -246,7 +246,7 @@ class RegisterFormSolo extends Component {
         </Col>
         <Col id="info-text" style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>
-          <h3>Anmäl dig Hensmåla Triathlon 2022</h3>
+          <h3>Anmäl dig till Hensmåla Triathlon 2022</h3>
           <b>Datum: 23 juli</b>
           <p>
             Ett motionslopp för alla, motionär som elit. Få en härlig dag i Hensmålas vackra natur med simning (340m), cykling (9.2km), löpning (6.5km) och samtidigt bidra till ALS-forskningen.
@@ -264,7 +264,7 @@ class RegisterFormSolo extends Component {
             </RRNavLink>.
           </p>
           <p>
-            Du kommer få ett mail ett bekräftelse-email med din angiva information och{" "}
+            Du kommer få ett bekräftelse-email med din angiva information och{" "}
             <b>betalningsuppgifter</b> då anmälan är gjord. Betala gärna direkt i samband med anmälan. När tävlingen närmar
             sig kommer yttligare information skickas ut via mail till alla
             deltagare.

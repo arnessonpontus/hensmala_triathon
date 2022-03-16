@@ -28,7 +28,7 @@ const ExtraDonation = (props) => {
       <div onClick={() => onDonationItemClicked(-1, 0)} className={`button-style donation-item ${selectedItem === -1 ? "selected" : null}`}>Nej tack</div>
       {suggestedAmount.map((amount, i) => {
         return(
-          <div onClick={() => onDonationItemClicked(i, amount)} className={`button-style donation-item ${i === selectedItem ? "selected" : null}`}>{amount}kr</div>
+          <div key={amount} onClick={() => onDonationItemClicked(i, amount)} className={`button-style donation-item ${i === selectedItem ? "selected" : null}`}>{amount}kr</div>
         )
       })}
       <div onClick={() => onDonationItemClicked(Infinity, lastFreeDonation.current)} className={`button-style donation-item optional-donation-button ${Infinity === selectedItem ? "selected" : null}`}>

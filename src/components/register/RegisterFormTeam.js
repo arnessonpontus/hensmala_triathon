@@ -165,7 +165,7 @@ class RegisterFormTeam extends Component {
             </div>
             <p>
               <b>
-                <i>Sista dag för anmälan med t-shirt är 23:e maj</i>
+                <i>Sista dag för beställning av t-shirt är 23:e maj</i>
               </b>
             </p>
             <FormGroup>
@@ -206,9 +206,9 @@ class RegisterFormTeam extends Component {
               <FormText color="bold">* obligatoriska fält.</FormText>
             </FormGroup>
             <FormGroup check>
-              <Label for="checkbox1">
+              <Label for="checkbox1Team">
                 <Input
-                  className="checkbox1"
+                  id="checkbox1Team"
                   type="checkbox"
                   onClick={() => this.toggleConsent(1)}
                 />{" "}
@@ -220,9 +220,9 @@ class RegisterFormTeam extends Component {
               </Label>
             </FormGroup>
             <FormGroup check>
-              <Label for="checkbox2">
+              <Label for="checkbox2Team">
                 <Input
-                  className="checkbox2"
+                  id="checkbox2Team"
                   type="checkbox"
                   onClick={() => this.toggleConsent(2)}
                 />{" "}
@@ -238,9 +238,9 @@ class RegisterFormTeam extends Component {
               </Label>
             </FormGroup>
             <FormGroup check>
-              <Label for="checkbox3">
+              <Label for="checkbox3Team">
                 <Input
-                  className="checkbox3"
+                  id="checkbox3Team"
                   type="checkbox"
                   onClick={() => this.toggleConsent(3)}
                 />{" "}
@@ -291,7 +291,7 @@ class RegisterFormTeam extends Component {
             </RRNavLink>.
           </p>
           <p>
-            Du kommer få ett mail ett bekräftelse-email med din angiva information och{" "}
+            Du kommer få ett bekräftelse-email med din angiva information och{" "}
             <b>betalningsuppgifter</b> då anmälan är gjord. Betala gärna direkt i samband med anmälan. När tävlingen närmar
             sig kommer yttligare information skickas ut via mail till alla
             deltagare.

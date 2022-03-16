@@ -13,17 +13,9 @@ class SponsorSection extends Component {
           href={"images/articleImages/" + this.props.article.link}
         >
           <div className="card-box-hoverable" style={{ height: 350 }}>
-            <img
-              src={
-                this.props.article.thumbnail
-                  ? "images/articleImages/" + this.props.article.thumbnail
-                  : "images/articleImages/default_reflex_nr5_2015_300.jpg"
-              }
-              style={{ objectFit: "cover" }}
-              width="100%"
-              height="80%"
-              alt={this.props.article.title}
-            ></img>
+            <div className="article-placeholder">
+              {Array.from({length: 5}, () => Math.floor(Math.random() * 7 + 1)).map(rnd => <div style={{width: rnd + "0%"}} className="article-placeholder-row"/>)}
+            </div>
             <div style={styles.titleContainer}>
               <h5
                 style={{

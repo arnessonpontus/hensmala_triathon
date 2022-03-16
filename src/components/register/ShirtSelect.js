@@ -37,7 +37,7 @@ const ShirtSelect = (props) => {
 
   return (
     <div className="shirt-component" id="shirt-select">
-      <img width="100%" class="thumbnail-shirt" src="/images/tshirt_2022_mockup_small.png" onClick={() => setIsOpen(true)}></img>
+      <img width="100%" className="thumbnail-shirt" src="/images/tshirt_2022_mockup_small.png" onClick={() => setIsOpen(true)}></img>
       {isOpen && (
           <Lightbox
             wrapperClassName="lightbox"
