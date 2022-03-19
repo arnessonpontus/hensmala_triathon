@@ -1,20 +1,29 @@
 import React, { Component } from "react";
 import News from "./news/News";
-import Countdown from "react-countdown";
-
+import moment from 'moment-timezone';
 import { Container, Row, Col} from "reactstrap";
 
-const countdownRenderer = ({ days, hours, minutes, seconds, completed }) => {
-  if (completed) {
-    return <span className="countdown">Vi är igång!</span>;
-  } else {
-    return <span className="countdown">{days} dagar kvar</span>;
-  }
-};
+export function getDaysFromNow(day) {
+  return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm"))/86400000)
+}
 
 class Home extends Component {
+  state = {
+    daysLeft: getDaysFromNow("2022-07-23"),
+    intervalID: null,
+  }
+  
   componentDidMount() {
     window.scrollTo(0, 0);
+
+    const intervalID = setInterval(() => {
+      this.setState({daysLeft: Math.max(0, getDaysFromNow("2022-07-23"))})
+    }, 1000)
+    this.setState({intervalID})
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalID);
   }
 
   render() {
@@ -27,7 +36,7 @@ class Home extends Component {
             alt="HT_banner"
           ></img>
           <div className="center-absolute">
-            <Countdown renderer={countdownRenderer} date={new Date('July 23, 2022 00:00:00')}></Countdown>
+            <span className="countdown">{this.state.daysLeft} dagar kvar</span>
           </div>
         </div>
         <Container className="p-4">
