@@ -100,6 +100,7 @@ function getHtml(data, type) {
                   Övrig information: <b>${data.info}</b>
               </li>
               </ul>
+              <p>Starten går klockan 15.00, var gärna i god tid.</p>
               <p>Vi ses den 23e Juli!</p>
               <img src="cid:logo" alt="Logga" width="200px"'/>
           </div>
@@ -183,7 +184,7 @@ function getHtml(data, type) {
             <li>
                 Övrig information: <b>${data.info}</b>
             </li>
-              
+            <p>Starten går klockan 15.00, var gärna i god tid.</p>
             <p>Vi ses den 23e Juli!</p>
             <img src="cid:logo" alt="Logga" width="200px"'/>
           </div>
