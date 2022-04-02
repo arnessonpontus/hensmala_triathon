@@ -1,13 +1,13 @@
- // Stringify the shirt selection for easier storage
+// Stringify the shirt selection for easier storage
 export function shirtArrayToString (shirts){
   let shirtStr = ""
   let numConverted = 0;
   shirts.forEach((shirt) => {
-    if (shirt.size !== null && shirt.amount !== null) {
+    if (shirt.size !== null && shirt.type !== null) {
       if (numConverted++ === 0) {
-        shirtStr += shirt.amount + shirt.size;
+        shirtStr += shirt.type + " " + shirt.size;
       } else {
-        shirtStr += ", " + shirt.amount + shirt.size;
+        shirtStr += ", " + shirt.type + " " + shirt.size;
       }
     }
   });
@@ -17,7 +17,7 @@ export function shirtArrayToString (shirts){
 // Checks if at lease one shirt is selected
 export function isShirtSelected(shirts) {
     for (let shirt of shirts) {
-        if (shirt.size !== null && shirt.amount !== null){
+        if (shirt.size !== null && shirt.type !== null){
             return true;
         }
     }

@@ -38,7 +38,7 @@ class OrderShirt extends Component {
     }
 
     calcTotalCost = () => {
-        return this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt) => prevVal + (shirt.size && shirt.amount ? shirt.amount : 0), 0) * SHIRT_PRICE;
+        return this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt) => prevVal + (shirt.size && shirt.type ? 1 : 0), 0) * SHIRT_PRICE;
     }
 
     handleChange = (e) => {
@@ -143,16 +143,17 @@ class OrderShirt extends Component {
                             </FormGroup>
                             <FormGroup check>
                                 <Label for="checkbox1">
-                                <Input
-                                className="checkbox1"
-                                type="checkbox"
-                                onClick={() => this.setState({consent: !this.state.consent})}
-                                />{" "}
-                                Jag accepterar att Hensmåla Triathlon sparar data om mig.
-                                <Consent
-                                buttonText="Vad betyder detta?"
-                                title="Information om sparad data"
-                                />
+                                  <Input
+                                  id="checkbox1"
+                                  className="checkbox1"
+                                  type="checkbox"
+                                  onClick={() => this.setState({consent: !this.state.consent})}
+                                  />{" "}
+                                  Jag accepterar att Hensmåla Triathlon sparar data om mig.
+                                  <Consent
+                                  buttonText="Vad betyder detta?"
+                                  title="Information om sparad data"
+                                  />
                                 </Label>
                             </FormGroup>
                             <RegisterButton text="Beställ!" disabled={!(this.state.consent && isShirtSelected(this.state.shirts)) || this.state.loading} loading={this.state.loading} />

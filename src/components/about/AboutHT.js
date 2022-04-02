@@ -209,7 +209,7 @@ class AboutHT extends React.Component {
                 alignItems: "center",
               }}
             >
-              Relger
+              Regler
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"

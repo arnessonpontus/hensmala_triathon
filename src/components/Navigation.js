@@ -103,7 +103,7 @@ class Navigation extends React.Component {
             to="/om-ht/hem"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
-            OM HENSMÅLA TRIATLON
+            OM HENSMÅLA TRIATHLON
           </NavLink>
 
           <NavLink
