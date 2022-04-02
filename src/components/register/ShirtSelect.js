@@ -4,21 +4,20 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 
 const ShirtSelect = (props) => {
-  const [shirts, setShirts] = useState([{size: null, amount: null}]);
+  const [shirts, setShirts] = useState([{size: null, type: null}]);
   const [isOpen, setIsOpen] = useState(false);
 
   const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
-  const amounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   function addShirt() {
-    const newShirts = [...shirts, {size: null, amount: null}]
+    const newShirts = [...shirts, {size: null, type: null}]
     setShirts(newShirts);
   }
 
   const deleteShirt = (idx) =>  {
     const newShirts = [...shirts];
       if (idx === 0) {
-        newShirts[0] = {size: null, amount: null};
+        newShirts[0] = {size: null, type: null};
       } else {
         newShirts.splice(idx, 1);
       }
@@ -27,7 +26,7 @@ const ShirtSelect = (props) => {
       props.updateShirtSelection(newShirts);
   };
 
-  // Set the size or amount value of the shirt
+  // Set the size or type of the shirt
   function updateShirtValues(field, idx, value) {
     const newShirts = [...shirts];
     newShirts[idx][field] = value;
@@ -72,22 +71,21 @@ const ShirtSelect = (props) => {
                 className="ml-2 mr-2"
                 required={true}
                 type="select"
-                name={"amount"}
-                onChange={(e) => updateShirtValues("amount", i, Number(e.target.value))}
+                name={"type"}
+                onChange={(e) => updateShirtValues("type", i, e.target.value)}
               >
-                <option disabled selected={shirt.amount === null} value>
-                  Antal
+                <option disabled selected={shirt.type === null} value>
+                  Typ
                 </option>
-                  {amounts.map((amount) => {
-                    return (
-                      <option selected={shirt.amount === amount} value={amount} key={amount}>
-                        {amount}
-                      </option>
-                    );
-                  })}
+                <option selected={shirt.type === "dam"} value={"dam"} key={"dam"}>
+                  Dam
+                </option>
+                <option selected={shirt.type === "herr"} value={"herr"} key={"herr"}>
+                  Herr
+                </option>
               </Input>
               <div className="delete-icon" onClick={() => deleteShirt(i)}>
-              {(i !== 0 || (shirts[0].size !== null || shirts[0].amount !== null)) ? <i className="fas fa-trash "></i> : null}
+              {(i !== 0 || (shirts[0].size !== null || shirts[0].type !== null)) ? <i className="fas fa-trash "></i> : null}
               </div>
             </div>
           )
