@@ -57,8 +57,17 @@ class RegisterFormSolo extends Component {
     }
   };
 
+  isAllowedCompanyEntered = () => {
+    return process.env.REACT_APP_ALLOWED_COMPANY && this.state.city.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase());
+  }
+
   calcTotalCost = () => {
-    return REGISTER_FEE + this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt) => prevVal + (shirt.size && shirt.type ? 1 : 0), 0) * SHIRT_PRICE;
+    const shirtAmount = this.state.shirts.filter((shirt) => shirt.size && shirt.type).length;
+    if (this.isAllowedCompanyEntered()) {
+      return this.state.extraDonation + (shirtAmount > 1 ? shirtAmount - 1 : 0) * SHIRT_PRICE;
+    } else {
+      return REGISTER_FEE + this.state.extraDonation + shirtAmount * SHIRT_PRICE;
+    }
   }
 
   render() {
@@ -152,8 +161,14 @@ class RegisterFormSolo extends Component {
                 value={this.state.city}
                 onChange={this.handleChange}
               />
+            {this.isAllowedCompanyEntered() ? 
+            <div className="allowed-company-text-bg">
+              <small>
+              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför en t-shirt och anmälningsavgiften betald.
+              </small>
+            </div>
+            : null}
             </FormGroup>
-
             <FormGroup>
               <Label for="info">Information</Label>
               <Input

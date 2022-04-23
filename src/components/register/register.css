@@ -123,6 +123,13 @@
   transform: translateX(100%);
 }
 
+.allowed-company-text-bg {
+  padding: 5px;
+  margin: 5px 0px;
+  border-radius: 5px;
+  background-color: #ebf5fa;
+}
+
 @media (min-width: 770px) {
   .scroll-to-info-btn {
     display: none;
