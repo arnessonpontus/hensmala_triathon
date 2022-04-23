@@ -58,7 +58,11 @@ class RegisterFormSolo extends Component {
   };
 
   calcTotalCost = () => {
-    return REGISTER_FEE + this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt) => prevVal + (shirt.size && shirt.type ? 1 : 0), 0) * SHIRT_PRICE;
+    if (process.env.REACT_APP_ALLOWED_COMPANY && process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase() === this.state.city.toLowerCase()) {
+      return this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt, i) => prevVal + (i > 0 && shirt.size && shirt.type ? 1 : 0), 0) * SHIRT_PRICE;
+    } else {
+      return REGISTER_FEE + this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt) => prevVal + (shirt.size && shirt.type ? 1 : 0), 0) * SHIRT_PRICE;
+    }
   }
 
   render() {
@@ -152,8 +156,14 @@ class RegisterFormSolo extends Component {
                 value={this.state.city}
                 onChange={this.handleChange}
               />
+            {process.env.REACT_APP_ALLOWED_COMPANY && this.state.city.toLowerCase() === process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase() ? 
+            <div className="allowed-company-text-bg">
+              <small>
+              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför en t-shirt och anmälningsavgiften betald.
+              </small>
+            </div>
+            : null}
             </FormGroup>
-
             <FormGroup>
               <Label for="info">Information</Label>
               <Input
