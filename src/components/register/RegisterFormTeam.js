@@ -73,7 +73,8 @@ class RegisterFormTeam extends Component {
   };
 
   calcTotalCost = () => {
-    return REGISTER_FEE + this.state.extraDonation + this.state.shirts.reduce((prevVal, shirt) => prevVal + (shirt.size && shirt.type ? 1 : 0), 0) * SHIRT_PRICE;
+    const shirtAmount = this.state.shirts.filter((shirt) => shirt.size && shirt.type).length;
+    return REGISTER_FEE + this.state.extraDonation + shirtAmount * SHIRT_PRICE;
   }
 
   renderMemberFields = () => {
