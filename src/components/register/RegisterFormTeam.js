@@ -166,7 +166,7 @@ class RegisterFormTeam extends Component {
             </div>
             <p>
               <b>
-                <i>Sista dag för beställning av t-shirt är 23:e maj</i>
+                <i>Sista dag för beställning av t-shirt är 1:e juni</i>
               </b>
             </p>
             <FormGroup>

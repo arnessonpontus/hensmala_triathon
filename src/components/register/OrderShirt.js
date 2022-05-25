@@ -69,7 +69,7 @@ class OrderShirt extends Component {
                         <h3>Beställ t-shirt </h3>
                         <p>
                           <b>
-                            <i>Sista beställningsdag: 23:e maj</i>
+                            <i>Sista beställningsdag: 1:e juni</i>
                           </b>
                         </p>
                         <b>Kostnad {SHIRT_PRICE}kr</b>
