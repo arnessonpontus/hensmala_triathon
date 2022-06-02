@@ -10,7 +10,6 @@ import {
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "../Consent";
-import ShirtSelect from "./ShirtSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import RegisterButton from "./RegisterButton";
@@ -86,11 +85,6 @@ class RegisterFormSolo extends Component {
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
-            <p>
-              <b>
-                <i>Sista dag för beställning av t-shirt är 1:e juni</i>
-              </b>
-            </p>
             <FormGroup>
               <Label for="name">Namn*</Label>
               <Input
@@ -179,12 +173,6 @@ class RegisterFormSolo extends Component {
                 value={this.state.info}
                 onChange={this.handleChange}
               />
-            </FormGroup>
-            <FormGroup>
-                <Label for="shirt-select">Lägg till t-shirt ({SHIRT_PRICE}kr st)</Label>
-              <div className="shirt-select">
-                <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
-              </div>
             </FormGroup>
             <FormGroup>
               <Label for="extra-donation">Extra donation till ALS-forskningen</Label>

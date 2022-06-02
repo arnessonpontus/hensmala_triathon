@@ -66,12 +66,12 @@ class OrderShirt extends Component {
                 <div className="card-box" style={{ marginTop: 40, width: "90%" }}>
                 <Row>
                     <Col style={{ marginTop: "2vh" }} md={6}>
-                        <h3>Beställ t-shirt </h3>
                         <p>
-                          <b>
-                            <i>Sista beställningsdag: 1:e juni</i>
-                          </b>
+                          <h3>
+                            <i>Sista beställningsdag var 1:e juni!</i>
+                          </h3>
                         </p>
+                        <p>Kontakta oss om du har frågor.</p>
                         <b>Kostnad {SHIRT_PRICE}kr</b>
                         <p>Vill du inte delta i årets lopp men ändå ha en superfin t-shirt från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen!</p>
 
@@ -157,7 +157,7 @@ class OrderShirt extends Component {
                                   />
                                 </Label>
                             </FormGroup>
-                            <RegisterButton text="Beställ!" disabled={!(this.state.consent && isShirtSelected(this.state.shirts)) || this.state.loading} loading={this.state.loading} />
+                            <RegisterButton text="Beställning ej möjlig!" disabled={true} />
                         </Form>
                         <small>
                           This site is protected by reCAPTCHA and the Google{" "}
