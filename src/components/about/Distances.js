@@ -10,7 +10,7 @@ class Distances extends Component {
           <Col style={{ marginTop: "5vh" }} md={6}>
             <b>Simning - 340 m</b>
             <p>
-              Simningen sker runt lillön. Starten sker i vattnet vid stranden.
+              Simningen sker runt lillön. Starten går i vattnet vid stranden.
               Därefter är det medurs varv runt ön som gäller.
             </p>
             <p>
@@ -40,7 +40,7 @@ class Distances extends Component {
             <p>
               Cyklingen sker runt Hensjön. Cyklingen får först börja när
               deltagaren är utanför växlingsområdet, alltså på grusvägen,
-              därefter sker turen medurs runt sjön. Det är ca 2 kilometer{" "}
+              därefter går turen medurs runt sjön. Det är ca 2 kilometer{" "}
               <b>grusväg</b> under cykelsträckan. Det kan även förekomma lösgrus
               på vissa ställen.
             </p>
@@ -69,7 +69,7 @@ class Distances extends Component {
           <Col style={{ marginTop: "5vh" }} md={6}>
             <b>Löpning - 6.5 km</b>
             <p>
-              Löpningen sker i skogen på andra sidan vägen. Var{" "}
+              Löpningen sker i skogen på andra sidan väg 120. Var{" "}
               <b>väldigt uppmärksam</b> på fordon när vägen behöver korsas vid
               två tillfällen.
             </p>

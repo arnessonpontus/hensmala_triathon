@@ -18,7 +18,7 @@ class Rules extends Component {
           Knäppt cykelhjälm ska bäras under hela cyklingen. Cykel måste ha
           godkända bromsar. Inga hörlurar med musik är tillåtna. Elcykel är inte
           tillåten. Cykling sker runt stora Hensjön, på både grus och asfalt.
-          funktionärer finns vid varje vägkorsning. De vanliga trafikreglerna
+          Funktionärer finns vid varje vägkorsning. De vanliga trafikreglerna
           gäller! På grussträckorna finns ”reservcyklar” utplacerade som går att
           använda vid ev. haveri.
         </p>

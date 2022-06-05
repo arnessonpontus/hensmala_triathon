@@ -182,18 +182,18 @@ class RegisterFormSolo extends Component {
               <FormText color="bold">* obligatoriska fält.</FormText>
             </FormGroup>
             <FormGroup check>
-              <Label for="checkbox1">
+              <Label for="checkbox1" className="consent-checkbox">
                 <Input
                   id="checkbox1"
                   type="checkbox"
                   onClick={() => this.toggleConsent(1)}
                 />{" "}
                 Jag accepterar att Hensmåla Triathlon sparar data om mig.
-                <Consent
-                  buttonText="Vad betyder detta?"
-                  title="Information om sparad data"
-                />
               </Label>
+              <Consent
+                buttonText="Vad betyder detta?"
+                title="Information om sparad data"
+              />
             </FormGroup>
             <FormGroup check>
               <Label for="checkbox2">
@@ -272,6 +272,7 @@ class RegisterFormSolo extends Component {
             sig kommer yttligare information skickas ut via mail till alla
             deltagare.
           </p>
+          <p>Första start sker 15.00.</p>
           <b>
             Fotografering och videofilmning förekommer, meddela om du inte vill
             vara med.
@@ -282,7 +283,7 @@ class RegisterFormSolo extends Component {
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
           <p>
             <i style={{ fontSize: 12 }}>
-              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 31:e maj.
+              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 1 juli.
             </i>
           </p>
         </Col>

@@ -7,8 +7,8 @@ const Consent = (props) => {
   const toggle = () => setModal(!modal);
 
   return (
-    <div>
-      <i className="consent-button" onClick={toggle}>
+    <div className="consent-button">
+      <i onClick={toggle}>
         {props.buttonText}
       </i>
       <Modal isOpen={modal} toggle={toggle}>

@@ -21,6 +21,10 @@
   color: #11999E;
 }
 
+.consent-checkbox {
+  margin-bottom: 0px;
+}
+
 .thumbnail-shirt {
   cursor: pointer;
 }

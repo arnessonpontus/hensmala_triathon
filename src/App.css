@@ -168,6 +168,7 @@ i {
 .consent-button {
   color: #909090;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .consent-button:hover {

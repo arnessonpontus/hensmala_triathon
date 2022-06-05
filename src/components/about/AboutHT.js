@@ -130,11 +130,16 @@ class AboutHT extends React.Component {
                     minitriathlon till förmån för ALS-forskningen. Alla sträckor
                     är anpassade till den vackra Stora Hensjön och Hensmålas
                     landskap.
-                    <br></br>
-                    <br></br>
+                  </p>
+                  <p>
                     Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
                     till ALS forskningen. De tre senaste åren har gåvan riktats
                     mot Stoppa ALS och ALS Treatment Center Karolinska.
+                  </p>
+                  <p>Första start sker i år 23 juli 15.00.</p>
+                  <b>Vad finns att göra på hensmåla Triathlon?</b>
+                  <p>
+                    Under normala forhållanden är Hensmåla Triathlon en folkfest där publiken är grunden till den goda stämningen. Det kommer finnas bland annat mat i form av grillad korv, fika, lotteri, massage och musik på plats. Kom gärna och heja på!
                   </p>
                 </CardBody>
               </Card>

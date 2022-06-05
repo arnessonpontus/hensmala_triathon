@@ -74,7 +74,7 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Nej ingen anmälan krävs. Det är bara att dyka upp den 11:e
+                  Nej ingen anmälan krävs. Det är bara att dyka upp den 17:e
                   juli.
                 </b>
               </p>

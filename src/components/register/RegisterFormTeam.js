@@ -81,7 +81,7 @@ class RegisterFormTeam extends Component {
       return(
       <div style={{marginBottom: "20px"}}>
         <Label for={`teamMember${num}`}>Lagmedlem {num}</Label>
-        {num === "3" ? <i> (Ej för lag med endast två deltagare)</i> : null} 
+        {num === 3 ? <i> (Ej för lag med endast två deltagare)</i> : null} 
         <i></i>
           <Card id={`teamMember${num}`} style={{ backgroundColor: `#dfeff${num*3}` }}>
             <CardBody>
@@ -195,18 +195,18 @@ class RegisterFormTeam extends Component {
               <FormText color="bold">* obligatoriska fält.</FormText>
             </FormGroup>
             <FormGroup check>
-              <Label for="checkbox1Team">
+              <Label for="checkbox1Team" className="consent-checkbox">
                 <Input
                   id="checkbox1Team"
                   type="checkbox"
                   onClick={() => this.toggleConsent(1)}
                 />{" "}
                 Jag accepterar att Hensmåla Triathlon sparar data om mig.
-                <Consent
-                  buttonText="Vad betyder detta?"
-                  title="Information om sparad data"
-                />
               </Label>
+              <Consent
+                buttonText="Vad betyder detta?"
+                title="Information om sparad data"
+              />
             </FormGroup>
             <FormGroup check>
               <Label for="checkbox2Team">
@@ -263,13 +263,11 @@ class RegisterFormTeam extends Component {
         </Col>
         <Col id="info-text" style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>          
-          <h3>Anmäl er som Lag</h3>
+          <h3>Anmäl er som Lag (2-3 pers.)</h3>
           <b>Datum: 23 juli</b>
           <p>
-            När ni anmäler er som lag får sträckorna delas upp inom laget. Detta
-            kan innebära att ni är tre som deltar där alla kör en gren var.
-            Eller innefattar laget endast två personer och en person kör två av
-            grenarna. För mer information om sträckorna och tävlingsregler kan
+            När ni anmäler er som lag får sträckorna delas upp hur ni vill inom laget. Detta
+            kan innebära att ni är tre personer som deltar där alla kör en gren var, eller ett lag med 2 personer där en av er kör 2 grenar. För mer information om sträckorna och tävlingsregler kan
             du gå in{" "}
             <RRNavLink 
               target="_blank"
@@ -285,6 +283,7 @@ class RegisterFormTeam extends Component {
             sig kommer yttligare information skickas ut via mail till alla
             deltagare.
           </p>
+          <p>Första start sker 15.00.</p>
           <b>
             Fotografering och videofilmning förekommer, meddela om du inte vill
             vara med.
@@ -295,7 +294,7 @@ class RegisterFormTeam extends Component {
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
           <p>
             <i style={{ fontSize: 12 }}>
-              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 31:e maj.
+              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 1 juli.
             </i>
           </p>
         </Col>

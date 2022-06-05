@@ -70,18 +70,18 @@ class AboutALS extends React.Component {
                     ALS (amyotrofisk lateral skleros)
                   </CardTitle>
                   <p>
-                    ALS (amyotrofisk lateral skleros) ALS är en sjukdom som
+                    ALS är en sjukdom som
                     leder till förlamningar, orsakade av att de nervceller i
                     hjärnan och ryggmärgen som styr musklerna bryts ner.
-                    Medvetandet påverkas inte. Andningssvikt uppträder förr
+                    Medvetandet påverkas dock inte under denna tid. Andningssvikt uppträder förr
                     eller senare, och oftast dör personen inom 2-4 år.
                     <br></br>
-                    Orsaken är inte känd. Ärftlig i endast 5-10% av fallen.
-                    Ingen bot finns ännu. Smittar inte. Förekommer över hela
-                    världen.
+                    Orsaken är ännu inte känd. Sjukdomen är ärftlig i endast 5-10% av fallen och
+                    ingen bot finns ännu. Förekommer över hela
+                    världen och smittar inte. 
                     <br />
                     <br />
-                    Varje år insjuknar cirka 200 personer i Sverige. Tendens
+                    Varje år insjuknar cirka 200 personer i Sverige med en tendens
                     till ökning på senare tid. De flesta som insjuknar är mellan
                     50 och 70 år.
                   </p>
@@ -159,7 +159,9 @@ class AboutALS extends React.Component {
             <Collapse isOpen={this.state.isNeuroOpen}>
               <Card>
                 <CardBody>
-                  <CardTitle>Detta är Neuro</CardTitle>
+                  <CardTitle style={{ fontSize: 30 }}>
+                    Detta är Neuro
+                  </CardTitle>
                   Neuro (Neuroförbundet) fokuserar brett på konsten att leva med
                   en neurologisk diagnos och för ett tillgängligt samhälle för
                   alla. 500 000 människor i Sverige har en neurologisk diagnos
