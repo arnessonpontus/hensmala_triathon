@@ -16,9 +16,24 @@
       "link": "https://www.lansforsakringar.se/kronoberg/privat/"
     },
     {
+      "title": "NOCCO",
+      "image": "NOCCO.png",
+      "link": "https://nocco.com/sv/"
+    },
+    {
+      "title": "Vitamin Well",
+      "image": "VW.png",
+      "link": "https://www.vitaminwell.com/sv/"
+    },
+    {
       "title": "Konga mekaniska",
       "image": "km.png",
       "link": "http://www.kongamek.se/"
+    },
+    {
+      "title": "Tingsryd komun",
+      "image": "tingsryd_kommun.jpeg",
+      "link": ""
     },
     {
       "title": "",
@@ -26,7 +41,6 @@
       "link": "http://www.stewesservice.se/"
     }
   ],
-
   "silver": [
     {
       "title": "Korpalycke",
@@ -34,14 +48,9 @@
       "link": "https://korpalyckefastighets.se/"
     },
     {
-      "title": "Lohilo",
-      "image": "lohilo_logo.png",
-      "link": "https://lohilo.com/"
-    },
-    {
-      "title": "Svenskt kosttillskott",
-      "image": "svenskt_kosttillskott_logo.png",
-      "link": "https://www.svensktkosttillskott.se/"
+      "title": "tyngre",
+      "image": "tyngre.png",
+      "link": ""
     },
     {
       "title": "",
@@ -97,6 +106,11 @@
       "link": "https://roospadel.se/"
     },
     {
+      "title": "Tingsryd tryckeri",
+      "image": "tingsryd_tryckeri.png",
+      "link": ""
+    },
+    {
       "title": "",
       "image": "korpen.png",
       "link": "http://www2.idrottonline.se/KorpenTingsrydMIF-Korpen/"
@@ -105,6 +119,16 @@
       "title": "neuro",
       "image": "neuro.jpeg",
       "link": "https://neuro.se/"
+    },
+    {
+      "title": "autoverkstaden",
+      "image": "autoverkstaden.png",
+      "link": ""
+    },
+    {
+      "title": "orthex",
+      "image": "orthex.jpg",
+      "link": ""
     },
     {
       "title": "Vildmarkscafeet",
