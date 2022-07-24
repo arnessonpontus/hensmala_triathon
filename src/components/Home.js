@@ -17,7 +17,7 @@ class Home extends Component {
     window.scrollTo(0, 0);
 
     const intervalID = setInterval(() => {
-      this.setState({daysLeft: Math.max(0, getDaysFromNow("2022-07-23"))})
+      this.setState({daysLeft: getDaysFromNow("2022-07-23")})
     }, 1000)
     this.setState({intervalID})
   }
@@ -36,7 +36,7 @@ class Home extends Component {
             alt="HT_banner"
           ></img>
           <div className="center-absolute">
-            <span className="countdown">{this.state.daysLeft} dagar kvar</span>
+            <span className="countdown">{-this.state.daysLeft} dagar sedan</span>
           </div>
         </div>
         <Container className="p-4">

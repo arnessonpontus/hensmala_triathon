@@ -28,8 +28,8 @@ class Register extends Component {
     return (
       <Container>
         {!this.state.hasRegisterd ? (
-          <div className="card-box" style={{ marginTop: 40 }}>
-            <div className="register-tabs">
+          <div className="card-box center" style={{ marginTop: 40, minHeight: '70vh' }}>
+            {/* <div className="register-tabs">
               <div onClick={() => this.setState({ activeTab: 0 })} className="register-tab">
                 Individuell
               </div>
@@ -49,7 +49,8 @@ class Register extends Component {
                   handleSubmit={this.handleRegSubmit}
                   loading={this.state.loading}
                 />
-            }
+            } */}
+            <h2>Anmälan är stängd för i år.</h2>
           </div>
         ) : (
           <RegSuccess type="register" onGoBack={this.toggleDone} />
