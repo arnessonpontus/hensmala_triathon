@@ -28,7 +28,7 @@ class SponsorSection extends Component {
             </div>
           </a>
         ) : (
-          <div className="card-box-hoverable">
+          <div className="card-box">
             <div
               className={"spons-" + this.props.sponsType}
               style={{

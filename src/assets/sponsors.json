@@ -11,21 +11,6 @@
       "link": "https://lionsclubs.org/sv"
     },
     {
-      "title": "Länsförsäkringar",
-      "image": "lf_small.jpg",
-      "link": "https://www.lansforsakringar.se/kronoberg/privat/"
-    },
-    {
-      "title": "NOCCO",
-      "image": "NOCCO.png",
-      "link": "https://nocco.com/sv/"
-    },
-    {
-      "title": "Vitamin Well",
-      "image": "VW.png",
-      "link": "https://www.vitaminwell.com/sv/"
-    },
-    {
       "title": "Konga mekaniska",
       "image": "km.png",
       "link": "http://www.kongamek.se/"
@@ -33,12 +18,32 @@
     {
       "title": "Tingsryd komun",
       "image": "tingsryd_kommun.jpeg",
-      "link": ""
+      "link": "https://tingsryd.se/"
+    },
+    {
+      "title": "Holtab",
+      "image": "holtab.png",
+      "link": "https://www.holtab.se/"
     },
     {
       "title": "",
       "image": "stewes_frame.jpg",
       "link": "http://www.stewesservice.se/"
+    },
+    {
+      "title": "",
+      "image": "hm_teknik.jpg",
+      "link": "http://hmteknik.se"
+    },
+    {
+      "title": "colorama",
+      "image": "colorama.png",
+      "link": "http://www.fargvvsbutiken.se/"
+    },
+    {
+      "title": "Akes",
+      "image": "akes.png", 
+      "link": "https://akeshemlagade.se/"
     }
   ],
   "silver": [
@@ -48,24 +53,19 @@
       "link": "https://korpalyckefastighets.se/"
     },
     {
-      "title": "tyngre",
-      "image": "tyngre.png",
+      "title": "Länsförsäkringar",
+      "image": "lf.jpg",
+      "link": "https://www.lansforsakringar.se/kronoberg/privat/"
+    },
+    {
+      "title": "OEL",
+      "image": "oel.png",
       "link": ""
     },
     {
-      "title": "",
-      "image": "anders.png",
-      "link": ""
-    },
-    {
-      "title": "",
-      "image": "hensmala-teknik.png",
-      "link": "http://hmteknik.se"
-    },
-    {
-      "title": "",
-      "image": "glass-factory.png",
-      "link": "https://www.theglassfactory.se"
+      "title": "urshults",
+      "image": "urshults.png",
+      "link": "https://urshultsbagarn.se/"
     },
     {
       "title": "",
@@ -73,42 +73,156 @@
       "link": "https://www.nelsongarden.se"
     },
     {
-      "title": "Elias",
-      "image": "elias.jpg",
-      "link": "http://www.eliasab.se"
-    }
-  ],
-
-  "brons": [
-    {
-      "title": "Holtab",
-      "image": "holtab.png",
-      "link": "https://www.holtab.se/"
-    },
-    {
-      "title": "Xylem",
-      "image": "xylem.png",
-      "link": "https://www.xylem.com/sv-se"
-    },
-    {
-      "title": "Roos padel",
-      "image": "tingsryd_padel.png",
-      "link": "https://playtomic.io/tingsryd-padel-arena/790d3f59-66e7-40b9-be33-5e4103d3e76e?q=PADEL~2021-07-03~~~"
-    },
-    {
       "title": "",
       "image": "ica.png",
       "link": "http://www.ica.se/butiker/supermarket/tingsryd/ica-supermarket-tingsryd-2230/start/"
     },
     {
-      "title": "Tingsryd padel",
-      "image": "roos_padel.jpeg",
-      "link": "https://roospadel.se/"
+      "title": "carlqvist",
+      "image": "carlqvist.png",
+      "link": "https://carlqvistbil.se/"
     },
     {
-      "title": "Tingsryd tryckeri",
-      "image": "tingsryd_tryckeri.png",
+      "title": "hyltec",
+      "image": "Hyltec.png",
+      "link": "https://www.tingsrydmusikaffar.se/"
+    },
+    {
+      "title": "njie",
+      "image": "Njie.png",
+      "link": "https://www.njie.com/sv/"
+    },
+    {
+      "title": "skruvs fiske",
+      "image": "Skruvs_fiske.jpeg",
       "link": ""
+    },
+    {
+      "title": "self",
+      "image": "self.jpeg",
+      "link": ""
+    },
+    {
+      "title": "svenskt kosttillskott",
+      "image": "svenskt_kosttillskott_logo.png",
+      "link": "https://www.svensktkosttillskott.se/"
+    },
+    {
+      "title": "tailwind",
+      "image": "Tailwind.png",
+      "link": "https://www.tailwindnutrition.se/"
+    },
+    {
+      "title": "lrf",
+      "image": "lrf_logotyp.jpeg",
+      "link": "https://www.lrf.se/"
+    },
+    {
+      "title": "Vitamin Well",
+      "image": "VW.png",
+      "link": "https://www.vitaminwell.com/sv/"
+    },
+    {
+      "title": "NOCCO",
+      "image": "NOCCO.png",
+      "link": "https://nocco.com/sv/"
+    },
+    {
+      "title": "tyngre",
+      "image": "tyngre.png",
+      "link": "https://tyngre.se/"
+    },
+    {
+      "title": "medley",
+      "image": "medley.png",
+      "link": "https://www.medley.se/vara-anlaggningar/vattenpalatset-kaskad"
+    },
+    {
+      "title": "belganets svarveri",
+      "image": "belganet.png",
+      "link": ""
+    },
+    {
+      "title": "rolf",
+      "image": "rolf.png",
+      "link": ""
+    },
+    {
+      "title": "specialsnickeriet",
+      "image": "specialsnickeriet.png",
+      "link": "https://specialsnickeriet.se/"
+    },
+    {
+      "title": "scapa",
+      "image": "scapa.png",
+      "link": ""
+    },
+    {
+      "title": "bjs",
+      "image": "BJS_logga.png",
+      "link": "https://www.bjs-tingsryd.com/"
+    },
+    {
+      "title": "jga",
+      "image": "jga.png",
+      "link": "https://jga.se/"
+    },
+    {
+      "title": "ladan",
+      "image": "ladan.png",
+      "link": "https://www.restaurangladan.se/"
+    },
+    {
+      "title": "roos padel",
+      "image": "roos_padel.jpeg",
+      "link": "https://roospadel.se/"
+    }
+  ],
+  "brons": [
+    {
+      "title": "fix you",
+      "image": "fix_you.png",
+      "link": "https://www.facebook.com/Salong-fixyou-258970427476608/"
+    },
+    {
+      "title": "orthex",
+      "image": "orthex.jpg",
+      "link": "https://www.orthexgroup.se/"
+    },
+    {
+      "title": "kongaFH",
+      "image": "KongaFH.png",
+      "link": "https://www.kongafolketshus.se/"
+    },
+    {
+      "title": "ljushuset",
+      "image": "ljushuset.PNG",
+      "link": "https://www.yourvismawebsite.com/ljushuset-urshult-2/startsida"
+    },
+    {
+      "title": "tinghockey",
+      "image": "tinghockey.png",
+      "link": "https://www.tinghockey.com/"
+    },
+    {
+      "title": "tingsryd tryckeri",
+      "image": "tingsryd_tryckeri.png",
+      "link": "https://www.tingsrydstryckeri.se/"
+    },
+    {
+      "title": "smalandssportfiske",
+      "image": "smalandssportfiske.jpeg",
+      "link": "https://www.smaland-sportfiske.com/"
+    },
+    {
+      "title": "hallabro-el",
+      "image": "hallabro-el.png",
+      "link": "http://hallabroel.se/"
+    },
+    {
+      "title": "Tingsryd padel",
+      "image": "tingsryd_padel.png",
+      "link": "https://playtomic.io/tingsryd-padel-arena/790d3f59-66e7-40b9-be33-5e4103d3e76e?q=PADEL~2021-07-03~~~"
     },
     {
       "title": "",
@@ -116,24 +230,59 @@
       "link": "http://www2.idrottonline.se/KorpenTingsrydMIF-Korpen/"
     },
     {
-      "title": "neuro",
-      "image": "neuro.jpeg",
-      "link": "https://neuro.se/"
+      "title": "screen",
+      "image": "screen.png",
+      "link": "http://www.screenab.com/"
+    },
+    {
+      "title": "konga_cykel_motor",
+      "image": "konga_cykel_motor.png",
+      "link": "http://www.kcomab.se/"
+    },
+    {
+      "title": "apoteket",
+      "image": "apoteket.jpeg",
+      "link": ""
+    },
+    {
+      "title": "bildelar",
+      "image": "bildelar-logga.png",
+      "link": "https://www.adbildelar.se/butik-verkstad/ad-bildelar-tingsryd"
+    },
+    {
+      "title": "liljas",
+      "image": "liljas.png",
+      "link": "https://www.liljasbil.se/anlaggning/tingsryd/"
+    },
+    {
+      "title": "tingsryd resort",
+      "image": "tingsryd_resort.jpeg",
+      "link": "https://www.tingsrydresort.se/"
+    },
+    {
+      "title": "bjorkedahls_bigard",
+      "image": "bjorkedahls_bigard.png",
+      "link": ""
     },
     {
       "title": "autoverkstaden",
       "image": "autoverkstaden.png",
+      "link": "https://www.autoverkstaden.se/"
+    },
+    {
+      "title": "borjes",
+      "image": "borjes.png",
+      "link": "https://borjes.se/"
+    },
+    {
+      "title": "harlins",
+      "image": "harlins.png",
       "link": ""
     },
     {
-      "title": "orthex",
-      "image": "orthex.jpg",
-      "link": ""
-    },
-    {
-      "title": "Vildmarkscafeet",
-      "image": "vildmarks.jpeg",
-      "link": "https://www.vildmarkscafeet.se/"
+      "title": "Xylem",
+      "image": "xylem.png",
+      "link": "https://www.xylem.com/sv-se"
     }
   ]
 }
