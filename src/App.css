@@ -92,11 +92,23 @@ i {
   width: fit-content;
 }
 
-.countdown {
-  font-size: calc(2em + 3vw);
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-text {
   font-weight: bold;
+  text-align: center;
   color: white;
   text-shadow: 2px 2px 4px #000000;
+}
+
+.banner-text.title {
+  font-size: calc(2em + 3vw);
+}
+.banner-text.subtitle {
+  font-size: calc(1em + 1vw);
 }
 
 .card-box {
