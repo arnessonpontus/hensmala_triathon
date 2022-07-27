@@ -90,7 +90,7 @@ class AboutHT extends React.Component {
   }
 
   render() {
-    const result_years = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
+    const result_years = [2022, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
     return (
       <div>
         <div className="banner-wrapper">
