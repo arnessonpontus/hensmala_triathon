@@ -9,6 +9,7 @@
     "dotenv": "^8.2.0",
     "firebase": "^9.6.6",
     "google-spreadsheet": "^3.1.15",
+    "moment-timezone": "^0.5.34",
     "nodemailer": "^6.5.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
