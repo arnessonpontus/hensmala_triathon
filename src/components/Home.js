@@ -7,10 +7,6 @@ class Home extends Component {
     window.scrollTo(0, 0);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.state.intervalID);
-  }
-
   render() {
     return (
       <div>
