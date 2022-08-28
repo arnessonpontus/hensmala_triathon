@@ -90,7 +90,7 @@ class AboutHT extends React.Component {
   }
 
   render() {
-    const result_years = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
+    const result_years = [2022, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
     return (
       <div>
         <div className="banner-wrapper">
@@ -132,8 +132,8 @@ class AboutHT extends React.Component {
                     landskap.
                   </p>
                   <p>
-                    Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
-                    till ALS forskningen. De tre senaste åren har gåvan riktats
+                  Sedan 2012 har vi nu samlat in över 1 000 000kr och skänkt
+                  till ALS-forskningen. De tre senaste åren har gåvan riktats
                     mot Stoppa ALS och ALS Treatment Center Karolinska.
                   </p>
                   <p>Första start sker i år 23 juli 15.00.</p>

@@ -1,29 +1,10 @@
 import React, { Component } from "react";
 import News from "./news/News";
-import moment from 'moment-timezone';
 import { Container, Row, Col} from "reactstrap";
 
-export function getDaysFromNow(day) {
-  return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm"))/86400000)
-}
-
 class Home extends Component {
-  state = {
-    daysLeft: getDaysFromNow("2022-07-23"),
-    intervalID: null,
-  }
-  
   componentDidMount() {
     window.scrollTo(0, 0);
-
-    const intervalID = setInterval(() => {
-      this.setState({daysLeft: Math.max(0, getDaysFromNow("2022-07-23"))})
-    }, 1000)
-    this.setState({intervalID})
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.state.intervalID);
   }
 
   render() {
@@ -35,8 +16,9 @@ class Home extends Component {
             src="/images/ht_banner_resized.jpg"
             alt="HT_banner"
           ></img>
-          <div className="center-absolute">
-            <span className="countdown">{this.state.daysLeft} dagar kvar</span>
+          <div className="center-absolute flex-column">
+            <span className="banner-text title">Tack för i år!</span>
+            <span className="banner-text subtitle">Vi nådde miljonen!</span>
           </div>
         </div>
         <Container className="p-4">
@@ -51,8 +33,8 @@ class Home extends Component {
                   landskap.
                   <br></br>
                   <br></br>
-                  Sedan 2012 har vi samlat in strax över 890 000kr och skänkt
-                  till ALS forskningen. Hjälp oss att nå miljonen! Vill du inte vara med och tävla? Swisha din gåva till <b>1234048781</b>.
+                  Sedan 2012 har vi nu samlat in över 1 000 000kr och skänkt
+                  till ALS-forskningen. Vill du vara med och bidra för att bekämpa ALS, swisha din gåva till <b>1234048781</b>.
                 </p>
               </Col>
 
