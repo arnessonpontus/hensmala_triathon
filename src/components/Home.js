@@ -17,7 +17,7 @@ class Home extends Component {
             alt="HT_banner"
           ></img>
           <div className="center-absolute flex-column">
-            <span className="banner-text title">Tack för i år!</span>
+            <span className="banner-text title">Tack för ditt stöd!</span>
             <span className="banner-text subtitle">Vi nådde miljonen!</span>
           </div>
         </div>

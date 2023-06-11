@@ -50,7 +50,7 @@ class Register extends Component {
                   loading={this.state.loading}
                 />
             } */}
-            <h2>Anmälan är stängd för i år.</h2>
+            <h2>Hensmåla Triathlon kommer ej arrangeras 2023.</h2>
           </div>
         ) : (
           <RegSuccess type="register" onGoBack={this.toggleDone} />
