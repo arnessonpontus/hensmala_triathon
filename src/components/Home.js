@@ -16,10 +16,6 @@ class Home extends Component {
             src="/images/ht_banner_resized.jpg"
             alt="HT_banner"
           ></img>
-          <div className="center-absolute flex-column">
-            <span className="banner-text title">Tack för ditt stöd!</span>
-            <span className="banner-text subtitle">Vi nådde miljonen!</span>
-          </div>
         </div>
         <Container className="p-4">
           <div className="card-box">
