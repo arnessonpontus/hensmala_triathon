@@ -1,5 +1,13 @@
 [
   {
+    "title": "Förtrampet blir Hentrampet",
+    "text": "Hentrampet kommer ske 20:e augusti kl 10-13. Hentrampet är egentligen det gamla vanliga Förtrampet men har i år bytt namn då triathlonet inte kommer hållas.",
+    "image": "/images/fortrampet_bike.jpg",
+    "link": "/hentrampet",
+    "linkName": "Hentrampet",
+    "date": "Fre 12-08-2023"
+  },
+  {
     "title": "Inget triathlon 2023",
     "text": "Som ni märkt kommer inget Hensmåla Triathlon att hållas 2023. Endast förtrampet kommer gå av stapeln. Vi får se om vi upptar Hensmåla Triathlon igen i framtiden. Tusen tack för dessa 10 år!",
     "image": "/images/news/ending-triathlon.jpg",
@@ -35,7 +43,7 @@
     "title": "Förtrampet går i år (2021) av stapeln 11:e juli!",
     "text": "Kom och cykla i ditt eget tempo runt Hensjön med en fika på halva vägen, samtidigt som du stöttar ALS-forskningen. Gå till fliken Förtrampet för att läsa mer.",
     "image": "/images/fortrampet_bike.jpg",
-    "link": "/fortrampet",
+    "link": "/hentrampet",
     "linkName": "Förtrampet",
     "date": "Sön 30-06-2021"
   },

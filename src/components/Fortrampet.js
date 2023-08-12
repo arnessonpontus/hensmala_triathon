@@ -28,9 +28,9 @@ const Fortrampet = () => {
                   flexWrap: "wrap",
                 }}
               >
-                <h2 style={{ fontSize: "50px" }}>Förtrampet</h2>
+                <h2 style={{ fontSize: "50px" }}>Hentrampet</h2>
                 <h3>
-                  <Badge color="info">Går även 2022</Badge>
+                  <Badge color="info">Går även 2023</Badge>
                 </h3>
               </div>
               <b>
@@ -40,16 +40,15 @@ const Fortrampet = () => {
               <br></br>
               <br></br>
               <p>
-                Förtrampet går av stapeln som vanligt i år, dock med utökat
-                intervall för start för att göra det glesare mellan deltagarna.
+                Hentrampet (tidigare Förtrampet) går av stapeln som vanligt i år även om Hensmåla Triathlon inte gör det.
               </p>
               <h4>
-                <Badge color="secondary">Vad innebär Förtrampet?</Badge>
+                <Badge color="secondary">Vad innebär Hentrampet?</Badge>
               </h4>
               <p className="indent">
                 <b>
-                  Förtrampet innebär att på sin egen cykel ta sig runt Stora
-                  Hensjön i den takt man vill, med valfri fika på vägen.
+                  Hentrampet innebär att på sin egen cykel ta sig runt Stora
+                  Hensjön i den takt man vill, med valfri fika på vägen. I år kommer även en tipsrunda med fina priser vara utsatt.
                 </b>
               </p>
               <h4>
@@ -57,7 +56,7 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Det är fri start från 09:00 till 12:00 den 17:e juli 2022.
+                  Starten är från 10:00 till 13:00 den 20:e augusti 2023.
                 </b>
               </p>
               <h4>
@@ -74,8 +73,8 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 <b>
-                  Nej ingen anmälan krävs. Det är bara att dyka upp den 17:e
-                  juli.
+                  Nej ingen anmälan krävs. Det är bara att dyka upp den 20:e
+                  augusti.
                 </b>
               </p>
               <h4>

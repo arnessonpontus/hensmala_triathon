@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/anmalan" component={Register} />
         <Route path="/bestall-t-shirt" component={OrderShirt} />
         <Route path="/corona-edition" component={CoronaEdition} />
-        <Route path="/fortrampet" component={Fortrampet} />
+        <Route path="/hentrampet" component={Fortrampet} />
         <Route path="/media" component={Media} />
         <Route path="/om-als" component={AboutALS} />
         <Route path="/videos" component={Videos} />
