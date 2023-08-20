@@ -18,7 +18,7 @@ import firebase from "firebase/compat/app"; // Change to only import specific mo
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import CoronaEdition from "./components/challenge/CoronaEdition";
-import Fortrampet from "./components/Fortrampet";
+import Fortrampet from "./components/fortrampet/Fortrampet";
 import OrderShirt from "./components/register/OrderShirt";
 
 const App = () => {

@@ -120,6 +120,38 @@ const Fortrampet = () => {
           ></img>
         </Col>
       </Row>
+      <Row>
+        <Col style={{ marginBottom: "10px" }}>
+        <Card
+            style={{
+              width: "100%",
+              height: "100%",
+              boxShadow: "0px 1px 1px 1px #e3e3e3",
+            }}
+          >
+            <CardBody 
+              style={{marginLeft: "10px"}}>
+              <h2>Svar tipsrunda 2023</h2>
+              <ul style={{listStyleType: "none"}}>
+                <li>Fråga 1: Hur djup är Stora Hensjön? <p>Svar: <b>10,5 meter</b></p></li>
+                <li>Fråga 2: Vilket var det första året man kunde delta med lag i Hensmåla Triathlon? <p>Svar: <b>2017</b></p></li>
+                <li>Fråga 3: När gick sista persontåget från Hensmåla <p>Svar: <b>1965</b></p></li>
+                <li>Fråga 4: Vilken är den snabbaste tiden någon har gjort på Hensmåla Triathlon? <p>Svar: <b>45m 27s</b></p></li>
+                <li>Fråga 5: Hur mycket har Hensmåla Triathlon bidraget till ALS forskningen? <p>Svar: <b>1 042 917 kr</b></p></li>
+                <li>Fråga 6: Hur många funktionärer hjälpte till på Hensmåla Triathlon 2022 <p>Svar: <b>82 st</b></p></li>
+                <li>Fråga 7: Hur hög är högsta punkten på ”triathlonrundan”? <p>Svar: <b>169 m.ö.h</b></p></li>
+                <li>Fråga 8: Under vika träd värmer vi upp på Hensmåla Triathlon? <p>Svar: <b>Ask</b></p></li>
+                <li>Fråga 9: Vilket år togs Vattenverket i drift? <p>Svar: <b>1970   </b></p></li>
+                <li>Fråga 10: Vilka år gjordes kolmilan i Dackemåla? <p>Svar: <b>1992</b></p></li>
+                <li>Utslagsfråga (vikt på skor, hjälm, badmössa mm): <b>983 gram</b></li>
+              </ul>
+
+                <p>Grattis Sven som hade alla rätt och vann!</p>
+                <p>Tack till Länsförsäkringar Kronoberg, BJS Radio och TV, Hallabro El samt Konga Cykel och motor som skänkt de fina priserna! </p>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 };
