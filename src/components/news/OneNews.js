@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Button } from "reactstrap";
 import YouTube from "react-youtube";
 import { NavLink as RRNavLink } from "react-router-dom";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 
 const OneNews = (props) => {
   const opts = {

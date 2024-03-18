@@ -1,10 +1,9 @@
 import React from "react";
-import { Jumbotron } from "reactstrap";
 
 class Footer extends React.Component {
   render() {
     return (
-      <Jumbotron
+      <div
         className="text-center py-3"
         style={{
           display: "flex",
@@ -68,7 +67,7 @@ class Footer extends React.Component {
             ></img>
           </a>
         </div>
-      </Jumbotron>
+      </div>
     );
   }
 }

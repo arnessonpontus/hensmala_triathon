@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { Input } from "reactstrap";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 
 const ShirtSelect = (props) => {
   const [shirts, setShirts] = useState([{size: null, type: null}]);
-  const [isOpen, setIsOpen] = useState(false);
 
   const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
@@ -36,14 +33,7 @@ const ShirtSelect = (props) => {
 
   return (
     <div className="shirt-component" id="shirt-select">
-      <img width="100%" className="thumbnail-shirt" src="/images/ht_shirt_2022_small.png" onClick={() => setIsOpen(true)}></img>
-      {isOpen && (
-          <Lightbox
-            wrapperClassName="lightbox"
-            mainSrc="/images/ht_shirt_2022_large.png"
-            onCloseRequest={() => setIsOpen(false)}
-          />
-        )}
+      <img alt="t-shirt" width="100%" className="thumbnail-shirt" src="/images/ht_shirt_2022_small.png"></img>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           

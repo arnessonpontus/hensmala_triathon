@@ -52,12 +52,9 @@ class AboutALS extends React.Component {
               onClick={this.toggleALS}
               style={{
                 marginBottom: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
               }}
             >
-              Om ALS
+              <p>Om ALS</p>
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"
@@ -145,12 +142,9 @@ class AboutALS extends React.Component {
               onClick={this.toggleNeuro}
               style={{
                 marginBottom: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
               }}
             >
-              Om Neuro
+              <p>Om Neuro</p>
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"

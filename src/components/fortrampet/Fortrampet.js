@@ -30,7 +30,7 @@ const Fortrampet = () => {
               >
                 <h2 style={{ fontSize: "50px" }}>Hentrampet</h2>
                 <h3>
-                  <Badge color="info">Går även 2023</Badge>
+                  <Badge color="info" className="text-white">Gick 2023</Badge>
                 </h3>
               </div>
               <b>
@@ -40,69 +40,56 @@ const Fortrampet = () => {
               <br></br>
               <br></br>
               <p>
-                Hentrampet (tidigare Förtrampet) går av stapeln som vanligt i år även om Hensmåla Triathlon inte gör det.
+                Hentrampet (tidigare Förtrampet) gick av stapeln 2023 även om Hensmåla Triathlon inte gjorde det.
               </p>
               <h4>
-                <Badge color="secondary">Vad innebär Hentrampet?</Badge>
+                Vad innebär Hentrampet?
               </h4>
               <p className="indent">
-                <b>
-                  Hentrampet innebär att på sin egen cykel ta sig runt Stora
-                  Hensjön i den takt man vill, med valfri fika på vägen. I år kommer även en tipsrunda med fina priser vara utsatt.
-                </b>
+                Hentrampet innebär att på sin egen cykel ta sig runt Stora
+                Hensjön i den takt man vill, med valfri fika på vägen. I år kommer även en tipsrunda med fina priser vara utsatt.
               </p>
               <h4>
-                <Badge color="secondary">När är Förtrampet?</Badge>
+                När är Förtrampet?
               </h4>
               <p className="indent">
-                <b>
-                  Starten är från 10:00 till 13:00 den 20:e augusti 2023.
-                </b>
+                Inget datum är spikat för år 2024.
               </p>
               <h4>
-                <Badge color="secondary">Behöver jag ta med fika?</Badge>
+                Behöver jag ta med fika?
               </h4>
               <p className="indent">
-                <b>
-                  Man behöver inte ha med egen fika. Fikat står uppdukat i
-                  Grönvik på halva vägen och ingår i startavgiften.
-                </b>
+                Man behöver inte ha med egen fika. Fikat står uppdukat i
+                Grönvik på halva vägen och ingår i startavgiften.
               </p>
               <h4>
-                <Badge color="secondary">Behövs anmälan?</Badge>
+                Behövs anmälan?
               </h4>
               <p className="indent">
-                <b>
-                  Nej ingen anmälan krävs. Det är bara att dyka upp den 20:e
-                  augusti.
-                </b>
+                Nej ingen anmälan krävs, det är bara att dyka upp.
               </p>
               <h4>
-                <Badge color="secondary">Hur tar jag mig dit?</Badge>
+                Hur tar jag mig dit?
               </h4>
               <p className="indent">
-                <b>
-                  Starten går från garaget hos Arnessons i Hensmåla. På den{" "}
-                  <RRNavLink tag={RRNavLink} to="/om-ht/hitta-hit">
-                    här
-                  </RRNavLink>{" "}
-                  länken kan du hitta mer information om hur du tar dig till
-                  starten.
-                </b>
+                Starten går från garaget hos Arnessons i Hensmåla. På den{" "}
+                <RRNavLink tag={RRNavLink} to="/om-ht/hitta-hit">
+                  här
+                </RRNavLink>{" "}
+                länken kan du hitta mer information om hur du tar dig till
+                starten.
               </p>
 
               <h4>
-                <Badge color="secondary">Vad kostar det?</Badge>
+                Vad kostar det?
               </h4>
               <p className="indent">
-                <b>
-                  Startavgiften är 100kr (eller valfri summa därutöver{" "}
-                  <span aria-label="party" role="img">
-                    🎉
-                  </span>
-                  ) som går oavkortat till "Stoppa ALS" genom NEURO. Betala till
-                  bankgiro 386-6563 eller swisha till 1234048781.
-                </b>
+                Startavgiften är 100kr (eller valfri summa därutöver{" "}
+                <span aria-label="party" role="img">
+                  🎉
+                </span>
+                ) som går oavkortat till "Stoppa ALS" genom NEURO. Betala till
+                bankgiro 386-6563 eller swisha till 1234048781.
               </p>
             </CardBody>
           </Card>

@@ -6,7 +6,11 @@ exports.handler = async (event, context, callback) => {
   const token = JSON.parse(event.body);
 
   try {
-    const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`);
+    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`, {
+      method: 'POST'
+    });
+
+    const result = await response.json();
 
     return {
       statusCode: 200,

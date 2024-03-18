@@ -16,6 +16,7 @@ if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM_2022)
 if (!process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER)
   throw new Error("no GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER env var set");
 
+// TODO: Check spreadsheet after upgrade
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const sendEmail = require("./emailSender");
 

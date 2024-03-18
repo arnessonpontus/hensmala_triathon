@@ -2,11 +2,7 @@ import React, { Fragment } from "react";
 import articles from "../../assets/articles";
 import ArticleSection from "./ArticleSection";
 
-import { Row, Button } from "reactstrap";
-import ButtonDropdown from "../../../node_modules/reactstrap/es/ButtonDropdown";
-import DropdownItem from "../../../node_modules/reactstrap/es/DropdownItem";
-import DropdownMenu from "../../../node_modules/reactstrap/es/DropdownMenu";
-import DropdownToggle from "../../../node_modules/reactstrap/es/DropdownToggle";
+import { Row, Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 
 class Articles extends React.Component {
   state = {

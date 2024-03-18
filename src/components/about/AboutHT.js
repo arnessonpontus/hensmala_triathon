@@ -110,12 +110,9 @@ class AboutHT extends React.Component {
               onClick={() => this.toggle("Info")}
               style={{
                 marginBottom: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
               }}
             >
-              Generell info
+              <p>Generell info</p>
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"
@@ -152,12 +149,9 @@ class AboutHT extends React.Component {
               onClick={() => this.toggle("GetHere")}
               style={{
                 marginBottom: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
               }}
             >
-              Hitta hit
+              <p>Hitta hit</p>
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"
@@ -180,12 +174,9 @@ class AboutHT extends React.Component {
               onClick={() => this.toggle("Distances")}
               style={{
                 marginBottom: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
               }}
             >
-              Sträckor
+              <p>Sträckor</p>
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"
@@ -207,12 +198,9 @@ class AboutHT extends React.Component {
               onClick={() => this.toggle("Rules")}
               style={{
                 marginBottom: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
               }}
             >
-              Regler
+              <p>Regler</p>
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"
@@ -234,12 +222,9 @@ class AboutHT extends React.Component {
               onClick={() => this.toggle("results")}
               style={{
                 marginBottom: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
               }}
             >
-              Tidigare resultat
+              <p>Tidigare resultat</p>
               <img
                 src="../../images/icons/downarrow.svg"
                 alt="arrow down"
