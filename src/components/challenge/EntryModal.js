@@ -4,7 +4,7 @@ import { secToHMS } from "../TimeUtils";
 import ChallengeCarousell from "./ChallengeCarousell";
 import EntryCard from "./EntryCard";
 
-const ChallengeModal = (props) => {
+const EntryModal = (props) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
@@ -153,4 +153,4 @@ const ChallengeModal = (props) => {
   );
 };
 
-export default ChallengeModal;
+export default EntryModal;

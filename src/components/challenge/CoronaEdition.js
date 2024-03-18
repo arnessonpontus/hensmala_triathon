@@ -4,7 +4,7 @@ import EntryModal from "./EntryModal";
 import firebase from "firebase/compat/app"
 import "firebase/compat/storage"
 import "firebase/compat/database"
-import { Alert, Spinner } from "reactstrap";
+import { Spinner } from "reactstrap";
 import {
   DropdownToggle,
   DropdownMenu,
@@ -17,17 +17,7 @@ const CoronaEdition = () => {
   const [hiddenUserEntries, setHiddenUserEntries] = useState([]);
   const [loadingEntries, setLoadingEntries] = useState(false);
   const [orderBy, setOrderBy] = useState("time");
-  const [hasUpdated, setHasUpdated] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
-
-  const dismissSnackbar = () => setSnackbarVisible(false);
-
-  const hasUploaded = () => {
-    setHasUpdated(true);
-    setSnackbarVisible(true);
-    setTimeout(() => dismissSnackbar(), 9000);
-  };
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -71,7 +61,7 @@ const CoronaEdition = () => {
 
         setLoadingEntries(false);
       });
-  }, [hasUpdated, orderBy]);
+  }, [orderBy]);
 
   return (
     <div style={{ padding: "0px 20px 0px 20px" }}>
@@ -169,25 +159,6 @@ const CoronaEdition = () => {
           </Fragment>
         )}
       </div>
-      <Alert
-        color="success"
-        isOpen={snackbarVisible}
-        toggle={dismissSnackbar}
-        style={{
-          position: "fixed",
-          bottom: 20,
-          left: "50%",
-          transform: "translateX(-50%)",
-          minWidth: "40%",
-          textAlign: "center",
-        }}
-      >
-        Ditt bidrag har laddats up!{" "}
-        <span aria-label="party" role="img">
-          🎉
-        </span>{" "}
-        <p>Maila hensmala.triathlon@gmail.com om något behöver ändras.</p>
-      </Alert>
     </div>
   );
 };
