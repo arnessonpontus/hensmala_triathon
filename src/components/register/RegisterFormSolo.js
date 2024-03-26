@@ -73,7 +73,7 @@ class RegisterFormSolo extends Component {
             }
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Anmälan 2022 Individuell</h3>
+              <h3>Anmälan 2024 Individuell</h3>
               
               <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
                 Visa info<i className="fas fa-angle-down angle-down"></i>
@@ -247,8 +247,8 @@ class RegisterFormSolo extends Component {
         </Col>
         <Col id="info-text" style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>
-          <h3>Anmäl dig till Hensmåla Triathlon 2022</h3>
-          <b>Datum: 23 juli</b>
+          <h3>Anmäl dig till Hensmåla Triathlon 2024</h3>
+          <b>Datum: 20 juli</b>
           <p>
             Ett motionslopp för alla, motionär som elit. Få en härlig dag i Hensmålas vackra natur med simning (340m), cykling (9.2km), löpning (6.5km) och samtidigt bidra till ALS-forskningen.
           </p>

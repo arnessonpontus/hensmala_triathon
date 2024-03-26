@@ -160,7 +160,7 @@ class RegisterFormTeam extends Component {
             }
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Anmälan 2022 Lag</h3>
+              <h3>Anmälan 2024 Lag</h3>
               <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
@@ -277,7 +277,7 @@ class RegisterFormTeam extends Component {
         <Col id="info-text" style={{ marginTop: "2vh" }}>
           <hr className="register-divider"></hr>          
           <h3>Anmäl er som Lag (2-3 pers.)</h3>
-          <b>Datum: 23 juli</b>
+          <b>Datum: 20 juli</b>
           <p>
             När ni anmäler er som lag får sträckorna delas upp hur ni vill inom laget. Detta
             kan innebära att ni är tre personer som deltar där alla kör en gren var, eller ett lag med 2 personer där en av er kör 2 grenar. För mer information om sträckorna och tävlingsregler kan
