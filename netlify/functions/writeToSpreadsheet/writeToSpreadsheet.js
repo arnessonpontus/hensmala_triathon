@@ -3,6 +3,7 @@ if (!process.env.NETLIFY) {
 }
 const moment = require("moment-timezone");
 const { JWT } = require('google-auth-library');
+const axios = require("axios");
 
 // required env vars
 if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
@@ -40,6 +41,26 @@ function handleBirthday(data, type) {
 }
 
 exports.handler = async (event, context, callback) => {
+  // Check recaptcha from token
+  try {
+    const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.REACT_APP_RECAPTCHA_SECRET}&response=${event.queryStringParameters.token}`);
+    if (result.data.score < 0.5) {
+      return {
+        statusCode: 400,
+          body: JSON.stringify({
+            message: "Är du en robot?",
+          }),
+      }
+    }
+  } catch (e) {
+    return {
+      statusCode: 500,
+        body: JSON.stringify({
+          message: "Kunde inte processera förfrågan.",
+        }),
+    }
+  }
+
   let spreadsheetID = "";
   let idType  = "";
   console.log("Running sheet netlify function...");

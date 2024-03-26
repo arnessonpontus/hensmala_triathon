@@ -24,8 +24,8 @@ export function isShirtSelected(shirts) {
     return false
 }
 
-function writeToSpreadsheet (formType, data, setLoadingCallback, doneCallback) {
-  fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}`, {
+function writeToSpreadsheet (formType, data, token, setLoadingCallback, doneCallback) {
+  fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}&token=${token}`, {
     method: "POST",
     body: JSON.stringify(data),
   })
@@ -59,29 +59,7 @@ export function handleSubmit (e, formType, data, totalToPay, setLoadingCallback,
         action: "submit",
       })
       .then((token) => {
-        fetch(`/.netlify/functions/handleRecaptcha/`, {
-          method: "POST",
-          body: JSON.stringify(token),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              res.json().then((res) => {
-                if (res.data.score > 0.5) {
-                  writeToSpreadsheet(formType, dataToSend, setLoadingCallback, doneCallback);
-                } else {
-                  alert("Är du en robot? Testa igen.");
-                  setLoadingCallback(false);
-                }
-              });
-            } else {
-              alert("Något gick fel.");
-              setLoadingCallback(false);
-            }
-          })
-          .catch((err) => {
-            setLoadingCallback(false);
-            console.log(err);
-          });
+        writeToSpreadsheet(formType, dataToSend, token, setLoadingCallback, doneCallback);
       });
   });
 };
