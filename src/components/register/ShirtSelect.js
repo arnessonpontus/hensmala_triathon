@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "reactstrap";
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 const ShirtSelect = (props) => {
   const [shirts, setShirts] = useState([{size: null, type: null}]);
@@ -33,7 +35,9 @@ const ShirtSelect = (props) => {
 
   return (
     <div className="shirt-component" id="shirt-select">
-      <img alt="t-shirt" width="100%" className="thumbnail-shirt" src="/images/ht_shirt_2022_small.png"></img>
+      <Zoom>
+        <img alt="t-shirt" width="100%" className="thumbnail-shirt" src="/images/ht_shirt_2022_large.png"></img>
+      </Zoom>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           

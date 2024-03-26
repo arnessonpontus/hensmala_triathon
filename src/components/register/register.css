@@ -25,10 +25,6 @@
   margin-bottom: 0px;
 }
 
-.thumbnail-shirt {
-  cursor: pointer;
-}
-
 .scroll-to-info-btn {
   display: flex;
   flex-direction: column;
@@ -42,6 +38,7 @@
 .register-tabs {
   display: flex;
   position: relative;
+  align-self: start;
 }
 
 .register-tab {
@@ -147,4 +144,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.visually-hidden{
+  display: none;
+}
+
+select {
+  display: block;
 }

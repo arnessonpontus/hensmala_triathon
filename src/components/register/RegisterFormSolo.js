@@ -12,11 +12,13 @@ import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "../Consent";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
+import ShirtSelect from "./ShirtSelect";
 import RegisterButton from "./RegisterButton";
 import { scrollToInfo } from './Utils';
 
-const SHIRT_PRICE = 250;
-const REGISTER_FEE = 250;
+const SHIRT_PRICE = 290;
+const REGISTER_FEE = 300;
+const LATE_REGISTER_FEE = 400;
 
 class RegisterFormSolo extends Component {
   state = {
@@ -56,17 +58,9 @@ class RegisterFormSolo extends Component {
     }
   };
 
-  isAllowedCompanyEntered = () => {
-    return process.env.REACT_APP_ALLOWED_COMPANY && this.state.city.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase());
-  }
-
   calcTotalCost = () => {
     const shirtAmount = this.state.shirts.filter((shirt) => shirt.size && shirt.type).length;
-    if (this.isAllowedCompanyEntered()) {
-      return this.state.extraDonation + (shirtAmount > 1 ? shirtAmount - 1 : 0) * SHIRT_PRICE;
-    } else {
-      return REGISTER_FEE + this.state.extraDonation + shirtAmount * SHIRT_PRICE;
-    }
+    return REGISTER_FEE + this.state.extraDonation + shirtAmount * SHIRT_PRICE;
   }
 
   render() {
@@ -85,6 +79,11 @@ class RegisterFormSolo extends Component {
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
+            <p>
+              <b>
+                <i>Sista dag för beställning av t-shirt är 1:e juni</i>
+              </b>
+            </p>
             <FormGroup>
               <Label for="name">Namn*</Label>
               <Input
@@ -155,13 +154,6 @@ class RegisterFormSolo extends Component {
                 value={this.state.city}
                 onChange={this.handleChange}
               />
-            {this.isAllowedCompanyEntered() ? 
-            <div className="allowed-company-text-bg">
-              <small>
-              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför en t-shirt och anmälningsavgiften betald.
-              </small>
-            </div>
-            : null}
             </FormGroup>
             <FormGroup>
               <Label for="info">Information</Label>
@@ -173,6 +165,12 @@ class RegisterFormSolo extends Component {
                 value={this.state.info}
                 onChange={this.handleChange}
               />
+            </FormGroup>
+            <FormGroup>
+                <Label for="shirt-select">Lägg till t-shirt ({SHIRT_PRICE}kr st)</Label>
+              <div className="shirt-select">
+                <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
+              </div>
             </FormGroup>
             <FormGroup>
               <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
@@ -283,7 +281,7 @@ class RegisterFormSolo extends Component {
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
           <p>
             <i style={{ fontSize: 12 }}>
-              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 1 juli.
+              Det kommer gå att efteranmäla för {LATE_REGISTER_FEE}kr på plats.
             </i>
           </p>
         </Col>

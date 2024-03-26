@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { getSoloHtml, getTeamHtml, getShirtHtml, getXylemHtml } = require('./getHtml')
+const { getSoloHtml, getTeamHtml, getShirtHtml } = require('./getHtml')
 
 // Click on this link to enable applications to access the email account:
 // https://accounts.google.com/b/0/DisplayUnlockCaptcha
@@ -9,8 +9,6 @@ if (!process.env.EMAILER_USER) throw new Error("no EMAILER_USER env var set");
 // required env vars
 if (!process.env.EMAILER_PASSWORD)
   throw new Error("no EMAILER_PASSWORD env var set");
-if (!process.env.REACT_APP_ALLOWED_COMPANY)
-  throw new Error("no REACT_APP_ALLOWED_COMPANY env var set");
 
 function sendEmail(addedRow, registerType) {
   return new Promise((resolve, reject) => {
@@ -23,7 +21,7 @@ function sendEmail(addedRow, registerType) {
     });
 
     // TODO: Send to all members?
-    const email = addedRow.email ? addedRow.email : addedRow.email1;
+    const email = addedRow.get('email') ? addedRow.get('email') : addedRow.get('email1');
 
     const mailSubject = registerType === "tshirt_order" ? "Tack för din beställning!" : "Tack för din anmälan!"
 
@@ -33,8 +31,6 @@ function sendEmail(addedRow, registerType) {
         html = getTeamHtml(addedRow);
     } else if (registerType === "tshirt_order") {
         html = getShirtHtml(addedRow);
-    } else if (addedRow.city.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase())) {
-      html = getXylemHtml(addedRow);
     } else {
       html = getSoloHtml(addedRow);
     }

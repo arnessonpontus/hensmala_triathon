@@ -28,8 +28,8 @@ class Register extends Component {
     return (
       <Container>
         {!this.state.hasRegisterd ? (
-          <div className="card-box center" style={{ marginTop: 40, minHeight: '70vh' }}>
-            {/* <div className="register-tabs">
+          <div className="card-box" style={{ marginTop: 40, minHeight: '70vh' }}>
+            <div className="register-tabs">
               <div onClick={() => this.setState({ activeTab: 0 })} className="register-tab">
                 Individuell
               </div>
@@ -49,9 +49,7 @@ class Register extends Component {
                   handleSubmit={this.handleRegSubmit}
                   loading={this.state.loading}
                 />
-            } */}
-            <h1>Hensmåla Triathlon kommer ej arrangeras 2023.</h1>
-            <p style={{ opacity: 0.4 }}>Men kanske 2024, håll utkik.</p>
+            }
           </div>
         ) : (
           <RegSuccess type="register" onGoBack={this.toggleDone} />

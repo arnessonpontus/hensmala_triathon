@@ -4,14 +4,9 @@ exports.handler = async (event, context, callback) => {
   console.log("Running recaptcha netlify function...");
   const secret = process.env.REACT_APP_RECAPTCHA_SECRET;
   const token = JSON.parse(event.body);
-
+  
   try {
-    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`, {
-      method: 'POST'
-    });
-
-    const result = await response.json();
-
+    const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`);
     return {
       statusCode: 200,
       body: JSON.stringify({

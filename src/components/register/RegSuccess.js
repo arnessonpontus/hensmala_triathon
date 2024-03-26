@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { Container } from "reactstrap";
 
 class RegSuccess extends Component {
+  componentDidMount() {
+    // Remove Lastpass element bug
+    document.querySelector('div[data-lastpass-root]')?.remove();
+  }
+  
   render() {
     return (
       <Container

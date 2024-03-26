@@ -12,14 +12,16 @@ import {
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "../Consent";
+import ShirtSelect from "./ShirtSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import RegisterButton from "./RegisterButton";
 import { scrollToInfo } from './Utils';
 
 
-const SHIRT_PRICE = 250;
-const REGISTER_FEE = 450;
+const SHIRT_PRICE = 290;
+const REGISTER_FEE = 600;
+const LATE_REGISTER_FEE = 700;
 
 class RegisterFormTeam extends Component {
   state = {
@@ -79,7 +81,7 @@ class RegisterFormTeam extends Component {
   renderMemberFields = () => {
     return [1, 2, 3].map((num) => {
       return(
-      <div style={{marginBottom: "20px"}}>
+      <div key={num} style={{marginBottom: "20px"}}>
         <Label for={`teamMember${num}`}>Lagmedlem {num}</Label>
         {num === 3 ? <i> (Ej för lag med endast två deltagare)</i> : null} 
         <i></i>
@@ -163,6 +165,11 @@ class RegisterFormTeam extends Component {
                 Visa info<i className="fas fa-angle-down angle-down"></i>
               </div>
             </div>
+            <p>
+              <b>
+                <i>Sista dag för beställning av t-shirt är 1:e juni</i>
+              </b>
+            </p>
             <FormGroup>
               <Label for="teamName">Lagnamn*</Label>
               <Input
@@ -186,6 +193,12 @@ class RegisterFormTeam extends Component {
                 value={this.state.info}
                 onChange={this.handleChange}
               />
+            </FormGroup>
+            <FormGroup>
+                <Label for="shirt-select">Lägg till t-shirt ({SHIRT_PRICE}kr st)</Label>
+                <div className="shirt-select">
+                  <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
+                </div>
             </FormGroup>
             <FormGroup>
               <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
@@ -294,7 +307,7 @@ class RegisterFormTeam extends Component {
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
           <p>
             <i style={{ fontSize: 12 }}>
-              Priset kommer höjas till {REGISTER_FEE+50}kr från och med 1 juli.
+              Det kommer gå att efteranmäla för {LATE_REGISTER_FEE}kr på plats.
             </i>
           </p>
         </Col>
