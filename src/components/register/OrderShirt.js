@@ -16,7 +16,7 @@ import { handleSubmit, isShirtSelected } from "./Utils"
 import RegSuccess from "./RegSuccess";
 import RegisterButton from "./RegisterButton";
 
-const SHIRT_PRICE = 250;
+const SHIRT_PRICE = 290;
 
 class OrderShirt extends Component {
   defaultState = {
@@ -66,14 +66,15 @@ class OrderShirt extends Component {
                 <div className="card-box" style={{ marginTop: 40, width: "90%" }}>
                 <Row>
                     <Col style={{ marginTop: "2vh" }} md={6}>
+                    <h3>Beställ t-shirt </h3>
                         <p>
-                          <h3>
-                            <i>Sista beställningsdag var 1:e juni!</i>
-                          </h3>
+                          <b>
+                            <i>Sista beställningsdag är 1:e juni</i>
+                          </b>
                         </p>
                         <p>Kontakta oss om du har frågor.</p>
                         <b>Kostnad {SHIRT_PRICE}kr</b>
-                        <p>Vill du inte delta i årets lopp men ändå ha en superfin t-shirt från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen!</p>
+                        <p>Ska du inte delta i årets lopp men ändå ha en superfin t-shirt från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
 
                         <p>Betalning görs via swish på nummret <b>1234048781</b> (eller scanna QR-koden), när vi ser din beställning och verifierar att betalningen kommit in lägger vi undan dina t-shirts.</p>
                         <p>Upphämtning görs på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte t-shirtarna.</b></p>
@@ -157,7 +158,7 @@ class OrderShirt extends Component {
                                   />
                                 </Label>
                             </FormGroup>
-                            <RegisterButton text="Beställning ej möjlig!" disabled={true} />
+                            <RegisterButton text="Beställ!" disabled={!(this.state.consent && isShirtSelected(this.state.shirts)) || this.state.loading} loading={this.state.loading} />
                         </Form>
                         <small>
                           This site is protected by reCAPTCHA and the Google{" "}
