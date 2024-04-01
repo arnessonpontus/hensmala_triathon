@@ -1,17 +1,9 @@
+export const SHIRT_PRICE_COTTON = 250;
+export const SHIRT_PRICE_FUNCTIONAL = 290;
+
 // Stringify the shirt selection for easier storage
 export function shirtArrayToString (shirts){
-  let shirtStr = ""
-  let numConverted = 0;
-  shirts.forEach((shirt) => {
-    if (shirt.size !== null && shirt.type !== null) {
-      if (numConverted++ === 0) {
-        shirtStr += shirt.type + " " + shirt.size;
-      } else {
-        shirtStr += ", " + shirt.type + " " + shirt.size;
-      }
-    }
-  });
-  return shirtStr;
+  return shirts.filter(s => s.type && s.size).map(shirt => `${shirt.type} ${shirt.size} ${shirt.material}`).join(', ')
 }
 
 // Checks if at lease one shirt is selected
@@ -71,3 +63,18 @@ export function scrollToInfo(elementID) {
 
   window.scrollTo({top: y, behavior: 'smooth'});
 };
+
+export const calcShirtPrice = (shirts) => {
+  const shirtAmount = shirts.reduce((acc, shirt) => {
+    if (shirt.size && shirt.type && shirt.material) {
+       if (shirt.material === 'bomull') {
+        return acc + SHIRT_PRICE_COTTON;
+       } else {
+        return acc + SHIRT_PRICE_FUNCTIONAL
+       }
+    } else {
+      return acc;
+    }
+  }, 0);
+  return shirtAmount;
+}

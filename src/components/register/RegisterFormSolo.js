@@ -14,9 +14,8 @@ import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import ShirtSelect from "./ShirtSelect";
 import RegisterButton from "./RegisterButton";
-import { scrollToInfo } from './Utils';
+import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from './Utils';
 
-const SHIRT_PRICE = 290;
 const REGISTER_FEE = 300;
 const LATE_REGISTER_FEE = 400;
 
@@ -59,8 +58,7 @@ class RegisterFormSolo extends Component {
   };
 
   calcTotalCost = () => {
-    const shirtAmount = this.state.shirts.filter((shirt) => shirt.size && shirt.type).length;
-    return REGISTER_FEE + this.state.extraDonation + shirtAmount * SHIRT_PRICE;
+    return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts);
   }
 
   render() {
@@ -167,7 +165,7 @@ class RegisterFormSolo extends Component {
               />
             </FormGroup>
             <FormGroup>
-                <Label for="shirt-select">Lägg till t-shirt ({SHIRT_PRICE}kr st)</Label>
+                <Label for="shirt-select">Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
               <div className="shirt-select">
                 <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
               </div>

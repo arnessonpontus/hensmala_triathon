@@ -15,8 +15,7 @@ import Consent from "../Consent";
 import { handleSubmit, isShirtSelected } from "./Utils"
 import RegSuccess from "./RegSuccess";
 import RegisterButton from "./RegisterButton";
-
-const SHIRT_PRICE = 290;
+import { calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from './Utils';
 
 class OrderShirt extends Component {
   defaultState = {
@@ -38,8 +37,7 @@ class OrderShirt extends Component {
     }
 
     calcTotalCost = () => {
-      const shirtAmount = this.state.shirts.filter((shirt) => shirt.size && shirt.type).length;
-      return this.state.extraDonation + shirtAmount * SHIRT_PRICE;
+      return this.state.extraDonation + calcShirtPrice(this.state.shirts);
     }
 
     handleChange = (e) => {
@@ -73,7 +71,7 @@ class OrderShirt extends Component {
                           </b>
                         </p>
                         <p>Kontakta oss om du har frågor.</p>
-                        <b>Kostnad {SHIRT_PRICE}kr</b>
+                        <b>Kostnad {SHIRT_PRICE_COTTON}kr för bomull och {SHIRT_PRICE_FUNCTIONAL} för funktionsmaterial</b>
                         <p>Ska du inte delta i årets lopp men ändå ha en superfin t-shirt från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
 
                         <p>Betalning görs via swish på nummret <b>1234048781</b> (eller scanna QR-koden), när vi ser din beställning och verifierar att betalningen kommit in lägger vi undan dina t-shirts.</p>
