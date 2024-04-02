@@ -158,7 +158,7 @@ function getShirtHtml(data) {
         <div>
             <h1>Hej ${data.get('name').split(" ")[0]}!</h1>
             <h2>
-                Tack för din beställning av t-shirt för Hensmåla Triathlon 2024!
+                Tack för din beställning av t-shirt eller keps för Hensmåla Triathlon 2024!
             </h2>
             <p>
                 Betala <b>${data.get('totalToPay')}kr</b> till bankgiro 386-6563 eller swisha till 1234048781. När vi ser din beställning och verifierar din betalning lägger vi undan din beställning.

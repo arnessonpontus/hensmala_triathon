@@ -28,7 +28,7 @@ const App = () => {
         <Navigation />
         <Route path="/" exact component={Home} />
         <Route path="/anmalan" component={Register} />
-        <Route path="/bestall-t-shirt" component={OrderShirt} />
+        <Route path="/bestall-klader" component={OrderShirt} />
         <Route path="/corona-edition" component={CoronaEdition} />
         <Route path="/hentrampet" component={Fortrampet} />
         <Route path="/media" component={Media} />
