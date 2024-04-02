@@ -7,12 +7,12 @@ import ImageGallery from "react-image-gallery";
 
 const images = [
   {
-    original: "/images/clothes/ht_shirt_2024_temp_large_back.jpg",
-    thumbnail: "/images/clothes/ht_shirt_2024_temp_small_back.jpg",
+    original: "/images/clothes/funktion_front_large.png",
+    thumbnail: "/images/clothes/funktion_front_small.png",
   },
   {
-    original: "/images/clothes/ht_shirt_2024_temp_small.jpeg",
-    thumbnail: "/images/clothes/ht_shirt_2024_temp_small.jpeg",
+    original: "/images/clothes/funktion_back_large.png",
+    thumbnail: "/images/clothes/funktion_back_small.png",
   }
 ];
 
