@@ -10,12 +10,13 @@ import {
     FormText,
   } from "reactstrap";
 import ShirtSelect from "./ShirtSelect";
+import CapSelect from "./CapSelect";
 import ExtraDonation from "./ExtraDonation";
 import Consent from "../Consent";
 import { handleSubmit, isShirtSelected } from "./Utils"
 import RegSuccess from "./RegSuccess";
 import RegisterButton from "./RegisterButton";
-import { calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from './Utils';
+import { calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from './Utils';
 
 class OrderShirt extends Component {
   defaultState = {
@@ -24,6 +25,7 @@ class OrderShirt extends Component {
     email: "",
     extraDonation: 0,
     shirts: [],
+    numCaps: 0,
     info: "",
     consent: false,
     hasOrderd: false
@@ -37,16 +39,16 @@ class OrderShirt extends Component {
     }
 
     calcTotalCost = () => {
-      return this.state.extraDonation + calcShirtPrice(this.state.shirts);
+      return this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
     }
 
     handleChange = (e) => {
-        e.preventDefault();
-    
-        const name = e.target.name;
-        let value = e.target.value;
-    
-        this.setState({ [name]: value });
+      e.preventDefault();
+  
+      const name = e.target.name;
+      let value = e.target.value;
+  
+      this.setState({ [name]: value });
     };
 
     toggleDone = () => {
@@ -64,14 +66,13 @@ class OrderShirt extends Component {
                 <div className="card-box" style={{ marginTop: 40, width: "90%" }}>
                 <Row>
                     <Col style={{ marginTop: "2vh" }} md={6}>
-                    <h3>Beställ t-shirt </h3>
+                    <h3>Beställ t-shirt och keps </h3>
                         <p>
                           <b>
                             <i>Sista beställningsdag är 1:e juni</i>
                           </b>
                         </p>
                         <p>Kontakta oss om du har frågor.</p>
-                        <b>Kostnad {SHIRT_PRICE_COTTON}kr för bomull och {SHIRT_PRICE_FUNCTIONAL} för funktionsmaterial</b>
                         <p>Ska du inte delta i årets lopp men ändå ha en superfin t-shirt från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
 
                         <p>Betalning görs via swish på nummret <b>1234048781</b> (eller scanna QR-koden), när vi ser din beställning och verifierar att betalningen kommit in lägger vi undan dina t-shirts.</p>
@@ -90,11 +91,15 @@ class OrderShirt extends Component {
                         <hr className="register-divider"></hr>
                         <Form onSubmit={(e) => handleSubmit(e, "tshirt_order", this.state, this.calcTotalCost(), (val) => this.setState({loading: val}), () => this.toggleDone())}>
                             <FormGroup>
-                                <Label for="shirt-select">Välj antal och storlek</Label>
-                                <div className="shirt-select">
+                                <Label for="clothes-select">Välj antal och storlek (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
+                                <div className="clothes-select">
                                     <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
                                 </div>
-                            </FormGroup>
+                                <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
+                                <div className="clothes-select">
+                                  <CapSelect updateCapSelection={(numCaps) => this.setState({numCaps: numCaps})}/>
+                                </div>
+                              </FormGroup>
                             <FormGroup>
                                 <Label for="name">Namn*</Label>
                                 <Input

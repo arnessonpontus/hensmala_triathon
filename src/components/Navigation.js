@@ -26,7 +26,7 @@ class Navigation extends React.Component {
 
   render() {
     return (
-      <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 1 }}>
+      <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10 }}>
         <NavbarBrand
           tag={RRNavLink}
           color="light"
@@ -67,7 +67,7 @@ class Navigation extends React.Component {
             to="/bestall-t-shirt"
             onClick={() => this.setState({ isHamburgerOpen: false })}
           >
-            BESTÄLL TSHIRT
+            BESTÄLL KLÄDER
           </NavLink>
           <NavLink
             tag={RRNavLink}

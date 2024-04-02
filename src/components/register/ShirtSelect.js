@@ -1,7 +1,20 @@
 import React, { useState } from "react";
 import { Input, FormGroup, Label } from "reactstrap";
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import "react-image-gallery/styles/css/image-gallery.css";
+import { useRef } from "react";
+
+import ImageGallery from "react-image-gallery";
+
+const images = [
+  {
+    original: "/images/clothes/ht_shirt_2024_temp_large_back.jpg",
+    thumbnail: "/images/clothes/ht_shirt_2024_temp_small_back.jpg",
+  },
+  {
+    original: "/images/clothes/ht_shirt_2024_temp_small.jpeg",
+    thumbnail: "/images/clothes/ht_shirt_2024_temp_small.jpeg",
+  }
+];
 
 const getDefaultShirt = () => {
   return { size: null, type: null, material: "funktion" }
@@ -37,14 +50,15 @@ const ShirtSelect = (props) => {
     props.updateShirtSelection(newShirts);
   }
 
+  const imageGalleryRef = useRef(null);
+  
+
   return (
     <div className="shirt-component" id="shirt-select">
-      <Zoom>
-        <img alt="t-shirt" width="100%" className="thumbnail-shirt" src="/images/ht_shirt_2022_large.png"></img>
-      </Zoom>
+       <p>T-shirt på bild är inte den slutgiltiga</p>
+      <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={false} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
-          
           return (
             <div key={i}>
               <hr></hr>
@@ -127,6 +141,7 @@ const ShirtSelect = (props) => {
         >
           + Lägg till fler
         </div>
+        <div className="mt-2 d-flex justify-content-center no-clothed-chosen" style={{minHeight: 25}}>{(shirts[0].size == null || shirts[0].type == null) ? <span>Ingen tröja vald</span> : null}</div>
       </div>
     </div>
   );

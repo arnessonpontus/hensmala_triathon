@@ -206,6 +206,10 @@ i {
   will-change: transform;
 }
 
+.button-style.small {
+  width: 30px !important;
+}
+
 .button-style:active {
   transition: none;
   filter: brightness(85%);

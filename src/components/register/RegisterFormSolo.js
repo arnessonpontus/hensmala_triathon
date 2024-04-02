@@ -13,8 +13,9 @@ import Consent from "../Consent";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import ShirtSelect from "./ShirtSelect";
+import CapSelect from "./CapSelect";
 import RegisterButton from "./RegisterButton";
-import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from './Utils';
+import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from './Utils';
 
 const REGISTER_FEE = 300;
 const LATE_REGISTER_FEE = 400;
@@ -33,6 +34,7 @@ class RegisterFormSolo extends Component {
     isCheckboxTwoTicked: false,
     isCheckboxThreeTicked: false,
     shirts: [],
+    numCaps: 0,
     extraDonation: 0
   };
 
@@ -58,7 +60,7 @@ class RegisterFormSolo extends Component {
   };
 
   calcTotalCost = () => {
-    return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts);
+    return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
   }
 
   render() {
@@ -165,9 +167,13 @@ class RegisterFormSolo extends Component {
               />
             </FormGroup>
             <FormGroup>
-                <Label for="shirt-select">Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
-              <div className="shirt-select">
+                <Label>Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
+              <div className="clothes-select">
                 <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
+              </div>
+              <Label className="mt-2">Lägg till keps</Label>
+              <div className="clothes-select">
+                <CapSelect updateCapSelection={(numCaps) => this.setState({numCaps: numCaps})}/>
               </div>
             </FormGroup>
             <FormGroup>

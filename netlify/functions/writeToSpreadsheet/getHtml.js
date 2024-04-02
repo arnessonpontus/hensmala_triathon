@@ -37,7 +37,10 @@ function getSoloHtml(data) {
                 Ort/klubb: <b>${data.get('city')}</b>
             </li>
             <li>
-                Tröjor: <b>${data.get('shirts')}</b>
+                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+            </li>
+            <li>
+                Kepsar: <b>${data.get('numCaps')}</b>
             </li>
             <li>
                 Extra donation: <b>${data.get('extraDonation')}kr</b>
@@ -124,7 +127,10 @@ function getTeamHtml(data) {
                 : ""}
             <b>Övrigt</b>
             <li>
-                Tröjor: <b>${data.get('shirts')}</b>
+                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+            </li>
+            <li>
+                Kepsar: <b>${data.get('numCaps')}</b>
             </li>
             <li>
                 Extra donation: <b>${data.get('extraDonation')}kr</b>
@@ -168,7 +174,10 @@ function getShirtHtml(data) {
                 Epost: <b>${data.get('email')}</b>
             </li>
             <li>
-                Tröjor: <b>${data.get('shirts')}</b>
+                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+            </li>
+            <li>
+                Kepsar: <b>${data.get('numCaps')}</b>
             </li>
             <li>
                 Extra donation: <b>${data.get('extraDonation')}kr</b>

@@ -58,7 +58,8 @@
 	color: rgb(99, 99, 99);
 }
 
-.shirt-select {
+.clothes-select {
+  margin-bottom: 10px;
   border-style: dashed;
   border-color: rgb(214, 214, 214);
   padding: 20px;
@@ -87,6 +88,10 @@
   background-color: #11999E;
   color: white;
   margin-top: 5px;
+}
+
+.no-clothed-chosen {
+  opacity: 0.6;
 }
 
 .donation-item {
