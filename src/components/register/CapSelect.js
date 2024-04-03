@@ -33,7 +33,7 @@ const CapSelect = (props) => {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <p>Keps på bild är inte den slutgiltiga</p>
+      <p>Bild på keps med logga kommer inom kort</p>
       <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={false} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
         <div className="d-flex align-items-center mt-3">
           <div
