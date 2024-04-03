@@ -1,6 +1,6 @@
-export const SHIRT_PRICE_COTTON = 190;
+export const SHIRT_PRICE_COTTON = 220;
 export const SHIRT_PRICE_FUNCTIONAL = 290;
-export const CAP_PRICE = 200;
+export const CAP_PRICE = 250;
 
 // Stringify the shirt selection for easier storage
 export function shirtArrayToString (shirts){

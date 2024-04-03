@@ -198,7 +198,7 @@ class RegisterFormTeam extends Component {
                 <div className="clothes-select">
                   <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
                 </div>
-                <Label className="mt-2">Lägg till keps</Label>
+                <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
                 <div className="clothes-select">
                   <CapSelect updateCapSelection={(numCaps) => this.setState({numCaps: numCaps})}/>
                 </div>
