@@ -6,8 +6,8 @@ import ImageGallery from "react-image-gallery";
 
 const images = [
   {
-    original: "/images/clothes/cap_black.jpeg",
-    thumbnail:"/images/clothes/cap_black_small.jpeg",
+    original: "/images/clothes/black_cap.jpg",
+    thumbnail:"/images/clothes/black_cap_small.jpg",
   }
 ];
 

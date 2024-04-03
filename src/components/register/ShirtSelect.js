@@ -7,6 +7,10 @@ import ImageGallery from "react-image-gallery";
 
 const images = [
   {
+    original: "/images/clothes/bomull_2024.png",
+    thumbnail: "/images/clothes/bomull_2024_small.png",
+  },
+  {
     original: "/images/clothes/funktion_front_large.png",
     thumbnail: "/images/clothes/funktion_front_small.png",
   },
@@ -55,7 +59,6 @@ const ShirtSelect = (props) => {
 
   return (
     <div className="shirt-component" id="shirt-select">
-       <p>T-shirt på bild är inte den slutgiltiga</p>
       <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={false} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
