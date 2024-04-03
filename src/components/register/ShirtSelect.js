@@ -145,7 +145,7 @@ const ShirtSelect = (props) => {
         >
           + Lägg till fler
         </div>
-        <div className="mt-2 d-flex justify-content-center no-clothed-chosen" style={{minHeight: 25}}>{(shirts[0].size == null || shirts[0].type == null) ? <span>Ingen tröja vald</span> : null}</div>
+        <div className="mt-2 d-flex justify-content-center no-clothed-chosen" style={{minHeight: 25}}>{(shirts.every(s => s.size == null || s.type == null)) ? <span>Ingen tröja vald</span> : null}</div>
       </div>
     </div>
   );
