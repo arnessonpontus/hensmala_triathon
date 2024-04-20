@@ -1,11 +1,19 @@
 [
   {
+    "title": "Genombrott för ALS-forskningen",
+    "text": "Peter Andersen och hans forskargrupp har för ett par dagar sedan rapporterat om sjukdomsförloppet hos en patient med en ärftlig och särskilt aggressiv form av ALS-sjukdom som med hjälp av ny genterapimedicin har bromsats upp.",
+    "image": "/images/news/peter-andersen-neuro.jpeg",
+    "link": "https://neuro.se/artiklar/diagnos/genombrott-foer-als-forskningen/?utm_source=ActiveCampaign&utm_medium=email&utm_content=Genombrott%20f%C3%B6r%20ALS-forskningen&utm_campaign=Neuro%20aktuellt%20-%20v%2016%202024",
+    "linkName": "Artikeln",
+    "date": "Fre 19-04-2024" 
+  },
+  {
     "title": "Stoppa ALS och Börje Salmings stitelse",
-    "text": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings stiftelse",
+    "text": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings stiftelse.",
     "image": "/images/news/borje_salming_stiftelse.jpeg",
     "link": "https://www.borjesalmingstiftelse.se/",
     "linkName": "Börje Samlings stiftelse",
-    "date": "Tors 03-04-2024"
+    "date": "Tors 03-04-2024" 
   },
   {
     "title": "Efter ett år med paus kör vi igen!",
