@@ -3,6 +3,7 @@ import { Col, Row, Button } from "reactstrap";
 import YouTube from "react-youtube";
 import { NavLink as RRNavLink } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
+import ExternalInternalButtonLink from "../ExternalInternalButtonLink";
 
 const OneNews = (props) => {
   const opts = {
@@ -20,30 +21,17 @@ const OneNews = (props) => {
             <h3>{props.news.title}</h3>
           </Row>
           <Row>
-            <p>{props.news.text}</p>
+            <p>{props.news.ingress}</p>
+          </Row>
+          <Row>
+            <RRNavLink className="nostyle-link mb-2" to={'/news/' + props.news.title}> <Button outline>Läs mer</Button></RRNavLink>
           </Row>
           <Row>
             <i>{props.news.date}</i>
           </Row>
           <Row>
             {props.news.link && props.news.linkName ? (
-              props.news.link.substring(0, 4) === "http" ? (
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={props.news.link}
-                >
-                  <Button style={{ marginTop: 4 }}>
-                    Gå till {props.news.linkName}
-                  </Button>
-                </a>
-              ) : (
-                <RRNavLink to={props.news.link}>
-                  <Button style={{ marginTop: 4 }}>
-                    Gå till {props.news.linkName}
-                  </Button>
-                </RRNavLink>
-              )
+              <ExternalInternalButtonLink link={props.news.link} linkName={props.news.linkName}/>
             ) : null}
           </Row>
         </Col>
@@ -67,7 +55,6 @@ const OneNews = (props) => {
                 className="embed-responsive-item"
                 videoId={props.news.video}
                 opts={opts}
-                //onReady={() => this.setState({ isVideoLoading: false })}
               />
             </div>
           ) : (
@@ -79,8 +66,8 @@ const OneNews = (props) => {
                 objectFit: "contain",
               }}
               width="100%"
-              src={props.news.image}
-              alt={props.news.image}
+              src={props.news.images[0]?.thumbnail}
+              alt={props.news.images[0]?.thumbnail}
             ></img>
           )}
         </Col>

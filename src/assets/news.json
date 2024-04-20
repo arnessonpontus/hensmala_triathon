@@ -1,168 +1,177 @@
 [
   {
+    "title": "Crawlkurs för nybörjare med vår sponsor Medley",
+    "ingress": "Medley ger dig som är anmäld deltagare till Hensmåla Triathlon 10% rabatt på crawlkurs i vår! Boka senast 17 maj i Medleys reception. Kursstart är 22 maj.",
+    "text": "Nu ger vår sponsor Medley dig som deltagare 10% rabatt till vårens sista crawlkurs. Perfekt förberedelse för sommarens triathlon! Boka kursen i receptionen på Medley senast den 17 maj med godkänd anmälan. Det kommer även inom kort komma Crawl som bokbart träningspass, som ett gruppträningspass, för de som redan är aktiva crawlare",
+    "images": [{"thumbnail": "/images/news/medley_ht_thumb.jpg", "original": "/images/news/medley_ht.jpg"}],
+    "link": "https://neuro.se/artiklar/diagnos/genombrott-foer-als-forskningen/?utm_source=ActiveCampaign&utm_medium=email&utm_content=Genombrott%20f%C3%B6r%20ALS-forskningen&utm_campaign=Neuro%20aktuellt%20-%20v%2016%202024",
+    "linkName": "",
+    "date": "Lör 20-04-2024" 
+  },
+  {
     "title": "Genombrott för ALS-forskningen",
-    "text": "Peter Andersen och hans forskargrupp har för ett par dagar sedan rapporterat om sjukdomsförloppet hos en patient med en ärftlig och särskilt aggressiv form av ALS-sjukdom som med hjälp av ny genterapimedicin har bromsats upp.",
-    "image": "/images/news/peter-andersen-neuro.jpeg",
+    "ingress": "Peter Andersen och hans forskargrupp har för ett par dagar sedan rapporterat om sjukdomsförloppet hos en patient med en ärftlig och särskilt aggressiv form av ALS-sjukdom som med hjälp av ny genterapimedicin har bromsats upp.",
+    "images": [{"thumbnail": "/images/news/peter-andersen-neuro.jpeg", "original": "/images/news/peter-andersen-neuro.jpeg"}],
     "link": "https://neuro.se/artiklar/diagnos/genombrott-foer-als-forskningen/?utm_source=ActiveCampaign&utm_medium=email&utm_content=Genombrott%20f%C3%B6r%20ALS-forskningen&utm_campaign=Neuro%20aktuellt%20-%20v%2016%202024",
     "linkName": "Artikeln",
     "date": "Fre 19-04-2024" 
   },
   {
     "title": "Stoppa ALS och Börje Salmings stitelse",
-    "text": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings stiftelse.",
-    "image": "/images/news/borje_salming_stiftelse.jpeg",
+    "ingress": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings stiftelse.",
+    "images": [{"thumbnail": "/images/news/borje_salming_stiftelse.jpeg", "original": "/images/news/borje_salming_stiftelse.jpeg"}],
     "link": "https://www.borjesalmingstiftelse.se/",
     "linkName": "Börje Samlings stiftelse",
     "date": "Tors 03-04-2024" 
   },
   {
     "title": "Efter ett år med paus kör vi igen!",
-    "text": "Hensmåla Triathlon kommer tillbaka 2024! Anmäl dig eller beställ t-shirt/kept redan idag!",
-    "image": "/images/news/celebration.png",
+    "ingress": "Hensmåla Triathlon kommer tillbaka 2024! Anmäl dig eller beställ t-shirt/kept redan idag!",
+    "images": [{"thumbnail": "/images/news/celebration.png", "original": "/images/news/celebration.png"}],
     "link": "/anmalan",
     "linkName": "Anmälan",
     "date": "Tors 02-04-2024"
   },
   {
     "title": "Förtrampet blir Hentrampet",
-    "text": "Hentrampet kommer ske 20:e augusti kl 10-13. Hentrampet är egentligen det gamla vanliga Förtrampet men har i år bytt namn då triathlonet inte kommer hållas.",
-    "image": "/images/fortrampet_bike.jpg",
+    "ingress": "Hentrampet kommer ske 20:e augusti kl 10-13. Hentrampet är egentligen det gamla vanliga Förtrampet men har i år bytt namn då triathlonet inte kommer hållas.",
+    "images": [{"thumbnail": "/images/fortrampet_bike.jpg", "original": "/images/fortrampet_bike.jpg"}],
     "link": "/hentrampet",
     "linkName": "Hentrampet",
     "date": "Fre 12-08-2023"
   },
   {
     "title": "Inget triathlon 2023",
-    "text": "Som ni märkt kommer inget Hensmåla Triathlon att hållas 2023. Endast förtrampet kommer gå av stapeln. Vi får se om vi upptar Hensmåla Triathlon igen i framtiden. Tusen tack för dessa 10 år!",
-    "image": "/images/news/ending-triathlon.jpg",
+    "ingress": "Som ni märkt kommer inget Hensmåla Triathlon att hållas 2023. Endast förtrampet kommer gå av stapeln. Vi får se om vi upptar Hensmåla Triathlon igen i framtiden. Tusen tack för dessa 10 år!",
+    "images": [{"thumbnail": "/images/news/ending-triathlon.jpg", "original": "/images/news/ending-triathlon.jpg"}],
     "link": "",
     "linkName": "",
     "date": "Sön 11-06-2023"
   },
   {
     "title": "Caroline Ingre på TV4 Nyhetsmorgon",
-    "text": "Hensmåla Triathlons insamling går till Caroline Ingre och ALS Treatment Center. Se när Caroline var med på Nyhehetsmorgon i TV4 och diskuterar ALS, som nu även drabbat hockeylegenden Börje Salming.",
-    "image": "/images/news/caroline_tv4.png",
+    "ingress": "Hensmåla Triathlons insamling går till Caroline Ingre och ALS Treatment Center. Se när Caroline var med på Nyhehetsmorgon i TV4 och diskuterar ALS, som nu även drabbat hockeylegenden Börje Salming.",
+    "images": [{"thumbnail": "/images/news/caroline_tv4.png", "original": "/images/news/caroline_tv4.png"}],
     "link": "https://www.tv4.se/klipp/va/13782342/sa-vet-du-om-du-drabbats-av-als?fbclid=IwAR1ypzwcEH7V3D1XZcycG8ZKVAQQERGO5Gy-oebwh2pBH0Sy60IlbuB6JdM?utm_source=tv4.se&utm_medium=shared_link&utm_campaign=",
     "linkName": "TV4",
     "date": "Sön 17-08-2022"
   },
   {
     "title": "Hensmåla Triathlon 2022 är över, och miljonen slagen!",
-    "text": "Tack alla sponsorer, deltagare, publik och funktionärer för detta året. Vi spräckte gränsen en miljon kronor tack vare er! ",
-    "image": "/images/news/funktionarer_2022.jpeg",
+    "ingress": "Tack alla sponsorer, deltagare, publik och funktionärer för detta året. Vi spräckte gränsen en miljon kronor tack vare er! ",
+    "images": [{"thumbnail": "/images/news/funktionarer_2022.jpeg", "original": "/images/news/funktionarer_2022.jpeg"}],
     "link": "",
     "linkName": "",
     "date": "Sön 27-07-2022"
   },
   {
     "title": "Hensmåla Triathlon 2022 genomförs i år 23 juli!",
-    "text": "Spara datumet 23 juli 2022 i kalendern, för då arrangeras nämligen Hensmåla Triathlon 2022! I år är det även 10 år sedan starten! Håll utkik framöver när anmälan öppnar.",
-    "image": "/images/news/group_photo_2019.jpg",
+    "ingress": "Spara datumet 23 juli 2022 i kalendern, för då arrangeras nämligen Hensmåla Triathlon 2022! I år är det även 10 år sedan starten! Håll utkik framöver när anmälan öppnar.",
+    "images": [{"thumbnail": "/images/news/group_photo_2019.jpg", "original": "/images/news/group_photo_2019.jpg"}],
     "link": "/anmalan",
     "linkName": "Anmälan",
     "date": "Sön 06-02-2022"
   },
   {
     "title": "Förtrampet går i år (2021) av stapeln 11:e juli!",
-    "text": "Kom och cykla i ditt eget tempo runt Hensjön med en fika på halva vägen, samtidigt som du stöttar ALS-forskningen. Gå till fliken Förtrampet för att läsa mer.",
-    "image": "/images/fortrampet_bike.jpg",
+    "ingress": "Kom och cykla i ditt eget tempo runt Hensjön med en fika på halva vägen, samtidigt som du stöttar ALS-forskningen. Gå till fliken Förtrampet för att läsa mer.",
+    "images": [{"thumbnail": "/images/fortrampet_bike.jpg", "original": "/images/fortrampet_bike.jpg"}],
     "link": "/hentrampet",
     "linkName": "Förtrampet",
     "date": "Sön 30-06-2021"
   },
   {
     "title": "Bok från Jonas Colting!",
-    "text": "En signerad bok från Jonas Colting lottas ut till någon slumpmässig deltagare av Hensmåla Triathlon i år. Jonas är sveriges triathlon-guru, författare, föreläsare entreprenör och hälsoinspiratör. Jonas Colting har flera VM-medaljer i triathlon. Han har även två segrar i tävlingen Ultraman World Championship på Hawaii. Stort tack Jonas!",
-    "image": "/images/news/colting.jpeg",
+    "ingress": "En signerad bok från Jonas Colting lottas ut till någon slumpmässig deltagare av Hensmåla Triathlon i år. Jonas är sveriges triathlon-guru, författare, föreläsare entreprenör och hälsoinspiratör. Jonas Colting har flera VM-medaljer i triathlon. Han har även två segrar i tävlingen Ultraman World Championship på Hawaii. Stort tack Jonas!",
+    "images": [{"thumbnail": "/images/news/colting.jpeg", "original": "/images/news/colting.jpeg"}],
     "link": "http://colting.se/",
     "linkName": "Jonas hemsida",
     "date": "Sön 22-06-2021"
   },
   {
     "title": "Bok från Stephan Wilson!",
-    "text": "Till någon lycklig deltagare på Hensmåla Triathlon 2021 lottar vi ut en signerad bok av Stephan Wilson. Stephan Wilson är mycket inspirerande och underhållande, kolla gärna “Stephan på glid” eller hans serie om en Svensk klassiker. Stort tack Stephan!",
-    "image": "/images/news/stephan.jpg",
+    "ingress": "Till någon lycklig deltagare på Hensmåla Triathlon 2021 lottar vi ut en signerad bok av Stephan Wilson. Stephan Wilson är mycket inspirerande och underhållande, kolla gärna “Stephan på glid” eller hans serie om en Svensk klassiker. Stort tack Stephan!",
+    "images": [{"thumbnail": "/images/news/stephan.jpg", "original": "/images/news/stephan.jpg"}],
     "link": "https://stephanwilson.se",
     "linkName": "Stephans hemsida",
     "date": "Sön 15-06-2021"
   },
   {
     "title": "Böcker från Petra Månström!",
-    "text": "Vi lottar ut 2st signerade böcker från Petra Månström till några få som deltar i årets triathlon. Lyssna gärna på Petras poddar Marathonpodden och EWERLÖF & MÅNSTRÖM, två riktigt bra poddar. Stort tack Petra!!",
-    "image": "/images/news/petra_bok_smaller.jpg",
+    "ingress": "Vi lottar ut 2st signerade böcker från Petra Månström till några få som deltar i årets triathlon. Lyssna gärna på Petras poddar Marathonpodden och EWERLÖF & MÅNSTRÖM, två riktigt bra poddar. Stort tack Petra!!",
+    "images": [{"thumbnail": "/images/news/petra_bok_smaller.jpg", "original": "/images/news/petra_bok_smaller.jpg"}],
     "link": "https://petramanstrom.se",
     "linkName": "Petras hemsida",
     "date": "Sön 09-06-2021"
   },
   {
     "title": "Anmälan till Hensmåla Triathlon 2021 - Corona Edition",
-    "text": "Nu har anmälan till årets version av Hensmåla Triathlon öppnat! Detta året är det på plats i Hensmåla, men det skiljer sig ändå från vanliga år. Evenemanget sträcker sig från 2/7 till 16/7 och man startar när man vill inom dessa datum. Kör gärna med några kompisar, men evenemanget kommer i år inte ha funktionärer eller publik. För att läsa mer eller anmäla dig går du in på anmälningssidan eller under fliken Corona Edition.",
-    "image": "/images/news/covid.jpg",
+    "ingress": "Nu har anmälan till årets version av Hensmåla Triathlon öppnat! Detta året är det på plats i Hensmåla, men det skiljer sig ändå från vanliga år. Evenemanget sträcker sig från 2/7 till 16/7 och man startar när man vill inom dessa datum. Kör gärna med några kompisar, men evenemanget kommer i år inte ha funktionärer eller publik. För att läsa mer eller anmäla dig går du in på anmälningssidan eller under fliken Corona Edition.",
+    "images": [{"thumbnail": "/images/news/covid.jpg", "original": "/images/news/covid.jpg"}],
     "link": "/corona-edition",
     "linkName": "Corona Edition",
     "date": "Sön 26-05-2021"
   },
   {
     "title": "Caroline Ingre",
-    "text": "Caroline Ingre är överläkare i neurologi och ALS-specialist vid Karolinska Universitetssjukhuset samt leder ALS Treatment Center Karolinska. Här berättar hon om var Hensmåla Triathlons insamlade pengar går till.",
-    "image": "",
+    "ingress": "Caroline Ingre är överläkare i neurologi och ALS-specialist vid Karolinska Universitetssjukhuset samt leder ALS Treatment Center Karolinska. Här berättar hon om var Hensmåla Triathlons insamlade pengar går till.",
+    "images": [],
     "video": "GmU0qPHIfVg",
     "date": "Mån 02-11-2020"
   },
   {
     "title": "Tack till alla er som bidragit under detta märkliga år!",
-    "text": "Tack till alla er som gjorde att vi, trots att året inte varit helt 100, kunnat samla in 99 607kr! Genom att skänka startavgiften, köra Förtrampet, delta i Utmaningen eller inte minst vara sponsor även i år har gjort att vi nu gemensamt samlat in totalt 804 258kr till ALS forskningen genom Hensmåla Triathlon. Vågar vi sikta mot miljonen nästa år!?",
-    "image": "/images/news/hens_money.png",
+    "ingress": "Tack till alla er som gjorde att vi, trots att året inte varit helt 100, kunnat samla in 99 607kr! Genom att skänka startavgiften, köra Förtrampet, delta i Utmaningen eller inte minst vara sponsor även i år har gjort att vi nu gemensamt samlat in totalt 804 258kr till ALS forskningen genom Hensmåla Triathlon. Vågar vi sikta mot miljonen nästa år!?",
+    "images": [{"thumbnail": "/images/news/hens_money.png", "original": "/images/news/hens_money.png"}],
     "date": "Ons 28-10-2020"
   },
   {
     "title": "Utmaningsmuggen är här!",
-    "text": "Alla som var med och deltog i Utmaningen har nu börjat få sina specialtryckta kaffemuggar 'to go' som tack för de fina bidragen.",
-    "image": "/images/news/hens_cup_final.jpg",
+    "ingress": "Alla som var med och deltog i Utmaningen har nu börjat få sina specialtryckta kaffemuggar 'to go' som tack för de fina bidragen.",
+    "images": [{"thumbnail": "/images/news/hens_cup_final.jpg", "original": "/images/news/hens_cup_final.jpg"}],
     "date": "Sön 25-10-2020"
   },
   {
     "title": "Tack alla som kom på Förtrampet!",
-    "text": "Lördagen den 1:e augusti genomfördes Förtrampet i kalasväder. Tack till alla både som kom och deltog, och ni hjälpte till under dagen!",
-    "image": "/images/news/förtrampet_neuro.jpg",
+    "ingress": "Lördagen den 1:e augusti genomfördes Förtrampet i kalasväder. Tack till alla både som kom och deltog, och ni hjälpte till under dagen!",
+    "images": [{"thumbnail": "/images/news/förtrampet_neuro.jpg", "original": "/images/news/förtrampet_neuro.jpg"}],
     "date": "Sön 02-08-2020"
   },
   {
     "title": "Nu finns Utmaningen uppe på hemsidan!",
-    "text": "Eftersom Hensmåla triathlon 2020 har ställts in skapades Utmaningen. För att läsa mer eller lägga till ett bidrag kan man gå in på Utmaningen i menyn på hemsidan.",
-    "image": "thumb.png",
+    "ingress": "Eftersom Hensmåla triathlon 2020 har ställts in skapades Utmaningen. För att läsa mer eller lägga till ett bidrag kan man gå in på Utmaningen i menyn på hemsidan.",
+    "images": [{"thumbnail": "thumb.png", "original": "thumb.png"}],
     "date": "Lör 04-07-2020",
     "linkName": "Utmaningen"
   },
   {
     "title": "Hensmåla triathlon 2020 är inställt på grund av Covid-19.",
-    "text": "Vi måste tyvärr meddela att Hensmåla triathlon detta år är inställt. Även om alternativa corona-anpassade genomföranden har diskuterats, togs beslutet att ställa in årets upplaga. Vi hoppas ni har förståelse för detta och blir ännu mer taggade på att medverka nästa år.",
-    "image": "images/news/rain1.jpg",
+    "ingress": "Vi måste tyvärr meddela att Hensmåla triathlon detta år är inställt. Även om alternativa corona-anpassade genomföranden har diskuterats, togs beslutet att ställa in årets upplaga. Vi hoppas ni har förståelse för detta och blir ännu mer taggade på att medverka nästa år.",
+    "images": [{"thumbnail": "images/news/rain1.jpg", "original": "images/news/rain1.jpg"}],
     "date": "Mån 08-06-2020"
   },
   {
     "title": "Corona - Så är läget.",
-    "text": "På grund av Corona är det ännu inte klart hur det blir med årets upplaga av Hensmåla Triathlon. Vi hoppas att kunna utföra evemanget i någon form, men kommer såklart följa de anvisningar som ges. Beslut kommer tas under kommande veckor. ",
-    "image": "images/news/corona.jpg",
+    "ingress": "På grund av Corona är det ännu inte klart hur det blir med årets upplaga av Hensmåla Triathlon. Vi hoppas att kunna utföra evemanget i någon form, men kommer såklart följa de anvisningar som ges. Beslut kommer tas under kommande veckor. ",
+    "images": [{"thumbnail": "images/news/corona.jpg", "original": "images/news/corona.jpg"}],
     "date": "Lör 16-05-2020"
   },
   {
     "title": "Nyhet för i år: Duathlon för barn!",
-    "text": "Detta året kommer det hållas ett duathlon för barn upp till 15 år. Mer information hittar du på anmälningssidan.",
-    "image": "images/news/barn-badmossa.jpg",
+    "ingress": "Detta året kommer det hållas ett duathlon för barn upp till 15 år. Mer information hittar du på anmälningssidan.",
+    "images": [{"thumbnail": "images/news/barn-badmossa.jpg", "original": "images/news/barn-badmossa.jpg"}],
     "date": "Sön 17-02-2020"
   },
   {
     "title": "Nu öppnar anmälan!",
-    "text": "Nu öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats!",
-    "image": "images/news/fireworks.png",
+    "ingress": "Nu öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats!",
+    "images": [{"thumbnail": "images/news/fireworks.png", "original": "images/news/fireworks.png"}],
     "date": "Fre 24-01-2020"
   },
   {
     "title": "Första nyheten är en ny hemsida!",
-    "text": "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig, se resultat och media osv. ",
-    "image": "images/news/hemsida_news.png",
+    "ingress": "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig, se resultat och media osv. ",
+    "images": [{"thumbnail": "images/news/hemsida_news.png", "original": "images/news/hemsida_news.png"}],
     "date": "Mån 20-01-2020"
   }
 ]

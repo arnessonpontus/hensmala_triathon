@@ -17,6 +17,8 @@
   font-family: 'Poppins', sans-serif;
   background: #f6f6f6;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
@@ -142,7 +144,6 @@ i {
   cursor: pointer;
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
-  text-decoration: none;
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
   will-change: transform;
@@ -222,6 +223,22 @@ i {
   -o-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
   -ms-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
   transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
+}
+
+.nostyle-link {
+  text-decoration: none;
+  color: rgb(15, 15, 15);
+}
+
+.nostyle-link:hover {
+  text-decoration: none;
+  color: rgb(15, 15, 15);
+}
+
+@media (max-width: 800px) {
+  .minimize-title-small {
+    font-size: 30px;
+  }
 }
 
 @media (max-width: 1490px) {
