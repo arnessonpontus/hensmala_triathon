@@ -7,6 +7,10 @@ import {
   Collapse,
   NavbarBrand,
   Button,
+  DropdownItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu
 } from "reactstrap";
 
 class Navigation extends React.Component {
@@ -87,25 +91,35 @@ class Navigation extends React.Component {
           >
             HENTRAMPET
           </NavLink>
-          <NavLink
-            tag={RRNavLink}
-            className="inactive nav-title"
-            activeClassName="active"
-            to="/om-als"
-            onClick={() => this.setState({ isHamburgerOpen: false })}
-          >
-            OM ALS
-          </NavLink>
-          <NavLink
-            tag={RRNavLink}
-            className="inactive nav-title"
-            activeClassName="active"
-            to="/om-ht/hem"
-            onClick={() => this.setState({ isHamburgerOpen: false })}
-          >
-            OM HENSMÅLA TRIATHLON
-          </NavLink>
-
+          <UncontrolledDropdown nav inNavbar className="inactive nav-title">
+            <DropdownToggle nav caret className="inactive nav-title">
+              OM
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>
+                <NavLink
+                  className="dropdown-item"
+                  tag={RRNavLink}
+                  activeClassName="active"
+                  to="/om-als"
+                  onClick={() => this.setState({ isHamburgerOpen: false })}
+                >
+                OM ALS
+                </NavLink>
+              </DropdownItem>
+              <DropdownItem>
+                <NavLink
+                  tag={RRNavLink}
+                  className="dropdown-item"
+                  activeClassName="active"
+                  to="/om-ht/hem"
+                  onClick={() => this.setState({ isHamburgerOpen: false })}
+                >
+                OM HENSMÅLA TRIATHLON
+                </NavLink>
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
           <NavLink
             tag={RRNavLink}
             className="inactive nav-title"
@@ -124,16 +138,17 @@ class Navigation extends React.Component {
           >
             SPONSORER
           </NavLink>
+          <div class="d-flex flex-grow-1 justify-content-end">
+            <a
+              className="donate nav-title"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://egnainsamlingar.neuro.se/projects/neuro-10"
+              >
+              <Button color="light">Starta insamling</Button>
+            </a>
+          </div>
         </Collapse>
-        <a
-          className="donate"
-          style={{ position: "absolute", right: 20 }}
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://egnainsamlingar.neuro.se/projects/neuro-10"
-        >
-          <Button color="light">DONERA</Button>
-        </a>
       </Navbar>
     );
   }

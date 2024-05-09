@@ -1,10 +1,19 @@
 [
   {
+    "title": "Höjning av anmälningsavgift från 1 juni",
+    "ingress": "Passa på att anmäla dig eller ditt lag innan prishöjningen den 1 juni!",
+    "text": "Den 1 juni höjer vi anmälningsavgiften med 100 kr. Passa på att anmäla dig eller ditt lag redan nu! Har du någon kompis du tror skulle vilja vara med att delta i år? Sporra dom till att anmäla sig till årets gemytligaste motionsevenemang.",
+    "images": [{"thumbnail": "/images/news/pris_thumb.jpeg", "original": "/images/news/pris_org.jpeg"}],
+    "link": "/anmalan",
+    "linkName": "Anmalan",
+    "date": "Sön 09-05-2024" 
+  },
+  {
     "title": "Crawlkurs för nybörjare med vår sponsor Medley",
     "ingress": "Medley ger dig som är anmäld deltagare till Hensmåla Triathlon 10% rabatt på crawlkurs i vår! Boka senast 17 maj i Medleys reception. Kursstart är 22 maj.",
     "text": "Nu ger vår sponsor Medley dig som deltagare 10% rabatt till vårens sista crawlkurs. Perfekt förberedelse för sommarens triathlon! Boka kursen i receptionen på Medley senast den 17 maj med godkänd anmälan. Det kommer även inom kort komma Crawl som bokbart träningspass, som ett gruppträningspass, för de som redan är aktiva crawlare",
     "images": [{"thumbnail": "/images/news/medley_ht_thumb.jpg", "original": "/images/news/medley_ht.jpg"}],
-    "link": "https://neuro.se/artiklar/diagnos/genombrott-foer-als-forskningen/?utm_source=ActiveCampaign&utm_medium=email&utm_content=Genombrott%20f%C3%B6r%20ALS-forskningen&utm_campaign=Neuro%20aktuellt%20-%20v%2016%202024",
+    "link": "",
     "linkName": "",
     "date": "Lör 20-04-2024" 
   },

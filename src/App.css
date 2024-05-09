@@ -59,12 +59,19 @@ i {
 }
 
 .nav-title {
+  list-style-type: none;
+  margin: 0;
+  flex-shrink: 0;
   font-weight: bold;
   transition: all 0.1s ease-out;
 }
 
 .nav-title:hover {
   color: rgb(201, 197, 197);
+}
+
+.dropdown-item {
+  font-weight: bold !important;
 }
 
 .brand-title {
@@ -241,8 +248,3 @@ i {
   }
 }
 
-@media (max-width: 1490px) {
-  .donate {
-    visibility: hidden;
-  }
-}

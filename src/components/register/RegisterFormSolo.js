@@ -285,7 +285,7 @@ class RegisterFormSolo extends Component {
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
           <p>
             <i style={{ fontSize: 12 }}>
-              Det kommer gå att efteranmäla för {LATE_REGISTER_FEE}kr på plats.
+              Efter 1 juni kommer anmälningsavgiften höjas till {LATE_REGISTER_FEE}kr.
             </i>
           </p>
         </Col>
