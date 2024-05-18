@@ -6,8 +6,8 @@ import ImageGallery from "react-image-gallery";
 
 const images = [
   {
-    original: "/images/clothes/black_cap.jpg",
-    thumbnail:"/images/clothes/black_cap_small.jpg",
+    original: "/images/clothes/cap_with_logo.jpg",
+    thumbnail:"/images/clothes/cap_with_logo_thumb.jpg",
   }
 ];
 
@@ -33,7 +33,6 @@ const CapSelect = (props) => {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <p>Bild på keps med logga kommer inom kort</p>
       <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={false} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
         <div className="d-flex align-items-center mt-3">
           <div

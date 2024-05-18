@@ -69,7 +69,7 @@ class OrderShirt extends Component {
                     <h3>Beställ t-shirt och keps </h3>
                         <p>
                           <b>
-                            <i>Sista beställningsdag är 8:e juni</i>
+                            <i>Sista beställningsdag är 12:e juni</i>
                           </b>
                         </p>
                         <p>Kontakta oss om du har frågor.</p>

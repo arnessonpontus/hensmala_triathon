@@ -81,7 +81,7 @@ class RegisterFormSolo extends Component {
             </div>
             <p>
               <b>
-                <i>Sista dag för beställning av t-shirt och keps är 8:e juni</i>
+                <i>Sista dag för beställning av t-shirt och keps är 12:e juni</i>
               </b>
             </p>
             <FormGroup>
