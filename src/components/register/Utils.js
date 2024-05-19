@@ -65,17 +65,22 @@ export function scrollToInfo(elementID) {
   window.scrollTo({top: y, behavior: 'smooth'});
 };
 
-export const calcShirtPrice = (shirts) => {
+export const calcShirtPrice = (shirts, hasEnteredCompany = false) => {
+  let amountToRemove = 0;
   const shirtAmount = shirts.reduce((acc, shirt) => {
     if (shirt.size && shirt.type && shirt.material) {
        if (shirt.material === 'bomull') {
+        if (hasEnteredCompany && amountToRemove === 0) {
+          amountToRemove = SHIRT_PRICE_COTTON;
+        }
         return acc + SHIRT_PRICE_COTTON;
        } else {
+        amountToRemove = hasEnteredCompany ? SHIRT_PRICE_FUNCTIONAL : 0;
         return acc + SHIRT_PRICE_FUNCTIONAL
        }
     } else {
       return acc;
     }
   }, 0);
-  return shirtAmount;
+  return shirtAmount - amountToRemove;
 }

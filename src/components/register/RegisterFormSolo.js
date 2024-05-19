@@ -59,7 +59,14 @@ class RegisterFormSolo extends Component {
     }
   };
 
+  isAllowedCompanyEntered = () => {
+    return process.env.REACT_APP_ALLOWED_COMPANY && this.state.city.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase());
+  }
+
   calcTotalCost = () => {
+    if (this.isAllowedCompanyEntered()) {
+      return this.state.extraDonation + calcShirtPrice(this.state.shirts, true) + this.state.numCaps * CAP_PRICE;
+    } 
     return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
   }
 
@@ -155,6 +162,13 @@ class RegisterFormSolo extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
+            {this.isAllowedCompanyEntered() ? 
+            <div className="allowed-company-text-bg">
+              <small>
+              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför en t-shirt och anmälningsavgiften betald.
+              </small>
+            </div>
+            : null}
             <FormGroup>
               <Label for="info">Information</Label>
               <Input
