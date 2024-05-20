@@ -138,6 +138,16 @@ class Navigation extends React.Component {
           >
             SPONSORER
           </NavLink>
+          <div class="d-flex flex-grow-1 justify-content-end">
+            <a
+              className="donate nav-title"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://egnainsamlingar.neuro.se/projects/neuro-10"
+              >
+              <Button color="light">Starta insamling</Button>
+            </a>
+          </div>
         </Collapse>
       </Navbar>
     );
