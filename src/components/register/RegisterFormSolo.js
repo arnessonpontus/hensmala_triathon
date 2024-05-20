@@ -65,7 +65,7 @@ class RegisterFormSolo extends Component {
 
   calcTotalCost = () => {
     if (this.isAllowedCompanyEntered()) {
-      return this.state.extraDonation + calcShirtPrice(this.state.shirts, true) + this.state.numCaps * CAP_PRICE;
+      return this.state.extraDonation + Math.max(0, (calcShirtPrice(this.state.shirts) - SHIRT_PRICE_FUNCTIONAL)) + this.state.numCaps * CAP_PRICE;
     } 
     return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
   }

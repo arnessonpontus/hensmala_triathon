@@ -30,13 +30,15 @@ function sendEmail(addedRow, registerType) {
     let html = "";
 
     if (registerType === "team") {
-        html = getTeamHtml(addedRow);
+        const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase()) || 
+                                  addedRow.get('city2')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase()) || 
+                                  addedRow.get('city3')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase());
+        html = getTeamHtml(addedRow, hasAllowedCompany);
     } else if (registerType === "tshirt_order") {
         html = getShirtHtml(addedRow);
-    } else if (addedRow.get('city').toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase())) {
-      html = getExceptionCompanyHtml(addedRow);
     } else {
-      html = getSoloHtml(addedRow);
+      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase())
+      html = getSoloHtml(addedRow, hasAllowedCompany);
     }
 
     const mailOptions = {

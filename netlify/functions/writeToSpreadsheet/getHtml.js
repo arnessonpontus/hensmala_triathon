@@ -1,4 +1,23 @@
-function getSoloHtml(data) {
+function getPaymentString(hasAllowedCompany, totalToPay) {
+    if (hasAllowedCompany) {
+        return (
+            `<p>
+                Eftersom du har anget <b style="color:#007fa8;">${process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften och t-shirt gratis. 
+            </p>
+            ${totalToPay > 0 ? 
+                `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
+            : ""}
+            <p>`)
+    } else {
+        return (
+            `<p>
+                Betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
+            </p>`
+        );
+    }
+}
+
+function getSoloHtml(data, hasAllowedCompany) {
     return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,9 +33,7 @@ function getSoloHtml(data) {
             <h2>
                 Tack för din anmälan till Hensmåla Triathlon 2024!
             </h2>
-            <p>
-                Betala <b>${data.get('totalToPay')}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
-            </p>
+            ${getPaymentString(hasAllowedCompany, data.get('totalToPay'))}
             <p>
                 Vi kommer framöver att skicka ut ett mail med vidare information. Här är dina uppgifter:
             </p>
@@ -56,7 +73,7 @@ function getSoloHtml(data) {
     `);
 }
 
-function getTeamHtml(data) {
+function getTeamHtml(data, hasAllowedCompany) {
     return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
@@ -72,9 +89,7 @@ function getTeamHtml(data) {
             <h2>
                 Tack för er anmälan till Hensmåla Triathlon 2024!
             </h2>
-            <p>
-                Betala <b>${data.get('totalToPay')}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
-            </p>
+            ${getPaymentString(hasAllowedCompany, data.get('totalToPay'))}
             <p>
                 Vi kommer framöver att skicka ut ett mail med vidare information. Här är era uppgifter:
             </p>
@@ -192,69 +207,6 @@ function getShirtHtml(data) {
     `);
 }
 
-function getExceptionCompanyHtml(data) {
-    return (`
-        <!DOCTYPE html>
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head> 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>HT Confirm Email</title>
-        </head>
-        <style type="text/css">
-        </style>
-        <div>
-            <h1>Hej ${data.get('name').split(" ")[0]}!</h1>
-            <h2>
-                Tack för din anmälan till Hensmåla Triathlon 2024!
-            </h2>
-            <p>
-                Eftersom du har anget <b style="color:#007fa8;">${process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften och en t-shirt gratis. 
-            </p>
-            ${data.get('totalToPay') > 0 ? 
-                `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${data.get('totalToPay')}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
-            : ""}
-            <p>
-            <p>
-                Vi kommer framöver att skicka ut ett mail med vidare information. Här är dina uppgifter:
-            </p>
-            <ul>
-            <li>
-                Namn: <b>${data.get('name')}</b>
-            </li>
-            <li>
-                Epost: <b>${data.get('email')}</b>
-            </li>
-            <li>
-                Födelsedatum: <b>${data.get('birthday')}</b>
-            </li>
-            <li>
-                Kön: <b>${data.get('gender')}</b>
-            </li>
-            <li>
-                Ort/klubb: <b>${data.get('city')}</b>
-            </li>
-            <li>
-                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
-            </li>
-            <li>
-                Kepsar: <b>${data.get('numCaps')}</b>
-            </li>
-            <li>
-                Extra donation: <b>${data.get('extraDonation')}kr</b>
-            </li>
-            <li>
-                Övrig information: <b>${data.get('info')}</b>
-            </li>
-            </ul>
-            <p>Starten går klockan 15.00, var gärna i god tid.</p>
-            <p>Vi ses den 20e Juli!</p>
-            <img src="cid:logo" alt="Logga" width="200px"'/>
-        </div>
-    `);
-}
-
 exports.getSoloHtml = getSoloHtml;
 exports.getTeamHtml = getTeamHtml;
 exports.getShirtHtml = getShirtHtml;
-exports.getExceptionCompanyHtml = getExceptionCompanyHtml;
