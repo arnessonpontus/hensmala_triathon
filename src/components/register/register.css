@@ -49,6 +49,12 @@
   text-decoration: none;
 }
 
+.donations-button-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
 .extra-donation {
   display: flex;
   flex-wrap: wrap;
@@ -146,6 +152,13 @@
   }
   .register-divider {
     display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .donations-button-container {
+    justify-content: flex-start;
+    padding-left: 16px;
   }
 }
 
