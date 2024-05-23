@@ -74,6 +74,13 @@ i {
   font-weight: bold !important;
 }
 
+.countdown {
+  font-size: calc(2em + 3vw);
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
 .brand-title {
   color: #fff !important;
 }
