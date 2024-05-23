@@ -9,7 +9,7 @@ class Articles extends React.Component {
     isDropdownOpen: false,
   };
 
-  prevYears = ["2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
+  prevYears = ["2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
 
   onYearTap = (year) => {
     document
@@ -59,9 +59,9 @@ class Articles extends React.Component {
           </DropdownMenu>
         </ButtonDropdown>
         <div className="px-5 pb-5">
-          <h3>2022</h3>
+          <h3>2024</h3>
           <Row>
-            {articles["2022"].map((article) => {
+            {articles["2024"].map((article) => {
               return <ArticleSection article={article} />;
             })}
           </Row>

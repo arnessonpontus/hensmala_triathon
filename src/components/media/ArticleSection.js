@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import { Col } from "reactstrap";
 
 class SponsorSection extends Component {
+  constructor() {
+    super();
+    this.randomNumbers = Array.from({length: 5}, () => Math.floor(Math.random() * 7 + 1));
+  }
+
   render() {
     return (
       <Col className="mt-4" md="6">
@@ -14,7 +19,7 @@ class SponsorSection extends Component {
         >
           <div className="card-box-hoverable" style={{ height: 350 }}>
             <div className="article-placeholder">
-              {Array.from({length: 5}, () => Math.floor(Math.random() * 7 + 1)).map(rnd => <div style={{width: rnd + "0%"}} className="article-placeholder-row"/>)}
+              {this.randomNumbers.map(rnd => <div style={{width: rnd + "0%"}} className="article-placeholder-row"/>)}
             </div>
             <div style={styles.titleContainer}>
               <h5
