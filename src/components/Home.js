@@ -1,10 +1,26 @@
 import React, { Component } from "react";
 import News from "./news/News";
 import { Container, Row, Col} from "reactstrap";
+import moment from 'moment-timezone';
+
+export function getDaysFromNow(day) {
+  return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm"))/86400000)
+}
 
 class Home extends Component {
   componentDidMount() {
+    this.setState({daysLeft: getDaysFromNow("2024-07-20")})
     window.scrollTo(0, 0);
+
+    const intervalID = setInterval(() => {
+      this.setState({daysLeft: getDaysFromNow("2024-07-20")})
+    }, 1000)
+    this.setState({intervalID})
+  }
+
+  state = {
+    daysLeft: getDaysFromNow("2022-07-23"),
+    intervalID: null,
   }
 
   render() {
@@ -16,6 +32,9 @@ class Home extends Component {
             src="/images/ht_banner_resized.jpg"
             alt="HT_banner"
           ></img>
+          <div className="center-absolute w-100 text-center">
+            <div className="countdown">{this.state.daysLeft} dagar kvar</div>
+          </div>
         </div>
         <Container className="p-4">
           <div className="card-box">
@@ -42,6 +61,9 @@ class Home extends Component {
                 ></img>
               </Col>
             </Row>
+          </div>
+          <div className="card-box justify-content-center">
+            <h3 class="m-0">Hensmåla Triathlon går i år 20 juli!</h3>
           </div>
           <Row>
             <News />
