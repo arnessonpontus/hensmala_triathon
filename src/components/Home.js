@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import News from "./news/News";
 import { Container, Row, Col} from "reactstrap";
 import moment from 'moment-timezone';
+import { Button } from "reactstrap";
+import { NavLink as RRNavLink } from "react-router-dom";
 
 export function getDaysFromNow(day) {
   return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm"))/86400000)
@@ -62,8 +64,13 @@ class Home extends Component {
               </Col>
             </Row>
           </div>
-          <div className="card-box justify-content-center">
-            <h3 class="m-0">Hensmåla Triathlon går i år 20 juli!</h3>
+          <div className="card-box justify-content-center flex-column align-items-center">
+            <h3 class="mb-4">Hensmåla Triathlon går i år 20 juli!</h3>
+            <RRNavLink to={"/anmalan"}>
+                <Button style={{backgroundColor: "#11999E", fontWeight: "bold"}}>
+                    Anmäl dig nu <i className="fas fa-arrow-right " style={{ marginLeft: 5, color: "white" }}></i>
+                </Button>
+            </RRNavLink>
           </div>
           <Row>
             <News />

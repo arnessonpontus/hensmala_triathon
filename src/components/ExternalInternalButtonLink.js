@@ -20,9 +20,9 @@ const ExternalInternalButtonLink = (props) => {
     } else {
         return (
             <RRNavLink to={link}>
-            <Button style={{ marginTop: 4 }}>
-                Gå till {linkName}
-            </Button>
+                <Button style={{ marginTop: 4 }}>
+                    Gå till {linkName}
+                </Button>
             </RRNavLink>
         )
     }
