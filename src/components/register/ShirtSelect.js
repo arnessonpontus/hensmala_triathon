@@ -60,7 +60,7 @@ const ShirtSelect = (props) => {
   return (
     <div id="shirt-select">
       <p className="w-100 d-flex justify-content-center">Bomullströjan har endast tryck på framsidan</p>
-      <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={false} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
+      <ImageGallery showThumbnails={false} showIndex={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={false} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           return (
