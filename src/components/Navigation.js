@@ -95,7 +95,7 @@ class Navigation extends React.Component {
             <DropdownToggle nav caret className="inactive nav-title">
               OM
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu left>
               <DropdownItem>
                 <NavLink
                   className="dropdown-item"
