@@ -9,6 +9,10 @@ class Articles extends React.Component {
     isDropdownOpen: false,
   };
 
+  componentDidMount() {
+    this.onToTopTap();
+  }
+
   years = ["2024", "2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
 
   onYearTap = (yearIndex) => {
@@ -55,7 +59,7 @@ class Articles extends React.Component {
           isOpen={this.state.isDropdownOpen}
           toggle={this.toggle}
         >
-          <DropdownToggle caret>Choose year</DropdownToggle>
+          <DropdownToggle caret>Välj år</DropdownToggle>
           <DropdownMenu>
             {this.years.map((year, i) => (
               <DropdownItem onClick={() => this.onYearTap(i)}>

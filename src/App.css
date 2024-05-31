@@ -144,6 +144,10 @@ i {
   border: none;
 }
 
+.donation-list {
+  list-style-position: inside
+}
+
 .card-box-hoverable {
   display: flex;
   position: relative;

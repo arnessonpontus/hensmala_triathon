@@ -26,8 +26,8 @@
     "date": "Fre 19-04-2024" 
   },
   {
-    "title": "Stoppa ALS och Börje Salmings stitelse",
-    "ingress": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings stiftelse.",
+    "title": "Sammarbete med Stoppa ALS och Börje Salmings ALS Stitelse",
+    "ingress": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings ALS Stiftelse.",
     "images": [{"thumbnail": "/images/news/borje_salming_stiftelse.jpeg", "original": "/images/news/borje_salming_stiftelse.jpeg"}],
     "link": "https://www.borjesalmingstiftelse.se/",
     "linkName": "Börje Samlings stiftelse",
@@ -149,38 +149,38 @@
   {
     "title": "Nu finns Utmaningen uppe på hemsidan!",
     "ingress": "Eftersom Hensmåla triathlon 2020 har ställts in skapades Utmaningen. För att läsa mer eller lägga till ett bidrag kan man gå in på Utmaningen i menyn på hemsidan.",
-    "images": [{"thumbnail": "thumb.png", "original": "thumb.png"}],
+    "images": [{"thumbnail": "/thumb.png", "original": "/thumb.png"}],
     "date": "Lör 04-07-2020",
     "linkName": "Utmaningen"
   },
   {
     "title": "Hensmåla triathlon 2020 är inställt på grund av Covid-19.",
     "ingress": "Vi måste tyvärr meddela att Hensmåla triathlon detta år är inställt. Även om alternativa corona-anpassade genomföranden har diskuterats, togs beslutet att ställa in årets upplaga. Vi hoppas ni har förståelse för detta och blir ännu mer taggade på att medverka nästa år.",
-    "images": [{"thumbnail": "images/news/rain1.jpg", "original": "images/news/rain1.jpg"}],
+    "images": [{"thumbnail": "/images/news/rain1.jpg", "original": "/images/news/rain1.jpg"}],
     "date": "Mån 08-06-2020"
   },
   {
     "title": "Corona - Så är läget.",
     "ingress": "På grund av Corona är det ännu inte klart hur det blir med årets upplaga av Hensmåla Triathlon. Vi hoppas att kunna utföra evemanget i någon form, men kommer såklart följa de anvisningar som ges. Beslut kommer tas under kommande veckor. ",
-    "images": [{"thumbnail": "images/news/corona.jpg", "original": "images/news/corona.jpg"}],
+    "images": [{"thumbnail": "/images/news/corona.jpg", "original": "/images/news/corona.jpg"}],
     "date": "Lör 16-05-2020"
   },
   {
     "title": "Nyhet för i år: Duathlon för barn!",
     "ingress": "Detta året kommer det hållas ett duathlon för barn upp till 15 år. Mer information hittar du på anmälningssidan.",
-    "images": [{"thumbnail": "images/news/barn-badmossa.jpg", "original": "images/news/barn-badmossa.jpg"}],
+    "images": [{"thumbnail": "/images/news/barn-badmossa.jpg", "original": "/images/news/barn-badmossa.jpg"}],
     "date": "Sön 17-02-2020"
   },
   {
     "title": "Nu öppnar anmälan!",
     "ingress": "Nu öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats!",
-    "images": [{"thumbnail": "images/news/fireworks.png", "original": "images/news/fireworks.png"}],
+    "images": [{"thumbnail": "/images/news/fireworks.png", "original": "/images/news/fireworks.png"}],
     "date": "Fre 24-01-2020"
   },
   {
     "title": "Första nyheten är en ny hemsida!",
     "ingress": "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig, se resultat och media osv. ",
-    "images": [{"thumbnail": "images/news/hemsida_news.png", "original": "images/news/hemsida_news.png"}],
+    "images": [{"thumbnail": "/images/news/hemsida_news.png", "original": "/images/news/hemsida_news.png"}],
     "date": "Mån 20-01-2020"
   }
 ]
