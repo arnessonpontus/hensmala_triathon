@@ -17,8 +17,8 @@ import CapSelect from "./CapSelect";
 import RegisterButton from "./RegisterButton";
 import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from './Utils';
 
-const REGISTER_FEE = 300;
 const LATE_REGISTER_FEE = 400;
+const REGISTER_FEE = LATE_REGISTER_FEE;
 
 class RegisterFormSolo extends Component {
   state = {
@@ -297,11 +297,6 @@ class RegisterFormSolo extends Component {
           <br></br>
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
-          <p>
-            <i style={{ fontSize: 12 }}>
-              Efter 1 juni kommer anmälningsavgiften höjas till {LATE_REGISTER_FEE}kr.
-            </i>
-          </p>
         </Col>
       </Row>
     );
