@@ -37,8 +37,8 @@ class NewsDetail extends React.Component {
           <h1 className="m-4 minimize-title-small">{this.state.newsDetail.title}</h1>
           <p><i>{this.state.newsDetail.date}</i></p>
           <p><strong>{this.state.newsDetail.ingress}</strong></p>
-          {this.state.newsDetail.text ? <p>{this.state.newsDetail.text}</p> : null}
-            <ImageGallery showPlayButton={false} showFullscreenButton={false} items={images}/>
+          {this.state.newsDetail.text ? <p dangerouslySetInnerHTML={{ __html: this.state.newsDetail.text }}></p> : null}
+            <ImageGallery showPlayButton={false} showFullscreenButton={true} items={images}/>
             {this.state.newsDetail.video ? (
               <div
                 className="embed-responsive embed-responsive-16by9"
