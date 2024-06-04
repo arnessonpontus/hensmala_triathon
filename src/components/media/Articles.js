@@ -55,7 +55,7 @@ class Articles extends React.Component {
         </Button>
         <ButtonDropdown
           className="pb-5 sticky-top"
-          style={{ top: 80 }}
+          style={{ top: 80, zIndex: 4}}
           isOpen={this.state.isDropdownOpen}
           toggle={this.toggle}
         >

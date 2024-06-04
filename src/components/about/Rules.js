@@ -26,7 +26,7 @@ class Rules extends Component {
         <p>
           Löpning sker på grus, gräs, skogsstig och en kort sträcka på asfalt.
           Vägvakter finns vid varje vägövergång men det är alltid bilar som har
-          företräde. Mycket viktigt att vara observant. Inga hörlurar med musik
+          företräde. Det är alltså <strong>mycket viktigt</strong> att vara observant vid och över vägen. Inga hörlurar med musik
           är tillåtna.
         </p>
 

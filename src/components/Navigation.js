@@ -30,7 +30,7 @@ class Navigation extends React.Component {
 
   render() {
     return (
-      <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 2000 }}>
+      <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10 }}>
         <NavbarBrand
           tag={RRNavLink}
           color="light"
@@ -38,7 +38,7 @@ class Navigation extends React.Component {
           activeClassName="active"
           exact={true}
           to="/"
-          onClick={() => this.setState({ isHamburgerOpen: false })}
+          onClick={() => {this.setState({ isHamburgerOpen: false }); window.scrollTo(0, 0);}}
         >
           <img
             src="/images/nav_hona.png"

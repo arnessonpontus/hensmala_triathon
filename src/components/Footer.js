@@ -31,7 +31,7 @@ class Footer extends React.Component {
           }}
         >
           <a
-            href="https://www.facebook.com/HensmalaTriathlon/"
+            href="https://www.facebook.com/profile.php?id=61557863443816"
             target="_blank"
             rel="noopener noreferrer"
           >
