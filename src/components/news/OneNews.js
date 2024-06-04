@@ -24,7 +24,7 @@ const OneNews = (props) => {
             <p>{props.news.ingress}</p>
           </Row>
           <Row>
-            <RRNavLink className="nostyle-link mb-2" to={'/news/' + props.news.title}> <Button outline>Läs mer</Button></RRNavLink>
+            <RRNavLink className="nostyle-link mb-2" to={'/news/' + props.news.title.replaceAll(" ", "-")}> <Button outline>Läs mer</Button></RRNavLink>
           </Row>
           <Row>
             <i>{props.news.date}</i>

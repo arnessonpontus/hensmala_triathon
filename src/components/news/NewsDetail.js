@@ -13,7 +13,7 @@ class NewsDetail extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     const { id } = this.props.match.params;
-    const newsDetail = newsArc.find((news, i) => news.title === id)
+    const newsDetail = newsArc.find((news, i) => news.title.replaceAll(" ", "-") === id)
     this.setState({ newsDetail: newsDetail});
   }
 
