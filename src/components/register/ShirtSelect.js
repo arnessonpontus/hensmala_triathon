@@ -15,8 +15,8 @@ const images = [
     thumbnail: "/images/clothes/funktion_front_small.png",
   },
   {
-    original: "/images/clothes/funktion_back_large.png",
-    thumbnail: "/images/clothes/funktion_back_small.png",
+    original: "/images/clothes/funktion-back-darker.png",
+    thumbnail: "/images/clothes/funktion-back-darker_thumb.png",
   }
 ];
 
