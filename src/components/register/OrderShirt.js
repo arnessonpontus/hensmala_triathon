@@ -61,8 +61,9 @@ class OrderShirt extends Component {
 
     render() {
         return (
-            <Container style={{display: "flex", justifyContent: "center", minHeight: "90vh"}}>
-              {!this.state.hasOrderd ? (
+            <Container style={{display: "flex", justifyContent: "center", alignItems: "center", minHeight: "90vh"}}>
+              <p>Sista beställningsdag har passerat. Det kommer dock finnas ett fåtal t-shirts och kepsar att köpa på plats.</p>
+              {/* {!this.state.hasOrderd ? (
                 <div className="card-box" style={{ marginTop: 40, width: "90%" }}>
                 <Row>
                     <Col style={{ marginTop: "2vh" }} md={6}>
@@ -174,7 +175,7 @@ class OrderShirt extends Component {
             </div>
               ) : (
                 <RegSuccess type="order" onGoBack={this.resetState} />
-              )}
+              )} */}
             </Container>
         )
     }

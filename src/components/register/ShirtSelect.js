@@ -59,7 +59,8 @@ const ShirtSelect = (props) => {
 
   return (
     <div id="shirt-select">
-      <p className="w-100 d-flex justify-content-center">Bomullströjan har endast tryck på framsidan</p>
+      <p>Sista beställningsdag har passerat. Det kommer dock finnas ett fåtal t-shirts att köpa på plats.</p>
+      {/* <p className="w-100 d-flex justify-content-center">Bomullströjan har endast tryck på framsidan</p>
       <ImageGallery showThumbnails={false} showIndex={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
@@ -146,7 +147,7 @@ const ShirtSelect = (props) => {
           + Lägg till fler
         </div>
         <div className="mt-2 d-flex justify-content-center no-clothed-chosen" style={{minHeight: 25}}>{(shirts.every(s => s.size == null || s.type == null)) ? <span>Ingen tröja vald</span> : null}</div>
-      </div>
+      </div> */}
     </div>
   );
 

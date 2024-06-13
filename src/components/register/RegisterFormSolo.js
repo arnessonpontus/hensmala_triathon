@@ -65,7 +65,7 @@ class RegisterFormSolo extends Component {
 
   calcTotalCost = () => {
     if (this.isAllowedCompanyEntered()) {
-      return this.state.extraDonation + Math.max(0, (calcShirtPrice(this.state.shirts) - SHIRT_PRICE_FUNCTIONAL)) + this.state.numCaps * CAP_PRICE;
+      return this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
     } 
     return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
   }
@@ -165,7 +165,7 @@ class RegisterFormSolo extends Component {
             {this.isAllowedCompanyEntered() ? 
             <div className="allowed-company-text-bg">
               <small>
-              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför en t-shirt och anmälningsavgiften betald.
+              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför anmälningsavgiften betald.
               </small>
             </div>
             : null}

@@ -33,7 +33,8 @@ const CapSelect = (props) => {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
+      <p>Sista beställningsdag har passerat. Det kommer dock finnas ett fåtal kepsar att köpa på plats.</p>
+      {/* <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
         <div className="d-flex align-items-center mt-3">
           <div
             className="button-style small add-shirt-button" 
@@ -44,7 +45,7 @@ const CapSelect = (props) => {
             onClick={addCap}
             >+</div>
             </div>
-          <div className="mt-2 no-clothed-chosen" style={{minHeight: 25}}>{numCaps <= 0 ? <span>Ingen keps vald</span> : null}</div>
+          <div className="mt-2 no-clothed-chosen" style={{minHeight: 25}}>{numCaps <= 0 ? <span>Ingen keps vald</span> : null}</div> */}
     </div>
   );
 
