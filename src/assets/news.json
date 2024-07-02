@@ -1,5 +1,14 @@
 [
   {
+    "title": "Tilva Stålsmycken",
+    "ingress": "Smycken designade av Valter Skarsgård och Pia Salming kommer säljas på Hensmåla Triathlon. 100kr per smycke går oavkortat till Börje Salming ALS-Stiftelse.",
+    "images": [{"thumbnail": "/images/news/smycke_tilva_thumb.jpeg", "original": "/images/news/smycke_tilva.jpeg"}],
+    "text": "Flera olika smycken, bland annat designade av Valter Skarsgård och Pia Salming, kommer att säljas på Hensmåla Triathlon där 100kr per smycke går till Börje Salmings ALS-Stiftelse. Dessa går även att beställa på hemsidan för Tilva Stålsmycken.",
+    "link": "https://tilva.se/borje-salming-als-smycke/",
+    "linkName": "Tilva stålsmycken",
+    "date": "Tis 02-07-2024"
+  },
+  {
     "title": "Caroline Ingres föreläsning om ALS",
     "ingress": "Caroline Ingre, överläkare i neurologi och specialiserad på ALS, höll nyligen en inspirerande föreläsning för funktionärer, sponsorer, deltagare och andra intresserade på slinnet i Hensmåla. Hennes föreläsning gav en inblick i den senaste forskningen om ALS och delade viktig information om sjukdomen.",
     "images": [],
