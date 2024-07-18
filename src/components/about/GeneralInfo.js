@@ -37,7 +37,7 @@ class GenerealInfo extends Component {
           > Artiklar
           </RRNavLink>.
         </p>
-        <ul class="donation-list">
+        <ul class="inside-list">
           <li>
             <a
               href="/images/articleImages/2018/neuro_2018-10-02.pdf"
