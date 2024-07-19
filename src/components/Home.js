@@ -35,7 +35,7 @@ class Home extends Component {
             alt="HT_banner"
           ></img>
           <div className="center-absolute w-100 text-center">
-            <div className="countdown">{this.state.daysLeft} dagar kvar</div>
+            <div className="countdown">0 dagar kvar</div>
           </div>
         </div>
         <Container className="p-4">

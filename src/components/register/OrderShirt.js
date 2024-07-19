@@ -61,8 +61,9 @@ class OrderShirt extends Component {
 
     render() {
         return (
-            <Container style={{display: "flex", justifyContent: "center", alignItems: "center", minHeight: "90vh"}}>
-              <p>Sista beställningsdag har passerat. Det kommer dock finnas ett fåtal t-shirts och kepsar att köpa på plats.</p>
+            <Container style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", minHeight: "90vh"}}>
+              <h2>Sista beställningsdag har passerat.</h2>
+              <p>Det kommer dock finnas ett fåtal t-shirts och kepsar att köpa på plats.</p>
               {/* {!this.state.hasOrderd ? (
                 <div className="card-box" style={{ marginTop: 40, width: "90%" }}>
                 <Row>
