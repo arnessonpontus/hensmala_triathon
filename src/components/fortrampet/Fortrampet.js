@@ -34,7 +34,7 @@ const Fortrampet = () => {
                 </h3>
               </div>
               <p>
-                När hentrampet går av stapeln år 2024 kommer anonseras framöver.
+                När hentrampet går av stapeln år 2024 kommer annonseras framöver.
               </p>
               <b>
                 Stöd ALS-forskningen, men i egen takt och med fikastopp på

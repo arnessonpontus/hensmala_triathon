@@ -31,19 +31,15 @@ class AboutHT extends React.Component {
     switch (cardType) {
       case "Info":
         this.setState({ isInfoOpen: !this.state.isInfoOpen });
-
         break;
       case "GetHere":
         this.setState({ isGetHereOpen: !this.state.isGetHereOpen });
-
         break;
       case "Distances":
         this.setState({ isDistancesOpen: !this.state.isDistancesOpen });
-
         break;
       case "results":
         this.setState({ isResultsOpen: !this.state.isResultsOpen });
-
         break;
       default:
         this.setState({ isRulesOpen: !this.state.isRulesOpen });
@@ -85,13 +81,21 @@ class AboutHT extends React.Component {
         }, 1500);
         this.setState({ isRulesOpen: true });
         break;
+        case "results":
+          setTimeout(() => {
+            document
+              .getElementById("results")
+              .scrollIntoView({ behavior: "smooth" });
+          }, 1500);
+          this.setState({ isResultsOpen: true });
+          break;
       default:
         window.scrollTo(0, 0);
     }
   }
 
   render() {
-    const result_years = [2022, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
+    const result_years = [2024, 2022, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
     return (
       <div>
         <div className="banner-wrapper">
