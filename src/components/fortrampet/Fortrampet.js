@@ -30,12 +30,9 @@ const Fortrampet = () => {
               >
                 <h2 style={{ fontSize: "46px" }}>Hentrampet</h2>
                 <h3>
-                  <Badge color="info" className="text-white">Gick 2023</Badge>
+                  <Badge color="info" className="text-white">1 sep 2024</Badge>
                 </h3>
               </div>
-              <p>
-                När hentrampet går av stapeln år 2024 kommer annonseras framöver.
-              </p>
               <b>
                 Stöd ALS-forskningen, men i egen takt och med fikastopp på
                 vägen.
@@ -43,20 +40,20 @@ const Fortrampet = () => {
               <br></br>
               <br></br>
               <p>
-                Hentrampet (tidigare Förtrampet) gick av stapeln 2023 även om Hensmåla Triathlon inte gjorde det.
+                Hentrampet (tidigare Förtrampet) kommer gå av stapeln 1 september 2024.
               </p>
               <h4>
                 Vad innebär Hentrampet?
               </h4>
               <p className="indent">
                 Hentrampet innebär att på sin egen cykel ta sig runt Stora
-                Hensjön i den takt man vill, med valfri fika på vägen. I år kommer även en tipsrunda med fina priser vara utsatt.
+                Hensjön i den takt man vill, med valfri fika på vägen. Likt förra året kommer även en tipsrunda med fina priser vara utsatt.
               </p>
               <h4>
                 När är Hentrampet?
               </h4>
               <p className="indent">
-                Inget datum är spikat för år 2024.
+                1 september 2024.
               </p>
               <h4>
                 Behöver jag ta med fika?

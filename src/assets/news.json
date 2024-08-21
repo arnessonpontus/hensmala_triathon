@@ -1,5 +1,14 @@
 [
   {
+    "title": "Var med och delta i Hentrampet 1 september 2024!",
+    "ingress": "Datum är nu spikat för detta års Hentrampet (tidigare Förtrampet). Detta datum är 1 september 2024 och vi hoppas så många som möjligt kommer och hjälper oss stödja ALS-forskningen.",
+    "images": [{"thumbnail": "/images/news/hentrampet_2024_thumb.jpg", "original": "/images/news/hentrampet_2024.jpg"}],
+    "text": "Detta års Hentrampet kommer som vanligt bjuda på en härlig runda runt Hensjön i egen takt med fika längs vägen, tipsruna och förhoppnings ett kanonväder. </br></br> Anmälningsavgiften är 100 kr eller valfri summa däröver, och går som vanligt till samma ändamål som Hensmåla Triathlon - att försöka stoppa ALS.",
+    "link": "/hentrampet",
+    "linkName": "Hentrampet",
+    "date": "Ons 21-08-2024"
+  },
+  {
     "title": "Tack för i år",
     "ingress": "Tack alla deltagare, sponsorer, funktionärer och publik för i år! Vi fick en helt fantastisk dag och det tack vare er! Nu finns resultat och bilder ute på hemsidan.",
     "images": [{"thumbnail": "https://live.staticflickr.com/65535/53886522393_1c2e26c253_k.jpg", "original": "https://live.staticflickr.com/65535/53886522393_1c2e26c253_k.jpg"}],
@@ -18,7 +27,7 @@
   {
     "title": "Hentrampet sker senare än vanligt i år",
     "ingress": "Hentrampet (tidigare Förtrampet) kommer gå av stapeln senare i sommar, mer info kommer när det närmar sig.",
-    "images": [{"thumbnail": "/images/fortrampet_bike.jpg", "original": "/images/fortrampet_bike.jpg"}],
+    "images": [{"thumbnail": "/images/fortrampet_bike_thumb.jpg", "original": "/images/fortrampet_bike.jpg"}],
     "text": "Hentrampet är en härlig runda på cykel runt sjön i sin egen takt med fika på halva vägen. Detta är främst tanken som ett alternativ till de som inte vill eller kan vara med på Hensmåla Triathlon, men ändå vill vara med och stödja ALS-forskningen genom en aktivitet. </br></br>I år skjuter vi lite på Hentrampet till ett senare tillfälle i sommar.",
     "link": "/hentrampet",
     "linkName": "Hentrampet",
@@ -111,7 +120,7 @@
   {
     "title": "Förtrampet blir Hentrampet",
     "ingress": "Hentrampet kommer ske 20:e augusti kl 10-13. Hentrampet är egentligen det gamla vanliga Förtrampet men har i år bytt namn då triathlonet inte kommer hållas.",
-    "images": [{"thumbnail": "/images/fortrampet_bike.jpg", "original": "/images/fortrampet_bike.jpg"}],
+    "images": [{"thumbnail": "/images/fortrampet_bike_thumb.jpg", "original": "/images/fortrampet_bike.jpg"}],
     "link": "/hentrampet",
     "linkName": "Hentrampet",
     "date": "Fre 12-08-2023"
@@ -151,7 +160,7 @@
   {
     "title": "Förtrampet går i år (2021) av stapeln 11:e juli!",
     "ingress": "Kom och cykla i ditt eget tempo runt Hensjön med en fika på halva vägen, samtidigt som du stöttar ALS-forskningen. Gå till fliken Förtrampet för att läsa mer.",
-    "images": [{"thumbnail": "/images/fortrampet_bike.jpg", "original": "/images/fortrampet_bike.jpg"}],
+    "images": [{"thumbnail": "/images/fortrampet_bike_thumb.jpg", "original": "/images/fortrampet_bike.jpg"}],
     "link": "/hentrampet",
     "linkName": "Förtrampet",
     "date": "Sön 30-06-2021"
