@@ -53,7 +53,7 @@ const Fortrampet = () => {
                 När är Hentrampet?
               </h4>
               <p className="indent">
-                1 september 2024.
+                Söndag 1 september 2024. Start sker valfri tid mellan 14.00-17.00.
               </p>
               <h4>
                 Behöver jag ta med fika?
@@ -89,7 +89,7 @@ const Fortrampet = () => {
                   🎉
                 </span>
                 ) som går oavkortat till "Stoppa ALS" genom NEURO. Betala till
-                bankgiro 386-6563 eller swisha till 1234048781.
+                bankgiro 386-6563 eller swisha till 1234048781, alternativt kan man även betala på plats.
               </p>
             </CardBody>
           </Card>
