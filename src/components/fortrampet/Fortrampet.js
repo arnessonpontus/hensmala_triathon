@@ -35,7 +35,7 @@ const Fortrampet = () => {
               </div>
               <b>
                 Stöd ALS-forskningen, men i egen takt och med fikastopp på
-                vägen.
+                vägen. Även i år kommer tipsrunda med finfina priser vara uppsatt.
               </b>
               <br></br>
               <br></br>
@@ -67,6 +67,12 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 Nej ingen anmälan krävs, det är bara att dyka upp.
+              </p>
+              <h4>
+                Hur funkar tipsrundan?
+              </h4>
+              <p className="indent">
+                Tipsrundan kommer vara utsatt längs vägen där man svarar i egen takt och sedan lämnar in. Priser kommer att ges ut efteråt. Svaren kommer även upp här på hemsidan efter Hentrampet har varit.
               </p>
               <h4>
                 Hur tar jag mig dit?
