@@ -14,6 +14,9 @@ class Distances extends Component {
               Därefter är det medurs varv runt ön som gäller.
             </p>
             <p>
+              Det kommer finnas livbåtar och dykare i vattnet. Vi startar 40 st i varje startgrupp. Se till att ha badmössan på dig under hela simningen och missa inte att slängda den i de utplacerade baljorna så vi ser att alla kommit upp helskinade.
+            </p>
+            <p>
               En film på simningen kan du se{" "}
               <a href="https://www.youtube.com/watch?time_continue=2&amp;v=JT6NvRHYMqw&amp;feature=emb_logo">
                 här

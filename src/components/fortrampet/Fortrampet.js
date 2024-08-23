@@ -28,32 +28,32 @@ const Fortrampet = () => {
                   flexWrap: "wrap",
                 }}
               >
-                <h2 style={{ fontSize: "50px" }}>Hentrampet</h2>
+                <h2 style={{ fontSize: "46px" }}>Hentrampet</h2>
                 <h3>
-                  <Badge color="info" className="text-white">Gick 2023</Badge>
+                  <Badge color="info" className="text-white">1 sep 2024</Badge>
                 </h3>
               </div>
               <b>
                 Stöd ALS-forskningen, men i egen takt och med fikastopp på
-                vägen.
+                vägen. Även i år kommer tipsrunda med finfina priser vara uppsatt.
               </b>
               <br></br>
               <br></br>
               <p>
-                Hentrampet (tidigare Förtrampet) gick av stapeln 2023 även om Hensmåla Triathlon inte gjorde det.
+                Hentrampet (tidigare Förtrampet) kommer gå av stapeln 1 september 2024.
               </p>
               <h4>
                 Vad innebär Hentrampet?
               </h4>
               <p className="indent">
                 Hentrampet innebär att på sin egen cykel ta sig runt Stora
-                Hensjön i den takt man vill, med valfri fika på vägen. I år kommer även en tipsrunda med fina priser vara utsatt.
+                Hensjön i den takt man vill, med valfri fika på vägen. Likt förra året kommer även en tipsrunda med fina priser vara utsatt.
               </p>
               <h4>
-                När är Förtrampet?
+                När är Hentrampet?
               </h4>
               <p className="indent">
-                Inget datum är spikat för år 2024.
+                Söndag 1 september 2024. Start sker valfri tid mellan 14.00-17.00.
               </p>
               <h4>
                 Behöver jag ta med fika?
@@ -67,6 +67,12 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 Nej ingen anmälan krävs, det är bara att dyka upp.
+              </p>
+              <h4>
+                Hur funkar tipsrundan?
+              </h4>
+              <p className="indent">
+                Tipsrundan kommer vara utsatt längs vägen där man svarar i egen takt och sedan lämnar in. Priser kommer att ges ut efteråt. Svaren kommer även upp här på hemsidan efter Hentrampet har varit.
               </p>
               <h4>
                 Hur tar jag mig dit?
@@ -89,7 +95,7 @@ const Fortrampet = () => {
                   🎉
                 </span>
                 ) som går oavkortat till "Stoppa ALS" genom NEURO. Betala till
-                bankgiro 386-6563 eller swisha till 1234048781.
+                bankgiro 386-6563 eller swisha till 1234048781, alternativt kan man även betala på plats.
               </p>
             </CardBody>
           </Card>
@@ -105,38 +111,6 @@ const Fortrampet = () => {
             src="/images/fortrampet_bike.jpg"
             alt="fortrampet"
           ></img>
-        </Col>
-      </Row>
-      <Row>
-        <Col style={{ marginBottom: "10px" }}>
-        <Card
-            style={{
-              width: "100%",
-              height: "100%",
-              boxShadow: "0px 1px 1px 1px #e3e3e3",
-            }}
-          >
-            <CardBody 
-              style={{marginLeft: "10px"}}>
-              <h2>Svar tipsrunda 2023</h2>
-              <ul style={{listStyleType: "none"}}>
-                <li>Fråga 1: Hur djup är Stora Hensjön? <p>Svar: <b>10,5 meter</b></p></li>
-                <li>Fråga 2: Vilket var det första året man kunde delta med lag i Hensmåla Triathlon? <p>Svar: <b>2017</b></p></li>
-                <li>Fråga 3: När gick sista persontåget från Hensmåla <p>Svar: <b>1965</b></p></li>
-                <li>Fråga 4: Vilken är den snabbaste tiden någon har gjort på Hensmåla Triathlon? <p>Svar: <b>45m 27s</b></p></li>
-                <li>Fråga 5: Hur mycket har Hensmåla Triathlon bidraget till ALS forskningen? <p>Svar: <b>1 042 917 kr</b></p></li>
-                <li>Fråga 6: Hur många funktionärer hjälpte till på Hensmåla Triathlon 2022 <p>Svar: <b>82 st</b></p></li>
-                <li>Fråga 7: Hur hög är högsta punkten på ”triathlonrundan”? <p>Svar: <b>169 m.ö.h</b></p></li>
-                <li>Fråga 8: Under vika träd värmer vi upp på Hensmåla Triathlon? <p>Svar: <b>Ask</b></p></li>
-                <li>Fråga 9: Vilket år togs Vattenverket i drift? <p>Svar: <b>1970   </b></p></li>
-                <li>Fråga 10: Vilka år gjordes kolmilan i Dackemåla? <p>Svar: <b>1992</b></p></li>
-                <li>Utslagsfråga (vikt på skor, hjälm, badmössa mm): <b>983 gram</b></li>
-              </ul>
-
-                <p>Grattis Sven som hade alla rätt och vann!</p>
-                <p>Tack till Länsförsäkringar Kronoberg, BJS Radio och TV, Hallabro El samt Konga Cykel och motor som skänkt de fina priserna! </p>
-            </CardBody>
-          </Card>
         </Col>
       </Row>
     </Container>

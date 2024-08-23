@@ -1,5 +1,4 @@
 import React from "react";
-import YouTube from "react-youtube";
 import ClipLoader from "react-spinners/ClipLoader";
 import videos from "../../assets/videos";
 
@@ -11,14 +10,6 @@ class Videos extends React.Component {
   };
 
   render() {
-    const opts = {
-      playerVars: {
-        height: "100%",
-        width: "100%",
-        autoplay: 0,
-      },
-    };
-
     return (
       <Container className="pb-4">
         <Row>
@@ -43,13 +34,9 @@ class Videos extends React.Component {
                     />
                   </div>
 
+                  <h5 style={{height: "2.2em"}}>{video.title}</h5>
                   <div className="embed-responsive embed-responsive-16by9">
-                    <YouTube
-                      className="embed-responsive-item"
-                      videoId={video.id}
-                      opts={opts}
-                      onReady={() => this.setState({ isVideoLoading: false })}
-                    />
+                   <iframe src={video.link} width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                   </div>
                 </div>
               </Col>
@@ -60,10 +47,6 @@ class Videos extends React.Component {
     );
   }
 
-  _onReady(event) {
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-  }
 }
 
 export default Videos;

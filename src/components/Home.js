@@ -10,7 +10,18 @@ export function getDaysFromNow(day) {
 
 class Home extends Component {
   componentDidMount() {
+    this.setState({daysLeft: getDaysFromNow("2024-07-20")})
     window.scrollTo(0, 0);
+
+    const intervalID = setInterval(() => {
+      this.setState({daysLeft: getDaysFromNow("2024-07-20")})
+    }, 1000)
+    this.setState({intervalID})
+  }
+
+  state = {
+    daysLeft: getDaysFromNow("2022-07-23"),
+    intervalID: null,
   }
 
   render() {
@@ -22,6 +33,9 @@ class Home extends Component {
             src="/images/ht_banner_resized.jpg"
             alt="HT_banner"
           ></img>
+          <div className="center-absolute w-100 text-center">
+            <div className="countdown">0 dagar kvar</div>
+          </div>
         </div>
         <Container className="p-4">
           <div className="card-box">

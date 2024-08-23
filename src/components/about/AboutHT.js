@@ -11,6 +11,7 @@ import {
 import Distances from "./Distances";
 import GetHere from "./GetHere";
 import Rules from "./Rules";
+import GenerealInfo from "./GeneralInfo";
 
 class AboutHT extends React.Component {
   state = {
@@ -30,19 +31,15 @@ class AboutHT extends React.Component {
     switch (cardType) {
       case "Info":
         this.setState({ isInfoOpen: !this.state.isInfoOpen });
-
         break;
       case "GetHere":
         this.setState({ isGetHereOpen: !this.state.isGetHereOpen });
-
         break;
       case "Distances":
         this.setState({ isDistancesOpen: !this.state.isDistancesOpen });
-
         break;
       case "results":
         this.setState({ isResultsOpen: !this.state.isResultsOpen });
-
         break;
       default:
         this.setState({ isRulesOpen: !this.state.isRulesOpen });
@@ -84,13 +81,21 @@ class AboutHT extends React.Component {
         }, 1500);
         this.setState({ isRulesOpen: true });
         break;
+        case "results":
+          setTimeout(() => {
+            document
+              .getElementById("results")
+              .scrollIntoView({ behavior: "smooth" });
+          }, 1500);
+          this.setState({ isResultsOpen: true });
+          break;
       default:
-        break;
+        window.scrollTo(0, 0);
     }
   }
 
   render() {
-    const result_years = [2022, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
+    const result_years = [2024, 2022, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
     return (
       <div>
         <div className="banner-wrapper">
@@ -121,21 +126,7 @@ class AboutHT extends React.Component {
             <Collapse isOpen={this.state.isInfoOpen}>
               <Card style={styles.infoBoxStyle}>
                 <CardBody>
-                  <p>
-                    I det fina småländska landskapet arrangeras årligen ett
-                    minitriathlon till förmån för ALS-forskningen. Alla sträckor
-                    är anpassade till den vackra Stora Hensjön och Hensmålas
-                    landskap.
-                  </p>
-                  <p>
-                  Sedan 2012 har vi nu samlat in över 1 000 000kr och skänkt
-                  till ALS-forskningen. De tre senaste åren har gåvan riktats
-                    mot Stoppa ALS och ALS Treatment Center Karolinska.
-                  </p>
-                  <b>Vad finns att göra på hensmåla Triathlon?</b>
-                  <p>
-                    Under normala forhållanden är Hensmåla Triathlon en folkfest där publiken är grunden till den goda stämningen. Det kommer finnas bland annat mat i form av grillad korv, fika, lotteri, massage och musik på plats. Kom gärna och heja på!
-                  </p>
+                  <GenerealInfo />
                 </CardBody>
               </Card>
             </Collapse>

@@ -18,7 +18,7 @@ class Footer extends React.Component {
           borderRadius: "0px",
         }}
       >
-        <p style={{ color: "white" }}>© 2023 Copyright: Hensmalatriathlon.se</p>
+        <p style={{ color: "white" }}>© 2024  Copyright: Hensmalatriathlon.se</p>
         <div
           style={{
             width: 200,
@@ -31,7 +31,7 @@ class Footer extends React.Component {
           }}
         >
           <a
-            href="https://www.facebook.com/HensmalaTriathlon/"
+            href="https://www.facebook.com/profile.php?id=61557863443816"
             target="_blank"
             rel="noopener noreferrer"
           >

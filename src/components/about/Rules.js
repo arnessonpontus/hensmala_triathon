@@ -26,10 +26,11 @@ class Rules extends Component {
         <p>
           Löpning sker på grus, gräs, skogsstig och en kort sträcka på asfalt.
           Vägvakter finns vid varje vägövergång men det är alltid bilar som har
-          företräde. Mycket viktigt att vara observant. Inga hörlurar med musik
+          företräde. Det är alltså <strong>mycket viktigt</strong> att vara observant vid och över vägen. Inga hörlurar med musik
           är tillåtna.
         </p>
 
+        <h4>Generellt</h4>
         <p>
           <b>Du deltar på eget ansvar.</b>
           <br></br>
@@ -38,6 +39,8 @@ class Rules extends Component {
           har eget ansvar för din försäkring. Du har eget ansvar att läsa igenom
           reglerna, och att agera efter dem och efter vanliga trafikregler.
         </p>
+
+        Åldersgränsen är 16 år, men dispans kan ges ut vid förälders tillåtelse.
       </div>
     );
   }

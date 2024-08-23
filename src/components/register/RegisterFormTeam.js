@@ -19,8 +19,8 @@ import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import RegisterButton from "./RegisterButton";
 import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE} from './Utils';
 
-const REGISTER_FEE = 600;
 const LATE_REGISTER_FEE = 700;
+const REGISTER_FEE = LATE_REGISTER_FEE;
 
 class RegisterFormTeam extends Component {
   state = {
@@ -82,7 +82,7 @@ class RegisterFormTeam extends Component {
 
   calcTotalCost = () => {
     if (this.isAllowedCompanyEntered()) {
-      return this.state.extraDonation + Math.max(0, (calcShirtPrice(this.state.shirts) - 3 * SHIRT_PRICE_FUNCTIONAL)) + this.state.numCaps * CAP_PRICE;
+      return this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
     } 
     return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
   }
@@ -266,7 +266,7 @@ class RegisterFormTeam extends Component {
             {this.isAllowedCompanyEntered() ? 
             <div className="allowed-company-text-bg">
               <small>
-              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför en t-shirt och anmälningsavgiften betald.
+              Du har anget <b style={{color: "#007fa8"}}>{process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför anmälningsavgiften betald.
               </small>
             </div>
             : null}
@@ -325,11 +325,6 @@ class RegisterFormTeam extends Component {
           <br></br>   
           <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
           <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
-          <p>
-            <i style={{ fontSize: 12 }}>
-              Efter 1 juni kommer anmälningsavgiften höjas till {LATE_REGISTER_FEE}kr.
-            </i>
-          </p>
         </Col>
       </Row>
     );

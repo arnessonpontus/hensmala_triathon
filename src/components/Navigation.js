@@ -38,7 +38,7 @@ class Navigation extends React.Component {
           activeClassName="active"
           exact={true}
           to="/"
-          onClick={() => this.setState({ isHamburgerOpen: false })}
+          onClick={() => {this.setState({ isHamburgerOpen: false }); window.scrollTo(0, 0);}}
         >
           <img
             src="/images/nav_hona.png"
@@ -95,7 +95,7 @@ class Navigation extends React.Component {
             <DropdownToggle nav caret className="inactive nav-title">
               OM
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu left>
               <DropdownItem>
                 <NavLink
                   className="dropdown-item"

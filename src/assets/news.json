@@ -1,5 +1,81 @@
 [
   {
+    "title": "Var med och delta i Hentrampet 1 september 2024!",
+    "ingress": "Datum är nu spikat för detta års Hentrampet (tidigare Förtrampet). Detta datum är söndag 1 september 2024 och vi hoppas så många som möjligt kommer och hjälper oss stödja ALS-forskningen.",
+    "images": [{"thumbnail": "/images/news/hentrampet_2024_thumb.jpg", "original": "/images/news/hentrampet_2024.jpg"}],
+    "text": "Detta års Hentrampet kommer som vanligt bjuda på en härlig runda runt Hensjön i egen takt med fika längs vägen, tipsruna och förhoppnings ett kanonväder. </br></br> Anmälningsavgiften är 100 kr eller valfri summa däröver, och går som vanligt till samma ändamål som Hensmåla Triathlon - att försöka stoppa ALS.",
+    "link": "/hentrampet",
+    "linkName": "Hentrampet",
+    "date": "Ons 21-08-2024"
+  },
+  {
+    "title": "Tack för i år",
+    "ingress": "Tack alla deltagare, sponsorer, funktionärer och publik för i år! Vi fick en helt fantastisk dag och det tack vare er! Nu finns resultat och bilder ute på hemsidan.",
+    "images": [{"thumbnail": "https://live.staticflickr.com/65535/53886522393_1c2e26c253_k.jpg", "original": "https://live.staticflickr.com/65535/53886522393_1c2e26c253_k.jpg"}],
+    "text": "Den 20:e hade vi strålande väder, taggade deltagare och engagerad publik: vad mer kan man önska? Tack så mycket alla som var med och bidrog till denna dag! Nu finns resultat och bilder för året ute på hemsidan.",
+    "link": "/om-ht/results",
+    "linkName": "Resultat",
+    "date": "Tis 30-07-2024"
+  },
+  {
+    "title": "Saker att göra som publik och deltagare på Hensmåla Triathlon 2024",
+    "ingress": "Hensmåla Triatlhon är en folkfest och det finns mycket att göra för både deltagare och publik. Klicka på Läs mer för att se vad som erbjuds.",
+    "images": [{"thumbnail": "/images/news/hopp_thumb.jpg", "original": "/images/news/hopp.jpg"}],
+    "text": "På området finns bland annat <ul class='inside-list'><li>Korv med bröd från Åkes hemchark och Urshultsbagaren</li><li>Fika</li><li>Lotteri</li><li>Våfflor sponsrade från Lisas raggmunkar</li></li><li>Neuro Kronoberg</li><li>Stoppa ALS, försäljning t-shirt och armband</li><li>Börje Salmings ALS-stiftelse.</li><li>Hoppborg, Sponsras av Idealskog</li></ul>För dig som deltagare finns även massör Edvin Palmér på plats som ger ca. 10 minuter gratis massage per person.<br/><br/> Vi hoppas både du som deltagare och publik kommer att har en härlig dag här i Hensmåla!",
+    "date": "Ons 17-07-2024"
+  },
+  {
+    "title": "Hentrampet sker senare än vanligt i år",
+    "ingress": "Hentrampet (tidigare Förtrampet) kommer gå av stapeln senare i sommar, mer info kommer när det närmar sig.",
+    "images": [{"thumbnail": "/images/fortrampet_bike_thumb.jpg", "original": "/images/fortrampet_bike.jpg"}],
+    "text": "Hentrampet är en härlig runda på cykel runt sjön i sin egen takt med fika på halva vägen. Detta är främst tanken som ett alternativ till de som inte vill eller kan vara med på Hensmåla Triathlon, men ändå vill vara med och stödja ALS-forskningen genom en aktivitet. </br></br>I år skjuter vi lite på Hentrampet till ett senare tillfälle i sommar.",
+    "link": "/hentrampet",
+    "linkName": "Hentrampet",
+    "date": "Ons 17-07-2024"
+  },
+  {
+    "title": "Tilva Stålsmycken",
+    "ingress": "Smycken designade av Valter Skarsgård och Pia Salming kommer säljas på Hensmåla Triathlon. 100kr per smycke går oavkortat till Börje Salming ALS-Stiftelse.",
+    "images": [{"thumbnail": "/images/news/smycke_tilva_thumb.jpeg", "original": "/images/news/smycke_tilva.jpeg"}],
+    "text": "Flera olika smycken, bland annat designade av Valter Skarsgård och Pia Salming, kommer att säljas på Hensmåla Triathlon där 100kr per smycke går till Börje Salmings ALS-Stiftelse. Dessa går även att beställa på hemsidan för Tilva Stålsmycken.",
+    "link": "https://tilva.se/borje-salming-als-smycke/",
+    "linkName": "Tilva stålsmycken",
+    "date": "Tis 02-07-2024"
+  },
+  {
+    "title": "Caroline Ingres föreläsning om ALS",
+    "ingress": "Caroline Ingre, överläkare i neurologi och specialiserad på ALS, höll nyligen en inspirerande föreläsning för funktionärer, sponsorer, deltagare och andra intresserade på slinnet i Hensmåla. Hennes föreläsning gav en inblick i den senaste forskningen om ALS och delade viktig information om sjukdomen.",
+    "images": [],
+    "text": "Här nedan kan du se filmen när Caroline håller föreläsningen samt svarar på frågor från publiken. Tack så mycket för en riktig bra, intressant och viktig föreläsning Caroline!",
+    "video": "meN0mDKByMs",
+    "date": "Tis 18-06-2024"
+  },
+  {
+    "title": "Zoomföreläsning med Caroline Ingre",
+    "ingress": "Caroline Ingre har på torsdag kväll den 13 juni föredrag (över zoom) för funktionärer, sponsorer, tävlande men även andra som är intresserade",
+    "text": "Docent Caroline Ingre, PhD och adjungerad lektor vid Karolinska Institutet där hon driver The Karolinska ALS Clinical Research Group. Hon är även överläkare och chef för ALS Center Karolinska vid Karolinska Universitetssjukhuset. På torsdag kväll har hon en kort föreläsning över zoom kl.18.00 i Arnesson ladugård Hensmåla, anmäl dig genom maila till hensmala.triathlon@gmail.com.",
+    "images": [{"thumbnail": "/images/news/caroline_ingre.jpeg", "original": "/images/news/caroline_ingre_bigger.jpg"}],
+    "date": "Tors 11-06-2024"
+  },
+  {
+    "title": "Starta en insamling under Hensmåla Triathlons fana",
+    "ingress": "Vill du engagera dig ännu mer i kampen mot ALS, men känner att du inte kan göra allt själv? Följ Tims exempel och starta en insamling under Hensmåla Triathlon!",
+    "text": "Det är enkelt att starta en insamling som en del av Hensmåla Triathlons projekt på Neuros hemsida. Du behöver bara skapa en insamling, sätta upp ett mål, lägga till en rolig bild och bjuda in din familj och dina vänner att bidra. Alla insamlade pengar går till att bekämpa ALS",
+    "images": [{"thumbnail": "/images/news/donation/tim-insamling_thumb.png", "original": "/images/news/donation/tim-insamling.png"}],
+    "link": "https://egnainsamlingar.neuro.se/projects/neuro-10",
+    "linkName": "Insamlingar hos Neuro",
+    "date": "mån 04-06-2024"
+  },
+  {
+    "title": "Hensmåla triathlons två kepsar",
+    "ingress": "I år finns nyheten att beställa keps! Den ena finns att beställa här på sidan, och den andra på den förre detta bybon Frans Nilssons sida smallworldoffrans.",
+    "text": "Den svarta kepsen med text och ikoner finns att beställa på fliken beställ kläder eller direkt vid anmälan på denna hemsidan. Frans keps finns på smallwordoffrans, och även här går vinsten från försäljningen av denna keps till ALS-forskningen. <br /><br /> Sista dag att beställa den svarta kepsen på hensmålatriathlon.se är den 12 juni!",
+    "images": [{"thumbnail": "/images/news/caps/2_caps_thumb.jpeg", "original": "/images/news/caps/2_caps.jpeg"}],
+    "link": "https://smallworldoffrans.com/products/als-charity-cap-for-hensmala-triathlon-borje-salming-foundation-and-stop-als",
+    "linkName": "smallworldoffrans.com",
+    "date": "Sön 02-06-2024" 
+  },
+  {
     "title": "Höjning av anmälningsavgift från 1 juni",
     "ingress": "Passa på att anmäla dig eller ditt lag innan prishöjningen den 1 juni!",
     "text": "Den 1 juni höjer vi anmälningsavgiften med 100 kr. Passa på att anmäla dig eller ditt lag redan nu! Har du någon kompis du tror skulle vilja vara med att delta i år? Sporra dom till att anmäla sig till årets gemytligaste motionsevenemang.",
@@ -26,8 +102,8 @@
     "date": "Fre 19-04-2024" 
   },
   {
-    "title": "Stoppa ALS och Börje Salmings stitelse",
-    "ingress": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings stiftelse.",
+    "title": "Sammarbete med Stoppa ALS och Börje Salmings ALS Stitelse",
+    "ingress": "Även i år samarbetar hensmåla tritahlon med Stoppa ALS, men kommer även att samarbeta med Börje Salmings ALS Stiftelse.",
     "images": [{"thumbnail": "/images/news/borje_salming_stiftelse.jpeg", "original": "/images/news/borje_salming_stiftelse.jpeg"}],
     "link": "https://www.borjesalmingstiftelse.se/",
     "linkName": "Börje Samlings stiftelse",
@@ -44,7 +120,7 @@
   {
     "title": "Förtrampet blir Hentrampet",
     "ingress": "Hentrampet kommer ske 20:e augusti kl 10-13. Hentrampet är egentligen det gamla vanliga Förtrampet men har i år bytt namn då triathlonet inte kommer hållas.",
-    "images": [{"thumbnail": "/images/fortrampet_bike.jpg", "original": "/images/fortrampet_bike.jpg"}],
+    "images": [{"thumbnail": "/images/fortrampet_bike_thumb.jpg", "original": "/images/fortrampet_bike.jpg"}],
     "link": "/hentrampet",
     "linkName": "Hentrampet",
     "date": "Fre 12-08-2023"
@@ -84,7 +160,7 @@
   {
     "title": "Förtrampet går i år (2021) av stapeln 11:e juli!",
     "ingress": "Kom och cykla i ditt eget tempo runt Hensjön med en fika på halva vägen, samtidigt som du stöttar ALS-forskningen. Gå till fliken Förtrampet för att läsa mer.",
-    "images": [{"thumbnail": "/images/fortrampet_bike.jpg", "original": "/images/fortrampet_bike.jpg"}],
+    "images": [{"thumbnail": "/images/fortrampet_bike_thumb.jpg", "original": "/images/fortrampet_bike.jpg"}],
     "link": "/hentrampet",
     "linkName": "Förtrampet",
     "date": "Sön 30-06-2021"
@@ -149,38 +225,38 @@
   {
     "title": "Nu finns Utmaningen uppe på hemsidan!",
     "ingress": "Eftersom Hensmåla triathlon 2020 har ställts in skapades Utmaningen. För att läsa mer eller lägga till ett bidrag kan man gå in på Utmaningen i menyn på hemsidan.",
-    "images": [{"thumbnail": "thumb.png", "original": "thumb.png"}],
+    "images": [{"thumbnail": "/thumb.png", "original": "/thumb.png"}],
     "date": "Lör 04-07-2020",
     "linkName": "Utmaningen"
   },
   {
     "title": "Hensmåla triathlon 2020 är inställt på grund av Covid-19.",
     "ingress": "Vi måste tyvärr meddela att Hensmåla triathlon detta år är inställt. Även om alternativa corona-anpassade genomföranden har diskuterats, togs beslutet att ställa in årets upplaga. Vi hoppas ni har förståelse för detta och blir ännu mer taggade på att medverka nästa år.",
-    "images": [{"thumbnail": "images/news/rain1.jpg", "original": "images/news/rain1.jpg"}],
+    "images": [{"thumbnail": "/images/news/rain1.jpg", "original": "/images/news/rain1.jpg"}],
     "date": "Mån 08-06-2020"
   },
   {
     "title": "Corona - Så är läget.",
     "ingress": "På grund av Corona är det ännu inte klart hur det blir med årets upplaga av Hensmåla Triathlon. Vi hoppas att kunna utföra evemanget i någon form, men kommer såklart följa de anvisningar som ges. Beslut kommer tas under kommande veckor. ",
-    "images": [{"thumbnail": "images/news/corona.jpg", "original": "images/news/corona.jpg"}],
+    "images": [{"thumbnail": "/images/news/corona.jpg", "original": "/images/news/corona.jpg"}],
     "date": "Lör 16-05-2020"
   },
   {
     "title": "Nyhet för i år: Duathlon för barn!",
     "ingress": "Detta året kommer det hållas ett duathlon för barn upp till 15 år. Mer information hittar du på anmälningssidan.",
-    "images": [{"thumbnail": "images/news/barn-badmossa.jpg", "original": "images/news/barn-badmossa.jpg"}],
+    "images": [{"thumbnail": "/images/news/barn-badmossa.jpg", "original": "/images/news/barn-badmossa.jpg"}],
     "date": "Sön 17-02-2020"
   },
   {
     "title": "Nu öppnar anmälan!",
     "ingress": "Nu öppnar anmälan till Hensmåla triathlon 2020! Gå till anmälningssidan för att säkra din plats!",
-    "images": [{"thumbnail": "images/news/fireworks.png", "original": "images/news/fireworks.png"}],
+    "images": [{"thumbnail": "/images/news/fireworks.png", "original": "/images/news/fireworks.png"}],
     "date": "Fre 24-01-2020"
   },
   {
     "title": "Första nyheten är en ny hemsida!",
     "ingress": "Nu har Hensmåla Triathlon fått ny hemsida. Denna ska göra det lättare för dig som intresserad att hitta info, anmäla dig, se resultat och media osv. ",
-    "images": [{"thumbnail": "images/news/hemsida_news.png", "original": "images/news/hemsida_news.png"}],
+    "images": [{"thumbnail": "/images/news/hemsida_news.png", "original": "/images/news/hemsida_news.png"}],
     "date": "Mån 20-01-2020"
   }
 ]

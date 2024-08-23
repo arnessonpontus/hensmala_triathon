@@ -10,12 +10,12 @@ class GetHere extends Component {
             <h3>Hitta till Hensmåla</h3>
             <p>
               Hensmåla är en liten by utanför Tingsryd längs väg
-              120. Adressen är Hensmåla 31. 
+              120. Adressen är: Hensmåla 31 36294 Tingsryd. 
             </p>
             <h3>Parkeringar</h3>
             <p>
               Parkeringar finns i närheten av tävlingsområdet. Skyltar visar
-              parkeringsplatser.
+              parkeringsplatser. Följ funktionärernas anvisningar på plats.
             </p>
           </Col>
           <Col

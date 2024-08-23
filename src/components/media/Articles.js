@@ -9,11 +9,20 @@ class Articles extends React.Component {
     isDropdownOpen: false,
   };
 
-  prevYears = ["2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
+  componentDidMount() {
+    this.onToTopTap();
+  }
 
-  onYearTap = (year) => {
+  years = ["2024", "2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
+
+  onYearTap = (yearIndex) => {
+    if (yearIndex === 0) {
+      this.onToTopTap();
+      return;
+    }
+
     document
-      .querySelector(".year-" + year)
+      .querySelector(".year-" + this.years[yearIndex-1])
       .scrollIntoView({ behavior: "smooth" });
   };
 
@@ -45,31 +54,23 @@ class Articles extends React.Component {
           Till toppen
         </Button>
         <ButtonDropdown
-          className="pb-5"
+          className="pb-5 sticky-top"
+          style={{ top: 80, zIndex: 4}}
           isOpen={this.state.isDropdownOpen}
           toggle={this.toggle}
         >
-          <DropdownToggle caret>Choose year</DropdownToggle>
+          <DropdownToggle caret>Välj år</DropdownToggle>
           <DropdownMenu>
-            {this.prevYears.map((year) => (
-              <DropdownItem onClick={() => this.onYearTap(year)}>
+            {this.years.map((year, i) => (
+              <DropdownItem onClick={() => this.onYearTap(i)}>
                 {year}
               </DropdownItem>
             ))}
           </DropdownMenu>
         </ButtonDropdown>
-        <div className="px-5 pb-5">
-          <h3>2022</h3>
-          <Row>
-            {articles["2022"].map((article) => {
-              return <ArticleSection article={article} />;
-            })}
-          </Row>
-        </div>
-        {this.prevYears.map((year) => {
+        {this.years.map((year, i) => {
           return (
-            <Fragment>
-              <div className={`year-${year} article-seperator`}></div>
+            <>
               <div className="p-5">
                 <h3>{year}</h3>
                 <Row>
@@ -78,10 +79,10 @@ class Articles extends React.Component {
                   })}
                 </Row>
               </div>
-            </Fragment>
+              {i < this.years.length - 1 && <div className={`year-${year} article-seperator`}></div>}
+            </>
           );
         })}
-        <div className="article-seperator"></div>
       </div>
     );
   }
