@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import News from "./news/News";
 import { Container, Row, Col} from "reactstrap";
+import moment from 'moment-timezone';
+import SponsorScroll from "./sponsor/SponsorScroll";
+
+export function getDaysFromNow(day) {
+  return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm"))/86400000)
+}
 
 class Home extends Component {
   componentDidMount() {
@@ -43,6 +49,7 @@ class Home extends Component {
               </Col>
             </Row>
           </div>
+          <SponsorScroll />
           <Row>
             <News />
           </Row>

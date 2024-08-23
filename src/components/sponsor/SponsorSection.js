@@ -20,7 +20,6 @@ class SponsorSection extends Component {
               }}
             >
               <img
-                style={{ pointerEvents: "none" }}
                 alt={this.props.image}
                 className={"spons-img-" + this.props.sponsType}
                 src={"../../images/sponsorImages/" + this.props.sponsor.image}
