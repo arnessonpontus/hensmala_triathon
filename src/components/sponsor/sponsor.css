@@ -31,25 +31,16 @@
   max-width: 120px;
 }
 
-.scroll-container {
-  margin-top: 40px;
-  width: fit-content;
-  background-color: #dfeff1;
-  overflow: hidden;
-  margin-left: -50%;
+.sponsor-content {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.scroll-content {
-  display: inline-flex;   /* Align items in a row */
-  animation: scroll 150s linear infinite; /* Infinite scrolling animation */
-}
-
-@keyframes scroll {
-  0% {
-      transform: translateX(0);
-  }
-  100% {
-      transform: translateX(-50%);
+@media (max-width: 1200px) {
+  .sponsor-content {
+    height: 200px; /* Temp to limit sponsors if small screen. TODO Better solution */
+    overflow: hidden; 
   }
 }
 
