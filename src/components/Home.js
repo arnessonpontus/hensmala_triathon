@@ -3,6 +3,7 @@ import News from "./news/News";
 import { Container, Row, Col} from "reactstrap";
 import moment from 'moment-timezone';
 import SponsorScroll from "./sponsor/SponsorScroll";
+import { NavLink as RRNavLink } from "react-router-dom";
 
 export function getDaysFromNow(day) {
   return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm"))/86400000)
@@ -26,7 +27,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{overflow: "hidden"}}>
         <div className="banner-wrapper">
           <img
             className="banner"
@@ -64,6 +65,9 @@ class Home extends Component {
             </Row>
           </div>
           <SponsorScroll />
+          <div style={{display:"flex", justifyContent: "flex-end"}}>
+            <RRNavLink style={{color: "black", marginTop: "3px"}} to="/sponsorer">Se alla sponsorer →</RRNavLink>
+          </div>
           <Row>
             <News />
           </Row>

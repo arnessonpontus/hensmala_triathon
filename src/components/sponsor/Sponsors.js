@@ -10,6 +10,8 @@ class Sponsors extends Component {
     window.scrollTo(0, 0);
   }
 
+  // Gold sponsor - more than 5k, silver - more than 2k
+
   render() {
     return (
       <Container>

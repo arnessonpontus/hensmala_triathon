@@ -32,13 +32,15 @@
     },
     {
       "title": "",
-      "image": "stewes_frame.jpg",
-      "link": "http://www.stewesservice.se/"
-    },
-    {
-      "title": "",
       "image": "hm_teknik.jpg",
       "link": "http://hmteknik.se"
+    }
+  ],
+  "silver": [
+    {
+      "title": "Akes",
+      "image": "akes.png",
+      "link": "https://akeshemlagade.se/"
     },
     {
       "title": "colorama",
@@ -46,12 +48,10 @@
       "link": "http://www.fargvvsbutiken.se/"
     },
     {
-      "title": "Akes",
-      "image": "akes.png",
-      "link": "https://akeshemlagade.se/"
-    }
-  ],
-  "silver": [
+      "title": "",
+      "image": "stewes_frame.jpg",
+      "link": "http://www.stewesservice.se/"
+    },
     {
       "title": "Korpalycke",
       "image": "korpalycke.jpg",
@@ -66,11 +66,6 @@
       "title": "OEL",
       "image": "oel.png",
       "link": ""
-    },
-    {
-      "title": "urshults",
-      "image": "urshults.png",
-      "link": "https://urshultsbagarn.se/"
     },
     {
       "title": "",
@@ -103,11 +98,6 @@
       "link": ""
     },
     {
-      "title": "self",
-      "image": "self.jpeg",
-      "link": ""
-    },
-    {
       "title": "svenskt kosttillskott",
       "image": "svenskt_kosttillskott_logo.png",
       "link": "https://www.svensktkosttillskott.se/"
@@ -133,19 +123,9 @@
       "link": "https://nocco.com/sv/"
     },
     {
-      "title": "tyngre",
-      "image": "tyngre.png",
-      "link": "https://tyngre.se/"
-    },
-    {
       "title": "medley",
       "image": "medley.png",
       "link": "https://www.medley.se/vara-anlaggningar/vattenpalatset-kaskad"
-    },
-    {
-      "title": "belganets svarveri",
-      "image": "belganet.png",
-      "link": ""
     },
     {
       "title": "rolf",
@@ -184,6 +164,16 @@
     }
   ],
   "brons": [
+    {
+      "title": "belganets svarveri",
+      "image": "belganet.png",
+      "link": ""
+    },
+    {
+      "title": "urshults",
+      "image": "urshults.png",
+      "link": "https://urshultsbagarn.se/"
+    },
     {
       "title": "fix you",
       "image": "fix_you.png",
