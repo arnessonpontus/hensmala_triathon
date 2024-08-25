@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from "react";
 import sponsors from "../../assets/sponsors";
 import SponsorSection from "./SponsorSection";
 
-const SponsorScroll = () => {
+const SponsorHighlight = () => {
     return (
         <div className="sponsor-content">
         {sponsors.gold.map((sponsor) => {
@@ -13,4 +13,4 @@ const SponsorScroll = () => {
 }
 
 
-export default SponsorScroll;
+export default SponsorHighlight;
