@@ -113,6 +113,51 @@ const Fortrampet = () => {
           ></img>
         </Col>
       </Row>
+      <Row>
+        <Col style={{ marginBottom: "10px" }}>
+        <Card
+            style={{
+              width: "100%",
+              height: "100%",
+              boxShadow: "0px 1px 1px 1px #e3e3e3",
+            }}
+          >
+            <CardBody 
+              style={{marginLeft: "10px"}}>
+              <h2>Svar tipsrunda 2024</h2>
+              <ul style={{listStyleType: "none"}}>
+                <li>Fråga 1: Ovanför Hensmåla Skola finns en fornlämning. Från vilken tid uppskattas den vara? <p>Svar: <b>1200 f kr</b></p></li>
+                <li>Fråga 2: För inte så länge sedan fanns det en växeltelefonstation i Hensmåla, som hanterade
+                    Hensmålaborna med omnejds telefoner. Riktnumret om man ville ringa till någon som
+                    bodde i Hensmåla var samma som till Tingsryd 0477. Med vilka siffror började sedan
+                    varje Hensmåla abonnents telefonnummer? <p>Svar: <b>14</b></p></li>
+                <li>Fråga 3: Deltagarna i årets Hensmåla Triathlon fick simma i Hensjöns klara vatten. Vad fick
+                    deltagarna i årets OS Triathlon simma i? <p>Svar: <b>Seinefloden</b></p></li>
+                <li>Fråga 4: Cyklister talar gärna om KADENS. Vad är det de pratar om då? <p>Svar: <b>Hur många pedalvarv som en cyklist gör per minut</b></p></li>
+                <li>Fråga 5: Det finns en roman som handlar om det dramatiska orgelbygget i Södra Sandsjö
+                    kyrka. Vem har skrivit den? <p>Svar: <b>Martin Sjöstrand</b></p></li>
+                <li>Fråga 6: Hensjön är i genomsnitt 2 km bred, 1,2 mil lång och dess medeldjup är 1,2 m. Hur
+                    mycket vatten i liter finns i sjön? <p>Svar: <b>28.000.000.000 l</b></p></li>
+                <li>Fråga 7: Simsträckan i Hensmåla Triathlon är 360 m lång. - Borttagen</li>
+                <li>Fråga 8: När du cyklar runt Hensjön råkar du ut för en olycka, faller av cykeln och slår ut en
+                    framtand i överkäken. När tandläkaren som du sedan uppsöker noterar din skada i
+                    sin journaler, hur noterar han då vilken tand du skadat? <p>Svar: <b>Att du skadat en incesivsk</b></p></li>
+                <li>Fråga 9: Tandläkaren som är en uppmärksam person och som vill att du skall må bra tror
+                    också att du har en skada på radius och rekommenderar dig att gå till en annan
+                    läkare. Till vilken typ av läkare tycker han att du skall gå? <p>Svar: <b>Ortoped   </b></p></li>
+                <li>Fråga 10: När man cyklar vill man ju att det skall gå så lätt som möjligt. Om man då har en cykel
+                    med väl utbyggt växelsystem med många kransar vid bakhjulet och flera klingor vid
+                    pedalerna. Hur skall då kedjan stå för att det skall vara så lätt som möjligt att ta sig
+                    upp för en backe? <p>Svar: <b>På liten kling vid pedalerna och stor krans vid bakhjulet.</b></p></li>
+                <li>Fråga 11: Namn på växten? <p>Svar: <b>Stensöta</b></p></li>
+                <li>Fråga 12: Vilket av bladen kommer från Oxel? <p>Svar: <b>Blad nr 1</b></p></li>
+              </ul>
+
+                <p>Grattis till Malin H-C som vann!</p>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 };
