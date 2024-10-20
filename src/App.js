@@ -20,6 +20,9 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import CoronaEdition from "./components/challenge/CoronaEdition";
 import Fortrampet from "./components/fortrampet/Fortrampet";
 import OrderShirt from "./components/register/OrderShirt";
+import Payment from "./components/payment/Payment";
+import PaymentCancelled from "./components/payment/PaymentCancelled";
+import PaymentSuccess from "./components/payment/PaymentSuccess";
 
 const App = () => {
   return (
@@ -38,6 +41,9 @@ const App = () => {
         <Route path="/artiklar" component={Articles} />
         <Route path="/radio" component={Radio} />
         <Route path="/sponsorer" component={Sponsors} />
+        <Route path="/payment" component={Payment} />
+        <Route path="/payment-cancelled" component={PaymentCancelled} />
+        <Route path="/payment-success" component={PaymentSuccess} />
         <Switch>
           <Route path="/om-ht/:id" component={AboutHT} />
           <Route path="/news/:id" component={NewsDetail} />

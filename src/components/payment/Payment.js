@@ -1,0 +1,42 @@
+import React, { useState } from 'react';
+
+
+
+const Payment = (props) => {
+
+    const payNow = () => {
+        fetch("http://localhost:5000/create-checkout-session", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            items: [
+                { id: 1, quantity: 3 },
+                { id: 2, quantity: 1 },
+            ],
+            }),
+        })
+        .then(res => {
+            if (res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
+        })
+        .then(({ url }) => {
+            window.location = url
+        })
+        .catch(e => {
+            console.error(e.error)
+        })
+    }
+
+        
+    return (
+        <div>
+
+             <h1>Hello from MyhComponent!</h1>
+             <button onClick={payNow}>Hallå</button>
+        </div>
+    );
+}
+
+export default Payment;
