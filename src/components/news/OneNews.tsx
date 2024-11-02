@@ -1,11 +1,28 @@
 import React from "react";
 import { Col, Row, Button } from "reactstrap";
 import YouTube from "react-youtube";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Fade } from "react-awesome-reveal";
 import ExternalInternalButtonLink from "../ExternalInternalButtonLink";
+import { spaceToDash } from "../register/Utils";
 
-const OneNews = (props) => {
+interface Image {
+  original: string,
+  thumbnail: string
+}
+
+export interface NewsType {
+    title: string,
+    ingress: string,
+    images: Image[],
+    video?: string,
+    text?: string,
+    link?: string,
+    linkName?: string,
+    date: string,
+}
+
+const OneNews = (props: {news: NewsType}) => {
   const opts = {
     playerVars: {
       height: "100%",
@@ -14,7 +31,7 @@ const OneNews = (props) => {
     },
   };
   return (
-    <Fade left>
+    <Fade direction="left">
       <div key={props.news.date} className="card-box">
         <Col>
           <Row>
@@ -24,7 +41,7 @@ const OneNews = (props) => {
             <p>{props.news.ingress}</p>
           </Row>
           <Row>
-            <RRNavLink className="nostyle-link mb-2" to={'/news/' + props.news.title.replaceAll(" ", "-")}> <Button outline>Läs mer</Button></RRNavLink>
+            <Link className="nostyle-link mb-2" to={'/news/' + spaceToDash(props.news.title)}> <Button outline>Läs mer</Button></Link>
           </Row>
           <Row>
             <i>{props.news.date}</i>

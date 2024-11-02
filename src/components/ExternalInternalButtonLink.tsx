@@ -2,7 +2,12 @@ import React from "react";
 import { Button } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 
-const ExternalInternalButtonLink = (props) => {
+interface ExternalInternalButtonLinkProps {
+    link: string,
+    linkName: string
+}
+
+const ExternalInternalButtonLink = (props: ExternalInternalButtonLinkProps) => {
     const {link, linkName} = props;
     
     if ( link.substring(0, 4) === "http") {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function UseNewsTracker(initialValue) {
+export function UseNewsTracker(initialValue: number): [number, (value: number) => void] {
     const key = "newsCountWatched";
 
     const [storedValue, setStoredValue] = useState(() => {
@@ -13,7 +13,7 @@ function UseNewsTracker(initialValue) {
         }
     });
 
-    const setValue = (value) => {
+    const setValue = (value: number) => {
         try {
             setStoredValue(value);
             window.sessionStorage.setItem(key, value.toString());
@@ -24,5 +24,3 @@ function UseNewsTracker(initialValue) {
 
     return [storedValue, setValue];
 }
-
-export default UseNewsTracker;

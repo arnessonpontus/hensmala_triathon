@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { Button } from "reactstrap";
 import { Col } from "reactstrap";
-import newsArc from "../../assets/news";
+import newsArc from "../../assets/news.json";
 import OneNews from "./OneNews";
-import UseNewsTracker from "../../hooks/UseNewsTracker";
+import { UseNewsTracker } from "../../hooks/UseNewsTracker";
 
-const News = (props) => {
+const News = () => {
     const chunkSize = useRef(6)
     const [newsCount, setNewsCount] = UseNewsTracker(chunkSize.current);
 

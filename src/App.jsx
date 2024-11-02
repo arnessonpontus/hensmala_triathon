@@ -5,7 +5,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import AboutALS from "./components/about/AboutALS";
 import AboutHT from "./components/about/AboutHT";
-import NewsDetail from "./components/news/NewsDetail";
+import { NewsDetail} from "./components/news/NewsDetail";
 import Videos from "./components/media/Videos";
 import Photos from "./components/media/Photos";
 import Register from "./components/register/Register";
@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import firebase from "firebase/compat/app"; // Change to only import specific modules
 
 
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import CoronaEdition from "./components/challenge/CoronaEdition";
 import Fortrampet from "./components/fortrampet/Fortrampet";
 import OrderShirt from "./components/register/OrderShirt";
@@ -26,22 +26,22 @@ const App = () => {
     <div className="App">
       <Router>
         <Navigation />
-        <Route path="/" exact component={Home} />
-        <Route path="/anmalan" component={Register} />
-        <Route path="/bestall-klader" component={OrderShirt} />
-        <Route path="/corona-edition" component={CoronaEdition} />
-        <Route path="/hentrampet" component={Fortrampet} />
-        <Route path="/media" component={Media} />
-        <Route path="/om-als" component={AboutALS} />
-        <Route path="/videos" component={Videos} />
-        <Route path="/foton" component={Photos} />
-        <Route path="/artiklar" component={Articles} />
-        <Route path="/radio" component={Radio} />
-        <Route path="/sponsorer" component={Sponsors} />
-        <Switch>
-          <Route path="/om-ht/:id" component={AboutHT} />
-          <Route path="/news/:id" component={NewsDetail} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/anmalan" element={<Register />} />
+          <Route path="/bestall-klader" element={<OrderShirt />} />
+          <Route path="/corona-edition" element={<CoronaEdition />} />
+          <Route path="/hentrampet" element={<Fortrampet />} />
+          <Route path="/media" element={<Media />} />
+          <Route path="/om-als" element={<AboutALS />} />
+          <Route path="/videos" element={<Videos />} />
+          <Route path="/foton" element={<Photos />} />
+          <Route path="/artiklar" element={<Articles />} />
+          <Route path="/radio" element={<Radio />} />
+          <Route path="/sponsorer" element={<Sponsors />} />
+          <Route path="/om-ht/:id" element={<AboutHT />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
+        </Routes>
       </Router>
       <Footer />
     </div>
