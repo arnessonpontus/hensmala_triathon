@@ -16,6 +16,7 @@ import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import RegisterButton from "./RegisterButton";
 import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from './Utils';
+import { AboutPaths } from "../about/AboutHT";
 
 const LATE_REGISTER_FEE = 400;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -222,7 +223,7 @@ class RegisterFormSolo extends Component {
                 <RRNavLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  to="/om-ht/regler"
+                  to={"/om-ht/" + AboutPaths.rules}
                 >
                   regler
                 </RRNavLink>{" "}

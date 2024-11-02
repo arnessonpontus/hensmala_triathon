@@ -245,7 +245,7 @@ class RegisterFormTeam extends Component {
                 <RRNavLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  to="/om-ht/regler"
+                  to={"/om-ht/" + AboutPaths.rules}
                 >
                   regler
                 </RRNavLink>{" "}

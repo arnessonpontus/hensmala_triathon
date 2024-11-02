@@ -3,7 +3,7 @@ import News from "./news/News";
 import { Container, Row, Col} from "reactstrap";
 import moment from 'moment-timezone';
 import SponsorHeighlight from "./sponsor/SponsorHighlight";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function getDaysFromNow(day) {
   return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm"))/86400000)
@@ -66,7 +66,7 @@ class Home extends Component {
           </div>
           <SponsorHeighlight />
           <div style={{display:"flex", justifyContent: "flex-end"}}>
-            <RRNavLink style={{color: "black", marginTop: "3px"}} to="/sponsorer">Se alla sponsorer →</RRNavLink>
+            <Link style={{color: "black", marginTop: "3px"}} to="/sponsorer">Se alla sponsorer →</Link>
           </div>
           <Row>
             <News />

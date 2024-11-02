@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 
 import { Container, Row, Col, Badge, Card, CardBody } from "reactstrap";
+import { AboutPaths } from "../about/AboutHT";
 
 const Fortrampet = () => {
   useEffect(() => {
@@ -79,7 +80,7 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 Starten går från garaget hos Arnessons i Hensmåla. På den{" "}
-                <RRNavLink tag={RRNavLink} to="/om-ht/hitta-hit">
+                <RRNavLink tag={RRNavLink} to={"/om-ht/" + AboutPaths.getHere}>
                   här
                 </RRNavLink>{" "}
                 länken kan du hitta mer information om hur du tar dig till

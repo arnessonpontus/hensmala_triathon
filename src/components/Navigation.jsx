@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   NavLink,
   Navbar,
@@ -32,7 +32,7 @@ class Navigation extends React.Component {
     return (
       <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10 }}>
         <NavbarBrand
-          tag={RRNavLink}
+          tag={Link}
           color="light"
           className="inactive nav-title brand-title"
           activeClassName="active"
@@ -56,7 +56,7 @@ class Navigation extends React.Component {
         </NavbarToggler>
         <Collapse isOpen={this.state.isHamburgerOpen} navbar>
           <NavLink
-            tag={RRNavLink}
+            tag={Link}
             className="inactive nav-title"
             activeClassName="active"
             to="/anmalan"
@@ -65,7 +65,7 @@ class Navigation extends React.Component {
             ANMÄLAN
           </NavLink>
           <NavLink
-            tag={RRNavLink}
+            tag={Link}
             className="inactive nav-title"
             activeClassName="active"
             to="/bestall-klader"
@@ -74,7 +74,7 @@ class Navigation extends React.Component {
             BESTÄLL KLÄDER
           </NavLink>
           <NavLink
-            tag={RRNavLink}
+            tag={Link}
             className="inactive nav-title"
             activeClassName="active"
             to="/corona-edition"
@@ -83,7 +83,7 @@ class Navigation extends React.Component {
             CORONA EDITION
           </NavLink>
           <NavLink
-            tag={RRNavLink}
+            tag={Link}
             className="inactive nav-title"
             activeClassName="active"
             to="/hentrampet"
@@ -99,7 +99,7 @@ class Navigation extends React.Component {
               <DropdownItem>
                 <NavLink
                   className="dropdown-item"
-                  tag={RRNavLink}
+                  tag={Link}
                   activeClassName="active"
                   to="/om-als"
                   onClick={() => this.setState({ isHamburgerOpen: false })}
@@ -109,7 +109,7 @@ class Navigation extends React.Component {
               </DropdownItem>
               <DropdownItem>
                 <NavLink
-                  tag={RRNavLink}
+                  tag={Link}
                   className="dropdown-item"
                   activeClassName="active"
                   to="/om-ht/hem"
@@ -121,7 +121,7 @@ class Navigation extends React.Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           <NavLink
-            tag={RRNavLink}
+            tag={Link}
             className="inactive nav-title"
             activeClassName="active"
             to="/media"
@@ -130,7 +130,7 @@ class Navigation extends React.Component {
             MEDIA
           </NavLink>
           <NavLink
-            tag={RRNavLink}
+            tag={Link}
             className="inactive nav-title"
             activeClassName="active"
             to="/sponsorer"
