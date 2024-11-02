@@ -9,8 +9,8 @@ if (!process.env.EMAILER_USER) throw new Error("no EMAILER_USER env var set");
 // required env vars
 if (!process.env.EMAILER_PASSWORD)
   throw new Error("no EMAILER_PASSWORD env var set");
-if (!process.env.REACT_APP_ALLOWED_COMPANY)
-  throw new Error("no REACT_APP_ALLOWED_COMPANY env var set");
+if (!process.env.VITE_ALLOWED_COMPANY)
+  throw new Error("no VITE_ALLOWED_COMPANY env var set");
 
 function sendEmail(addedRow, registerType) {
   return new Promise((resolve, reject) => {
@@ -30,14 +30,14 @@ function sendEmail(addedRow, registerType) {
     let html = "";
 
     if (registerType === "team") {
-        const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase()) || 
-                                  addedRow.get('city2')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase()) || 
-                                  addedRow.get('city3')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase());
+        const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase()) || 
+                                  addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase()) || 
+                                  addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase());
         html = getTeamHtml(addedRow, hasAllowedCompany);
     } else if (registerType === "tshirt_order") {
         html = getShirtHtml(addedRow);
     } else {
-      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.REACT_APP_ALLOWED_COMPANY.toLowerCase())
+      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase())
       html = getSoloHtml(addedRow, hasAllowedCompany);
     }
 
@@ -46,7 +46,8 @@ function sendEmail(addedRow, registerType) {
       to: email,
       subject: mailSubject,
       html: html,
-      bcc: [process.env.EMAILER_USER],
+      bcc: [],
+      // TODO: bcc: [process.env.EMAILER_USER],
       attachments: [{
         filename: 'logga.png',
         path: __dirname +'/logga.png',

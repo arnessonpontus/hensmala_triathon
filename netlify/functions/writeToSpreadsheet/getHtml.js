@@ -2,7 +2,7 @@ function getPaymentString(hasAllowedCompany, totalToPay) {
     if (hasAllowedCompany) {
         return (
             `<p>
-                Eftersom du har anget <b style="color:#007fa8;">${process.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften gratis. 
+                Eftersom du har anget <b style="color:#007fa8;">${process.env.VITE_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften gratis. 
             </p>
             ${totalToPay > 0 ? 
                 `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`

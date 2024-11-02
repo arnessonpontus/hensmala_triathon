@@ -43,7 +43,7 @@ function handleBirthday(data, type) {
 exports.handler = async (event, context, callback) => {
   // Check recaptcha from token
   try {
-    const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.REACT_APP_RECAPTCHA_SECRET}&response=${event.queryStringParameters.token}`);
+    const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.VITE_RECAPTCHA_SECRET}&response=${event.queryStringParameters.token}`);
     if (result.data.score < 0.5) {
       return {
         statusCode: 400,

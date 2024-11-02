@@ -29,7 +29,7 @@ class Register extends Component {
       <Container>
         {!this.state.hasRegisterd ? (
           <div className="d-flex justify-content-center align-items-center flex-column" style={{ minHeight: '90vh' }}>
-            {/* <div className="register-tabs">
+            <div className="register-tabs">
               <div onClick={() => this.setState({ activeTab: 0 })} className="register-tab">
                 Individuell
               </div>
@@ -49,9 +49,7 @@ class Register extends Component {
                   handleSubmit={this.handleRegSubmit}
                   loading={this.state.loading}
                 />
-            } */}
-            <h2>Anmälan är stängd för i år.</h2>
-            <p>Anmälan är möjlig på plats på tävlingsdagen.</p>
+            }
           </div>
         ) : (
           <RegSuccess type="register" onGoBack={this.toggleDone} />
