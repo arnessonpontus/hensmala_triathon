@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-const Consent = (props) => {
+interface ConsentProps {
+  buttonText: string,
+  title: string
+}
+
+const Consent = ({ buttonText, title }: ConsentProps) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -9,10 +14,10 @@ const Consent = (props) => {
   return (
     <div className="consent-button">
       <i onClick={toggle}>
-        {props.buttonText}
+        {buttonText}
       </i>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{props.title}</ModalHeader>
+        <ModalHeader toggle={toggle}>{title}</ModalHeader>
         <ModalBody>
           Hensmåla Triathlon kommer spara de angivna uppgifterna för att hantera
           anmälningar till tävlingen och beställningar av kläder. Dessa uppgifter behövs för att

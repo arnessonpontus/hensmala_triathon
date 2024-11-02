@@ -1,18 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 
-class SponsorSection extends Component {
-  render() {
+interface Sponsor {
+  title: string;
+  image: string;
+  link: string;
+}
+interface SponsorSectionProps {
+  sponsor: Sponsor,
+  sponsType: "gold" | "silver" | "brons"
+}
+
+export const SponsorSection  = (props: SponsorSectionProps) => {
     return (
       <div style={{ margin: "10px" }}>
-        {this.props.sponsor.link ? (
+        {props.sponsor.link ? (
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={this.props.sponsor.link}
+            href={props.sponsor.link}
             className="card-box-hoverable"
           >
             <div
-              className={"spons-" + this.props.sponsType}
+              className={"spons-" + props.sponsType}
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -20,16 +29,16 @@ class SponsorSection extends Component {
               }}
             >
               <img
-                alt={this.props.image}
-                className={"spons-img-" + this.props.sponsType}
-                src={"../../images/sponsorImages/" + this.props.sponsor.image}
+                alt={"Sponsor image"}
+                className={"spons-img-" + props.sponsType}
+                src={"../../images/sponsorImages/" + props.sponsor.image}
               ></img>
             </div>
           </a>
         ) : (
           <div className="card-box">
             <div
-              className={"spons-" + this.props.sponsType}
+              className={"spons-" + props.sponsType}
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -37,9 +46,9 @@ class SponsorSection extends Component {
               }}
             >
               <img
-                alt={this.props.image}
-                className={"spons-img-" + this.props.sponsType}
-                src={"../../images/sponsorImages/" + this.props.sponsor.image}
+                alt={"Sponsor image"}
+                className={"spons-img-" + props.sponsType}
+                src={"../../images/sponsorImages/" + props.sponsor.image}
               ></img>
             </div>
           </div>
@@ -47,6 +56,3 @@ class SponsorSection extends Component {
       </div>
     );
   }
-}
-
-export default SponsorSection;

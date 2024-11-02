@@ -1,18 +1,18 @@
 import React from "react";
 import "./App.css";
 import Media from "./components/media/Media";
-import Navigation from "./components/Navigation";
-import Home from "./components/Home";
+import { Navigation } from "./components/Navigation";
+import { Home } from "./components/Home";
 import { AboutALS } from "./components/about/AboutALS";
 import { AboutHT } from "./components/about/AboutHT";
-import { NewsDetail} from "./components/news/NewsDetail";
+import { NewsDetail } from "./components/news/NewsDetail";
 import Videos from "./components/media/Videos";
 import Photos from "./components/media/Photos";
 import Register from "./components/register/Register";
 import Articles from "./components/media/Articles";
 import Radio from "./components/media/Radio";
-import Sponsors from "./components/sponsor/Sponsors";
-import Footer from "./components/Footer";
+import { Sponsors } from "./components/sponsor/Sponsors";
+import { Footer } from "./components/Footer";
 import firebase from "firebase/compat/app"; // Change to only import specific modules
 
 

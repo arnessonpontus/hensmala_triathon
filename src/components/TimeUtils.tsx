@@ -1,7 +1,13 @@
 import React from "react";
 import { Input } from "reactstrap";
 
-export const YearPicker = (props) => {
+interface Props {
+  required: boolean,
+  elemName: string,
+  handleChange: () => void
+}
+
+export const YearPicker = (props: Props) => {
   let years = [];
   for (let i = 2008; i > 1930; i--) {
     years.push(i);
@@ -14,7 +20,7 @@ export const YearPicker = (props) => {
       name={props.elemName}
       onChange={props.handleChange}
     >
-      <option disabled selected value>
+      <option disabled selected>
         År
       </option>
       {years.map((year) => {
@@ -28,7 +34,7 @@ export const YearPicker = (props) => {
   );
 };
 
-export const MonthPicker = (props) => {
+export const MonthPicker = (props: Props) => {
   let months = [];
   months.push("Januari");
   months.push("Februari");
@@ -51,7 +57,7 @@ export const MonthPicker = (props) => {
       name={props.elemName}
       onChange={props.handleChange}
     >
-      <option disabled selected value>
+      <option disabled selected>
         Månad
       </option>
       {months.map((month, i) => {
@@ -65,7 +71,7 @@ export const MonthPicker = (props) => {
   );
 };
 
-export const DayPicker = (props) => {
+export const DayPicker = (props: Props) => {
   let days = [];
   for (let i = 1; i <= 31; i++) {
     days.push(i);
@@ -78,7 +84,7 @@ export const DayPicker = (props) => {
       name={props.elemName}
       onChange={props.handleChange}
     >
-      <option disabled selected value>
+      <option disabled selected>
         Dag
       </option>
       {days.map((day) => {
@@ -92,7 +98,7 @@ export const DayPicker = (props) => {
   );
 };
 
-export const TimePicker = (props) => {
+export const TimePicker = (props: Props) => {
   const choises = [...Array(60).keys()];
 
   return (
@@ -103,7 +109,7 @@ export const TimePicker = (props) => {
       name={props.elemName}
       onChange={props.handleChange}
     >
-      <option disabled selected value>
+      <option disabled selected>
         {props.elemName}
       </option>
       {choises.map((choise) => {
@@ -117,7 +123,7 @@ export const TimePicker = (props) => {
   );
 };
 
-export const secToHMS = (value) => {
+export const secToHMS = (value: string) => {
   const sec = parseInt(value, 10); // convert value to number if it's string
   let hours = Math.floor(sec / 3600); // get hours
   let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
