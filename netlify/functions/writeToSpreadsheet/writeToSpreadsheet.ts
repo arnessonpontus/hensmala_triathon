@@ -8,7 +8,6 @@ import axios from "axios";
 import { FormType } from "../../../src/features/register/models";
 import { sendEmail } from "./emailSender";
 import { GoogleSpreadsheet } from "google-spreadsheet";
-import { appendZero } from "../../../src/utils";
 
 // required env vars
 if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
@@ -22,6 +21,10 @@ if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM_2024)
   throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM_2024 env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER)
   throw new Error("no GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER env var set");
+
+const appendZero = (str: string) => {
+  return parseInt(str) < 10 ? "0" + str : str;
+}
 
 function handleBirthday(data: any, type: FormType) {
   if (type == "team") {
