@@ -1,24 +1,24 @@
 import React from "react";
 import "./App.css";
-import { Media } from "./components/media/Media";
+import { Media } from "./features/media/pages/Media";
 import { Navigation } from "./components/Navigation";
-import { Home } from "./components/Home";
-import { AboutALS } from "./components/about/AboutALS";
-import { AboutHT } from "./components/about/AboutHT";
-import { NewsDetail } from "./components/news/NewsDetail";
-import { Videos } from "./components/media/Videos";
-import { Photos } from "./components/media/Photos";
-import { Register } from "./components/register/Register";
-import { Articles } from "./components/media/Articles";
-import { Radio } from "./components/media/Radio";
-import { Sponsors } from "./components/sponsor/Sponsors";
+import { Home } from "./features/home/pages/Home";
+import { AboutALS } from "./features/about/pages/AboutALS";
+import { AboutHT } from "./features/about/pages/AboutHT";
+import { NewsDetail } from "./features/news/pages/NewsDetail";
+import { Videos } from "./features/media/pages/Videos";
+import { Photos } from "./features/media/pages/Photos";
+import { Register } from "./features/register/pages/Register";
+import { Articles } from "./features/media/pages/Articles";
+import { Radio } from "./features/media/pages/Radio";
+import { Sponsors } from "./features/sponsor/pages/Sponsors";
 import { Footer } from "./components/Footer";
 import firebase from "firebase/compat/app"; // Change to only import specific modules
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import CoronaEdition from "./components/challenge/CoronaEdition";
-import { Fortrampet } from "./components/fortrampet/Fortrampet";
-import { OrderShirt } from "./components/register/OrderShirt";
+import CoronaEdition from "./features/challenge/pages/CoronaEdition";
+import { Fortrampet } from "./features/fortrampet/pages/Fortrampet";
+import { OrderShirt } from "./features/register/pages/OrderShirt";
 
 const App = () => {
   return (

@@ -1,5 +1,5 @@
 import { GoogleSpreadsheetRow } from "google-spreadsheet";
-import { FormType } from "../../../src/components/register/models";
+import { FormType } from "../../../src/features/register/models";
 import { getSoloHtml, getTeamHtml, getShirtHtml } from "./getHtml";
 import { createTransport } from "nodemailer";
 

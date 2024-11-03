@@ -5,8 +5,8 @@ import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import moment from "moment-timezone";
 import { JWT } from 'google-auth-library';
 import axios from "axios";
-import { FormType } from "../../../src/components/register/models";
-import { appendZero } from "../../../src/Utils";
+import { FormType } from "../../../src/features/register/models";
+import { appendZero } from "../../../src/utils";
 import { sendEmail } from "./emailSender";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
