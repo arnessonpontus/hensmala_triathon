@@ -1,8 +1,15 @@
 import React from "react";
 import { secToHMS } from "../TimeUtils";
+import { Entry } from "./EntryModal";
 
-const EntryCard = (props) => {
-  const styles = {
+interface EntryCardProps {
+  onClick: () => void,
+  id: number
+  entry: Entry
+}
+
+const EntryCard = (props: EntryCardProps) => {
+  const styles: any = {
     cardStyle: {
       width: 350,
       height: 300,

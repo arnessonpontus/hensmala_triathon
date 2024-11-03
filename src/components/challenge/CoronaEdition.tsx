@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import About2021 from "./About2021";
-import EntryModal from "./EntryModal";
+import EntryModal, { Entry } from "./EntryModal";
 import firebase from "firebase/compat/app"
 import "firebase/compat/storage"
 import "firebase/compat/database"
@@ -13,15 +13,15 @@ import {
 } from "reactstrap";
 
 const CoronaEdition = () => {
-  const [userEntries, setUserEntries] = useState([]);
-  const [hiddenUserEntries, setHiddenUserEntries] = useState([]);
+  const [userEntries, setUserEntries] = useState<Entry[]>([]);
+  const [hiddenUserEntries, setHiddenUserEntries] = useState<Entry[]>([]);
   const [loadingEntries, setLoadingEntries] = useState(false);
   const [orderBy, setOrderBy] = useState("time");
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  const placements = useRef([]);
+  const placements = useRef<number[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -123,8 +123,7 @@ export const TimePicker = (props: Props) => {
   );
 };
 
-export const secToHMS = (value: string) => {
-  const sec = parseInt(value, 10); // convert value to number if it's string
+export const secToHMS = (sec: number) => {
   let hours = Math.floor(sec / 3600); // get hours
   let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
   let seconds = sec - hours * 3600 - minutes * 60; //  get seconds

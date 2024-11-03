@@ -1,17 +1,32 @@
-import React, { Fragment, useState } from "react";
+import React, { CSSProperties, Fragment, useState } from "react";
 import { Modal } from "reactstrap";
 import { secToHMS } from "../TimeUtils";
 import ChallengeCarousell from "./ChallengeCarousell";
 import EntryCard from "./EntryCard";
 
-const EntryModal = (props) => {
+export interface Entry {
+  hideResults: string,
+  uploadTime: string,
+  raceTime: number,
+  imgs: string[],
+  placement: number,
+  text: string,
+  name: string,
+}
+
+interface EntryModalProps {
+  entry: Entry,
+  id: number
+}
+
+const EntryModal = (props: EntryModalProps) => {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
   };
 
-  const styles = {
+  const styles: any = {
     imgStyle: {
       height: 350,
       width: "100%",

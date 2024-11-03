@@ -15,7 +15,6 @@ import { Sponsors } from "./components/sponsor/Sponsors";
 import { Footer } from "./components/Footer";
 import firebase from "firebase/compat/app"; // Change to only import specific modules
 
-
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import CoronaEdition from "./components/challenge/CoronaEdition";
 import { Fortrampet } from "./components/fortrampet/Fortrampet";
@@ -58,7 +57,6 @@ const prodConfig = {
   appId: import.meta.env.VITE_FIREBASE_APPID,
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID,
 };
-
 
 const config = import.meta.env.MODE === "production" ? prodConfig : prodConfig; // TODO: Change one
 
