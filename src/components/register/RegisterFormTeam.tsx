@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Form,
   FormGroup,
@@ -10,7 +10,7 @@ import {
   CardBody,
   FormText
 } from "reactstrap";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { Link, NavLink as RRNavLink } from "react-router-dom";
 import Consent from "../Consent";
 import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
@@ -18,12 +18,54 @@ import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import RegisterButton from "./RegisterButton";
 import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE} from './Utils';
+import { FormType, Shirt } from "./models";
+import { AboutPaths } from "../about/AboutHT";
 
 const LATE_REGISTER_FEE = 700;
 const REGISTER_FEE = LATE_REGISTER_FEE;
 
-class RegisterFormTeam extends Component {
-  state = {
+interface RegisterFormTeamProps {
+  handleSubmit: (
+    e: React.FormEvent<HTMLFormElement>,
+    formType: FormType,
+    formData: RegisterFormTeamState,
+    totalCost: number
+  ) => void;
+  loading: boolean;
+}
+
+// TODO: Share between solo
+export interface RegisterFormTeamState {
+  teamName: string;
+  name1: string;
+  email1: string;
+  year1: string;
+  month1: string;
+  day1: string;
+  city1: string;
+  name2: string;
+  email2: string;
+  year2: string;
+  month2: string;
+  day2: string;
+  city2: string;
+  name3: string;
+  email3: string;
+  year3: string;
+  month3: string;
+  day3: string;
+  city3: string;
+  info: string;
+  isCheckboxOneTicked: boolean;
+  isCheckboxTwoTicked: boolean;
+  isCheckboxThreeTicked: boolean;
+  shirts: Shirt[];
+  numCaps: number;
+  extraDonation: number;
+}
+
+export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
+  const [formState, setFormState] = useState<RegisterFormTeamState>({
     teamName: "",
     name1: "",
     email1: "",
@@ -49,45 +91,43 @@ class RegisterFormTeam extends Component {
     isCheckboxThreeTicked: false,
     shirts: [],
     numCaps: 0,
-    extraDonation: 0
+    extraDonation: 0,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  handleChange = (e) => {
-    e.preventDefault();
-
-    const name = e.target.name;
-    let value = e.target.value;
-
-    this.setState({ [name]: value });
+  const toggleConsent = (checkbox: 1 | 2 | 3) => {
+    setFormState(prevState => {
+      if (checkbox === 1) {
+        return { ...prevState, isCheckboxOneTicked: !prevState.isCheckboxOneTicked };
+      } else if (checkbox === 2) {
+        return { ...prevState, isCheckboxTwoTicked: !prevState.isCheckboxTwoTicked };
+      } else {
+        return { ...prevState, isCheckboxThreeTicked: !prevState.isCheckboxThreeTicked };
+      }
+    });
   };
 
-  toggleConsent = (checkbox) => {
-    if (checkbox === 1) {
-      this.setState({ isCheckboxOneTicked: !this.state.isCheckboxOneTicked });
-    } else if (checkbox === 2) {
-      this.setState({ isCheckboxTwoTicked: !this.state.isCheckboxTwoTicked });
-    } else {
-      this.setState({
-        isCheckboxThreeTicked: !this.state.isCheckboxThreeTicked,
-      });
+  const isAllowedCompanyEntered = () => {
+    const allowedCompany = import.meta.env.VITE_ALLOWED_COMPANY?.toLowerCase();
+    return (
+      allowedCompany &&
+      [formState.city1, formState.city2, formState.city3].some((city) => city.toLowerCase().includes(allowedCompany))
+    );
+  };
+  const calcTotalCost = () => {
+    const shirtCost = calcShirtPrice(formState.shirts);
+    const capCost = formState.numCaps * CAP_PRICE;
+    if (isAllowedCompanyEntered()){
+      return formState.extraDonation + shirtCost + capCost
     }
+    return REGISTER_FEE + formState.extraDonation + shirtCost + capCost;
   };
 
-  isAllowedCompanyEntered = () => {
-    return import.meta.env.REACT_APP_ALLOWED_COMPANY && 
-      (this.state.city1.toLowerCase().includes(import.meta.env.REACT_APP_ALLOWED_COMPANY.toLowerCase()) ||
-      this.state.city2.toLowerCase().includes(import.meta.env.REACT_APP_ALLOWED_COMPANY.toLowerCase()) ||
-      this.state.city3.toLowerCase().includes(import.meta.env.REACT_APP_ALLOWED_COMPANY.toLowerCase()));
-  }
-
-  calcTotalCost = () => {
-    if (this.isAllowedCompanyEntered()) {
-      return this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
-    } 
-    return REGISTER_FEE + this.state.extraDonation + calcShirtPrice(this.state.shirts) + this.state.numCaps * CAP_PRICE;
-  }
-
-  renderMemberFields = () => {
+  const renderMemberFields = () => {
     return [1, 2, 3].map((num) => {
       return(
       <div key={num} style={{marginBottom: "20px"}}>
@@ -104,8 +144,8 @@ class RegisterFormTeam extends Component {
                   name={`name${num}`}
                   id={`name${num}`}
                   placeholder="Förnamn Efternamn"
-                  value={this.state[`name${num}`]}
-                  onChange={this.handleChange}
+                  value={formState[`name${num}` as keyof RegisterFormTeamState] as string}
+                  onChange={handleChange}
                 />
               </FormGroup>
               <FormGroup>
@@ -116,8 +156,8 @@ class RegisterFormTeam extends Component {
                   name={`email${num}`}
                   id={`email${num}`}
                   placeholder="din.email@gmail.com"
-                  value={this.state[`email${num}`]}
-                  onChange={this.handleChange}
+                  value={formState[`email${num}` as keyof RegisterFormTeamState] as string}
+                  onChange={handleChange}
                 />
               </FormGroup>
               <FormGroup>
@@ -125,17 +165,17 @@ class RegisterFormTeam extends Component {
                 <div style={{ display: "flex" }}>
                   <YearPicker
                     required={num !== 3}
-                    handleChange={this.handleChange}
+                    handleChange={handleChange}
                     elemName={`year${num}`}
                   />
                   <MonthPicker
                     required={num !== 3}
-                    handleChange={this.handleChange}
+                    handleChange={handleChange}
                     elemName={`month${num}`}
                   />
                   <DayPicker
                     required={num !== 3}
-                    handleChange={this.handleChange}
+                    handleChange={handleChange}
                     elemName={`day${num}`}
                   />
                 </div>
@@ -147,8 +187,8 @@ class RegisterFormTeam extends Component {
                   name={`city${num}`}
                   id={`city${num}`}
                   placeholder="Hensmåla löparförening"
-                  value={this.state[`city${num}`]}
-                  onChange={this.handleChange}
+                  value={formState[`city${num}` as keyof RegisterFormTeamState] as string}
+                  onChange={handleChange}
                 />
               </FormGroup>
             </CardBody>
@@ -158,14 +198,12 @@ class RegisterFormTeam extends Component {
     })
   }
             
-
-  render() {
     return (
       <Row>
         <Col style={{ marginTop: "2vh" }} md={6}>
           <Form
             onSubmit={(e) =>
-              this.props.handleSubmit(e, "team", this.state, this.calcTotalCost())
+              props.handleSubmit(e, "team", formState, calcTotalCost())
             }
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -187,11 +225,11 @@ class RegisterFormTeam extends Component {
                 name="teamName"
                 id="teamName"
                 placeholder="Gubbaflås"
-                value={this.state.teamName}
-                onChange={this.handleChange}
+                value={formState.teamName}
+                onChange={handleChange}
               />
             </FormGroup>
-            {this.renderMemberFields()}
+            {renderMemberFields()}
             <FormGroup>
               <Label for="info">Information</Label>
               <Input
@@ -199,23 +237,23 @@ class RegisterFormTeam extends Component {
                 name="info"
                 id="info"
                 placeholder="T.ex. vilka du vill köra samtidigt som eller övrig info"
-                value={this.state.info}
-                onChange={this.handleChange}
+                value={formState.info}
+                onChange={handleChange}
               />
             </FormGroup>
             <FormGroup>
                 <Label for="clothes-select">Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
                 <div className="clothes-select">
-                  <ShirtSelect updateShirtSelection={(newShirts) => this.setState({shirts: newShirts})}/>
+                  <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, shirts: newShirts }))} />
                 </div>
                 <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
                 <div className="clothes-select">
-                  <CapSelect updateCapSelection={(numCaps) => this.setState({numCaps: numCaps})}/>
+                  <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps: numCaps }))} />
                 </div>
             </FormGroup>
             <FormGroup>
               <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
-              <ExtraDonation setDonation={(donationAmount) => this.setState({extraDonation: donationAmount})}/>
+              <ExtraDonation setDonation={(donationAmount) => setFormState(prev => ({ ...prev, extraDonation: donationAmount }))} />
             </FormGroup>
             <FormGroup>
               <FormText color="bold">* obligatoriska fält.</FormText>
@@ -225,7 +263,7 @@ class RegisterFormTeam extends Component {
                 <Input
                   id="checkbox1Team"
                   type="checkbox"
-                  onClick={() => this.toggleConsent(1)}
+                  onClick={() => toggleConsent(1)}
                 />{" "}
                 Jag accepterar att Hensmåla Triathlon sparar data om mig.
               </Label>
@@ -239,7 +277,7 @@ class RegisterFormTeam extends Component {
                 <Input
                   id="checkbox2Team"
                   type="checkbox"
-                  onClick={() => this.toggleConsent(2)}
+                  onClick={() => toggleConsent(2)}
                 />{" "}
                 Jag kommer att följa Hensmåla Triathlons{" "}
                 <RRNavLink
@@ -257,34 +295,34 @@ class RegisterFormTeam extends Component {
                 <Input
                   id="checkbox3Team"
                   type="checkbox"
-                  onClick={() => this.toggleConsent(3)}
+                  onClick={() => toggleConsent(3)}
                 />{" "}
                 Jag accepterar att bilder och filmer sparas och kan användas på
                 internet.
               </Label>
             </FormGroup>
-            {this.isAllowedCompanyEntered() ? 
+            {isAllowedCompanyEntered() ? 
             <div className="allowed-company-text-bg">
               <small>
-              Du har anget <b style={{color: "#007fa8"}}>{import.meta.env.REACT_APP_ALLOWED_COMPANY}</b> som klubb och får därför anmälningsavgiften betald.
+              Du har anget <b style={{color: "#007fa8"}}>{import.meta.env.VITE_ALLOWED_COMPANY}</b> som klubb och får därför anmälningsavgiften betald.
               </small>
             </div>
             : null}
             <FormGroup>
               <Label for="totalAmountToPay">Totalt att betala:</Label>
-              <h5>{this.calcTotalCost()}kr</h5>
+              <h5>{calcTotalCost()}kr</h5>
             </FormGroup>
             <RegisterButton 
               id="submitButton"
               text="Anmäl oss!" 
               disabled={
                 !(
-                  this.state.isCheckboxOneTicked &&
-                  this.state.isCheckboxTwoTicked &&
-                  this.state.isCheckboxThreeTicked
-                ) || this.props.loading
+                  formState.isCheckboxOneTicked &&
+                  formState.isCheckboxTwoTicked &&
+                  formState.isCheckboxThreeTicked
+                ) || props.loading
               }
-              loading={this.props.loading}
+              loading={props.loading}
             />
           </Form>
           <small>
@@ -302,13 +340,12 @@ class RegisterFormTeam extends Component {
             När ni anmäler er som lag får sträckorna delas upp hur ni vill inom laget. Detta
             kan innebära att ni är tre personer som deltar där alla kör en gren var, eller ett lag med 2 personer där en av er kör 2 grenar. För mer information om sträckorna och tävlingsregler kan
             du gå in{" "}
-            <RRNavLink 
+            <Link 
               target="_blank"
               rel="noopener noreferrer" 
-              tag={RRNavLink} 
               to="/om-ht/hem">
               HÄR
-            </RRNavLink>.
+            </Link>.
           </p>
           <p>
             Du kommer få ett bekräftelse-email med din angiva information och{" "}
@@ -329,6 +366,3 @@ class RegisterFormTeam extends Component {
       </Row>
     );
   }
-}
-
-export default RegisterFormTeam;

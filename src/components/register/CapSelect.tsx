@@ -7,25 +7,25 @@ import ImageGallery from "react-image-gallery";
 const images = [
   {
     original: "/images/clothes/cap_with_logo.jpg",
-    thumbnail:"/images/clothes/cap_with_logo_thumb.jpg",
+    thumbnail: "/images/clothes/cap_with_logo_thumb.jpg",
   }
 ];
 
-const CapSelect = (props) => {
+const CapSelect = ({ updateCapSelection }: { updateCapSelection: (numCaps: number) => void }) => {
   const [numCaps, setNumCaps] = useState(0);
 
   function addCap() {
     const caps = numCaps + 1;
     setNumCaps(caps)
 
-    props.updateCapSelection(caps);
+    updateCapSelection(caps);
   }
 
-  function removeCap() { 
+  function removeCap() {
     if (numCaps > 0) {
       const caps = numCaps - 1;
       setNumCaps(caps)
-      props.updateCapSelection(caps);
+      updateCapSelection(caps);
     }
   }
 
@@ -33,8 +33,7 @@ const CapSelect = (props) => {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <p>Sista beställningsdag har passerat. Det kommer dock finnas ett fåtal kepsar att köpa på plats.</p>
-      {/* <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
+      <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()}/>
         <div className="d-flex align-items-center mt-3">
           <div
             className="button-style small add-shirt-button" 
@@ -45,7 +44,7 @@ const CapSelect = (props) => {
             onClick={addCap}
             >+</div>
             </div>
-          <div className="mt-2 no-clothed-chosen" style={{minHeight: 25}}>{numCaps <= 0 ? <span>Ingen keps vald</span> : null}</div> */}
+          <div className="mt-2 no-clothed-chosen" style={{minHeight: 25}}>{numCaps <= 0 ? <span>Ingen keps vald</span> : null}</div>
     </div>
   );
 

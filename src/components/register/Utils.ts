@@ -1,3 +1,6 @@
+import { OrderShirtState } from "./OrderShirt";
+import { RegisterFormSoloState } from "./RegisterFormSolo";
+import { RegisterFormTeamState } from "./RegisterFormTeam";
 import { FormType, Shirt, orderDetails } from "./models";
 
 export const SHIRT_PRICE_COTTON = 220;
@@ -21,7 +24,7 @@ export function isShirtSelected(shirts: Shirt[]) {
 
 function writeToSpreadsheet(
   formType: FormType,
-  data: orderDetails,
+  data: orderDetails, // TODO: OrderShirtState?
   token: string,
   setLoadingCallback: (value: boolean) => void,
   doneCallback: () => void,
@@ -46,7 +49,7 @@ function writeToSpreadsheet(
 export function handleSubmit(
   e: React.FormEvent<HTMLFormElement>,
   formType: FormType,
-  data: orderDetails,
+  formData: OrderShirtState | RegisterFormSoloState | RegisterFormTeamState,
   totalToPay: number,
   setLoadingCallback: (value: boolean) => void,
   doneCallback: () => void,
@@ -55,7 +58,7 @@ export function handleSubmit(
   setLoadingCallback(true);
 
   // Deep copy and replace shirts array to string for easier handling
-  const dataToSend = JSON.parse(JSON.stringify(data));
+  const dataToSend = JSON.parse(JSON.stringify(formData));
   dataToSend.shirts = shirtArrayToString(dataToSend.shirts);
 
   // Add total cost to easier see correct payment has been made

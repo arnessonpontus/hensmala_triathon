@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink as RNNavLink } from "react-router-dom";
 import {
   NavLink,
   Navbar,
@@ -23,7 +23,7 @@ export const Navigation = () => {
   return (
     <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10 }}>
       <NavbarBrand
-        tag={Link}
+        tag={RNNavLink}
         color="light"
         className="inactive nav-title brand-title"
         activeClassName="active"
@@ -47,7 +47,7 @@ export const Navigation = () => {
       </NavbarToggler>
       <Collapse isOpen={isMenuOpen} navbar>
         <NavLink
-          tag={Link}
+          tag={RNNavLink}
           className="inactive nav-title"
           activeClassName="active"
           to="/anmalan"
@@ -56,7 +56,7 @@ export const Navigation = () => {
           ANMÄLAN
         </NavLink>
         <NavLink
-          tag={Link}
+          tag={RNNavLink}
           className="inactive nav-title"
           activeClassName="active"
           to="/bestall-klader"
@@ -65,7 +65,7 @@ export const Navigation = () => {
           BESTÄLL KLÄDER
         </NavLink>
         <NavLink
-          tag={Link}
+          tag={RNNavLink}
           className="inactive nav-title"
           activeClassName="active"
           to="/corona-edition"
@@ -74,7 +74,7 @@ export const Navigation = () => {
           CORONA EDITION
         </NavLink>
         <NavLink
-          tag={Link}
+          tag={RNNavLink}
           className="inactive nav-title"
           activeClassName="active"
           to="/hentrampet"
@@ -90,7 +90,7 @@ export const Navigation = () => {
             <DropdownItem>
               <NavLink
                 className="dropdown-item"
-                tag={Link}
+                tag={RNNavLink}
                 activeClassName="active"
                 to="/om-als"
                 onClick={() => setIsMenuOpen(false)}
@@ -100,7 +100,7 @@ export const Navigation = () => {
             </DropdownItem>
             <DropdownItem>
               <NavLink
-                tag={Link}
+                tag={RNNavLink}
                 className="dropdown-item"
                 activeClassName="active"
                 to="/om-ht/hem"
@@ -112,7 +112,7 @@ export const Navigation = () => {
           </DropdownMenu>
         </UncontrolledDropdown>
         <NavLink
-          tag={Link}
+          tag={RNNavLink}
           className="inactive nav-title"
           activeClassName="active"
           to="/media"
@@ -121,7 +121,7 @@ export const Navigation = () => {
           MEDIA
         </NavLink>
         <NavLink
-          tag={Link}
+          tag={RNNavLink}
           className="inactive nav-title"
           activeClassName="active"
           to="/sponsorer"

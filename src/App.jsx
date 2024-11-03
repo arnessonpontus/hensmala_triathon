@@ -8,7 +8,7 @@ import { AboutHT } from "./components/about/AboutHT";
 import { NewsDetail } from "./components/news/NewsDetail";
 import Videos from "./components/media/Videos";
 import Photos from "./components/media/Photos";
-import Register from "./components/register/Register";
+import { Register } from "./components/register/Register";
 import Articles from "./components/media/Articles";
 import Radio from "./components/media/Radio";
 import { Sponsors } from "./components/sponsor/Sponsors";
@@ -19,7 +19,7 @@ import firebase from "firebase/compat/app"; // Change to only import specific mo
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import CoronaEdition from "./components/challenge/CoronaEdition";
 import Fortrampet from "./components/fortrampet/Fortrampet";
-import OrderShirt from "./components/register/OrderShirt";
+import { OrderShirt } from "./components/register/OrderShirt";
 
 const App = () => {
   return (

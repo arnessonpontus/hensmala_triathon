@@ -4,7 +4,7 @@ import { Input } from "reactstrap";
 interface Props {
   required: boolean,
   elemName: string,
-  handleChange: () => void
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const YearPicker = (props: Props) => {

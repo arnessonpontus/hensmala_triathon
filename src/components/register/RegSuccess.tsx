@@ -1,13 +1,17 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Container } from "reactstrap";
 
-class RegSuccess extends Component {
-  componentDidMount() {
-    // Remove Lastpass element bug
+interface RegSuccessProps {
+  type: "register" | "order",
+  onGoBack: () => void
+}
+
+export const RegSuccess = (props: RegSuccessProps) => {
+  useEffect(() => {
+     // Remove Lastpass element bug
     document.querySelector('div[data-lastpass-root]')?.remove();
-  }
+  }, [])
   
-  render() {
     return (
       <Container
         style={{
@@ -19,7 +23,7 @@ class RegSuccess extends Component {
           textAlign: "center"
         }}
       >
-        <h2>{this.props.type === "register" ? "Tack för din anmälan!" : "Tack för din beställning!"}</h2>
+        <h2>{props.type === "register" ? "Tack för din anmälan!" : "Tack för din beställning!"}</h2>
         <div
           className="button-style"
           style={{
@@ -28,14 +32,11 @@ class RegSuccess extends Component {
             color: "white",
           }}
           onClick={() => {
-            this.props.onGoBack();
+            props.onGoBack();
           }}
         >
-          {this.props.type === "register" ? "Registrera fler" : "Beställ mer"}
+          {props.type === "register" ? "Registrera fler" : "Beställ mer"}
         </div>
       </Container>
     );
   }
-}
-
-export default RegSuccess;

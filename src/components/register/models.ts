@@ -1,6 +1,6 @@
 export interface Shirt {
-  size: string,
-  type: string,
+  size: string | null,
+  type: string | null,
   material: "funktion" | "bomull"
 }
 

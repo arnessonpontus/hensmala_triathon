@@ -4,6 +4,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { useRef } from "react";
 
 import ImageGallery from "react-image-gallery";
+import { Shirt } from "./models";
 
 const images = [
   {
@@ -20,12 +21,12 @@ const images = [
   }
 ];
 
-const getDefaultShirt = () => {
+const getDefaultShirt = (): Shirt => {
   return { size: null, type: null, material: "funktion" }
 }
 
-const ShirtSelect = (props) => {
-  const [shirts, setShirts] = useState([getDefaultShirt()]);
+const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) => {
+  const [shirts, setShirts] = useState<Shirt[]>([getDefaultShirt()]);
 
   const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
@@ -34,7 +35,7 @@ const ShirtSelect = (props) => {
     setShirts(newShirts);
   }
 
-  const deleteShirt = (idx) =>  {
+  const deleteShirt = (idx: number) =>  {
     const newShirts = [...shirts];
       if (idx === 0) {
         newShirts[0] = getDefaultShirt();
@@ -47,7 +48,7 @@ const ShirtSelect = (props) => {
   };
 
   // Set the size, type or material of the shirt
-  function updateShirtValues(field, idx, value) {
+  function updateShirtValues(field: keyof Shirt, idx: number, value: any) {
     const newShirts = [...shirts];
     newShirts[idx][field] = value;
     setShirts(newShirts);
@@ -59,9 +60,8 @@ const ShirtSelect = (props) => {
 
   return (
     <div id="shirt-select">
-      <p>Sista beställningsdag har passerat. Det kommer dock finnas ett fåtal t-shirts att köpa på plats.</p>
-      {/* <p className="w-100 d-flex justify-content-center">Bomullströjan har endast tryck på framsidan</p>
-      <ImageGallery showThumbnails={false} showIndex={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => imageGalleryRef.current.toggleFullScreen()}/>
+      <p className="w-100 d-flex justify-content-center">Bomullströjan har endast tryck på framsidan</p>
+      <ImageGallery showThumbnails={false} showIndex={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()}/>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           return (
@@ -77,7 +77,7 @@ const ShirtSelect = (props) => {
                       name={"size"}
                       onChange={(e) => updateShirtValues("size", i, e.target.value)}
                     >
-                      <option disabled selected={shirt.size === null} value>
+                      <option disabled selected={shirt.size === null}>
                         Storlek
                       </option>
                       {sizes.map((size) => {
@@ -95,7 +95,7 @@ const ShirtSelect = (props) => {
                       name={"type"}
                       onChange={(e) => updateShirtValues("type", i, e.target.value)}
                     >
-                      <option disabled selected={shirt.type === null} value>
+                      <option disabled selected={shirt.type === null}>
                         Typ
                       </option>
                       <option selected={shirt.type === "dam"} value={"dam"} key={"dam"}>
@@ -147,7 +147,7 @@ const ShirtSelect = (props) => {
           + Lägg till fler
         </div>
         <div className="mt-2 d-flex justify-content-center no-clothed-chosen" style={{minHeight: 25}}>{(shirts.every(s => s.size == null || s.type == null)) ? <span>Ingen tröja vald</span> : null}</div>
-      </div> */}
+      </div>
     </div>
   );
 
