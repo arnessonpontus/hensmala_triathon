@@ -1,8 +1,8 @@
-@import "./components/challenge/coronaEdition.css";
-@import "./components/fortrampet/fortrampet.css";
-@import "./components/sponsor/sponsor.css";
-@import "./components/media/media.css";
-@import "./components/register/register.css";
+@import "./features/challenge/coronaEdition.css";
+@import "./features/fortrampet/fortrampet.css";
+@import "./features/sponsor/sponsor.css";
+@import "./features/media/media.css";
+@import "./features/register/register.css";
 
 *,
 *::before,

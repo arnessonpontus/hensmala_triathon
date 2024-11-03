@@ -1,0 +1,4 @@
+[dev]
+  framework = "vite"
+[functions]
+  included_files = ["./netlify/functions/writeToSpreadsheet/assets/**"]
