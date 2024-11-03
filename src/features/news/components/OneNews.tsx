@@ -31,7 +31,7 @@ const OneNews = (props: {news: NewsType}) => {
     },
   };
   return (
-    <Fade direction="left">
+    <Fade>
       <div key={props.news.date} className="card-box">
         <Col>
           <Row>
