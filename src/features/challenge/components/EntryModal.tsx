@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Modal } from "reactstrap";
 import ChallengeCarousell from "./ChallengeCarousell";
 import EntryCard from "./EntryCard";
-import { secToHMS } from "../../../utils";
+import { secToHMS } from "../utils";
 
 export interface Entry {
   hideResults: string,

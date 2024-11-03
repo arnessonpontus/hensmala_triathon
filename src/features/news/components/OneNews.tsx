@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 import { Link } from 'react-router-dom';
 import { Fade } from "react-awesome-reveal";
 import ExternalInternalButtonLink from "../../../components/ExternalInternalButtonLink";
-import { spaceToDash } from "../../../utils";
+import { spaceToDash } from "../utils";
 
 interface Image {
   original: string,

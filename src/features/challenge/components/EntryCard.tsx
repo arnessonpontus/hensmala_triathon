@@ -1,5 +1,5 @@
+import { secToHMS } from "../utils";
 import { Entry } from "./EntryModal";
-import { secToHMS } from "../../../utils";
 
 interface EntryCardProps {
   onClick: () => void,

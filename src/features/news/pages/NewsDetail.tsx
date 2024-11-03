@@ -6,7 +6,7 @@ import { Container } from "reactstrap";
 import ExternalInternalButtonLink from "../../../components/ExternalInternalButtonLink";
 import { NewsType } from "../components/OneNews";
 import { useParams } from "react-router-dom";
-import { spaceToDash } from "../../../utils";
+import { spaceToDash } from "../utils";
 
 export const NewsDetail = () => {
   const { id } = useParams();

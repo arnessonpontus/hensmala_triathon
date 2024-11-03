@@ -1,7 +1,3 @@
-export const spaceToDash = (str: string) => {
-  return str.replace(/\s+/g, '-');
-}
-
 export const secToHMS = (sec: number) => {
   let hours = Math.floor(sec / 3600); // get hours
   let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
