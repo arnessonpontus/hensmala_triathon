@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Sponsor {
   title: string;
   image: string;

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import videos from "../../../assets/videos.json";
 
@@ -8,7 +7,7 @@ export const Videos = () => {
     return (
       <Container className="pb-4">
         <Row>
-          {videos.map((video, i) => {
+          {videos.map((video) => {
             return (
               <Col className="mt-4" md="6">
                 <div className="card-box">

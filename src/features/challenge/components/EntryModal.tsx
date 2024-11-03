@@ -1,4 +1,4 @@
-import React, { CSSProperties, Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { Modal } from "reactstrap";
 import ChallengeCarousell from "./ChallengeCarousell";
 import EntryCard from "./EntryCard";

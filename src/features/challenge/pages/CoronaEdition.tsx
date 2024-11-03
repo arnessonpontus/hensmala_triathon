@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import About2021 from "../components/About2021";
 import EntryModal, { Entry } from "../components/EntryModal";
 import firebase from "firebase/compat/app"

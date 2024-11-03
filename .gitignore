@@ -1,6 +1,7 @@
 
 config.js
 build
+dist
 .env
 .DS_Store
 netlify/functions/*.json

@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, ButtonProps, Spinner } from "reactstrap";
 
 interface RegisterButtonProps extends ButtonProps {

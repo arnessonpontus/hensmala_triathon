@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import newsArc from "../../../assets/news.json";
 import ImageGallery from "react-image-gallery";
 import YouTube from "react-youtube";
@@ -14,7 +14,7 @@ export const NewsDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const newsDetail = newsArc.find((news, i) => spaceToDash(news.title) === id)
+    const newsDetail = newsArc.find((news) => spaceToDash(news.title) === id)
     setNewsDetail(newsDetail);
   }, [])
 

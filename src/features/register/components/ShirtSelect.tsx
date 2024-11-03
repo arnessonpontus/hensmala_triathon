@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input, FormGroup, Label } from "reactstrap";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useRef } from "react";

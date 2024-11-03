@@ -1,4 +1,3 @@
-import React from "react";
 import radioShows from "../../../assets/radioShows.json";
 
 import { Container, Row, Col } from "reactstrap";

@@ -1,4 +1,3 @@
-import React from "react";
 import { Col, Row, Button } from "reactstrap";
 import YouTube from "react-youtube";
 import { Link } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Button } from "reactstrap";
 import { Col } from "reactstrap";
 import newsArc from "../../../assets/news.json";

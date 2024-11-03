@@ -1,4 +1,3 @@
-import React from "react";
 import photoAlbums from "../../../assets/photoAlbums.json";
 
 import { Container, Row, Col } from "reactstrap";

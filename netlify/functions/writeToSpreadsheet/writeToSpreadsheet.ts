@@ -6,9 +6,9 @@ import moment from "moment-timezone";
 import { JWT } from 'google-auth-library';
 import axios from "axios";
 import { FormType } from "../../../src/features/register/models";
-import { appendZero } from "../../../src/utils";
 import { sendEmail } from "./emailSender";
 import { GoogleSpreadsheet } from "google-spreadsheet";
+import { appendZero } from "../../../src/utils";
 
 // required env vars
 if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
@@ -38,7 +38,7 @@ function handleBirthday(data: any, type: FormType) {
   return data;
 }
 
-const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) => {
   // Check recaptcha from token
   try {
     const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.VITE_RECAPTCHA_SECRET}&response=${event.queryStringParameters?.token}`);

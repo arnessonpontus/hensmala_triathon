@@ -1,4 +1,3 @@
-import React from "react";
 import sponsors from "../../../assets/sponsors.json";
 import { SponsorSection } from "./SponsorSection";
 
