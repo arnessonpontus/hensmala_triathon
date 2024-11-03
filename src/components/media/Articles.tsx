@@ -1,40 +1,34 @@
-import React, { Fragment } from "react";
-import articles from "../../assets/articles";
-import ArticleSection from "./ArticleSection";
+import React, { useEffect, useState } from "react";
+import articles from "../../assets/articles.json";
 
 import { Row, Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { ArticleSection } from "./ArticleSection";
 
-class Articles extends React.Component {
-  state = {
-    isDropdownOpen: false,
-  };
+export const Articles = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  componentDidMount() {
-    this.onToTopTap();
-  }
+  useEffect(() => {
+    onToTopTap();
+  }, [])
 
-  years = ["2024", "2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
+  const years = ["2024", "2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
 
-  onYearTap = (yearIndex) => {
+  const onYearTap = (yearIndex: number) => {
     if (yearIndex === 0) {
-      this.onToTopTap();
+      onToTopTap();
       return;
     }
-
-    document
-      .querySelector(".year-" + this.years[yearIndex-1])
-      .scrollIntoView({ behavior: "smooth" });
+      document.querySelector(".year-" + years[yearIndex-1])?.scrollIntoView({ behavior: "smooth" });
   };
 
-  onToTopTap = () => {
+  const onToTopTap = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  toggle = () => {
-    this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
+  const toggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
-  render() {
     return (
       <div className="text-center pt-5">
         <Button
@@ -45,7 +39,7 @@ class Articles extends React.Component {
             bottom: "15px",
             right: "15px",
           }}
-          onClick={() => this.onToTopTap()}
+          onClick={() => onToTopTap()}
         >
           <i
             className="fas fa-chevron-up"
@@ -56,36 +50,33 @@ class Articles extends React.Component {
         <ButtonDropdown
           className="pb-5 sticky-top"
           style={{ top: 80, zIndex: 4}}
-          isOpen={this.state.isDropdownOpen}
-          toggle={this.toggle}
+          isOpen={isDropdownOpen}
+          toggle={toggle}
         >
           <DropdownToggle caret>Välj år</DropdownToggle>
           <DropdownMenu>
-            {this.years.map((year, i) => (
-              <DropdownItem onClick={() => this.onYearTap(i)}>
+            {years.map((year, i) => (
+              <DropdownItem onClick={() => onYearTap(i)}>
                 {year}
               </DropdownItem>
             ))}
           </DropdownMenu>
         </ButtonDropdown>
-        {this.years.map((year, i) => {
+        {years.map((year, i) => {
           return (
             <>
               <div className="p-5">
                 <h3>{year}</h3>
                 <Row>
-                  {articles[year].map((article) => {
+                  {articles[year as keyof typeof articles].map((article) => {
                     return <ArticleSection article={article} />;
                   })}
                 </Row>
               </div>
-              {i < this.years.length - 1 && <div className={`year-${year} article-seperator`}></div>}
+              {i < years.length - 1 && <div className={`year-${year} article-seperator`}></div>}
             </>
           );
         })}
       </div>
     );
   }
-}
-
-export default Articles;

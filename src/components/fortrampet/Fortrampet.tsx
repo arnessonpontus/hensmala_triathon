@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Container, Row, Col, Badge, Card, CardBody } from "reactstrap";
 import { AboutPaths } from "../about/AboutHT";
 
-const Fortrampet = () => {
+export const Fortrampet = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -80,9 +80,9 @@ const Fortrampet = () => {
               </h4>
               <p className="indent">
                 Starten går från garaget hos Arnessons i Hensmåla. På den{" "}
-                <RRNavLink tag={RRNavLink} to={"/om-ht/" + AboutPaths.getHere}>
+                <Link to={"/om-ht/" + AboutPaths.getHere}>
                   här
-                </RRNavLink>{" "}
+                </Link>{" "}
                 länken kan du hitta mer information om hur du tar dig till
                 starten.
               </p>
@@ -162,5 +162,3 @@ const Fortrampet = () => {
     </Container>
   );
 };
-
-export default Fortrampet;

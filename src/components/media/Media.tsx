@@ -1,15 +1,14 @@
 import React from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 import { Container } from "reactstrap";
 
-class Media extends React.Component {
-  render() {
+export const Media = () => {
     return (
       <Container className="media-container">
-        <RRNavLink
+        <Link
           to="/radio"
-          style={styles.cardStyle}
+          style={styles.cardStyle as any}
           className="card-box-hoverable"
         >
           <div>
@@ -21,11 +20,11 @@ class Media extends React.Component {
               alt="radio"
             ></img>
           </div>
-        </RRNavLink>
+        </Link>
 
-        <RRNavLink
+        <Link
           to="/artiklar"
-          style={styles.cardStyle}
+          style={styles.cardStyle as any}
           className="card-box-hoverable"
         >
           <h3 style={styles.textStyle}>ARTIKLAR</h3>
@@ -35,11 +34,11 @@ class Media extends React.Component {
             src="/images/article.svg"
             alt="article"
           ></img>
-        </RRNavLink>
+        </Link>
 
-        <RRNavLink
+        <Link
           to="/videos"
-          style={styles.cardStyle}
+          style={styles.cardStyle as any}
           className="card-box-hoverable"
         >
           <h3 style={styles.textStyle}>VIDEOS</h3>
@@ -49,11 +48,11 @@ class Media extends React.Component {
             src="/images/video.svg"
             alt="video"
           ></img>
-        </RRNavLink>
+        </Link>
 
-        <RRNavLink
+        <Link
           to="/foton"
-          style={styles.cardStyle}
+          style={styles.cardStyle as any}
           className="card-box-hoverable"
         >
           <h3 style={styles.textStyle}>FOTON</h3>
@@ -63,11 +62,10 @@ class Media extends React.Component {
             src="/images/camera.svg"
             alt="camera"
           ></img>
-        </RRNavLink>
+        </Link>
       </Container>
     );
   }
-}
 
 const styles = {
   cardStyle: {
@@ -85,5 +83,3 @@ const styles = {
     fontWeight: "bold",
   },
 };
-
-export default Media;

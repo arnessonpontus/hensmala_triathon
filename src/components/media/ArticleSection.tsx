@@ -1,27 +1,33 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 
 import { Col } from "reactstrap";
+interface Article {
+  link: string,
+  title: string
+}
 
-class SponsorSection extends Component {
-  constructor() {
-    super();
-    this.randomNumbers = Array.from({length: 5}, () => Math.floor(Math.random() * 7 + 1));
-  }
+interface ArticleSectionProps {
+  article: Article
+}
+export const ArticleSection = (props: ArticleSectionProps) => {
+let randomNumbers: number[] = [];
+  useEffect(() => {
+    randomNumbers = Array.from({length: 5}, () => Math.floor(Math.random() * 7 + 1));
+  }, [])
 
-  render() {
     return (
       <Col className="mt-4" md="6">
         <a
           style={{ textDecoration: "none" }}
           target="_blank"
           rel="noopener noreferrer"
-          href={"images/articleImages/" + this.props.article.link}
+          href={"images/articleImages/" + props.article.link}
         >
           <div className="card-box-hoverable" style={{ height: 350 }}>
             <div className="article-placeholder">
-              {this.randomNumbers.map(rnd => <div style={{width: rnd + "0%"}} className="article-placeholder-row"/>)}
+              {randomNumbers.map(rnd => <div style={{width: rnd + "0%"}} className="article-placeholder-row"/>)}
             </div>
-            <div style={styles.titleContainer}>
+            <div style={styles.titleContainer as any}>
               <h5
                 style={{
                   color: "black",
@@ -30,7 +36,7 @@ class SponsorSection extends Component {
                 }}
                 className="mt-2"
               >
-                {this.props.article.title}
+                {props.article.title}
               </h5>
             </div>
           </div>
@@ -38,7 +44,6 @@ class SponsorSection extends Component {
       </Col>
     );
   }
-}
 
 const styles = {
   titleContainer: {
@@ -51,5 +56,3 @@ const styles = {
     WebkitBoxOrient: "vertical",
   },
 };
-
-export default SponsorSection;
