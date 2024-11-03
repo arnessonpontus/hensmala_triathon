@@ -1,24 +1,26 @@
-function getPaymentString(hasAllowedCompany, totalToPay) {
-    if (hasAllowedCompany) {
-        return (
-            `<p>
-                Eftersom du har anget <b style="color:#007fa8;">${process.env.VITE_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften gratis. 
-            </p>
-            ${totalToPay > 0 ? 
-                `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
-            : ""}
-            <p>`)
-    } else {
-        return (
-            `<p>
-                Betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
-            </p>`
-        );
-    }
+import { GoogleSpreadsheetRow } from "google-spreadsheet";
+
+export function getPaymentString(hasAllowedCompany: boolean, totalToPay: number) {
+  if (hasAllowedCompany) {
+    return (
+      `<p>
+        Eftersom du har anget <b style="color:#007fa8;">${process.env.VITE_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften gratis. 
+      </p>
+      ${totalToPay > 0 ?
+        `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
+        : ""}
+        <p>`)
+  } else {
+    return (
+      `<p>
+        Betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
+       </p>`
+    );
+  }
 }
 
-function getSoloHtml(data, hasAllowedCompany) {
-    return (`
+export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, hasAllowedCompany: boolean) {
+  return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -73,8 +75,8 @@ function getSoloHtml(data, hasAllowedCompany) {
     `);
 }
 
-function getTeamHtml(data, hasAllowedCompany) {
-    return (`
+export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, hasAllowedCompany: boolean) {
+  return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -123,8 +125,8 @@ function getTeamHtml(data, hasAllowedCompany) {
                     Ort/klubb: <b>${data.get('city2')}</b>
                 </li>
             </ul>
-            ${data.get('name3') !== "" ? 
-            `<b>Lagmedlem 3</b>
+            ${data.get('name3') !== "" ?
+      `<b>Lagmedlem 3</b>
             <ul>
                 <li>
                     Namn: <b>${data.get('name3')}</b>
@@ -139,7 +141,7 @@ function getTeamHtml(data, hasAllowedCompany) {
                     Ort/klubb: <b>${data.get('city3')}</b>
                 </li>
             </ul>`
-                : ""}
+      : ""}
             <b>Övrigt</b>
             <li>
                 Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
@@ -159,8 +161,8 @@ function getTeamHtml(data, hasAllowedCompany) {
         </div>
     `);
 }
-function getShirtHtml(data) {
-    return (`
+export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
+  return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -206,7 +208,3 @@ function getShirtHtml(data) {
         </div>
     `);
 }
-
-exports.getSoloHtml = getSoloHtml;
-exports.getTeamHtml = getTeamHtml;
-exports.getShirtHtml = getShirtHtml;

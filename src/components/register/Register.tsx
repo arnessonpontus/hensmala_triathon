@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
-import { handleSubmit } from "./Utils"
-import { FormType } from "./models";
+import { FormType, RegisterFormSoloState, RegisterFormTeamState } from "./models";
 import { RegSuccess } from "./RegSuccess";
-import { RegisterFormSolo, RegisterFormSoloState } from "./RegisterFormSolo";
-import { RegisterFormTeam, RegisterFormTeamState } from "./RegisterFormTeam";
+import { RegisterFormSolo } from "./RegisterFormSolo";
+import { RegisterFormTeam } from "./RegisterFormTeam";
+import { handleSubmit } from "./registerService";
 
 export const Register = () => {
   const [hasRegisterd, setHasRegistered] = useState(false);

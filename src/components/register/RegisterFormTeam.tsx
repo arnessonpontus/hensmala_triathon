@@ -10,15 +10,15 @@ import {
   CardBody,
   FormText
 } from "reactstrap";
-import { Link, NavLink as RRNavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Consent from "../Consent";
 import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import RegisterButton from "./RegisterButton";
-import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE} from './Utils';
-import { FormType, Shirt } from "./models";
+import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE} from '../../Utils';
+import { FormType, RegisterFormTeamState, Shirt } from "./models";
 import { AboutPaths } from "../about/AboutHT";
 
 const LATE_REGISTER_FEE = 700;
@@ -32,36 +32,6 @@ interface RegisterFormTeamProps {
     totalCost: number
   ) => void;
   loading: boolean;
-}
-
-// TODO: Share between solo
-export interface RegisterFormTeamState {
-  teamName: string;
-  name1: string;
-  email1: string;
-  year1: string;
-  month1: string;
-  day1: string;
-  city1: string;
-  name2: string;
-  email2: string;
-  year2: string;
-  month2: string;
-  day2: string;
-  city2: string;
-  name3: string;
-  email3: string;
-  year3: string;
-  month3: string;
-  day3: string;
-  city3: string;
-  info: string;
-  isCheckboxOneTicked: boolean;
-  isCheckboxTwoTicked: boolean;
-  isCheckboxThreeTicked: boolean;
-  shirts: Shirt[];
-  numCaps: number;
-  extraDonation: number;
 }
 
 export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
@@ -280,13 +250,13 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
                   onClick={() => toggleConsent(2)}
                 />{" "}
                 Jag kommer att följa Hensmåla Triathlons{" "}
-                <RRNavLink
+                <Link
                   target="_blank"
                   rel="noopener noreferrer"
                   to={"/om-ht/" + AboutPaths.rules}
                 >
                   regler
-                </RRNavLink>{" "}
+                </Link>{" "}
                 och den anmälningsinformation som finns på denna sida.
               </Label>
             </FormGroup>

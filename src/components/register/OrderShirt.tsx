@@ -13,24 +13,13 @@ import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import ExtraDonation from "./ExtraDonation";
 import Consent from "../Consent";
-import { handleSubmit, isShirtSelected } from "./Utils"
+import { isShirtSelected } from "../../Utils"
 import RegisterButton from "./RegisterButton";
-import { calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from './Utils';
+import { calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from '../../Utils';
 
-import { Shirt } from "./models";
+import { OrderShirtState } from "./models";
 import { RegSuccess } from "./RegSuccess";
-
-export interface OrderShirtState {
-  name: string,
-  email: string,
-  extraDonation: number,
-  shirts: Shirt[],
-  numCaps: number,
-  info: string,
-  consent: boolean,
-  hasOrdered: boolean,
-  loading: boolean,
-}
+import { handleSubmit } from "./registerService";
 
 export const OrderShirt: React.FC = () => {
   const defaultState: OrderShirtState = {
@@ -107,7 +96,7 @@ export const OrderShirt: React.FC = () => {
                 <FormGroup>
                   <Label for="clothes-select">Välj antal och storlek (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
                   <div className="clothes-select">
-                    <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, newShirts: newShirts }))} />
+                    <ShirtSelect updateShirtSelection={(newShirts) =>{ setFormState(prev => ({ ...prev, shirts: newShirts }))}} />
                   </div>
                   <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
                   <div className="clothes-select">
@@ -175,7 +164,7 @@ export const OrderShirt: React.FC = () => {
                     />
                   </Label>
                 </FormGroup>
-                <RegisterButton text="Beställ!" disabled={!(formState.consent && isShirtSelected(formState.shirts)) || formState.loading} loading={formState.loading} />
+                <RegisterButton text="Beställ!" disabled={!formState.consent || !(isShirtSelected(formState.shirts) || formState.numCaps > 0) || formState.loading} loading={formState.loading} />
               </Form>
               <small>
                 This site is protected by reCAPTCHA and the Google{" "}

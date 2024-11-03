@@ -14,11 +14,11 @@ import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "../TimeUtils";
 import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
-import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from './Utils';
+import { scrollToInfo, calcShirtPrice, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL, CAP_PRICE } from '../../Utils';
 import { AboutPaths } from "../about/AboutHT";
 import { Link } from "react-router-dom";
 import RegisterButton from "./RegisterButton";
-import { FormType } from "./models";
+import { FormType, RegisterFormSoloState } from "./models";
 
 const LATE_REGISTER_FEE = 400;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -30,23 +30,6 @@ interface RegisterFormSoloProps {
     formData: RegisterFormSoloState,
     totalCost: number) => void;
   loading: boolean;
-}
-
-export interface RegisterFormSoloState {
-  name: string;
-  email: string;
-  year: string;
-  month: string;
-  day: string;
-  info: string;
-  gender: string;
-  city: string;
-  isCheckboxOneTicked: boolean;
-  isCheckboxTwoTicked: boolean;
-  isCheckboxThreeTicked: boolean;
-  shirts: any[];
-  numCaps: number;
-  extraDonation: number;
 }
 
 export const RegisterFormSolo = (props: RegisterFormSoloProps) => {

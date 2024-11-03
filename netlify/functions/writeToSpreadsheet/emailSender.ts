@@ -1,5 +1,7 @@
-const nodemailer = require("nodemailer");
-const { getSoloHtml, getTeamHtml, getShirtHtml, getExceptionCompanyHtml } = require('./getHtml')
+import { GoogleSpreadsheetRow } from "google-spreadsheet";
+import { FormType } from "../../../src/components/register/models";
+import { getSoloHtml, getTeamHtml, getShirtHtml } from "./getHtml";
+import { createTransport } from "nodemailer";
 
 // Click on this link to enable applications to access the email account:
 // https://accounts.google.com/b/0/DisplayUnlockCaptcha
@@ -12,9 +14,9 @@ if (!process.env.EMAILER_PASSWORD)
 if (!process.env.VITE_ALLOWED_COMPANY)
   throw new Error("no VITE_ALLOWED_COMPANY env var set");
 
-function sendEmail(addedRow, registerType) {
-  return new Promise((resolve, reject) => {
-    var transporter = nodemailer.createTransport({
+export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType) {
+  return new Promise<void>((resolve, reject) => {
+    var transporter = createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAILER_USER,
@@ -30,14 +32,14 @@ function sendEmail(addedRow, registerType) {
     let html = "";
 
     if (registerType === "team") {
-        const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase()) || 
-                                  addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase()) || 
-                                  addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase());
+        const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) || 
+                                  addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) || 
+                                  addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase());
         html = getTeamHtml(addedRow, hasAllowedCompany);
     } else if (registerType === "tshirt_order") {
         html = getShirtHtml(addedRow);
     } else {
-      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY.toLowerCase())
+      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase())
       html = getSoloHtml(addedRow, hasAllowedCompany);
     }
 
@@ -50,13 +52,13 @@ function sendEmail(addedRow, registerType) {
       // TODO: bcc: [process.env.EMAILER_USER],
       attachments: [{
         filename: 'logga.png',
-        path: __dirname +'/logga.png',
+        path: __dirname +'/assets/logga.png',
         cid: 'logo'
    }]
     };
 
     console.log("Sending email...");
-    transporter.sendMail(mailOptions, function (error, info) {
+    transporter.sendMail(mailOptions, function (error: any, info: { response: string; }) {
       if (error) {
         console.log("Error sending email: ", error);
         reject();
@@ -67,5 +69,3 @@ function sendEmail(addedRow, registerType) {
     });
   });
 }
-
-module.exports = sendEmail;
