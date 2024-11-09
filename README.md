@@ -1,1 +1,1 @@
-## Website for Hensmåla Triathlon
+# Website for Hensmåla Triathlon

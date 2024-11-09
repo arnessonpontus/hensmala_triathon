@@ -1,6 +1,11 @@
 {
   "gold": [
     {
+      "title": "Norva",
+      "image": "norva.jpg",
+      "link": "https://www.norva24miljohantering.se/"
+    },
+    {
       "title": "Sparbanken Eken",
       "image": "sparbanken.png",
       "link": "https://www.sparbankeneken.se/"
@@ -21,19 +26,24 @@
       "link": "https://tingsryd.se/"
     },
     {
+      "title": "Vitamin Well",
+      "image": "VW.png",
+      "link": "https://www.vitaminwell.com/sv/"
+    },
+    {
       "title": "Holtab",
       "image": "holtab.png",
       "link": "https://www.holtab.se/"
     },
     {
-      "title": "Norva",
-      "image": "norva.jpg",
-      "link": "https://www.norva24miljohantering.se/"
-    },
-    {
       "title": "",
       "image": "hm_teknik.jpg",
       "link": "http://hmteknik.se"
+    },
+    {
+      "title": "EBA",
+      "image": "eba_logo.jpg",
+      "link": "https://emmabodabostadsab.se/"
     }
   ],
   "silver": [
@@ -68,16 +78,6 @@
       "link": ""
     },
     {
-      "title": "",
-      "image": "nelson.jpg",
-      "link": "https://www.nelsongarden.se"
-    },
-    {
-      "title": "",
-      "image": "ica.png",
-      "link": "http://www.ica.se/butiker/supermarket/tingsryd/ica-supermarket-tingsryd-2230/start/"
-    },
-    {
       "title": "carlqvist",
       "image": "carlqvist.png",
       "link": "https://carlqvistbil.se/"
@@ -108,49 +108,9 @@
       "link": "https://www.tailwindnutrition.se/"
     },
     {
-      "title": "lrf",
-      "image": "lrf_logotyp.jpeg",
-      "link": "https://www.lrf.se/"
-    },
-    {
-      "title": "Vitamin Well",
-      "image": "VW.png",
-      "link": "https://www.vitaminwell.com/sv/"
-    },
-    {
-      "title": "NOCCO",
-      "image": "NOCCO.png",
-      "link": "https://nocco.com/sv/"
-    },
-    {
-      "title": "medley",
-      "image": "medley.png",
-      "link": "https://www.medley.se/vara-anlaggningar/vattenpalatset-kaskad"
-    },
-    {
-      "title": "rolf",
-      "image": "rolf.png",
-      "link": ""
-    },
-    {
-      "title": "specialsnickeriet",
-      "image": "specialsnickeriet.png",
-      "link": "https://specialsnickeriet.se/"
-    },
-    {
-      "title": "scapa",
-      "image": "scapa.png",
-      "link": ""
-    },
-    {
       "title": "bjs",
       "image": "BJS_logga.png",
       "link": "https://www.bjs-tingsryd.com/"
-    },
-    {
-      "title": "jga",
-      "image": "jga.png",
-      "link": "https://jga.se/"
     },
     {
       "title": "ladan",
@@ -158,16 +118,56 @@
       "link": "https://www.restaurangladan.se/"
     },
     {
-      "title": "roos padel",
-      "image": "roos_padel.jpeg",
-      "link": "https://roospadel.se/"
+      "title": "Brima Produktion",
+      "image": "brima.png",
+      "link": ""
+    },
+    {
+      "title": "Gymgrossisten",
+      "image": "gymgrossisten.webp",
+      "link": "https://www.gymgrossisten.com/"
+    },
+    {
+      "title": "liljas",
+      "image": "liljas.png",
+      "link": "https://www.liljasbil.se/anlaggning/tingsryd/"
     }
   ],
   "brons": [
     {
+      "title": "roos padel",
+      "image": "roos_padel.jpeg",
+      "link": "https://roospadel.se/"
+    },
+    {
+      "title": "specialsnickeriet",
+      "image": "specialsnickeriet.png",
+      "link": "https://specialsnickeriet.se/"
+    },
+    {
+      "title": "Ica",
+      "image": "ica.png",
+      "link": "http://www.ica.se/butiker/supermarket/tingsryd/ica-supermarket-tingsryd-2230/start/"
+    },
+    {
+      "title": "",
+      "image": "nelson.jpg",
+      "link": "https://www.nelsongarden.se"
+    },
+    {
       "title": "belganets svarveri",
       "image": "belganet.png",
       "link": ""
+    },
+    {
+      "title": "lrf",
+      "image": "lrf_logotyp.jpeg",
+      "link": "https://www.lrf.se/"
+    },
+    {
+      "title": "medley",
+      "image": "medley.png",
+      "link": "https://www.medley.se/vara-anlaggningar/vattenpalatset-kaskad"
     },
     {
       "title": "urshults",
@@ -175,9 +175,24 @@
       "link": "https://urshultsbagarn.se/"
     },
     {
+      "title": "scapa",
+      "image": "scapa.png",
+      "link": ""
+    },
+    {
       "title": "fix you",
       "image": "fix_you.png",
       "link": "https://www.facebook.com/Salong-fixyou-258970427476608/"
+    },
+    {
+      "title": "Skip",
+      "image": "skip.jpg",
+      "link": "https://www.skip.se/"
+    },
+    {
+      "title": "rolf",
+      "image": "rolf.png",
+      "link": ""
     },
     {
       "title": "orthex",
@@ -240,11 +255,6 @@
       "link": "https://www.adbildelar.se/butik-verkstad/ad-bildelar-tingsryd"
     },
     {
-      "title": "liljas",
-      "image": "liljas.png",
-      "link": "https://www.liljasbil.se/anlaggning/tingsryd/"
-    },
-    {
       "title": "tingsryd resort",
       "image": "tingsryd_resort.jpeg",
       "link": "https://www.tingsrydresort.se/"
@@ -270,9 +280,49 @@
       "link": ""
     },
     {
+      "title": "Scorett",
+      "image": "scorett.jpg",
+      "link": ""
+    },
+    {
       "title": "Xylem",
       "image": "xylem.png",
       "link": "https://www.xylem.com/sv-se"
+    },
+    {
+      "title": "Beijer",
+      "image": "beijer.png",
+      "link": "https://www.beijerbygg.se/privat/sv/tingsryd"
+    },
+    {
+      "title": "Hensnet",
+      "image": "hensnet.png",
+      "link": ""
+    },
+    {
+      "title": "jga",
+      "image": "jga.png",
+      "link": "https://jga.se/"
+    },
+    {
+      "title": "Lars Karlsson",
+      "image": "lars_karlsson.png",
+      "link": ""
+    },
+    {
+      "title": "Lohilo",
+      "image": "loholo_logo.png",
+      "link": "https://www.lohilofoods.com/"
+    },
+    {
+      "title": "virtuellum",
+      "image": "virtuellum.png",
+      "link": ""
+    },
+    {
+      "title": "Wellness tudio",
+      "image": "wellness.png",
+      "link": "https://www.wellnesstudio.se/"
     }
   ]
 }
