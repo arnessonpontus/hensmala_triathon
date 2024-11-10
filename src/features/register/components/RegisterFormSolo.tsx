@@ -17,6 +17,7 @@ import CapSelect from "./CapSelect";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { Link } from "react-router-dom";
 import RegisterButton from "./RegisterButton";
+import CheckoutButton from "./CheckoutButton";
 import { FormType, RegisterFormSoloState } from "../models";
 import { calcShirtPrice, scrollToInfo } from "../utils";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
@@ -89,6 +90,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
   return (
     <Row>
+
       <Col style={{ marginTop: "2vh" }} md={6}>
         <Form
           onSubmit={(e) =>
@@ -260,6 +262,22 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             <h5>{calcTotalCost()}kr</h5>
           </FormGroup>
+
+          <CheckoutButton
+            registration="registration-fee-solo"
+            shirts={formState.shirts}
+            numCaps={formState.numCaps}
+            text="Anmäl mig och betala med stripe!"
+            disabled={
+              !(
+                formState.isCheckboxOneTicked &&
+                formState.isCheckboxTwoTicked &&
+                formState.isCheckboxThreeTicked
+              ) || props.loading
+            }
+            loading={props.loading}
+          />
+
           <RegisterButton
             text="Anmäl mig!"
             disabled={
@@ -271,6 +289,8 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             }
             loading={props.loading}
           />
+
+
         </Form>
         <small>
           This site is protected by reCAPTCHA and the Google{" "}

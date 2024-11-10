@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@netlify/functions": "^2.8.2",
+    "@stripe/stripe-js": "^4.9.0",
     "@vitejs/plugin-react": "^4.3.3",
     "axios": "^1.6.8",
     "bootstrap": "^4.6.0",
@@ -22,10 +23,11 @@
     "react-router-dom": "^6.27.0",
     "react-slick": "^0.30.2",
     "react-spinners": "^0.13.8",
+    "react-stripe-js": "^1.1.5",
     "react-youtube": "^10.1.0",
     "reactstrap": "8.9.0",
     "slick-carousel": "^1.8.1",
-    "vite": "^5.4.10",
+    "stripe": "^17.3.1",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "scripts": {
@@ -56,6 +58,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-slick": "^0.23.13",
     "typescript": "^5.6.3",
+    "vite": "^5.4.10",
     "vite-plugin-pwa": "^0.20.5"
   }
 }
