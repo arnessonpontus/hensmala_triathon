@@ -1,62 +1,71 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button } from "reactstrap";
-import { Col } from "reactstrap";
-import newsArc from "../../../assets/news.json";
+import { Button, Col, Spinner } from "reactstrap";
+import { useContentfulClient } from "../../../hooks/useContentfulClient";
+import { Entry } from "contentful";
 import OneNews from "./OneNews";
-import UseNewsTracker from "../../hooks/UseNewsTracker";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { useContentfulClient } from "../../hooks/useContentfulClient";
+import { TypeNewsEntrySkeleton } from "../../../../generated/type";
+import { styled } from "styled-components";
 
-let options = {
-  renderNode: {
-    'embedded-asset-block': (node) =>
-      <img width={150} height={510} alt="en bild" className="img-fluid" src={node.data.target.fields.file.url}/>
-  }
-}
+const FlexView = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+`;
 
 const News = () => {
-    const chunkSize = useRef(6)
-    const [newsCount, setNewsCount] = UseNewsTracker(chunkSize.current);
-    const [entries, setEntries] = useState([])
-    const [loading, setLoading] = useState(false)
+  const chunkSize = useRef(6);
+  const [entries, setEntries] = useState<Entry<TypeNewsEntrySkeleton, undefined, string>[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [totalNumNews, setTotalNumNews] = useState(0);
 
-    const client = useContentfulClient();
+  const client = useContentfulClient();
 
-    useEffect(() => {
-      setLoading(true)
-        client
-        .getEntries()
-        .then((entries) => setEntries(entries))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false))
-    }, [])
-    console.log(entries)
+  const fetchEntries = async (): Promise<void> => {
+    setLoading(true)
+    client
+      .getEntries<TypeNewsEntrySkeleton>({
+        content_type: "newsEntry",
+        order: ["-fields.publishedTime"],
+        limit: chunkSize.current,
+        skip: entries.length,
+      })
+      .then((res) => {
+        setTotalNumNews(res.total)
+        setEntries((prevEntries) => [...prevEntries, ...res.items])
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false))
+  }
 
-    if (loading) return <>Laddar nyheter...</>
-    if (!entries.items) return <>Inga nyheter</>
+  useEffect(() => {
+    fetchEntries();
+  }, [])
 
-    return (
-      <Col className="s mt-5">
-        <h2>Nyheter</h2>
-        {entries.items.map((e) => {
+  return (
+    <Col className="s mt-5">
+      <h2>Nyheter</h2>
+      {!entries && <p>Inga nyheter</p>}
+      <FlexView>
+        {entries.map((e, i) => {
           return (
-            <>
-              <h2>{e.fields.title}</h2>
-              {documentToReactComponents(e.fields.description, options)}
-            </>
+            <OneNews key={i} news={e} />
           )
         })}
-        {/* {newsArc.slice(0, newsCount).map((news, i) => {
-          return <OneNews key={i} news={news} />;
-        })}
-        <div className="d-flex flex-column align-items-center">
-        Visar {Math.min(newsCount, newsArc.length)} av {newsArc.length}
-        {newsCount <= newsArc.length &&
-          <Button className="mt-2" onClick={() => setNewsCount(newsCount + chunkSize.current)}>Ladda {Math.min(chunkSize.current, newsArc.length - newsCount)} till</Button>
+      </FlexView>
+
+      <div className="d-flex flex-column align-items-center">
+        {loading && <Spinner size="sm" />}
+
+        <p>Visar {entries.length} av {totalNumNews}</p>
+        {entries.length <= totalNumNews - 1 &&
+          <Button className="mt-2" onClick={() => fetchEntries()}>Ladda {Math.min(chunkSize.current, totalNumNews - entries.length)} till</Button>
         }
-        </div> */}
-      </Col>
-    );
+      </div>
+    </Col>
+  );
 }
 
 export default News;

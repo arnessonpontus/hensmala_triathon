@@ -1,93 +1,80 @@
-import { Col, Row, Button } from "reactstrap";
-import YouTube from "react-youtube";
+import { Button } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Fade } from "react-awesome-reveal";
 import ExternalInternalButtonLink from "../../../components/ExternalInternalButtonLink";
-import { spaceToDash } from "../utils";
+import { Asset, Entry } from "contentful";
+import { TypeNewsEntrySkeleton } from "../../../../generated/type";
+import styled from "styled-components";
+import { trimTimeFromDate } from "../utils";
 
-interface Image {
-  original: string,
-  thumbnail: string
-}
+export const StyledImage = styled.img`
+  height: 200px;
+  object-fit: cover;
+`;
 
-export interface NewsType {
-    title: string,
-    ingress: string,
-    images: Image[],
-    video?: string,
-    text?: string,
-    link?: string,
-    linkName?: string,
-    date: string,
-}
+const StyledContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
+  overflow: hidden;
+  flex: 1;
+`;
 
-const OneNews = (props: {news: NewsType}) => {
-  const opts = {
-    playerVars: {
-      height: "100%",
-      width: "100%",
-      autoplay: 0,
-    },
-  };
+const StyledText = styled.p`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  max-height: 50px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+`;
+
+const NewsCard = styled.div`
+  padding: 0;
+  overflow: hidden;
+  max-width: 500px;
+  min-height: 500px;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const CardFooter = styled.div`
+  display: flex;
+  min-height: 50px;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 4px;
+`;
+
+const OneNews = (props: { news: Entry<TypeNewsEntrySkeleton, undefined, string> }) => {
+  const firstImage = props.news.fields.images?.[0] as Asset<any> | undefined;
+
   return (
     <Fade>
-      <div key={props.news.date} className="card-box">
-        <Col>
-          <Row>
-            <h3>{props.news.title}</h3>
-          </Row>
-          <Row>
-            <p>{props.news.ingress}</p>
-          </Row>
-          <Row>
-            <Link className="nostyle-link mb-2" to={'/news/' + spaceToDash(props.news.title)}> <Button outline>Läs mer</Button></Link>
-          </Row>
-          <Row>
-            <i>{props.news.date}</i>
-          </Row>
-          <Row>
-            {props.news.link && props.news.linkName ? (
-              <ExternalInternalButtonLink link={props.news.link} linkName={props.news.linkName}/>
+      <NewsCard key={props.news.fields.publishedTime} className="card-box">
+        {firstImage && typeof firstImage.fields?.file?.url === "string" ?
+          <StyledImage width="100%" src={firstImage.fields?.file?.url} /> :
+          <StyledImage width="100%" src={"/images/news/news_default.png"} />
+        }
+        <StyledContent>
+          <h4>{props.news.fields.title}</h4>
+          <StyledText>{props.news.fields.ingressText}</StyledText>
+          <Link className="nostyle-link mb-2" to={'/news/' + props.news.sys.id}> <Button outline style={{ width: "100%" }}>Läs mer</Button></Link>
+          <CardFooter>
+            <i>{trimTimeFromDate(props.news.fields.publishedTime)}</i>
+            {props.news.fields.link && props.news.fields.linkText ? (
+              <ExternalInternalButtonLink link={props.news.fields.link} linkName={props.news.fields.linkText} />
             ) : null}
-          </Row>
-        </Col>
-        <Col
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {props.news.video ? (
-            <div
-              className="embed-responsive embed-responsive-16by9"
-              style={{
-                minWidth: 200,
-                margin: "1em auto",
-                objectFit: "contain",
-              }}
-            >
-              <YouTube
-                className="embed-responsive-item"
-                videoId={props.news.video}
-                opts={opts}
-              />
-            </div>
-          ) : (
-            <img
-              style={{
-                minWidth: 200,
-                margin: "1em auto",
-                maxHeight: 200,
-                objectFit: "contain",
-              }}
-              width="100%"
-              src={props.news.images[0]?.thumbnail}
-              alt={props.news.images[0]?.thumbnail}
-            ></img>
-          )}
-        </Col>
-      </div>
+          </CardFooter>
+        </StyledContent>
+      </NewsCard>
     </Fade>
   );
 };

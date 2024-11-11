@@ -1,5 +1,5 @@
-import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import { PrimaryColor } from "../Constants";
 
 interface ExternalInternalButtonLinkProps {
   link: string,
@@ -15,19 +15,12 @@ const ExternalInternalButtonLink = (props: ExternalInternalButtonLinkProps) => {
         target="_blank"
         rel="noopener noreferrer"
         href={link}
-      >
-        <Button style={{ marginTop: 4 }}>
-          Gå till {linkName}
-        </Button>
-      </a>
+        style={{color: PrimaryColor, flexShrink: 0}}
+      >{`Gå till ${linkName} >`}</a>
     )
   } else {
     return (
-      <Link to={link}>
-        <Button style={{ marginTop: 4 }}>
-          Gå till {linkName}
-        </Button>
-      </Link>
+      <Link style={{color: PrimaryColor, flexShrink: 0}} to={link}>{`Gå till ${linkName} >`}</Link>
     )
   }
 }
