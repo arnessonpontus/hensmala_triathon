@@ -1,10 +1,10 @@
 
 export const priceMap: Record<string, string> = {
-    'registration-fee-solo': 'price_1QJgCAHwfCH6Z6NmG3DW1Gue',
-    'registration-fee-team': 'price_1QJiHmHwfCH6Z6NmAt5pz1ey',
-    'funktion': 'price_1QJhuOHwfCH6Z6NmQ0N2qvcR',
-    'bomull': 'price_1QJiJTHwfCH6Z6Nm6CvBxVEO',
-    'keps': 'price_1QJiIKHwfCH6Z6NmSvFSMSXM',
+    'registration-fee-solo': 'price_1QKQxZJv440zP1qkSr5rWl5o',
+    'registration-fee-team': 'price_1QKQxpJv440zP1qkBIAjUPCB',
+    'funktion': 'price_1QKQyAJv440zP1qkYLGxsSML',
+    'bomull': 'price_1QKQyPJv440zP1qk7kku7LmJ',
+    'keps': 'price_1QKQybJv440zP1qkReYLYpIY',
 
 };
 

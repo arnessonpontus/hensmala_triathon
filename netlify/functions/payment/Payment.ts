@@ -59,8 +59,6 @@ export const handler: Handler = async (event) => {
             }
         }
 
-        const test = await stripe.prices.retrieve('price_1QJiIKHwfCH6Z6NmSvFSMSXM');
-
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: lineItems,
