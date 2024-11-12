@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Col, Spinner } from "reactstrap";
 import { useContentfulClient } from "../../../hooks/useContentfulClient";
 import { Entry } from "contentful";
