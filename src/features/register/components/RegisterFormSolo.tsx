@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -21,6 +21,7 @@ import CheckoutButton from "./CheckoutButton";
 import { FormType, RegisterFormSoloState } from "../models";
 import { calcShirtPrice, scrollToInfo } from "../utils";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
+import { loadStripe } from "@stripe/stripe-js";
 
 const LATE_REGISTER_FEE = 400;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -51,6 +52,34 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     numCaps: 0,
     extraDonation: 0
   });
+
+
+  /*
+  
+  FÖRSÖKTE HÄMTA PRISER MEN LÖSTE DET INTE
+    const [testPrice, setTestPrice] = useState<{ id: string; unit_amount: number | null; currency: string } | null>(null);
+  
+    useEffect(() => {
+  
+      fetch('http://localhost:8888/.netlify/functions/payment/getPrice', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productName: "bomull" }),
+      })
+        .then((respone) => respone.json())
+        .then((price) => {
+          if (price && price.unit_amount !== null) {
+            setTestPrice(price);
+          } else {
+            console.log("couldnt find price:/")
+          }
+        })
+        .catch((error) => console.error("Error fetching price details:", error));
+    }, []);
+  */
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -332,6 +361,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
         <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
+
       </Col>
     </Row>
   );

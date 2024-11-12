@@ -46,7 +46,7 @@ const CheckoutButton = (props: CheckoutButtonProps) => {
         onClick={handleCheckout}
         className="mt-2"
         style={{ minWidth: "140px", minHeight: "40px", display: "flex", alignItems: "center", justifyContent: "center" }}
-        disabled={false}
+        disabled={disabled}
       >
         {loading ? (
           <Spinner size="sm" color="light" />

@@ -2,6 +2,7 @@ import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
 import { getPriceId } from './pricing';
 import { Shirt } from '../../../src/features/register/models';
+
 const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
     apiVersion: '2024-10-28.acacia',
 });
@@ -47,13 +48,18 @@ export const handler: Handler = async (event) => {
         }
 
         if (typeof numCaps === 'number' && numCaps > 0) {
+            const capPriceId = getPriceId("keps")
             for (let i = 0; i < numCaps; i++) {
-                lineItems.push({
-                    price: 'price_1QJiIKHwfCH6Z6NmSvFSMSXM',
-                    quantity: 1,
-                });
+                if (capPriceId) {
+                    lineItems.push({
+                        price: capPriceId,
+                        quantity: 1,
+                    });
+                }
             }
         }
+
+        const test = await stripe.prices.retrieve('price_1QJiIKHwfCH6Z6NmSvFSMSXM');
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
