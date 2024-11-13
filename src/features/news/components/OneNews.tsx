@@ -2,10 +2,11 @@ import { Button } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Fade } from "react-awesome-reveal";
 import ExternalInternalButtonLink from "../../../components/ExternalInternalButtonLink";
-import { Asset, Entry } from "contentful";
+import { Entry } from "contentful";
 import { TypeNewsEntrySkeleton } from "../../../../generated/type";
 import styled from "styled-components";
 import { trimTimeFromDate } from "../utils";
+import { getAssetUrl } from "../../../utils";
 
 export const StyledImage = styled.img`
   height: 200px;
@@ -54,13 +55,13 @@ const CardFooter = styled.div`
 `;
 
 const OneNews = (props: { news: Entry<TypeNewsEntrySkeleton, undefined, string> }) => {
-  const firstImage = props.news.fields.images?.[0] as Asset<any> | undefined;
+  const firstImageUrl = getAssetUrl(props.news.fields.images?.[0])
 
   return (
     <Fade>
       <NewsCard key={props.news.fields.publishedTime} className="card-box">
-        {firstImage && typeof firstImage.fields?.file?.url === "string" ?
-          <StyledImage width="100%" src={firstImage.fields?.file?.url} /> :
+        {firstImageUrl ?
+          <StyledImage width="100%" src={firstImageUrl} /> :
           <StyledImage width="100%" src={"/images/news/news_default.png"} />
         }
         <StyledContent>
