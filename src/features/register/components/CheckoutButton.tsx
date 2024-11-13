@@ -6,7 +6,7 @@ import { Shirt } from '../models';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC);
 
 interface CheckoutButtonProps extends ButtonProps {
-  registration: string,
+  registrationType: "registration-fee-solo" | "registration-fee-team"
   shirts: Shirt[],
   numCaps: number,
   text: string,
@@ -16,13 +16,13 @@ interface CheckoutButtonProps extends ButtonProps {
 
 
 const CheckoutButton = (props: CheckoutButtonProps) => {
-  const { registration, shirts, numCaps, text, loading, disabled } = props;
+  const { registrationType, shirts, numCaps, text, loading, disabled } = props;
 
   const handleCheckout = async () => {
     const response = await fetch('http://localhost:8888/.netlify/functions/payment/Payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ registration, shirts, numCaps }),
+      body: JSON.stringify({ registrationType, shirts, numCaps }),
     });
 
     if (!response.ok) {

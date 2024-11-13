@@ -8,6 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
 });
 
 export const handler: Handler = async (event) => {
+    console.log(event.body);
     // Handle OPTIONS request for CORS preflight
     if (event.httpMethod === 'OPTIONS') {
         return {
@@ -23,10 +24,9 @@ export const handler: Handler = async (event) => {
 
     // Handle POST request for payment creation
     try {
-        const { registration, shirts, numCaps } = JSON.parse(event.body || '{}');
-
+        const { registrationType, shirts, numCaps } = JSON.parse(event.body || '{}');
         const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-        const registrationPriceId = getPriceId(registration);
+        const registrationPriceId = getPriceId(registrationType);
 
         if (registrationPriceId) {
             lineItems.push({
@@ -49,13 +49,11 @@ export const handler: Handler = async (event) => {
 
         if (typeof numCaps === 'number' && numCaps > 0) {
             const capPriceId = getPriceId("keps")
-            for (let i = 0; i < numCaps; i++) {
-                if (capPriceId) {
-                    lineItems.push({
-                        price: capPriceId,
-                        quantity: 1,
-                    });
-                }
+            if (capPriceId) {
+                lineItems.push({
+                    price: capPriceId,
+                    quantity: numCaps,
+                });
             }
         }
 
