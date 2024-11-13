@@ -27,7 +27,7 @@ export const Videos = () => {
   }, [])
   
     return (
-      <Container className="pb-4">
+      <Container className="pb-4 min-vh-100">
         <Row>
           {entries.map((video) => {
             return (
