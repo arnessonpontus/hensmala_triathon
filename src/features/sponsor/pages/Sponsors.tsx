@@ -1,32 +1,49 @@
-import { useEffect } from "react";
-
-import sponsors from "../../../assets/sponsors.json";
+import { useEffect, useState } from "react";
 
 import { Container } from "reactstrap";
 import { SponsorSection } from "../components/SponsorSection";
+import { TypeSponsorSkeleton } from "../../../../generated/type";
+import { Entry } from "contentful";
+import { useContentfulClient } from "../../../hooks/useContentfulClient";
 
 export const Sponsors = () => {
+  const [entries, setEntries] = useState<Entry<TypeSponsorSkeleton, undefined, string>[]>([]);
+  const client = useContentfulClient();
+
+  const fetchEntries = async (): Promise<void> => {
+    client
+      .getEntries<TypeSponsorSkeleton>({
+        content_type: "sponsor",
+        order: ["-sys.createdAt"],
+      })
+      .then((res) => {
+        setEntries(res.items);
+      })
+      .catch((err) => console.log(err))
+  }
 
   useEffect(() => {
+    fetchEntries();
+
     window.scrollTo(0, 0);
   }, [])
 
   // Gold sponsor - more than 5k, silver - more than 2k
   return (
-    <Container>
+    <Container className="min-vh-100">
       <div className="spons-container" style={{ paddingTop: "20px" }}>
-        {sponsors.gold.map((sponsor) => {
-          return <SponsorSection sponsor={sponsor} sponsType="gold" />;
+        {entries.filter(item => item.fields.level === "GOLD").map((sponsor) => {
+          return <SponsorSection sponsor={sponsor}/>;
         })}
       </div>
       <div className="spons-container">
-        {sponsors.silver.map((sponsor) => {
-          return <SponsorSection sponsor={sponsor} sponsType="silver" />;
+        {entries.filter(item => item.fields.level === "SILVER").map((sponsor) => {
+          return <SponsorSection sponsor={sponsor}/>;
         })}
       </div>
       <div className="spons-container">
-        {sponsors.brons.map((sponsor) => {
-          return <SponsorSection sponsor={sponsor} sponsType="brons" />;
+        {entries.filter(item => item.fields.level === "BRONZE").map((sponsor) => {
+          return <SponsorSection sponsor={sponsor}/>;
         })}
       </div>
     </Container>
