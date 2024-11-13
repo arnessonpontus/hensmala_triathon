@@ -1,32 +1,9 @@
-import { useEffect, useState } from "react";
-
 import { Container } from "reactstrap";
 import { SponsorSection } from "../components/SponsorSection";
-import { TypeSponsorSkeleton } from "../../../../generated/type";
-import { Entry } from "contentful";
-import { useContentfulClient } from "../../../hooks/useContentfulClient";
+import { useSponsorContent } from "../components/hooks/useSponsorContent";
 
 export const Sponsors = () => {
-  const [entries, setEntries] = useState<Entry<TypeSponsorSkeleton, undefined, string>[]>([]);
-  const client = useContentfulClient();
-
-  const fetchEntries = async (): Promise<void> => {
-    client
-      .getEntries<TypeSponsorSkeleton>({
-        content_type: "sponsor",
-        order: ["-sys.createdAt"],
-      })
-      .then((res) => {
-        setEntries(res.items);
-      })
-      .catch((err) => console.log(err))
-  }
-
-  useEffect(() => {
-    fetchEntries();
-
-    window.scrollTo(0, 0);
-  }, [])
+  const entries = useSponsorContent();
 
   // Gold sponsor - more than 5k, silver - more than 2k
   return (
