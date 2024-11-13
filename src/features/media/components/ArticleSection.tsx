@@ -1,19 +1,20 @@
-import { useEffect } from "react";
+import { Entry } from "contentful";
+import { useEffect, useState } from "react";
 
 import { Col } from "reactstrap";
-interface Article {
-  link: string,
-  title: string
-}
+import { TypeArticleSkeleton } from "../../../../generated/type";
+import { getAssetUrl } from "../../../utils";
 
 interface ArticleSectionProps {
-  article: Article
+  article: Entry<TypeArticleSkeleton, undefined, string>
 }
 export const ArticleSection = (props: ArticleSectionProps) => {
-let randomNumbers: number[] = [];
+  const [randNums, setRandNums] = useState<number[]>([]);
   useEffect(() => {
-    randomNumbers = Array.from({length: 5}, () => Math.floor(Math.random() * 7 + 1));
+    setRandNums(Array.from({length: 5}, () => Math.floor(Math.random() * 6 + 1)));
   }, [])
+
+    console.log(props.article)
 
     return (
       <Col className="mt-4" md="6">
@@ -21,11 +22,11 @@ let randomNumbers: number[] = [];
           style={{ textDecoration: "none" }}
           target="_blank"
           rel="noopener noreferrer"
-          href={"images/articleImages/" + props.article.link}
+          href={getAssetUrl(props.article.fields.articleFile)}
         >
           <div className="card-box-hoverable" style={{ height: 350 }}>
             <div className="article-placeholder">
-              {randomNumbers.map(rnd => <div style={{width: rnd + "0%"}} className="article-placeholder-row"/>)}
+              {randNums.map(rnd => <div key={rnd} style={{width: rnd + "0%"}} className="article-placeholder-row"/>)}
             </div>
             <div style={styles.titleContainer as any}>
               <h5
@@ -36,7 +37,7 @@ let randomNumbers: number[] = [];
                 }}
                 className="mt-2"
               >
-                {props.article.title}
+                {props.article.fields.title}
               </h5>
             </div>
           </div>

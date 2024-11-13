@@ -4,6 +4,7 @@ export interface TypeArticleFields {
     articleFile: EntryFieldTypes.AssetLink;
     title: EntryFieldTypes.Symbol;
     thumbnail?: EntryFieldTypes.AssetLink;
+    year: EntryFieldTypes.Integer;
 }
 
 export type TypeArticleSkeleton = EntrySkeletonType<TypeArticleFields, "article">;

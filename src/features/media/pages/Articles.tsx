@@ -1,36 +1,56 @@
 import { useEffect, useState } from "react";
-import articles from "../../../assets/articles.json";
 
 import { Row, Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { ArticleSection } from "../components/ArticleSection";
+import { Entry } from "contentful";
+import { TypeArticleSkeleton } from "../../../../generated/type";
+import { useContentfulClient } from "../../../hooks/useContentfulClient";
+
+const onToTopTap = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+const years = ["2024", "2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
+
+const onYearTap = (yearIndex: number) => {
+  if (yearIndex === 0) {
+    onToTopTap();
+    return;
+  }
+    document.querySelector(".year-" + years[yearIndex-1])?.scrollIntoView({ behavior: "smooth" });
+};
 
 export const Articles = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const [entries, setEntries] = useState<Entry<TypeArticleSkeleton, undefined, string>[]>([]);
+  const [years, setYears] = useState<number[]>([]);
+  const client = useContentfulClient();
+
+  const fetchEntries = async (): Promise<void> => {
+    client
+      .getEntries<TypeArticleSkeleton>({
+        content_type: "article",
+        order: ["-sys.createdAt"],
+      })
+      .then((res) => {
+        setEntries(res.items);
+        setYears(Array.from(new Set(res.items.map(item => item.fields.year))).sort())
+      })
+      .catch((err) => console.log(err))
+  }
+
   useEffect(() => {
     onToTopTap();
+    fetchEntries();
   }, [])
-
-  const years = ["2024", "2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
-
-  const onYearTap = (yearIndex: number) => {
-    if (yearIndex === 0) {
-      onToTopTap();
-      return;
-    }
-      document.querySelector(".year-" + years[yearIndex-1])?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const onToTopTap = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const toggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
     return (
-      <div className="text-center pt-5">
+      <div className="text-center pt-5 min-vh-100">
         <Button
           color="primary"
           style={{
@@ -68,7 +88,7 @@ export const Articles = () => {
               <div className="p-5">
                 <h3>{year}</h3>
                 <Row>
-                  {articles[year as keyof typeof articles].map((article) => {
+                  {entries.filter(e => e.fields.year === year).map((article) => {
                     return <ArticleSection article={article} />;
                   })}
                 </Row>
