@@ -14,8 +14,6 @@ export const ArticleSection = (props: ArticleSectionProps) => {
     setRandNums(Array.from({length: 5}, () => Math.floor(Math.random() * 6 + 1)));
   }, [])
 
-    console.log(props.article)
-
     return (
       <Col className="mt-4" md="6">
         <a

@@ -3,7 +3,8 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 export interface TypeImageCollectionFields {
     albumLink: EntryFieldTypes.Symbol;
     title: EntryFieldTypes.Symbol;
-    thumbnail?: EntryFieldTypes.AssetLink;
+    thumbnailUrl: EntryFieldTypes.Symbol;
+    year?: EntryFieldTypes.Integer;
 }
 
 export type TypeImageCollectionSkeleton = EntrySkeletonType<TypeImageCollectionFields, "imageCollection">;
