@@ -5,9 +5,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
     apiVersion: '2024-10-28.acacia',
 });
 
-//Du måste lägga till STRIPE_WEBHOOK_SECRET i netlify env pontus.
-//Jag la till en webhook på stripe men vet inte om endpointen är correct
-
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 
 export const handler: Handler = async (event) => {

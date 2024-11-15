@@ -8,16 +8,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
 });
 
 export const handler: Handler = async (event) => {
-    console.log(event.body);
     // Handle OPTIONS request for CORS preflight
     if (event.httpMethod === 'OPTIONS') {
         return {
             statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'OPTIONS, POST',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
             body: '',
         };
     }
@@ -58,6 +52,11 @@ export const handler: Handler = async (event) => {
         }
 
         const session = await stripe.checkout.sessions.create({
+            metadata: {
+                registrationType,
+                shirts: shirts.toString(), // TODO: Send proccessed data
+                numCaps: numCaps.toString()
+            },
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
@@ -67,21 +66,11 @@ export const handler: Handler = async (event) => {
 
         return {
             statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'OPTIONS, POST',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
             body: JSON.stringify({ id: session.id }),
         };
     } catch (error) {
         return {
             statusCode: 400,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'OPTIONS, POST',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
             body: JSON.stringify({ error: error instanceof Error ? error.message : 'An error occurred' }),
         };
     }

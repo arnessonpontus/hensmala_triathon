@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Button, ButtonProps, Spinner } from "reactstrap";
 import { Shirt } from '../models';
@@ -19,7 +18,7 @@ const CheckoutButton = (props: CheckoutButtonProps) => {
   const { registrationType, shirts, numCaps, text, loading, disabled } = props;
 
   const handleCheckout = async () => {
-    const response = await fetch('http://localhost:8888/.netlify/functions/payment/Payment', {
+    const response = await fetch('/.netlify/functions/payment/payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ registrationType, shirts, numCaps }),
