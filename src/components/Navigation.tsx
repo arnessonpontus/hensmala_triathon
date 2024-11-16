@@ -27,7 +27,6 @@ export const Navigation = () => {
         color="light"
         className="inactive nav-title brand-title"
         activeClassName="active"
-        exact={true}
         to="/"
         onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
       >
