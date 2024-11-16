@@ -55,7 +55,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
   const [testPriceInCents, setTestPriceInCents] = useState(0);
 
-  // TODO: Get all prices
+  // TODO: Get all prices and not only bomull
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -80,7 +80,6 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
     fetchData()
   }, []);
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -120,7 +119,6 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
   return (
     <Row>
-
       <Col style={{ marginTop: "2vh" }} md={6}>
         <Form
           onSubmit={(e) =>
@@ -299,7 +297,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             registrationType="registration-fee-solo"
             shirts={formState.shirts}
             numCaps={formState.numCaps}
-            text="Anmäl mig och betala med stripe!"
+            text="Betala med stripe!"
             disabled={
               !(
                 formState.isCheckboxOneTicked &&

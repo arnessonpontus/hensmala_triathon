@@ -13,7 +13,6 @@ interface CheckoutButtonProps extends ButtonProps {
   disabled: boolean
 }
 
-
 const CheckoutButton = (props: CheckoutButtonProps) => {
   const { registrationType, shirts, numCaps, text, loading, disabled } = props;
 

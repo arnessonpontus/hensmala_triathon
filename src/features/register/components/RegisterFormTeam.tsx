@@ -105,7 +105,6 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
         <div key={num} style={{ marginBottom: "20px" }}>
           <Label for={`teamMember${num}`}>Lagmedlem {num}</Label>
           {num === 3 ? <i> (Ej för lag med endast två deltagare)</i> : null}
-          <i></i>
           <Card id={`teamMember${num}`} style={{ backgroundColor: `#dfeff${num * 3}` }}>
             <CardBody>
               <FormGroup>
@@ -286,7 +285,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
           </FormGroup>
 
           <CheckoutButton
-            registration="registration-fee-team"
+            registrationType="registration-fee-team"
             shirts={formState.shirts}
             numCaps={formState.numCaps}
             text="Anmäl oss och betala med stripe!"
