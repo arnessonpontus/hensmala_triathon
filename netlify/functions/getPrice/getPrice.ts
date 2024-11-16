@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import { Handler } from '@netlify/functions';
-import { getPriceId } from "./pricing";
+import { getPriceId } from "../payment/pricing";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
     apiVersion: '2024-10-28.acacia',
@@ -11,11 +11,6 @@ export const handler: Handler = async (event) => {
     if (event.httpMethod === 'OPTIONS') {
         return {
             statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'OPTIONS, POST',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
             body: '',
         };
     }
@@ -28,34 +23,18 @@ export const handler: Handler = async (event) => {
             const price = await stripe.prices.retrieve(priceId);
             return {
                 statusCode: 200,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'OPTIONS, POST',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                },
-                body: JSON.stringify({ price }),
-
+                body: JSON.stringify(price),
             };
         }
 
         return {
             statusCode: 404,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'OPTIONS, POST',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
             body: JSON.stringify({ error: "Price not found" }),
         };
     } catch (error) {
         console.error("Error retrieving price:", error);
         return {
             statusCode: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'OPTIONS, POST',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
             body: JSON.stringify({ error: "Failed to retrieve price" }),
         };
     }

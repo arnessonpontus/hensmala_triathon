@@ -19,8 +19,9 @@ import { Link } from "react-router-dom";
 import RegisterButton from "./RegisterButton";
 import CheckoutButton from "./CheckoutButton";
 import { FormType, RegisterFormSoloState } from "../models";
-import { calcShirtPrice, scrollToInfo } from "../utils";
+import { calcShirtPrice, oreToSek, scrollToInfo } from "../utils";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
+import stripe from "stripe";
 
 const LATE_REGISTER_FEE = 400;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -51,6 +52,35 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     numCaps: 0,
     extraDonation: 0
   });
+
+  const [testPriceInCents, setTestPriceInCents] = useState(0);
+
+  // TODO: Get all prices
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/.netlify/functions/getPrice', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productName: "bomull" }),
+        })
+        const price: stripe.Price = await res.json()
+
+        if (price && price.unit_amount != null) {
+          setTestPriceInCents(oreToSek(price.unit_amount));
+        } else {
+          console.log("couldnt find price:/")
+        }
+      } catch (error) {
+        console.error("Error fetching price details:", error)
+      }
+    }
+
+    fetchData()
+  }, []);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -261,6 +291,8 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             <h5>{calcTotalCost()}kr</h5>
+            <Label for="totalAmountToPay">Totalt att betala FRÅN STRIPE:</Label>
+            <h5>{testPriceInCents}kr</h5>
           </FormGroup>
 
           <CheckoutButton
