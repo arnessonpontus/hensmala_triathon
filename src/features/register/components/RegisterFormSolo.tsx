@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -17,9 +17,11 @@ import CapSelect from "./CapSelect";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { Link } from "react-router-dom";
 import RegisterButton from "./RegisterButton";
+import CheckoutButton from "./CheckoutButton";
 import { FormType, RegisterFormSoloState } from "../models";
-import { calcShirtPrice, scrollToInfo } from "../utils";
+import { calcShirtPrice, oreToSek, scrollToInfo } from "../utils";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
+import stripe from "stripe";
 
 const LATE_REGISTER_FEE = 400;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -50,6 +52,34 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     numCaps: 0,
     extraDonation: 0
   });
+
+  const [testPriceInCents, setTestPriceInCents] = useState(0);
+
+  // TODO: Get all prices and not only bomull
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/.netlify/functions/getPrice', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productName: "bomull" }),
+        })
+        const price: stripe.Price = await res.json()
+
+        if (price && price.unit_amount != null) {
+          setTestPriceInCents(oreToSek(price.unit_amount));
+        } else {
+          console.log("couldnt find price:/")
+        }
+      } catch (error) {
+        console.error("Error fetching price details:", error)
+      }
+    }
+
+    fetchData()
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -259,7 +289,25 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             <h5>{calcTotalCost()}kr</h5>
+            <Label for="totalAmountToPay">Totalt att betala FRÅN STRIPE:</Label>
+            <h5>{testPriceInCents}kr</h5>
           </FormGroup>
+
+          <CheckoutButton
+            registrationType="registration-fee-solo"
+            shirts={formState.shirts}
+            numCaps={formState.numCaps}
+            text="Betala med stripe!"
+            disabled={
+              !(
+                formState.isCheckboxOneTicked &&
+                formState.isCheckboxTwoTicked &&
+                formState.isCheckboxThreeTicked
+              ) || props.loading
+            }
+            loading={props.loading}
+          />
+
           <RegisterButton
             text="Anmäl mig!"
             disabled={
@@ -271,6 +319,8 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             }
             loading={props.loading}
           />
+
+
         </Form>
         <small>
           This site is protected by reCAPTCHA and the Google{" "}
@@ -312,6 +362,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
         <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
+
       </Col>
     </Row>
   );

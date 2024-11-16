@@ -38,3 +38,7 @@ export function shirtArrayToString(shirts: Shirt[]) {
     }, 0);
     return shirtAmount;
   }
+
+export const oreToSek = (ore: number) => {
+  return ore / 100;
+}

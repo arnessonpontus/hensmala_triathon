@@ -21,6 +21,7 @@ import { FormType, RegisterFormTeamState } from "../models";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
 import { calcShirtPrice, scrollToInfo } from "../utils";
+import CheckoutButton from "./CheckoutButton";
 
 const LATE_REGISTER_FEE = 700;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -92,7 +93,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
   const calcTotalCost = () => {
     const shirtCost = calcShirtPrice(formState.shirts);
     const capCost = formState.numCaps * CAP_PRICE;
-    if (isAllowedCompanyEntered()){
+    if (isAllowedCompanyEntered()) {
       return formState.extraDonation + shirtCost + capCost
     }
     return REGISTER_FEE + formState.extraDonation + shirtCost + capCost;
@@ -100,12 +101,11 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
 
   const renderMemberFields = () => {
     return [1, 2, 3].map((num) => {
-      return(
-      <div key={num} style={{marginBottom: "20px"}}>
-        <Label for={`teamMember${num}`}>Lagmedlem {num}</Label>
-        {num === 3 ? <i> (Ej för lag med endast två deltagare)</i> : null} 
-        <i></i>
-          <Card id={`teamMember${num}`} style={{ backgroundColor: `#dfeff${num*3}` }}>
+      return (
+        <div key={num} style={{ marginBottom: "20px" }}>
+          <Label for={`teamMember${num}`}>Lagmedlem {num}</Label>
+          {num === 3 ? <i> (Ej för lag med endast två deltagare)</i> : null}
+          <Card id={`teamMember${num}`} style={{ backgroundColor: `#dfeff${num * 3}` }}>
             <CardBody>
               <FormGroup>
                 <Label for={`name${num}`}>Namn*</Label>
@@ -165,175 +165,191 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
             </CardBody>
           </Card>
         </div>
-        )
+      )
     })
   }
-            
-    return (
-      <Row>
-        <Col style={{ marginTop: "2vh" }} md={6}>
-          <Form
-            onSubmit={(e) =>
-              props.handleSubmit(e, "team", formState, calcTotalCost())
-            }
-          >
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h3>Anmälan 2024 Lag</h3>
-              <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
-                Visa info<i className="fas fa-angle-down angle-down"></i>
-              </div>
+
+  return (
+    <Row>
+      <Col style={{ marginTop: "2vh" }} md={6}>
+        <Form
+          onSubmit={(e) =>
+            props.handleSubmit(e, "team", formState, calcTotalCost())
+          }
+        >
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <h3>Anmälan 2024 Lag</h3>
+            <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
+              Visa info<i className="fas fa-angle-down angle-down"></i>
             </div>
-            <p>
-              <b>
-                <i>Sista dag för beställning av t-shirt och keps är 12:e juni</i>
-              </b>
-            </p>
-            <FormGroup>
-              <Label for="teamName">Lagnamn*</Label>
+          </div>
+          <p>
+            <b>
+              <i>Sista dag för beställning av t-shirt och keps är 12:e juni</i>
+            </b>
+          </p>
+          <FormGroup>
+            <Label for="teamName">Lagnamn*</Label>
+            <Input
+              required={true}
+              type="text"
+              name="teamName"
+              id="teamName"
+              placeholder="Gubbaflås"
+              value={formState.teamName}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          {renderMemberFields()}
+          <FormGroup>
+            <Label for="info">Information</Label>
+            <Input
+              type="textarea"
+              name="info"
+              id="info"
+              placeholder="T.ex. vilka du vill köra samtidigt som eller övrig info"
+              value={formState.info}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="clothes-select">Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
+            <div className="clothes-select">
+              <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, shirts: newShirts }))} />
+            </div>
+            <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
+            <div className="clothes-select">
+              <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps: numCaps }))} />
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
+            <ExtraDonation setDonation={(donationAmount) => setFormState(prev => ({ ...prev, extraDonation: donationAmount }))} />
+          </FormGroup>
+          <FormGroup>
+            <FormText color="bold">* obligatoriska fält.</FormText>
+          </FormGroup>
+          <FormGroup check>
+            <Label for="checkbox1Team" className="consent-checkbox">
               <Input
-                required={true}
-                type="text"
-                name="teamName"
-                id="teamName"
-                placeholder="Gubbaflås"
-                value={formState.teamName}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            {renderMemberFields()}
-            <FormGroup>
-              <Label for="info">Information</Label>
+                id="checkbox1Team"
+                type="checkbox"
+                onClick={() => toggleConsent(1)}
+              />{" "}
+              Jag accepterar att Hensmåla Triathlon sparar data om mig.
+            </Label>
+            <Consent
+              buttonText="Vad betyder detta?"
+              title="Information om sparad data"
+            />
+          </FormGroup>
+          <FormGroup check>
+            <Label for="checkbox2Team">
               <Input
-                type="textarea"
-                name="info"
-                id="info"
-                placeholder="T.ex. vilka du vill köra samtidigt som eller övrig info"
-                value={formState.info}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-                <Label for="clothes-select">Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
-                <div className="clothes-select">
-                  <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, shirts: newShirts }))} />
-                </div>
-                <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
-                <div className="clothes-select">
-                  <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps: numCaps }))} />
-                </div>
-            </FormGroup>
-            <FormGroup>
-              <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
-              <ExtraDonation setDonation={(donationAmount) => setFormState(prev => ({ ...prev, extraDonation: donationAmount }))} />
-            </FormGroup>
-            <FormGroup>
-              <FormText color="bold">* obligatoriska fält.</FormText>
-            </FormGroup>
-            <FormGroup check>
-              <Label for="checkbox1Team" className="consent-checkbox">
-                <Input
-                  id="checkbox1Team"
-                  type="checkbox"
-                  onClick={() => toggleConsent(1)}
-                />{" "}
-                Jag accepterar att Hensmåla Triathlon sparar data om mig.
-              </Label>
-              <Consent
-                buttonText="Vad betyder detta?"
-                title="Information om sparad data"
-              />
-            </FormGroup>
-            <FormGroup check>
-              <Label for="checkbox2Team">
-                <Input
-                  id="checkbox2Team"
-                  type="checkbox"
-                  onClick={() => toggleConsent(2)}
-                />{" "}
-                Jag kommer att följa Hensmåla Triathlons{" "}
-                <Link
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  to={"/om-ht/" + AboutPaths.rules}
-                >
-                  regler
-                </Link>{" "}
-                och den anmälningsinformation som finns på denna sida.
-              </Label>
-            </FormGroup>
-            <FormGroup check>
-              <Label for="checkbox3Team">
-                <Input
-                  id="checkbox3Team"
-                  type="checkbox"
-                  onClick={() => toggleConsent(3)}
-                />{" "}
-                Jag accepterar att bilder och filmer sparas och kan användas på
-                internet.
-              </Label>
-            </FormGroup>
-            {isAllowedCompanyEntered() ? 
+                id="checkbox2Team"
+                type="checkbox"
+                onClick={() => toggleConsent(2)}
+              />{" "}
+              Jag kommer att följa Hensmåla Triathlons{" "}
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                to={"/om-ht/" + AboutPaths.rules}
+              >
+                regler
+              </Link>{" "}
+              och den anmälningsinformation som finns på denna sida.
+            </Label>
+          </FormGroup>
+          <FormGroup check>
+            <Label for="checkbox3Team">
+              <Input
+                id="checkbox3Team"
+                type="checkbox"
+                onClick={() => toggleConsent(3)}
+              />{" "}
+              Jag accepterar att bilder och filmer sparas och kan användas på
+              internet.
+            </Label>
+          </FormGroup>
+          {isAllowedCompanyEntered() ?
             <div className="allowed-company-text-bg">
               <small>
-              Du har anget <b style={{color: "#007fa8"}}>{import.meta.env.VITE_ALLOWED_COMPANY}</b> som klubb och får därför anmälningsavgiften betald.
+                Du har anget <b style={{ color: "#007fa8" }}>{import.meta.env.VITE_ALLOWED_COMPANY}</b> som klubb och får därför anmälningsavgiften betald.
               </small>
             </div>
             : null}
-            <FormGroup>
-              <Label for="totalAmountToPay">Totalt att betala:</Label>
-              <h5>{calcTotalCost()}kr</h5>
-            </FormGroup>
-            <RegisterButton 
-              id="submitButton"
-              text="Anmäl oss!" 
-              disabled={
-                !(
-                  formState.isCheckboxOneTicked &&
-                  formState.isCheckboxTwoTicked &&
-                  formState.isCheckboxThreeTicked
-                ) || props.loading
-              }
-              loading={props.loading}
-            />
-          </Form>
-          <small>
-            This site is protected by reCAPTCHA and the Google{" "}
-            <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
-            <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
-            apply.
-          </small>
-        </Col>
-        <Col id="info-text" style={{ marginTop: "2vh" }}>
-          <hr className="register-divider"></hr>          
-          <h3>Anmäl er som Lag (2-3 pers.)</h3>
-          <b>Datum: 20 juli</b>
-          <p>
-            När ni anmäler er som lag får sträckorna delas upp hur ni vill inom laget. Detta
-            kan innebära att ni är tre personer som deltar där alla kör en gren var, eller ett lag med 2 personer där en av er kör 2 grenar. För mer information om sträckorna och tävlingsregler kan
-            du gå in{" "}
-            <Link 
-              target="_blank"
-              rel="noopener noreferrer" 
-              to="/om-ht/hem">
-              HÄR
-            </Link>.
-          </p>
-          <p>
-            Du kommer få ett bekräftelse-email med din angiva information och{" "}
-            <b>betalningsuppgifter</b> då anmälan är gjord. Betala gärna direkt i samband med anmälan. När tävlingen närmar
-            sig kommer yttligare information skickas ut via mail till alla
-            deltagare.
-          </p>
-          <p>Första start sker 15.00.</p>
-          <b>
-            Fotografering och videofilmning förekommer, meddela om du inte vill
-            vara med.
-          </b>
-          <br></br>
-          <br></br>   
-          <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-          <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
-        </Col>
-      </Row>
-    );
-  }
+          <FormGroup>
+            <Label for="totalAmountToPay">Totalt att betala:</Label>
+            <h5>{calcTotalCost()}kr</h5>
+          </FormGroup>
+
+          <CheckoutButton
+            registrationType="registration-fee-team"
+            shirts={formState.shirts}
+            numCaps={formState.numCaps}
+            text="Anmäl oss och betala med stripe!"
+            disabled={
+              !(
+                formState.isCheckboxOneTicked &&
+                formState.isCheckboxTwoTicked &&
+                formState.isCheckboxThreeTicked
+              ) || props.loading
+            }
+            loading={props.loading}
+          />
+
+          <RegisterButton
+            id="submitButton"
+            text="Anmäl oss!"
+            disabled={
+              !(
+                formState.isCheckboxOneTicked &&
+                formState.isCheckboxTwoTicked &&
+                formState.isCheckboxThreeTicked
+              ) || props.loading
+            }
+            loading={props.loading}
+          />
+        </Form>
+        <small>
+          This site is protected by reCAPTCHA and the Google{" "}
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
+          <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
+          apply.
+        </small>
+      </Col>
+      <Col id="info-text" style={{ marginTop: "2vh" }}>
+        <hr className="register-divider"></hr>
+        <h3>Anmäl er som Lag (2-3 pers.)</h3>
+        <b>Datum: 20 juli</b>
+        <p>
+          När ni anmäler er som lag får sträckorna delas upp hur ni vill inom laget. Detta
+          kan innebära att ni är tre personer som deltar där alla kör en gren var, eller ett lag med 2 personer där en av er kör 2 grenar. För mer information om sträckorna och tävlingsregler kan
+          du gå in{" "}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            to="/om-ht/hem">
+            HÄR
+          </Link>.
+        </p>
+        <p>
+          Du kommer få ett bekräftelse-email med din angiva information och{" "}
+          <b>betalningsuppgifter</b> då anmälan är gjord. Betala gärna direkt i samband med anmälan. När tävlingen närmar
+          sig kommer yttligare information skickas ut via mail till alla
+          deltagare.
+        </p>
+        <p>Första start sker 15.00.</p>
+        <b>
+          Fotografering och videofilmning förekommer, meddela om du inte vill
+          vara med.
+        </b>
+        <br></br>
+        <br></br>
+        <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
+        <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
+      </Col>
+    </Row>
+  );
+}

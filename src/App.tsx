@@ -18,6 +18,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import CoronaEdition from "./features/challenge/pages/CoronaEdition";
 import { Fortrampet } from "./features/fortrampet/pages/Fortrampet";
 import { OrderShirt } from "./features/register/pages/OrderShirt";
+import PaymentCancelled from "./features/register/pages/PaymentCancelled";
+import PaymentSuccess from "./features/register/pages/PaymentSuccess";
 
 const App = () => {
   return (
@@ -37,6 +39,8 @@ const App = () => {
           <Route path="/artiklar" element={<Articles />} />
           <Route path="/radio" element={<Radio />} />
           <Route path="/sponsorer" element={<Sponsors />} />
+          <Route path="/payment-cancelled" element={<PaymentCancelled />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/om-ht/:id" element={<AboutHT />} />
           <Route path="/news/:id" element={<NewsDetail />} />
         </Routes>
