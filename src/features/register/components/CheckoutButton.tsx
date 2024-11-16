@@ -2,7 +2,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Button, ButtonProps, Spinner } from "reactstrap";
 import { Shirt } from '../models';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC);
+const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PUBLIC}`);
 
 interface CheckoutButtonProps extends ButtonProps {
   registrationType: "registration-fee-solo" | "registration-fee-team"
