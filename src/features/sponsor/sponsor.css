@@ -4,29 +4,29 @@
   flex-wrap: wrap;
 }
 
-.spons-gold {
+.spons-GOLD {
   height: 200px;
   width: 250px;
 }
-.spons-silver {
+.spons-SILVER {
   height: 150px;
   width: 200px;
 }
-.spons-brons {
+.spons-BRONZE {
   height: 100px;
   width: 150px;
 }
 
-.spons-img-gold {
+.spons-img-GOLD {
   max-height: 150px;
   max-width: 220px;
 }
 
-.spons-img-silver {
+.spons-img-SILVER {
   max-height: 100px;
   max-width: 170px;
 }
-.spons-img-brons {
+.spons-img-BRONZE {
   max-height: 70px;
   max-width: 120px;
 }

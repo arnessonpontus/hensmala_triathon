@@ -1,13 +1,35 @@
 import ClipLoader from "react-spinners/ClipLoader";
-import videos from "../../../assets/videos.json";
 
 import { Container, Row, Col } from "reactstrap";
+import { useEffect, useState } from "react";
+import { useContentfulClient } from "../../../hooks/useContentfulClient";
+import { TypeVideoSkeleton } from "../../../../generated/type";
+import { Entry } from "contentful";
 
 export const Videos = () => {
+  const [entries, setEntries] = useState<Entry<TypeVideoSkeleton, undefined, string>[]>([]);
+  const client = useContentfulClient();
+
+  const fetchEntries = async (): Promise<void> => {
+    client
+      .getEntries<TypeVideoSkeleton>({
+        content_type: "video",
+        order: ["-sys.createdAt"],
+      })
+      .then((res) => {
+        setEntries(res.items);
+      })
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    fetchEntries();
+  }, [])
+  
     return (
-      <Container className="pb-4">
+      <Container className="pb-4 min-vh-100">
         <Row>
-          {videos.map((video) => {
+          {entries.map((video) => {
             return (
               <Col className="mt-4" md="6">
                 <div className="card-box">
@@ -26,9 +48,9 @@ export const Videos = () => {
                     />
                   </div>
 
-                  <h5 style={{height: "2.2em"}}>{video.title}</h5>
+                  <h5 style={{height: "2.2em"}}>{video.fields.title}</h5>
                   <div className="embed-responsive embed-responsive-16by9">
-                   <iframe src={video.link} width="640" height="360" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+                   <iframe src={video.fields.videoLink} width="640" height="360" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
                   </div>
                 </div>
               </Col>

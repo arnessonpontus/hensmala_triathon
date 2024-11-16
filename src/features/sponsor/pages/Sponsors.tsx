@@ -1,32 +1,26 @@
-import { useEffect } from "react";
-
-import sponsors from "../../../assets/sponsors.json";
-
 import { Container } from "reactstrap";
 import { SponsorSection } from "../components/SponsorSection";
+import { useSponsorContent } from "../components/hooks/useSponsorContent";
 
 export const Sponsors = () => {
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [])
+  const entries = useSponsorContent();
 
   // Gold sponsor - more than 5k, silver - more than 2k
   return (
-    <Container>
+    <Container className="min-vh-100">
       <div className="spons-container" style={{ paddingTop: "20px" }}>
-        {sponsors.gold.map((sponsor) => {
-          return <SponsorSection sponsor={sponsor} sponsType="gold" />;
+        {entries.filter(item => item.fields.level === "GOLD").map((sponsor) => {
+          return <SponsorSection sponsor={sponsor}/>;
         })}
       </div>
       <div className="spons-container">
-        {sponsors.silver.map((sponsor) => {
-          return <SponsorSection sponsor={sponsor} sponsType="silver" />;
+        {entries.filter(item => item.fields.level === "SILVER").map((sponsor) => {
+          return <SponsorSection sponsor={sponsor}/>;
         })}
       </div>
       <div className="spons-container">
-        {sponsors.brons.map((sponsor) => {
-          return <SponsorSection sponsor={sponsor} sponsType="brons" />;
+        {entries.filter(item => item.fields.level === "BRONZE").map((sponsor) => {
+          return <SponsorSection sponsor={sponsor}/>;
         })}
       </div>
     </Container>

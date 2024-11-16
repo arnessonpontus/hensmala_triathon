@@ -1,25 +1,19 @@
-interface Sponsor {
-  title: string;
-  image: string;
-  link: string;
-}
-interface SponsorSectionProps {
-  sponsor: Sponsor,
-  sponsType: "gold" | "silver" | "brons"
-}
+import { Entry } from "contentful";
+import { TypeSponsorSkeleton } from "../../../../generated/type";
+import { getAssetUrl } from "../../../utils";
 
-export const SponsorSection  = (props: SponsorSectionProps) => {
+export const SponsorSection  = ({sponsor}: {sponsor: Entry<TypeSponsorSkeleton, undefined, string>}) => {
     return (
       <div style={{ margin: "10px" }}>
-        {props.sponsor.link ? (
+        {sponsor.fields.siteLink ? (
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={props.sponsor.link}
+            href={sponsor.fields.siteLink}
             className="card-box-hoverable"
           >
             <div
-              className={"spons-" + props.sponsType}
+              className={"spons-" + sponsor.fields.level}
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -28,15 +22,15 @@ export const SponsorSection  = (props: SponsorSectionProps) => {
             >
               <img
                 alt={"Sponsor image"}
-                className={"spons-img-" + props.sponsType}
-                src={"../../images/sponsorImages/" + props.sponsor.image}
+                className={"spons-img-" + sponsor.fields.level}
+                src={getAssetUrl(sponsor.fields.image)}
               ></img>
             </div>
           </a>
         ) : (
           <div className="card-box">
             <div
-              className={"spons-" + props.sponsType}
+              className={"spons-" + sponsor.fields.level}
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -45,8 +39,8 @@ export const SponsorSection  = (props: SponsorSectionProps) => {
             >
               <img
                 alt={"Sponsor image"}
-                className={"spons-img-" + props.sponsType}
-                src={"../../images/sponsorImages/" + props.sponsor.image}
+                className={"spons-img-" + sponsor.fields.level}
+                src={getAssetUrl(sponsor.fields.image)}
               ></img>
             </div>
           </div>
