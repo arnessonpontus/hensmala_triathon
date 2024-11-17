@@ -16,10 +16,7 @@ export const StyledImage = styled.img`
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding: 20px;
   overflow: hidden;
   flex: 1;
 `;
