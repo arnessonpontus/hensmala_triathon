@@ -6,7 +6,8 @@ import {
   Input,
   Row,
   Col,
-  FormText
+  FormText,
+  Button
 } from "reactstrap";
 import { NavLink as RRNavLink } from "react-router-dom";
 import Consent from "../../../components/Consent";
@@ -22,6 +23,8 @@ import { FormType, RegisterFormSoloState } from "../models";
 import { calcShirtPrice, oreToSek, scrollToInfo } from "../utils";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
 import stripe from "stripe";
+import { handleCheckout } from "../service/checkoutService";
+import { useErrorModal } from "../../../context/ErrorModalContext";
 
 const LATE_REGISTER_FEE = 400;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -59,7 +62,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/.netlify/functions/getPrice', {
+        const res = await fetch('.netlify/functions/getPrice', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -117,13 +120,23 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     return REGISTER_FEE + extraDonation + shirtsCost + capsCost;
   };
 
+  const { showErrorModal } = useErrorModal();
+
+  const validateCheckout = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleCheckout("registration-fee-solo", formState.shirts, formState.numCaps, showErrorModal);
+  };
+
   return (
     <Row>
       <Col style={{ marginTop: "2vh" }} md={6}>
         <Form
-          onSubmit={(e) =>
-            props.handleSubmit(e, "solo", formState, calcTotalCost())
-          }
+          onSubmit={(e) => {
+            e.preventDefault();
+            validateCheckout(e);
+            //props.handleSubmit(e, "solo", formState, calcTotalCost());
+          }}
+        // #TODO födelsedagsdatum och gender blir inte validerat
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2024 Individuell</h3>
@@ -293,33 +306,19 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <h5>{testPriceInCents}kr</h5>
           </FormGroup>
 
-          <CheckoutButton
-            registrationType="registration-fee-solo"
-            shirts={formState.shirts}
-            numCaps={formState.numCaps}
-            text="Betala med stripe!"
-            disabled={
-              !(
-                formState.isCheckboxOneTicked &&
-                formState.isCheckboxTwoTicked &&
-                formState.isCheckboxThreeTicked
-              ) || props.loading
-            }
-            loading={props.loading}
-          />
-
-          <RegisterButton
-            text="Anmäl mig!"
-            disabled={
-              !(
-                formState.isCheckboxOneTicked &&
-                formState.isCheckboxTwoTicked &&
-                formState.isCheckboxThreeTicked
-              ) || props.loading
-            }
-            loading={props.loading}
-          />
-
+          <FormGroup>
+            <Button
+              type="submit"
+              disabled={
+                !(
+                  formState.isCheckboxOneTicked &&
+                  formState.isCheckboxTwoTicked &&
+                  formState.isCheckboxThreeTicked
+                ) || props.loading
+              }
+              loading={props.loading}
+            >Betala dirr hörredu </Button>
+          </FormGroup>
 
         </Form>
         <small>

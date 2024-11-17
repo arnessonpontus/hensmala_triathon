@@ -1,8 +1,7 @@
-import { loadStripe } from '@stripe/stripe-js';
 import { Button, ButtonProps, Spinner } from "reactstrap";
 import { Shirt } from '../models';
-import { useErrorModal } from '../../../context/ErrorModalContext';
 import { handleCheckout } from '../service/checkoutService';
+import { useErrorModal } from "../../../context/ErrorModalContext";
 
 interface CheckoutButtonProps extends ButtonProps {
   registrationType: "registration-fee-solo" | "registration-fee-team"
@@ -12,13 +11,12 @@ interface CheckoutButtonProps extends ButtonProps {
   loading: boolean,
   disabled: boolean
 }
-
+//#TODO ta bort?
 const CheckoutButton = (props: CheckoutButtonProps) => {
-  const { showErrorModal } = useErrorModal();
   const { registrationType, shirts, numCaps, text, loading, disabled } = props;
 
   const handleCheckoutClick = () => {
-    handleCheckout(registrationType, shirts, numCaps, showErrorModal);
+    handleCheckout(registrationType, shirts, numCaps, useErrorModal);
   }
 
   return (

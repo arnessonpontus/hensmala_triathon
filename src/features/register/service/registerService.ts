@@ -12,7 +12,7 @@ function writeToSpreadsheet(
   setLoadingCallback: (value: boolean) => void,
   doneCallback: () => void,
 ) {
-  fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}&token=${token}`, {
+  fetch(`http://localhost:8888/.netlify/functions/writeToSpreadsheet/?type=${formType}&token=${token}`, {
     method: "POST",
     body: JSON.stringify(data),
   })
