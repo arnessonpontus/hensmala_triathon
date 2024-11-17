@@ -10,22 +10,21 @@ const onToTopTap = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-const years = ["2024", "2022", "2021","2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"];
-
-const onYearTap = (yearIndex: number) => {
-  if (yearIndex === 0) {
-    onToTopTap();
-    return;
-  }
-    document.querySelector(".year-" + years[yearIndex-1])?.scrollIntoView({ behavior: "smooth" });
-};
-
 export const Articles = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [entries, setEntries] = useState<Entry<TypeArticleSkeleton, undefined, string>[]>([]);
   const [years, setYears] = useState<number[]>([]);
+
   const client = useContentfulClient();
+  
+  const onYearTap = (yearIndex: number) => {
+    if (yearIndex === 0) {
+      onToTopTap();
+      return;
+    }
+      document.querySelector(".year-" + years[yearIndex-1])?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const fetchEntries = async (): Promise<void> => {
     client
@@ -35,7 +34,7 @@ export const Articles = () => {
       })
       .then((res) => {
         setEntries(res.items);
-        setYears(Array.from(new Set(res.items.map(item => item.fields.year))).sort())
+        setYears(Array.from(new Set(res.items.map(item => item.fields.year))).sort().reverse())
       })
       .catch((err) => console.log(err))
   }
