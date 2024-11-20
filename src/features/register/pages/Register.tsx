@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
 import { FormType, RegisterFormSoloState, RegisterFormTeamState } from "../models";
