@@ -14,7 +14,6 @@ export const Home: React.FC = () => {
 
   useEffect(() => {
     setDaysLeft(getDaysFromNow("2024-07-20"));
-    window.scrollTo(0, 0);
 
     const intervalID = setInterval(() => {
       setDaysLeft(getDaysFromNow("2024-07-20"));

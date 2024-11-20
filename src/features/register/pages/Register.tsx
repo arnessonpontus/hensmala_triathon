@@ -12,11 +12,6 @@ export const Register = () => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [])
-
-
 const toggleDone = () => {
    setHasRegistered(!hasRegisterd)
   }

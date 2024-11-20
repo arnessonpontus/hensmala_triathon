@@ -32,7 +32,6 @@ export const AboutHT: React.FC = () => {
 
   const { id } = useParams();
 
-
   const toggle = (cardType: AboutPathValues) => {
     switch (cardType) {
       case AboutPaths.info:

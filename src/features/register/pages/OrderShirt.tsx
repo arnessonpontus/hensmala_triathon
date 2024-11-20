@@ -35,10 +35,6 @@ export const OrderShirt: React.FC = () => {
 
   const [formState, setFormState] = useState<OrderShirtState>(defaultState);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const calcTotalCost = () => {
     return (
       formState.extraDonation +

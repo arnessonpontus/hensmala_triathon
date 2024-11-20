@@ -19,10 +19,6 @@ export const AboutALS: React.FC = () => {
     setIsNeuroOpen(!isNeuroOpen);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [])
-
   return (
     <div>
       <div className="banner-wrapper">

@@ -4,13 +4,18 @@ import firebase from "firebase/compat/app"; // Change to only import specific mo
 import { ErrorModalProvider } from "./context/ErrorModalContext";
 import { ErrorModal } from "./components/ErrorModal";
 import { AppRouter } from "./AppRouter";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Navigation } from "./components/Navigation";
 
 const App = () => {
   return (
     <div className="App">
       <ErrorModalProvider>
         <ErrorModal />
-        <AppRouter />
+        <Router>
+        <Navigation />
+          <AppRouter />
+        </Router>
         <Footer />
       </ErrorModalProvider>
     </div>

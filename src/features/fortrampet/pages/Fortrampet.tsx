@@ -1,14 +1,9 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Container, Row, Col, Badge, Card, CardBody } from "reactstrap";
 import { AboutPaths } from "../../about/pages/AboutHT";
 
 export const Fortrampet = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <Container className="mt-5">
       <Row>

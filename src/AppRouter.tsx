@@ -1,5 +1,4 @@
 import { Media } from "./features/media/pages/Media";
-import { Navigation } from "./components/Navigation";
 import { Home } from "./features/home/pages/Home";
 import { AboutALS } from "./features/about/pages/AboutALS";
 import { AboutHT } from "./features/about/pages/AboutHT";
@@ -10,17 +9,22 @@ import { Register } from "./features/register/pages/Register";
 import { Articles } from "./features/media/pages/Articles";
 import { Radio } from "./features/media/pages/Radio";
 import { Sponsors } from "./features/sponsor/pages/Sponsors";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import CoronaEdition from "./features/challenge/pages/CoronaEdition";
 import { Fortrampet } from "./features/fortrampet/pages/Fortrampet";
 import { OrderShirt } from "./features/register/pages/OrderShirt";
 import PaymentCancelled from "./features/register/pages/PaymentCancelled";
 import PaymentSuccess from "./features/register/pages/PaymentSuccess";
+import { useEffect } from "react";
 
 export const AppRouter = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location])
+
   return (
-    <Router>
-      <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/anmalan" element={<Register />} />
@@ -39,6 +43,5 @@ export const AppRouter = () => {
         <Route path="/om-ht/:id" element={<AboutHT />} />
         <Route path="/news/:id" element={<NewsDetail />} />
       </Routes>
-    </Router>
   );
 };

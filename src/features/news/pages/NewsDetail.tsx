@@ -36,7 +36,6 @@ export const NewsDetail = () => {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     setIsLoading(true);
     const client = useContentfulClient();
       client
