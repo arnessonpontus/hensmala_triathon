@@ -174,7 +174,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout("registration-fee-solo", formState.shirts, formState.numCaps, showErrorModal);
+    handleCheckout("registration-fee-team", formState.shirts, formState.numCaps, showErrorModal);
   };
 
   return (
