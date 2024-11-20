@@ -39,8 +39,9 @@
 
 @media (max-width: 1200px) {
   .sponsor-content {
-    height: 200px; /* Temp to limit sponsors if small screen. TODO Better solution */
-    overflow: hidden; 
+    flex-wrap: nowrap;
+    overflow: auto; 
+    justify-content: flex-start;
   }
 }
 

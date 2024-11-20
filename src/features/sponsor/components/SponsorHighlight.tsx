@@ -2,7 +2,7 @@ import { useSponsorContent } from "./hooks/useSponsorContent";
 import { SponsorSection } from "./SponsorSection";
 
 export const SponsorHighlight = () => {
-  const entries = useSponsorContent();
+  const entries = useSponsorContent().reverse();
 
   return (
     <div className="sponsor-content">
