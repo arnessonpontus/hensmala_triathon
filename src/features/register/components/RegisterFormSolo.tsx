@@ -17,8 +17,6 @@ import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { Link } from "react-router-dom";
-import RegisterButton from "./RegisterButton";
-import CheckoutButton from "./CheckoutButton";
 import { FormType, RegisterFormSoloState } from "../models";
 import { calcShirtPrice, oreToSek, scrollToInfo } from "../utils";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
@@ -122,7 +120,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
   const { showErrorModal } = useErrorModal();
 
-  const validateCheckout = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleCheckout("registration-fee-solo", formState.shirts, formState.numCaps, showErrorModal);
   };
@@ -131,11 +129,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     <Row>
       <Col style={{ marginTop: "2vh" }} md={6}>
         <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            validateCheckout(e);
-            //props.handleSubmit(e, "solo", formState, calcTotalCost());
-          }}
+          onSubmit={onSubmit}
         // #TODO födelsedagsdatum och gender blir inte validerat
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>

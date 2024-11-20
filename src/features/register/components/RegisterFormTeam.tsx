@@ -8,7 +8,8 @@ import {
   Col,
   Card,
   CardBody,
-  FormText
+  FormText,
+  Button
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Consent from "../../../components/Consent";
@@ -22,6 +23,8 @@ import { AboutPaths } from "../../about/pages/AboutHT";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
 import { calcShirtPrice, scrollToInfo } from "../utils";
 import CheckoutButton from "./CheckoutButton";
+import { handleCheckout } from "../service/checkoutService";
+import { useErrorModal } from "../../../context/ErrorModalContext";
 
 const LATE_REGISTER_FEE = 700;
 const REGISTER_FEE = LATE_REGISTER_FEE;
@@ -169,13 +172,18 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
     })
   }
 
+  const { showErrorModal } = useErrorModal();
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleCheckout("registration-fee-solo", formState.shirts, formState.numCaps, showErrorModal);
+  };
+
   return (
     <Row>
       <Col style={{ marginTop: "2vh" }} md={6}>
         <Form
-          onSubmit={(e) =>
-            props.handleSubmit(e, "team", formState, calcTotalCost())
-          }
+          onSubmit={onSubmit}
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2024 Lag</h3>
@@ -284,33 +292,20 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
             <h5>{calcTotalCost()}kr</h5>
           </FormGroup>
 
-          <CheckoutButton
-            registrationType="registration-fee-team"
-            shirts={formState.shirts}
-            numCaps={formState.numCaps}
-            text="Anmäl oss och betala med stripe!"
-            disabled={
-              !(
-                formState.isCheckboxOneTicked &&
-                formState.isCheckboxTwoTicked &&
-                formState.isCheckboxThreeTicked
-              ) || props.loading
-            }
-            loading={props.loading}
-          />
+          <FormGroup>
+            <Button
+              type="submit"
+              disabled={
+                !(
+                  formState.isCheckboxOneTicked &&
+                  formState.isCheckboxTwoTicked &&
+                  formState.isCheckboxThreeTicked
+                ) || props.loading
+              }
+              loading={props.loading}
+            >Betala dirr hörredu </Button>
+          </FormGroup>
 
-          <RegisterButton
-            id="submitButton"
-            text="Anmäl oss!"
-            disabled={
-              !(
-                formState.isCheckboxOneTicked &&
-                formState.isCheckboxTwoTicked &&
-                formState.isCheckboxThreeTicked
-              ) || props.loading
-            }
-            loading={props.loading}
-          />
         </Form>
         <small>
           This site is protected by reCAPTCHA and the Google{" "}
