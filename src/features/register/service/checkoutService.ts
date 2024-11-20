@@ -11,7 +11,7 @@ export const handleCheckout = async (
     showErrorModal: (message: string, title: string) => void
 ) => {
     try {
-        const response = await fetch('http://localhost:8888/.netlify/functions/payment/payment', {
+        const response = await fetch('.netlify/functions/payment/payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ registrationType, shirts, numCaps }),
