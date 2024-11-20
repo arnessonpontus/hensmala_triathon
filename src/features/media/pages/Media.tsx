@@ -11,7 +11,7 @@ export const Media = () => {
           className="card-box-hoverable"
         >
           <div>
-            <h3 style={styles.textStyle}>RADIO</h3>
+            <h3 style={styles.textStyle}>Radio</h3>
             <img
               height="80px"
               width="80px"
@@ -26,7 +26,7 @@ export const Media = () => {
           style={styles.cardStyle as any}
           className="card-box-hoverable"
         >
-          <h3 style={styles.textStyle}>ARTIKLAR</h3>
+          <h3 style={styles.textStyle}>Artiklar</h3>
           <img
             height="80px"
             width="80px"
@@ -40,7 +40,7 @@ export const Media = () => {
           style={styles.cardStyle as any}
           className="card-box-hoverable"
         >
-          <h3 style={styles.textStyle}>VIDEOS</h3>
+          <h3 style={styles.textStyle}>Videos</h3>
           <img
             height="80px"
             width="80px"
@@ -54,12 +54,25 @@ export const Media = () => {
           style={styles.cardStyle as any}
           className="card-box-hoverable"
         >
-          <h3 style={styles.textStyle}>FOTON</h3>
+          <h3 style={styles.textStyle}>Foton</h3>
           <img
             height="80px"
             width="80px"
             src="/images/camera.svg"
             alt="camera"
+          ></img>
+        </Link>
+        <Link
+          to="/results"
+          style={styles.cardStyle as any}
+          className="card-box-hoverable"
+        >
+          <h3 style={styles.textStyle}>Resultat</h3>
+          <img
+            height="80px"
+            width="80px"
+            src="/images/results.svg"
+            alt="results"
           ></img>
         </Link>
       </Container>

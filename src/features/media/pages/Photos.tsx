@@ -62,5 +62,3 @@ export const Photos = () => {
     </Container>
   );
 }
-
-export default Photos;

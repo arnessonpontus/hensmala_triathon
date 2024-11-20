@@ -12,16 +12,19 @@ import {
   DropdownToggle,
   DropdownMenu
 } from "reactstrap";
+import { useMediaQuery } from 'react-responsive';
+
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const shouldCollapse = useMediaQuery({ query: `(min-width: 1400px)` });
 
   const toggleHamburger = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <Navbar expand="xl" sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10 }}>
+    <Navbar expand={shouldCollapse} sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10 }}>
       <NavbarBrand
         tag={RNNavLink}
         color="light"
@@ -117,7 +120,7 @@ export const Navigation = () => {
           to="/media"
           onClick={() => setIsMenuOpen(false)}
         >
-          MEDIA
+          ARKIV & MEDIA
         </NavLink>
         <NavLink
           tag={RNNavLink}

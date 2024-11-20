@@ -16,6 +16,7 @@ import { OrderShirt } from "./features/register/pages/OrderShirt";
 import PaymentCancelled from "./features/register/pages/PaymentCancelled";
 import PaymentSuccess from "./features/register/pages/PaymentSuccess";
 import { useEffect } from "react";
+import { Results } from "./features/media/pages/Results";
 
 export const AppRouter = () => {
   const location = useLocation();
@@ -37,6 +38,7 @@ export const AppRouter = () => {
         <Route path="/foton" element={<Photos />} />
         <Route path="/artiklar" element={<Articles />} />
         <Route path="/radio" element={<Radio />} />
+        <Route path="/results" element={<Results />} />
         <Route path="/sponsorer" element={<Sponsors />} />
         <Route path="/payment-cancelled" element={<PaymentCancelled />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />

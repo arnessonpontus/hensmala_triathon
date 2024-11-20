@@ -4,11 +4,9 @@ import {
   Button,
   CardBody,
   Card,
-  ListGroup,
-  ListGroupItem,
   Container,
 } from "reactstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Distances } from "../components/Distances";
 import { GetHere } from "../components/GetHere";
 import { Rules } from "../components/Rules";
@@ -19,7 +17,6 @@ export const AboutPaths = {
   getHere: "hitta-hit",
   rules: "regler",
   distances: "strackor",
-  results: "resultat"
 } as const;
 type AboutPathValues = typeof AboutPaths[keyof typeof AboutPaths];
 
@@ -28,7 +25,6 @@ export const AboutHT: React.FC = () => {
   const [isGetHereOpen, setIsGetHereOpen] = useState(false);
   const [isDistancesOpen, setIsDistancesOpen] = useState(false);
   const [isRulesOpen, setIsRulesOpen] = useState(false);
-  const [isResultsOpen, setIsResultsOpen] = useState(false);
 
   const { id } = useParams();
 
@@ -42,9 +38,6 @@ export const AboutHT: React.FC = () => {
         break;
       case AboutPaths.distances:
         setIsDistancesOpen(!isDistancesOpen)
-        break;
-      case AboutPaths.results:
-        setIsResultsOpen(!isResultsOpen)
         break;
       default:
         setIsRulesOpen(!isRulesOpen)
@@ -77,19 +70,12 @@ export const AboutHT: React.FC = () => {
         }, 1500);
         setIsRulesOpen(true);
         break;
-      case AboutPaths.results:
-        setTimeout(() => {
-          document?.getElementById?.(AboutPaths.results)?.scrollIntoView({ behavior: "smooth" });
-        }, 1500);
-        setIsResultsOpen(true);
-        break;
       default:
         window.scrollTo(0, 0);
     }
 
   }, []);
 
-  const result_years = [2024, 2022, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012];
   return (
     <div>
       <div className="banner-wrapper">
@@ -198,50 +184,8 @@ export const AboutHT: React.FC = () => {
               </CardBody>
             </Card>
           </Collapse>
-          <Button
-            id={AboutPaths.results}
-            outline
-            size="lg"
-            block
-            color="secondary"
-            onClick={() => toggle(AboutPaths.results)}
-            style={{
-              marginBottom: "1rem",
-            }}
-          >
-            <p>Tidigare resultat</p>
-            <img
-              src="../../images/icons/downarrow.svg"
-              alt="arrow down"
-            ></img>
-          </Button>
-          <Collapse isOpen={isResultsOpen}>
-            <Card style={styles.infoBoxStyle}>
-              <CardBody>
-                <ListGroup>
-                  {result_years.map((year) => {
-                    return (
-                      <ListGroupItem
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        key={year}
-                        tag="a"
-                        href={
-                          "/results/" +
-                          year +
-                          "_resultat_hensmala_triathlon.pdf"
-                        }
-                      >
-                        {" "}
-                        {year}
-                      </ListGroupItem>
-                    );
-                  })}
-                </ListGroup>
-              </CardBody>
-            </Card>
-          </Collapse>
         </div>
+        <p>Resultat för tidigare års Hensmåla Triathlon hittar du <Link to="/results">här</Link>.</p>
       </Container>
     </div>
   );
