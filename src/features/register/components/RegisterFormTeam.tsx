@@ -17,12 +17,10 @@ import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
-import RegisterButton from "./RegisterButton";
 import { FormType, RegisterFormTeamState } from "../models";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
 import { calcShirtPrice, scrollToInfo } from "../utils";
-import CheckoutButton from "./CheckoutButton";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 

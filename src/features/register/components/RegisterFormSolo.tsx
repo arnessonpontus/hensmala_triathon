@@ -60,7 +60,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('.netlify/functions/getPrice', {
+        const res = await fetch('/.netlify/functions/getPrice', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
