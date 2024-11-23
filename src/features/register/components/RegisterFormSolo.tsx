@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -18,14 +18,11 @@ import CapSelect from "./CapSelect";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { Link } from "react-router-dom";
 import { FormType, RegisterFormSoloState } from "../models";
-import { calcShirtPrice, oreToSek, scrollToInfo } from "../utils";
-import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
-import stripe from "stripe";
+import { calcTotalRegisterPrice, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
-
-const LATE_REGISTER_FEE = 400;
-const REGISTER_FEE = LATE_REGISTER_FEE;
+import usePrices from "../hooks/usePrices";
+import { ErrorBanner } from "../../../components/ErrorBanner";
 
 interface RegisterFormSoloProps {
   handleSubmit: (
@@ -37,6 +34,8 @@ interface RegisterFormSoloProps {
 }
 
 export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
+  const { error: priceError, loading, getPriceByName } = usePrices();
+
   const [formState, setFormState] = useState<RegisterFormSoloState>({
     name: "",
     email: "",
@@ -53,34 +52,6 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     numCaps: 0,
     extraDonation: 0
   });
-
-  const [testPriceInCents, setTestPriceInCents] = useState(0);
-
-  // TODO: Get all prices and not only bomull
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('/.netlify/functions/getPrice', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ productName: "bomull" }),
-        })
-        const price: stripe.Price = await res.json()
-
-        if (price && price.unit_amount != null) {
-          setTestPriceInCents(oreToSek(price.unit_amount));
-        } else {
-          console.log("couldnt find price:/")
-        }
-      } catch (error) {
-        console.error("Error fetching price details:", error)
-      }
-    }
-
-    fetchData()
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -107,16 +78,16 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     );
   };
 
-  const calcTotalCost = () => {
-    const shirtsCost = calcShirtPrice(formState.shirts);
-    const capsCost = formState.numCaps * CAP_PRICE;
-    const extraDonation = formState.extraDonation;
-
-    if (isAllowedCompanyEntered()) {
-      return extraDonation + shirtsCost + capsCost;
-    }
-    return REGISTER_FEE + extraDonation + shirtsCost + capsCost;
-  };
+  const totalCost = useMemo((): number | null => {
+    return calcTotalRegisterPrice(getPriceByName("bomull"),
+      getPriceByName("funktion"),
+      getPriceByName("keps"),
+      getPriceByName("registration-fee-solo"),
+      formState.numCaps,
+      formState.shirts,
+      formState.extraDonation,
+      isAllowedCompanyEntered())
+  }, [loading, formState]);
 
   const { showErrorModal } = useErrorModal();
 
@@ -234,11 +205,11 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
+            <Label>Lägg till t-shirt (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
             <div className="clothes-select">
               <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, shirts: newShirts }))} />
             </div>
-            <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
+            <Label className="mt-2">Lägg till keps ({getPriceByName("keps")}kr)</Label>
             <div className="clothes-select">
               <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps }))} />
             </div>
@@ -295,9 +266,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
           </FormGroup>
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
-            <h5>{calcTotalCost()}kr</h5>
-            <Label for="totalAmountToPay">Totalt att betala FRÅN STRIPE:</Label>
-            <h5>{testPriceInCents}kr</h5>
+            {totalCost != null ? <h5>{totalCost}kr</h5>: <ErrorBanner text="Kunde inte hämta priser"/>}
           </FormGroup>
 
           <FormGroup>
@@ -354,7 +323,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
         <br></br>
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-        <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
+        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-solo")}kr</b>
 
       </Col>
     </Row>

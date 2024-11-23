@@ -24,7 +24,6 @@ const CoronaEdition = () => {
   const placements = useRef<number[]>([]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     setUserEntries([]);
     setHiddenUserEntries([]);
     setLoadingEntries(true);

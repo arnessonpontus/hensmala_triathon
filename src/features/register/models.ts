@@ -14,7 +14,7 @@ export interface BaseOrderType {
   info: string,
 }
 
-export interface RegisterFormSoloState extends BaseOrderType{
+export interface RegisterFormSoloState extends BaseOrderType {
   year: string;
   month: string;
   day: string;
@@ -25,7 +25,7 @@ export interface RegisterFormSoloState extends BaseOrderType{
   isCheckboxThreeTicked: boolean;
 }
 
-export interface RegisterFormTeamState extends Omit<BaseOrderType, "name" | "email">{
+export interface RegisterFormTeamState extends Omit<BaseOrderType, "name" | "email"> {
   teamName: string;
   name1: string;
   email1: string;
@@ -66,3 +66,10 @@ export type DataToSend = Partial<
 };
 
 export type FormType = "solo" | "team" | "tshirt_order";
+
+export type priceType =
+  "registration-fee-solo"
+  | "registration-fee-team"
+  | "funktion"
+  | "bomull"
+  | "keps"

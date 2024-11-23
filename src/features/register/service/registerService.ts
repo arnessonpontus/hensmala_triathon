@@ -1,10 +1,6 @@
 import { DataToSend, FormType, OrderShirtState, RegisterFormSoloState, RegisterFormTeamState } from "../models";
 import { shirtArrayToString } from "../utils";
 
-export const SHIRT_PRICE_COTTON = 220;
-export const SHIRT_PRICE_FUNCTIONAL = 290;
-export const CAP_PRICE = 250;
-
 function writeToSpreadsheet(
   formType: FormType,
   data: DataToSend,
