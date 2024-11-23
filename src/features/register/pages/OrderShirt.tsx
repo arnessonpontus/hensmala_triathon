@@ -18,7 +18,7 @@ import RegisterButton from "../components/RegisterButton";
 import { OrderShirtState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
 import { handleSubmit } from "../service/registerService";
-import { calcShirtPrice, isShirtSelected } from "../utils";
+import { calcShirtPrice, hasValidShirt } from "../utils";
 import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 
@@ -171,7 +171,7 @@ export const OrderShirt: React.FC = () => {
                     />
                   </Label>
                 </FormGroup>
-                <RegisterButton text="Beställ!" disabled={!formState.consent || !(isShirtSelected(formState.shirts) || formState.numCaps > 0) || formState.loading} loading={formState.loading} />
+                <RegisterButton text="Beställ!" disabled={!formState.consent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || formState.loading} loading={formState.loading} />
               </Form>
               <small>
                 This site is protected by reCAPTCHA and the Google{" "}

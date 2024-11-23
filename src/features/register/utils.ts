@@ -5,8 +5,8 @@ export function shirtArrayToString(shirts: Shirt[]) {
   return shirts.filter(s => s.type && s.size).map(shirt => `${shirt.type} ${shirt.size} ${shirt.material}`).join(', ')
 }
 
-// Checks if at lease one shirt is selected
-export function isShirtSelected(shirts: Shirt[]) {
+// Checks if at lease one shirt is valid (not having any null values)
+export function hasValidShirt(shirts: Shirt[]) {
   for (let shirt of shirts) {
     if (shirt.size !== null && shirt.type !== null) {
       return true;
