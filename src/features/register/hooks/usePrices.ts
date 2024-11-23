@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { localStorageService } from '../service/localstorageService';
+import { localStorageService } from '../../../services/localstorageService';
 import { getPrices } from '../service/priceService';
 import { priceType } from '../models';
 import { getPriceId } from '../../../../netlify/functions/payment/pricing';
