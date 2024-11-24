@@ -2,7 +2,7 @@ import { Shirt } from "./models";
 
 // Stringify the shirt selection for easier storage
 export function shirtArrayToString(shirts: Shirt[]) {
-  return shirts.filter(s => s.type && s.size).map(shirt => `${shirt.type} ${shirt.size} ${shirt.material}`).join(', ')
+  return shirts.filter(s => s.type && s.size).map(shirt => `${shirt.type} ${shirt.size} ${shirt.material}`).join(', ');
 }
 
 // Checks if at lease one shirt is valid (not having any null values)
@@ -12,7 +12,7 @@ export function hasValidShirt(shirts: Shirt[]) {
       return true;
     }
   }
-  return false
+  return false;
 }
 
 export function scrollToInfo(elementID: string) {
@@ -29,7 +29,7 @@ export const calcShirtPrice = (shirts: Shirt[], cottonShirtPrice: number, functi
       if (shirt.material === 'bomull') {
         return acc + cottonShirtPrice;
       } else {
-        return acc + functionShirtPrice
+        return acc + functionShirtPrice;
       }
     } else {
       return acc;
