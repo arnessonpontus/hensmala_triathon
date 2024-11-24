@@ -1,10 +1,10 @@
 import { Link} from "react-router-dom";
-
-import { Container } from "reactstrap";
+import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
 export const Media = () => {
     return (
-      <Container className="media-container">
+      <FillCenterLayout direction="row">
+        <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
         <Link
           to="/radio"
           style={styles.cardStyle as any}
@@ -75,7 +75,8 @@ export const Media = () => {
             alt="results"
           ></img>
         </Link>
-      </Container>
+        </div>
+      </FillCenterLayout>
     );
   }
 

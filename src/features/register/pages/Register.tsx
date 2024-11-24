@@ -6,6 +6,8 @@ import { RegSuccess } from "../components/RegSuccess";
 import { RegisterFormSolo } from "../components/RegisterFormSolo";
 import { RegisterFormTeam } from "../components/RegisterFormTeam";
 import { handleSubmit } from "../service/registerService";
+import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
+import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
 export const Register = () => {
   const [hasRegisterd, setHasRegistered] = useState(false);
@@ -20,10 +22,19 @@ const toggleDone = () => {
     handleSubmit(e, formType, formData, totalCost, (val) => setLoading(val), () => toggleDone());
   }
 
+  if (!import.meta.env.VITE_ALLOW_REGISTRATION) {
+    return (
+      <FillCenterLayout>
+        <h2>Anmälan är inte öppnad än.</h2>
+        <p>Vi öppnar snart. Vid frågor är det bara att höra av sig till {DEFAULT_CONTACT_EMAIL} </p>
+      </FillCenterLayout>
+    )
+  }
+
   return (
     <Container>
       {!hasRegisterd ? (
-          <div className="card-box" style={{ marginTop: 40, minHeight: '70vh' }}>
+          <div className="card-box" style={{ marginTop: 40}}>
           <div className="register-tabs">
             <div onClick={() => setActiveTab(0)} className="register-tab">
               Individuell

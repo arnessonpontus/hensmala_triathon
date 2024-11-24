@@ -15,7 +15,6 @@ export const RegSuccess = (props: RegSuccessProps) => {
     return (
       <Container
         style={{
-          minHeight: "70vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

@@ -1,4 +1,5 @@
 import React from "react";
+import { FOOTER_HEIGHT } from "../Constants";
 
 export const Footer: React.FC = () => {
   return (
@@ -10,8 +11,7 @@ export const Footer: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 0,
-        marginTop: 50,
-        height: "20vh",
+        height: FOOTER_HEIGHT,
         backgroundColor: "#11999E",
         color: "#11999E",
         borderRadius: "0px",
@@ -22,6 +22,7 @@ export const Footer: React.FC = () => {
         style={{
           width: 200,
           height: 50,
+          padding: 20,
           backgroundColor: "white",
           borderRadius: 5,
           display: "flex",
