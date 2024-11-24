@@ -57,7 +57,7 @@ export const handler: Handler = async (event) => {
         shirts: shirts.toString(), // TODO: Send proccessed data
         numCaps: numCaps.toString()
       },
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'klarna'],
       line_items: lineItems,
       mode: 'payment',
       success_url: `${process.env.CLIENT_URL}/payment-success`,
