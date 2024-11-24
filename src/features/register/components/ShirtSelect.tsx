@@ -4,7 +4,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { useRef } from "react";
 
 import ImageGallery from "react-image-gallery";
-import { Shirt } from "../models";
+import { Shirt, ShirtMaterial, shirtType, Size } from "../models";
 
 const images = [
   {
@@ -48,7 +48,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
   };
 
   // Set the size, type or material of the shirt
-  function updateShirtValues(field: keyof Shirt, idx: number, value: any) {
+  function updateShirtValues<K extends keyof Shirt>(field: K, idx: number, value: Shirt[K]) {
     const newShirts = [...shirts];
     newShirts[idx][field] = value;
     setShirts(newShirts);
@@ -75,7 +75,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
                       required={true}
                       type="select"
                       name={"size"}
-                      onChange={(e) => updateShirtValues("size", i, e.target.value)}
+                      onChange={(e) => updateShirtValues("size", i, e.target.value as Size)}
                     >
                       <option disabled selected={shirt.size === null}>
                         Storlek
@@ -93,15 +93,15 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
                       required={true}
                       type="select"
                       name={"type"}
-                      onChange={(e) => updateShirtValues("type", i, e.target.value)}
+                      onChange={(e) => updateShirtValues("type", i, e.target.value as shirtType)}
                     >
                       <option disabled selected={shirt.type === null}>
                         Typ
                       </option>
-                      <option selected={shirt.type === "dam"} value={"dam"} key={"dam"}>
+                      <option selected={shirt.type === "Dam"} value={"Dam"} key={"Dam"}>
                         Dam
                       </option>
-                      <option selected={shirt.type === "herr"} value={"herr"} key={"herr"}>
+                      <option selected={shirt.type === "Herr"} value={"Herr"} key={"Herr"}>
                         Herr
                       </option>
                     </Input>
@@ -114,7 +114,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
                           type="radio"
                           value="funktion"
                           checked={shirt.material === 'funktion'}
-                          onChange={(e) => updateShirtValues("material", i, e.target.value)}
+                          onChange={(e) => updateShirtValues("material", i, e.target.value as ShirtMaterial)}
                         />
                         Funktion
                       </Label>
@@ -126,7 +126,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
                           type="radio"
                           value="bomull"
                           checked={shirt.material === 'bomull'}
-                          onChange={(e) => updateShirtValues("material", i, e.target.value)}
+                          onChange={(e) => updateShirtValues("material", i, e.target.value as ShirtMaterial)}
                         />
                         Bomull
                       </Label>

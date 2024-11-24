@@ -34,7 +34,7 @@ interface RegisterFormSoloProps {
 }
 
 export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
-  const { error: priceError, loading, getPriceByName } = usePrices();
+  const { loading, getPriceByName } = usePrices();
 
   const [formState, setFormState] = useState<RegisterFormSoloState>({
     name: "",
