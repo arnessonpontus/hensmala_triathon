@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 import { useMediaQuery } from 'react-responsive';
 
-
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const shouldCollapse = useMediaQuery({ query: `(min-width: 1400px)` });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -19,13 +19,11 @@ import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormTeamState } from "../models";
 import { AboutPaths } from "../../about/pages/AboutHT";
-import { CAP_PRICE, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
-import { calcShirtPrice, scrollToInfo } from "../utils";
+import { calcTotalRegisterPrice, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
-
-const LATE_REGISTER_FEE = 700;
-const REGISTER_FEE = LATE_REGISTER_FEE;
+import usePrices from "../hooks/usePrices";
+import { ErrorBanner } from "../../../components/ErrorBanner";
 
 interface RegisterFormTeamProps {
   handleSubmit: (
@@ -38,6 +36,8 @@ interface RegisterFormTeamProps {
 }
 
 export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
+  const { loading, getPriceByName } = usePrices();
+
   const [formState, setFormState] = useState<RegisterFormTeamState>({
     teamName: "",
     name1: "",
@@ -91,14 +91,18 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
       [formState.city1, formState.city2, formState.city3].some((city) => city.toLowerCase().includes(allowedCompany))
     );
   };
-  const calcTotalCost = () => {
-    const shirtCost = calcShirtPrice(formState.shirts);
-    const capCost = formState.numCaps * CAP_PRICE;
-    if (isAllowedCompanyEntered()) {
-      return formState.extraDonation + shirtCost + capCost
-    }
-    return REGISTER_FEE + formState.extraDonation + shirtCost + capCost;
-  };
+
+  const totalCost = useMemo(() => {
+    return calcTotalRegisterPrice(
+      getPriceByName("bomull"),
+      getPriceByName("funktion"),
+      getPriceByName("keps"),
+      getPriceByName("registration-fee-team"),
+      formState.numCaps,
+      formState.shirts,
+      formState.extraDonation,
+      isAllowedCompanyEntered())
+  }, [loading, formState]);
 
   const renderMemberFields = () => {
     return [1, 2, 3].map((num) => {
@@ -219,11 +223,11 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="clothes-select">Lägg till t-shirt (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
+            <Label for="clothes-select">Lägg till t-shirt (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
             <div className="clothes-select">
               <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, shirts: newShirts }))} />
             </div>
-            <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
+            <Label className="mt-2">Lägg till keps ({[getPriceByName("keps")]}kr)</Label>
             <div className="clothes-select">
               <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps: numCaps }))} />
             </div>
@@ -287,7 +291,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
             : null}
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
-            <h5>{calcTotalCost()}kr</h5>
+            {totalCost != null ? <h5>{totalCost}kr</h5>: <ErrorBanner text="Kunde inte hämta priser"/>}
           </FormGroup>
 
           <FormGroup>
@@ -341,7 +345,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
         <br></br>
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-        <b style={{ fontSize: 20 }}>Startavgift: {REGISTER_FEE}kr</b>
+        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-team")}kr</b>
       </Col>
     </Row>
   );

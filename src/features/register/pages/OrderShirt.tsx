@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -17,10 +17,14 @@ import RegisterButton from "../components/RegisterButton";
 
 import { OrderShirtState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
-import { CAP_PRICE, handleSubmit, SHIRT_PRICE_COTTON, SHIRT_PRICE_FUNCTIONAL } from "../service/registerService";
-import { calcShirtPrice, isShirtSelected } from "../utils";
+import { handleSubmit } from "../service/registerService";
+import { calcShirtPrice, hasValidShirt } from "../utils";
+import usePrices from "../hooks/usePrices";
+import { ErrorBanner } from "../../../components/ErrorBanner";
 
 export const OrderShirt: React.FC = () => {
+  const { loading, getPriceByName } = usePrices();
+
   const defaultState: OrderShirtState = {
     name: "",
     email: "",
@@ -35,13 +39,21 @@ export const OrderShirt: React.FC = () => {
 
   const [formState, setFormState] = useState<OrderShirtState>(defaultState);
 
-  const calcTotalCost = () => {
+  const totalCost = useMemo(() => {
+    const cottonPrice = getPriceByName("bomull");
+    const functionPrice = getPriceByName("funktion");
+    const capPrice = getPriceByName("keps");
+
+    if (!cottonPrice || !functionPrice || !capPrice){
+      return null
+    }
+
     return (
       formState.extraDonation +
-      calcShirtPrice(formState.shirts) +
-      formState.numCaps * CAP_PRICE
+      calcShirtPrice(formState.shirts, cottonPrice, functionPrice) +
+      formState.numCaps * capPrice
     );
-  };
+  }, [formState, loading]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -87,13 +99,13 @@ export const OrderShirt: React.FC = () => {
             </Col>
             <Col style={{ marginTop: "2vh" }}>
               <hr className="register-divider"></hr>
-              <Form onSubmit={(e) => handleSubmit(e, "tshirt_order", formState, calcTotalCost(), (val) => setFormState(prev => ({ ...prev, loading: val })), () => toggleDone())}>
+              <Form onSubmit={(e) => handleSubmit(e, "tshirt_order", formState, totalCost || 0, (val) => setFormState(prev => ({ ...prev, loading: val })), () => toggleDone())}>
                 <FormGroup>
-                  <Label for="clothes-select">Välj antal och storlek (Bomull {SHIRT_PRICE_COTTON}kr, Funktion {SHIRT_PRICE_FUNCTIONAL}kr)</Label>
+                  <Label for="clothes-select">Välj antal och storlek (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
                   <div className="clothes-select">
                     <ShirtSelect updateShirtSelection={(newShirts) =>{ setFormState(prev => ({ ...prev, shirts: newShirts }))}} />
                   </div>
-                  <Label className="mt-2">Lägg till keps ({CAP_PRICE}kr)</Label>
+                  <Label className="mt-2">Lägg till keps ({getPriceByName("keps")}kr)</Label>
                   <div className="clothes-select">
                     <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps: numCaps }))} />
                   </div>
@@ -142,7 +154,7 @@ export const OrderShirt: React.FC = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="totalAmountToPay">Totalt att betala:</Label>
-                  <h5>{calcTotalCost()}kr</h5>
+                  {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser"/>}
                 </FormGroup>
                 <FormGroup check>
                   <Label for="checkbox1">
@@ -159,7 +171,7 @@ export const OrderShirt: React.FC = () => {
                     />
                   </Label>
                 </FormGroup>
-                <RegisterButton text="Beställ!" disabled={!formState.consent || !(isShirtSelected(formState.shirts) || formState.numCaps > 0) || formState.loading} loading={formState.loading} />
+                <RegisterButton text="Beställ!" disabled={!formState.consent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || formState.loading} loading={formState.loading} />
               </Form>
               <small>
                 This site is protected by reCAPTCHA and the Google{" "}

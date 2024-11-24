@@ -1,5 +1,6 @@
+import { priceType } from "../../../src/features/register/models";
 
-export const priceMap: Record<string, string> = {
+export const priceMap: Record<priceType, string> = {
   'registration-fee-solo': 'price_1QKQxZJv440zP1qkSr5rWl5o',
   'registration-fee-team': 'price_1QKQxpJv440zP1qkBIAjUPCB',
   'funktion': 'price_1QKQyAJv440zP1qkYLGxsSML',
@@ -8,6 +9,6 @@ export const priceMap: Record<string, string> = {
 
 };
 
-export const getPriceId = (item: string): string | null => {
+export const getPriceId = (item: priceType): string | null => {
   return priceMap[item] || null;
 };
