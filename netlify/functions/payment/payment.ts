@@ -18,6 +18,13 @@ export const handler: Handler = async (event) => {
     };
   }
 
+  if (!(process.env.VITE_ALLOW_REGISTRATION === "true")) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Registration is now allowed at the moment.'})
+    };
+  }
+
   // Handle POST request for payment creation
   try {
     const { formType, shirts, numCaps, formData } = JSON.parse(event.body || '{}');

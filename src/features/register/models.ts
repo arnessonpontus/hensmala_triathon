@@ -1,5 +1,9 @@
 export type Size = "XXS" | "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL"
 
+export type shirtType = "Dam" | "Herr";
+
+export type ShirtMaterial = "funktion" | "bomull";
+
 export interface Shirt {
   size: Size | null,
   type: "Dam" | "Herr" | null,

@@ -17,6 +17,7 @@ import PaymentCancelled from "./features/register/pages/PaymentCancelled";
 import PaymentSuccess from "./features/register/pages/PaymentSuccess";
 import { useEffect } from "react";
 import { Results } from "./features/media/pages/Results";
+import { MainLayout } from "./components/MainLayout";
 
 export const AppRouter = () => {
   const location = useLocation();
@@ -26,6 +27,7 @@ export const AppRouter = () => {
   }, [location])
 
   return (
+    <MainLayout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/anmalan" element={<Register />} />
@@ -45,5 +47,6 @@ export const AppRouter = () => {
         <Route path="/om-ht/:id" element={<AboutHT />} />
         <Route path="/news/:id" element={<NewsDetail />} />
       </Routes>
+    </MainLayout>
   );
 };

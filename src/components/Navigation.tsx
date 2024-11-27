@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { NavLink as RNNavLink } from "react-router-dom";
 import {
   NavLink,
@@ -13,6 +13,7 @@ import {
   DropdownMenu
 } from "reactstrap";
 import { useMediaQuery } from 'react-responsive';
+import { NAVBAR_HEIGHT } from "../Constants";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ export const Navigation = () => {
   };
 
   return (
-    <Navbar expand={shouldCollapse} sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10 }}>
+    <Navbar expand={shouldCollapse} sticky="top" style={{ backgroundColor: "#11999E", zIndex: 10, minHeight: NAVBAR_HEIGHT }}>
       <NavbarBrand
         tag={RNNavLink}
         color="light"

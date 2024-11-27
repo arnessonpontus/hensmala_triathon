@@ -125,7 +125,6 @@ const CoronaEdition = () => {
           marginLeft: "auto",
           marginRight: "auto",
           maxWidth: 3 * (350 + 20),
-          minHeight: "70vh",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",

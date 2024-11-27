@@ -21,6 +21,8 @@ import { handleSubmit } from "../service/registerService";
 import { calcShirtPrice, hasValidShirt } from "../utils";
 import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
+import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
+import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
 export const OrderShirt: React.FC = () => {
   const { loading, getPriceByName } = usePrices();
@@ -44,7 +46,7 @@ export const OrderShirt: React.FC = () => {
     const functionPrice = getPriceByName("funktion");
     const capPrice = getPriceByName("keps");
 
-    if (!cottonPrice || !functionPrice || !capPrice){
+    if (!cottonPrice || !functionPrice || !capPrice) {
       return null
     }
 
@@ -70,8 +72,18 @@ export const OrderShirt: React.FC = () => {
   const resetState = () => {
     setFormState(defaultState);
   };
+
+  if (!import.meta.env.VITE_ALLOW_REGISTRATION) {
+    return (
+      <FillCenterLayout>
+        <h2>Beställning av kläder är inte öppnad än.</h2>
+        <p>Vi öppnar snart. Vid frågor är det bara att höra av sig till {DEFAULT_CONTACT_EMAIL} </p>
+      </FillCenterLayout>
+    )
+  }
+
   return (
-    <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "90vh" }}>
+    <Container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       {!formState.hasOrdered ? (
         <div className="card-box" style={{ marginTop: 40, width: "90%" }}>
           <Row>
@@ -103,7 +115,7 @@ export const OrderShirt: React.FC = () => {
                 <FormGroup>
                   <Label for="clothes-select">Välj antal och storlek (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
                   <div className="clothes-select">
-                    <ShirtSelect updateShirtSelection={(newShirts) =>{ setFormState(prev => ({ ...prev, shirts: newShirts }))}} />
+                    <ShirtSelect updateShirtSelection={(newShirts) => { setFormState(prev => ({ ...prev, shirts: newShirts })) }} />
                   </div>
                   <Label className="mt-2">Lägg till keps ({getPriceByName("keps")}kr)</Label>
                   <div className="clothes-select">
@@ -154,7 +166,7 @@ export const OrderShirt: React.FC = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="totalAmountToPay">Totalt att betala:</Label>
-                  {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser"/>}
+                  {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
                 </FormGroup>
                 <FormGroup check>
                   <Label for="checkbox1">
