@@ -25,7 +25,7 @@ const usePrices = () => {
         }
       } catch (err) {
         setError("Could not get prices");
-        showErrorModal("Vissa priser kunde inte hämtas och kan visas fel. Gå vidare till betalning för att de de uppdaterade priserna.", "Kunde inte hämta priser")
+        showErrorModal("Vissa priser kunde inte hämtas och kan visas fel. Gå vidare till betalning för att sde de uppdaterade priserna.", "Kunde inte hämta priser")
       } finally {
         setLoading(false);
       }
@@ -42,7 +42,7 @@ const usePrices = () => {
     return prices[priceId];
   }
 
-  return { prices, loading, error, getPriceByName};
+  return { prices, loading, error, getPriceByName };
 };
 
 export default usePrices;

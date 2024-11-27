@@ -2,7 +2,7 @@ import { priceType } from "../models";
 
 export const getPrices = async (): Promise<Record<priceType, number>> => {
   try {
-    const res = await fetch('/.netlify/functions/getPrices', {
+    const res = await fetch('http://localhost:8888/.netlify/functions/getPrices', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

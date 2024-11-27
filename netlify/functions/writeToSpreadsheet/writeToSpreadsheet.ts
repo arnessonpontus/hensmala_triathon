@@ -26,7 +26,7 @@ const appendZero = (str: string) => {
   return parseInt(str) < 10 ? "0" + str : str;
 }
 
-function handleBirthday(data: any, type: FormType) {
+export function handleBirthday(data: any, type: FormType) {
   if (type == "team") {
     data["birthday1"] =
       data["year1"] + "-" + appendZero(data["month1"]) + "-" + appendZero(data["day1"]);
@@ -64,26 +64,26 @@ const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) =
 
   let spreadsheetID = "";
   let idType = "";
-
   console.log("Running sheet netlify function...");
 
   const registerTypeParam = event.queryStringParameters?.type;
-  let registerType: FormType = "solo";
+  let registerType: FormType;
 
   switch (registerTypeParam) {
     case "solo":
       spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_SOLO_2024!;
       idType = "S";
+      registerType = FormType.Solo
       break;
     case "team":
       spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TEAM_2024!;
       idType = "T";
-      registerType = "team";
+      registerType = FormType.Team;
       break;
     case "tshirt_order":
       spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER!;
       idType = "O";
-      registerType = "tshirt_order";
+      registerType = FormType.TShirtOrder;
       break;
     default:
       return {
@@ -137,7 +137,7 @@ const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) =
 
     if (addedRow) {
       console.log("Success adding row");
-      const email_sent = await sendEmail(addedRow, registerTypeParam);
+      const email_sent = await sendEmail(addedRow, registerType);
       return {
         statusCode: 200,
         body: JSON.stringify({

@@ -82,7 +82,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     return calcTotalRegisterPrice(getPriceByName("bomull"),
       getPriceByName("funktion"),
       getPriceByName("keps"),
-      getPriceByName("registration-fee-solo"),
+      getPriceByName("solo"),
       formState.numCaps,
       formState.shirts,
       formState.extraDonation,
@@ -93,7 +93,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout("registration-fee-solo", formState.shirts, formState.numCaps, showErrorModal);
+    handleCheckout(FormType.Solo, formState.shirts, formState.numCaps, formState, showErrorModal);
   };
 
   return (
@@ -266,7 +266,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
           </FormGroup>
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
-            {totalCost != null ? <h5>{totalCost}kr</h5>: <ErrorBanner text="Kunde inte hämta priser"/>}
+            {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
 
           <FormGroup>
@@ -323,7 +323,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
         <br></br>
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-solo")}kr</b>
+        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("solo")}kr</b>
 
       </Col>
     </Row>

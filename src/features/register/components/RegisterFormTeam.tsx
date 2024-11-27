@@ -97,7 +97,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
       getPriceByName("bomull"),
       getPriceByName("funktion"),
       getPriceByName("keps"),
-      getPriceByName("registration-fee-team"),
+      getPriceByName("team"),
       formState.numCaps,
       formState.shirts,
       formState.extraDonation,
@@ -178,7 +178,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout("registration-fee-team", formState.shirts, formState.numCaps, showErrorModal);
+    handleCheckout("team", formState.shirts, formState.numCaps, showErrorModal);
   };
 
   return (
@@ -291,7 +291,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
             : null}
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
-            {totalCost != null ? <h5>{totalCost}kr</h5>: <ErrorBanner text="Kunde inte hämta priser"/>}
+            {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
 
           <FormGroup>
@@ -345,7 +345,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
         <br></br>
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-team")}kr</b>
+        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("team")}kr</b>
       </Col>
     </Row>
   );

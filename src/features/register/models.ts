@@ -1,4 +1,4 @@
-type Size = "XXS" | "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL"
+export type Size = "XXS" | "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL"
 
 export interface Shirt {
   size: Size | null,
@@ -67,11 +67,15 @@ export type DataToSend = Partial<
   totalToPay: number
 };
 
-export type FormType = "solo" | "team" | "tshirt_order";
+export enum FormType {
+  Solo = "solo",
+  Team = "team",
+  TShirtOrder = "tshirt_order",
+}
 
 export type priceType =
-  "registration-fee-solo"
-  | "registration-fee-team"
+  "solo"
+  | "team"
   | "funktion"
   | "bomull"
   | "keps"

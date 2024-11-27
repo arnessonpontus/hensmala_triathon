@@ -32,12 +32,12 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
     let html = "";
 
     if (registerType === "team") {
-        const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) || 
-                                  addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) || 
-                                  addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase());
-        html = getTeamHtml(addedRow, hasAllowedCompany);
+      const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
+        addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
+        addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase());
+      html = getTeamHtml(addedRow, hasAllowedCompany);
     } else if (registerType === "tshirt_order") {
-        html = getShirtHtml(addedRow);
+      html = getShirtHtml(addedRow);
     } else {
       const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase())
       html = getSoloHtml(addedRow, hasAllowedCompany);
@@ -52,9 +52,9 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
       // TODO: bcc: [process.env.EMAILER_USER],
       attachments: [{
         filename: 'logga.png',
-        path: __dirname +'/assets/logga.png',
+        path: __dirname + '/assets/logga.png',
         cid: 'logo'
-   }]
+      }]
     };
 
     console.log("Sending email...");

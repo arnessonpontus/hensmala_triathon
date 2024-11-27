@@ -1,9 +1,26 @@
-import { Shirt } from "./models";
+import { Shirt, Size } from "./models";
 
 // Stringify the shirt selection for easier storage
 export function shirtArrayToString(shirts: Shirt[]) {
   return shirts.filter(s => s.type && s.size).map(shirt => `${shirt.type} ${shirt.size} ${shirt.material}`).join(', ')
 }
+
+// Arryify the shirt selection for harder storage
+export function shirtStringToArray(shirtsString: string): Shirt[] {
+  console.log(shirtsString)
+  return shirtsString
+    .split(',') // Split the string into individual shirt descriptions
+    .map(shirtStr => {
+      const [type, size, material] = shirtStr.trim().split(' '); // Split each shirt description into its parts
+
+      return {
+        type: type.toLowerCase() as "Dam" | "Herr" | null, // Convert type to lowercase
+        size: size as Size, // Cast size as Size to match Shirt type
+        material: material.toLowerCase() as "bomull" | "funktion",
+      };
+    });
+}
+
 
 // Checks if at lease one shirt is valid (not having any null values)
 export function hasValidShirt(shirts: Shirt[]) {

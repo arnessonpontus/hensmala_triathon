@@ -2,6 +2,8 @@ import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
 import { getPriceId } from './pricing';
 import { Shirt } from '../../../src/features/register/models';
+import { handleBirthday } from '../writeToSpreadsheet/writeToSpreadsheet';
+import { shirtArrayToString } from '../../../src/features/register/utils';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
   apiVersion: '2024-10-28.acacia',
@@ -18,9 +20,9 @@ export const handler: Handler = async (event) => {
 
   // Handle POST request for payment creation
   try {
-    const { registrationType, shirts, numCaps } = JSON.parse(event.body || '{}');
+    const { formType, shirts, numCaps, formData } = JSON.parse(event.body || '{}');
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-    const registrationPriceId = getPriceId(registrationType);
+    const registrationPriceId = getPriceId(formType);
 
     if (registrationPriceId) {
       lineItems.push({
@@ -51,13 +53,25 @@ export const handler: Handler = async (event) => {
       }
     }
 
+
+    const birthday = handleBirthday([formData.year, formData.month, formData.day], formData);
+    const shirtsString = shirtArrayToString(shirts);
     const session = await stripe.checkout.sessions.create({
       metadata: {
-        registrationType,
-        shirts: shirts.toString(), // TODO: Send proccessed data
-        numCaps: numCaps.toString()
+        formType,
+        shirtsString: shirtsString, // TODO: Send proccessed data
+        numCaps: numCaps.toString(),
+        name: formData.name,
+        email: formData.email,
+        year: formData.year,
+        month: formData.month,
+        day: formData.day,
+        info: formData.info,
+        gender: formData.gender,
+        city: formData.city,
+        extraDonation: formData.extraDonation.toString(),
       },
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'klarna'],
       line_items: lineItems,
       mode: 'payment',
       success_url: `${process.env.CLIENT_URL}/payment-success`,
@@ -70,6 +84,7 @@ export const handler: Handler = async (event) => {
     };
   } catch (error) {
     return {
+
       statusCode: 400,
       body: JSON.stringify({ error: error instanceof Error ? error.message : 'An error occurred' }),
     };

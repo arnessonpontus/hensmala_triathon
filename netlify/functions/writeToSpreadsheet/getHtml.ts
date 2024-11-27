@@ -1,26 +1,26 @@
 import { GoogleSpreadsheetRow } from "google-spreadsheet";
 
 export function getPaymentString(hasAllowedCompany: boolean, totalToPay: number) {
-  if (hasAllowedCompany) {
-    return (
-      `<p>
+    if (hasAllowedCompany) {
+        return (
+            `<p>
         Eftersom du har anget <b style="color:#007fa8;">${process.env.VITE_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften gratis. 
       </p>
       ${totalToPay > 0 ?
-        `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
-        : ""}
+                `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
+                : ""}
         <p>`)
-  } else {
-    return (
-      `<p>
+    } else {
+        return (
+            `<p>
         Betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
        </p>`
-    );
-  }
+        );
+    }
 }
 
 export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, hasAllowedCompany: boolean) {
-  return (`
+    return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -56,7 +56,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
                 Ort/klubb: <b>${data.get('city')}</b>
             </li>
             <li>
-                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+                Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
             </li>
             <li>
                 Kepsar: <b>${data.get('numCaps')}</b>
@@ -76,7 +76,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
 }
 
 export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, hasAllowedCompany: boolean) {
-  return (`
+    return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -126,7 +126,7 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
                 </li>
             </ul>
             ${data.get('name3') !== "" ?
-      `<b>Lagmedlem 3</b>
+            `<b>Lagmedlem 3</b>
             <ul>
                 <li>
                     Namn: <b>${data.get('name3')}</b>
@@ -141,10 +141,10 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
                     Ort/klubb: <b>${data.get('city3')}</b>
                 </li>
             </ul>`
-      : ""}
+            : ""}
             <b>Övrigt</b>
             <li>
-                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+                Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
             </li>
             <li>
                 Kepsar: <b>${data.get('numCaps')}</b>
@@ -162,7 +162,7 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
     `);
 }
 export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
-  return (`
+    return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -191,7 +191,7 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
                 Epost: <b>${data.get('email')}</b>
             </li>
             <li>
-                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+                Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
             </li>
             <li>
                 Kepsar: <b>${data.get('numCaps')}</b>

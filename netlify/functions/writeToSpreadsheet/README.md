@@ -6,7 +6,7 @@ Remember to share every sheet with the service account email
 
 ```javascript
 const onSubmit = () => {
-  fetch("/.netlify/functions/writeToSpreadsheet", {
+  fetch("http://localhost:8888/.netlify/functions/writeToSpreadsheet", {
     method: "POST",
     body: JSON.stringify({
       name: "User 3",

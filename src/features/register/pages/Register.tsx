@@ -12,18 +12,18 @@ export const Register = () => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
-const toggleDone = () => {
-   setHasRegistered(!hasRegisterd)
+  const toggleDone = () => {
+    setHasRegistered(!hasRegisterd)
   }
-
+  //#TODO remove whole file?
   const handleRegSubmit = (e: React.FormEvent<HTMLFormElement>, formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState, totalCost: number) => {
-    handleSubmit(e, formType, formData, totalCost, (val) => setLoading(val), () => toggleDone());
+    //handleSubmit(e, formType, formData, totalCost, (val) => setLoading(val), () => toggleDone());
   }
 
   return (
     <Container>
       {!hasRegisterd ? (
-          <div className="card-box" style={{ marginTop: 40, minHeight: '70vh' }}>
+        <div className="card-box" style={{ marginTop: 40, minHeight: '70vh' }}>
           <div className="register-tabs">
             <div onClick={() => setActiveTab(0)} className="register-tab">
               Individuell
