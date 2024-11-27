@@ -31,7 +31,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
         <style type="text/css">
         </style>
         <div>
-            <h1>Hej ${data.get('name').split(" ")[0]}!</h1>
+            <h1>Hej ${data.get('name1').split(" ")[0]}!</h1>
             <h2>
                 Tack för din anmälan till Hensmåla Triathlon 2024!
             </h2>
@@ -41,19 +41,19 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
             </p>
             <ul>
             <li>
-                Namn: <b>${data.get('name')}</b>
+                Namn: <b>${data.get('name1')}</b>
             </li>
             <li>
                 Epost: <b>${data.get('email')}</b>
             </li>
             <li>
-                Födelsedatum: <b>${data.get('birthday')}</b>
+                Födelsedatum: <b>${data.get('birthday1')}</b>
             </li>
             <li>
                 Kön: <b>${data.get('gender')}</b>
             </li>
             <li>
-                Ort/klubb: <b>${data.get('city')}</b>
+                Ort/klubb: <b>${data.get('city1')}</b>
             </li>
             <li>
                 Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
@@ -173,7 +173,7 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
         <style type="text/css">
         </style>
         <div>
-            <h1>Hej ${data.get('name').split(" ")[0]}!</h1>
+            <h1>Hej ${data.get('name1').split(" ")[0]}!</h1>
             <h2>
                 Tack för din beställning av t-shirt eller keps för Hensmåla Triathlon 2024!
             </h2>
@@ -185,7 +185,7 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
             </p>
             <ul>
             <li>
-                Namn: <b>${data.get('name')}</b>
+                Namn: <b>${data.get('name1')}</b>
             </li>
             <li>
                 Epost: <b>${data.get('email')}</b>

@@ -6,7 +6,7 @@ import moment from "moment-timezone";
 import { JWT } from 'google-auth-library';
 import axios from "axios";
 import { FormType } from "../../../src/features/register/models";
-import { sendEmail } from "./emailSender";
+import { sendEmail } from "../stripe-webhook/emailSender";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
 // required env vars
@@ -22,24 +22,6 @@ if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM_2024)
 if (!process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER)
   throw new Error("no GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER env var set");
 
-const appendZero = (str: string) => {
-  return parseInt(str) < 10 ? "0" + str : str;
-}
-
-export function handleBirthday(data: any, type: FormType) {
-  if (type == "team") {
-    data["birthday1"] =
-      data["year1"] + "-" + appendZero(data["month1"]) + "-" + appendZero(data["day1"]);
-    data["birthday2"] =
-      data["year2"] + "-" + appendZero(data["month2"]) + "-" + appendZero(data["day2"]);
-    data["birthday3"] =
-      data["year3"] + "-" + appendZero(data["month3"]) + "-" + appendZero(data["day3"]);
-  } else if (type == "solo") {
-    data["birthday"] = data["year"] + "-" + appendZero(data["month"]) + "-" + appendZero(data["day"]);
-  }
-
-  return data;
-}
 
 const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) => {
   // Check recaptcha from token

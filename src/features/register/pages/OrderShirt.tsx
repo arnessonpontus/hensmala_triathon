@@ -15,7 +15,7 @@ import ExtraDonation from "../components/ExtraDonation";
 import Consent from "../../../components/Consent";
 import RegisterButton from "../components/RegisterButton";
 
-import { OrderShirtState } from "../models";
+import { FormType, OrderShirtState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
 import { handleSubmit } from "../service/registerService";
 import { calcShirtPrice, hasValidShirt } from "../utils";
@@ -23,6 +23,8 @@ import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
+import { handleCheckout } from "../service/checkoutService";
+import { useErrorModal } from "../../../context/ErrorModalContext";
 
 export const OrderShirt: React.FC = () => {
   const { loading, getPriceByName } = usePrices();
@@ -82,6 +84,13 @@ export const OrderShirt: React.FC = () => {
     )
   }
 
+  const { showErrorModal } = useErrorModal();
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleCheckout(FormType.TShirtOrder, formState.shirts, formState.numCaps, formState, showErrorModal);
+  };
+
   return (
     <Container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       {!formState.hasOrdered ? (
@@ -111,7 +120,7 @@ export const OrderShirt: React.FC = () => {
             </Col>
             <Col style={{ marginTop: "2vh" }}>
               <hr className="register-divider"></hr>
-              <Form onSubmit={(e) => handleSubmit(e, "tshirt_order", formState, totalCost || 0, (val) => setFormState(prev => ({ ...prev, loading: val })), () => toggleDone())}>
+              <Form onSubmit={onSubmit}>
                 <FormGroup>
                   <Label for="clothes-select">Välj antal och storlek (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
                   <div className="clothes-select">

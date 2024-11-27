@@ -25,7 +25,7 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
     });
 
     // TODO: Send to all members?
-    const email = addedRow.get('email') ? addedRow.get('email') : addedRow.get('email1');
+    const email = addedRow.get('email1')
 
     const mailSubject = registerType === "tshirt_order" ? "Tack för din beställning!" : "Tack för din anmälan!"
 
@@ -42,7 +42,6 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
       const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase())
       html = getSoloHtml(addedRow, hasAllowedCompany);
     }
-
     const mailOptions = {
       from: process.env.EMAILER_USER,
       to: email,
@@ -50,11 +49,11 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
       html: html,
       bcc: [],
       // TODO: bcc: [process.env.EMAILER_USER],
-      attachments: [{
-        filename: 'logga.png',
-        path: __dirname + '/assets/logga.png',
-        cid: 'logo'
-      }]
+      //attachments: [{
+      //  filename: 'logga.png',
+      //  path: __dirname + '/assets/logga.png', //#TODO fick inte rätt på pathen på loggjävlen
+      //  cid: 'logo'
+      //}]
     };
 
     console.log("Sending email...");

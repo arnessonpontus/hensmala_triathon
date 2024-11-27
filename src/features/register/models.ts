@@ -31,6 +31,28 @@ export interface RegisterFormSoloState extends BaseOrderType {
   isCheckboxThreeTicked: boolean;
 }
 
+export interface StripeMetadata {
+  formType: string;
+  birthday1: string;
+  birthday2?: string;
+  birthday3?: string;
+  teamName?: string;
+  name1: string;
+  name2?: string;
+  name3?: string;
+  city1: string;
+  city2?: string;
+  city3?: string;
+  email1: string;
+  email2?: string;
+  email3?: string;
+  gender?: string;
+  shirtsString?: string;
+  numCaps: string;
+  extraDonation: string;
+  info: string;
+}
+
 export interface RegisterFormTeamState extends Omit<BaseOrderType, "name" | "email"> {
   teamName: string;
   name1: string;

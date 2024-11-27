@@ -1,5 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { FormType, RegisterFormSoloState, Shirt } from '../models';
+import { FormType, OrderShirtState, RegisterFormSoloState, RegisterFormTeamState, Shirt } from '../models';
 import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PUBLIC}`);
@@ -8,14 +8,14 @@ export const handleCheckout = async (
     formType: FormType,
     shirts: Shirt[],
     numCaps: number,
-    formData: RegisterFormSoloState,
+    formData: RegisterFormSoloState | RegisterFormTeamState | OrderShirtState, //#TODO kanske finns ett bättre sent att hantera det på? 
     showErrorModal: (message: string, title: string) => void
 ) => {
     try {
         const response = await fetch('http://localhost:8888/.netlify/functions/payment/payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ formType: formType, shirts, numCaps, formData }),
+            body: JSON.stringify({ formType, shirts, numCaps, formData }),
         });
 
         if (!response.ok) {
