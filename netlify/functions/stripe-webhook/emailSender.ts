@@ -1,6 +1,6 @@
 import { GoogleSpreadsheetRow } from "google-spreadsheet";
-import { FormType } from "../../../src/features/register/models";
-import { getSoloHtml, getTeamHtml, getShirtHtml } from "./getHtml";
+import { FormType, StripeMetadata } from "../../../src/features/register/models";
+import { getSoloHtml, getTeamHtml, getShirtHtml, getRegistrationErrorHtml } from "./getHtml";
 import { createTransport } from "nodemailer";
 
 // Click on this link to enable applications to access the email account:
@@ -14,9 +14,9 @@ if (!process.env.EMAILER_PASSWORD)
 if (!process.env.VITE_ALLOWED_COMPANY)
   throw new Error("no VITE_ALLOWED_COMPANY env var set");
 
-export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType) {
-  return new Promise<void>((resolve, reject) => {
-    var transporter = createTransport({
+export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType): Promise<boolean> {
+  try {
+    const transporter = createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAILER_USER,
@@ -32,7 +32,7 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
     let html = "";
 
     if (registerType === "team") {
-      const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
+      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
         addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
         addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase());
       html = getTeamHtml(addedRow, hasAllowedCompany);
@@ -48,12 +48,43 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
       subject: mailSubject,
       html: html,
       bcc: [],
-      // TODO: bcc: [process.env.EMAILER_USER],
-      //attachments: [{
+      //TODO: bcc: [process.env.EMAILER_USER], 
+      //attachments: [{ 
       //  filename: 'logga.png',
       //  path: __dirname + '/assets/logga.png', //#TODO fick inte rätt på pathen på loggjävlen
       //  cid: 'logo'
       //}]
+    };
+
+    console.log("Sending email...");
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent to: ", email);
+    return true;
+  } catch (error) {
+    console.log("Error sending email: ", error);
+    return false;
+  }
+
+}
+
+export function sendEmailToUsInCaseOfError(metadata: StripeMetadata, paymentName: string | null | undefined, paymentMail: string | null | undefined, paymentPhone: string | null | undefined) {
+  return new Promise<void>((resolve, reject) => {
+    var transporter = createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAILER_USER,
+        pass: process.env.EMAILER_PASSWORD,
+      },
+    });
+
+    const mailSubject = "FEL VID REGISTRERING"
+    const html = getRegistrationErrorHtml(metadata.name1, metadata.email1, metadata.city1, paymentName, paymentMail, paymentPhone)
+    const mailOptions = {
+      from: process.env.EMAILER_USER,
+      to: process.env.EMAILER_USER,
+      subject: mailSubject,
+      html: html,
+      bcc: [],
     };
 
     console.log("Sending email...");
@@ -62,7 +93,7 @@ export function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, r
         console.log("Error sending email: ", error);
         reject();
       } else {
-        console.log("Email sent to : " + email + " : " + info.response);
+        console.log("Email sent to : " + process.env.EMAILER_USER + " : " + info.response);
         resolve();
       }
     });

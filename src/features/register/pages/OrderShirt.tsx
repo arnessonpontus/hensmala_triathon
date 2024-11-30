@@ -17,7 +17,6 @@ import RegisterButton from "../components/RegisterButton";
 
 import { FormType, OrderShirtState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
-import { handleSubmit } from "../service/registerService";
 import { calcShirtPrice, hasValidShirt } from "../utils";
 import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
@@ -30,8 +29,8 @@ export const OrderShirt: React.FC = () => {
   const { loading, getPriceByName } = usePrices();
 
   const defaultState: OrderShirtState = {
-    name: "",
-    email: "",
+    name1: "",
+    email1: "",
     extraDonation: 0,
     shirts: [],
     numCaps: 0,
@@ -62,13 +61,6 @@ export const OrderShirt: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const toggleDone = () => {
-    setFormState((prevState) => ({
-      ...prevState,
-      hasOrdered: !prevState.hasOrdered,
-    }));
   };
 
   const resetState = () => {
@@ -136,10 +128,10 @@ export const OrderShirt: React.FC = () => {
                   <Input
                     required={true}
                     type="text"
-                    name="name"
-                    id="name"
+                    name="name1"
+                    id="name1"
                     placeholder="Förnamn Efternamn"
-                    value={formState.name}
+                    value={formState.name1}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -148,10 +140,10 @@ export const OrderShirt: React.FC = () => {
                   <Input
                     required={true}
                     type="email"
-                    name="email"
-                    id="email"
+                    name="email1"
+                    id="email1"
                     placeholder="din@email.com"
-                    value={formState.email}
+                    value={formState.email1}
                     onChange={handleChange}
                   />
                 </FormGroup>

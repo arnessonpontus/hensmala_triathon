@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { FormType, RegisterFormSoloState, Shirt, StripeMetadata } from "../../../src/features/register/models";
 import { oreToSek, shirtStringToArray } from '../../../src/features/register/utils';
 import { writeToSpreadsheet } from './writeToSpreadsheet';
+import { sendEmailToUsInCaseOfError } from './emailSender';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
   apiVersion: '2024-10-28.acacia',
@@ -40,9 +41,10 @@ export const handler: Handler = async (event) => {
 
     const totalInOre = session.amount_total || 0;
 
-    writeToSpreadsheet(metadata, oreToSek(totalInOre))
-
-    console.log('Payment successfull! Webhook works fine!', session.id);
+    const successWritingToSheetAndMail = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
+    if (!successWritingToSheetAndMail) {
+      sendEmailToUsInCaseOfError(metadata, session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone);
+    }
   }
 
   return { statusCode: 200, body: JSON.stringify({ received: true }) };

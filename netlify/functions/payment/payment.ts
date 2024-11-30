@@ -18,6 +18,7 @@ export const handler: Handler = async (event) => {
       body: '',
     };
   }
+  //#TODO Vi måste validera mer så att vi vet mer om betalning går igenom men det funkar inte för nån anledning med mail eller skriva i excel. 
   /*
   if (!(process.env.VITE_ALLOW_REGISTRATION === "true")) {
     return {
@@ -49,100 +50,49 @@ export const handler: Handler = async (event) => {
       lineItems.push(...createCapPurchaseItems(numCaps));
     }
 
-    if (formType === FormType.Solo) {
+    //Common data for all registrations
+    let metadata: StripeMetadata = {
+      formType: formType,
+      birthday1: birthdayToString(formData.year1, formData.month1, formData.day1),
+      shirtsString: shirtArrayToString(shirts),
+      name1: formData.name1,
+      email1: formData.email1,
+      city1: formData.city1,
+      gender: formData.gender,
+      extraDonation: formData.extraDonation.toString(),
+      info: formData.info,
+      numCaps: numCaps.toString(),
+    }
 
-      const metadata: StripeMetadata = {
-        formType: formType,
-        birthday1: birthdayToString(formData.year, formData.month, formData.day),
-        shirtsString: shirtArrayToString(shirts),
-        numCaps: numCaps.toString(),
-        name1: formData.name,
-        email1: formData.email,
-        info: formData.info,
-        gender: formData.gender,
-        city1: formData.city,
-        extraDonation: formData.extraDonation.toString()
-      }
-
-      const session = await stripe.checkout.sessions.create({
-        metadata: metadata as unknown as MetadataParam,
-        payment_method_types: ['card', 'klarna'],
-        line_items: lineItems,
-        mode: 'payment',
-        success_url: `${process.env.CLIENT_URL}/payment-success`,
-        cancel_url: `${process.env.CLIENT_URL}/payment-cancelled`,
-      });
-
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ id: session.id }),
-      };
-
-    } else if (formType === FormType.Team) {
-      const metadata: StripeMetadata = {
-        formType: formType,
+    if (formType === FormType.Team) {
+      metadata = {
+        ...metadata,
         teamName: formData.teamName,
-        birthday1: birthdayToString(formData.year1, formData.month1, formData.day1),
         birthday2: birthdayToString(formData.year2, formData.month2, formData.day2),
         birthday3: birthdayToString(formData.year3, formData.month3, formData.day3),
-        shirtsString: shirtArrayToString(shirts),
-        numCaps: numCaps.toString(),
-        name1: formData.name1,
         name2: formData.name2,
         name3: formData.name3,
-        email1: formData.email1,
-        email2: formData.email1,
+        email2: formData.email1, //#TODO Assign different emails for other people?
         email3: formData.email1,
-        info: formData.info,
-        gender: formData.gender,
-        city1: formData.city1,
         city2: formData.city2,
         city3: formData.city3,
-        extraDonation: formData.extraDonation.toString()
-      }
-      const session = await stripe.checkout.sessions.create({
-        metadata: metadata as unknown as MetadataParam,
-        payment_method_types: ['card', 'klarna'],
-        line_items: lineItems,
-        mode: 'payment',
-        success_url: `${process.env.CLIENT_URL}/payment-success`,
-        cancel_url: `${process.env.CLIENT_URL}/payment-cancelled`,
-      });
-
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ id: session.id }),
-      };
-
-    } else {
-      console.log("formdata.:::", formData);
-      const metadata: StripeMetadata = {
-        formType: formType,
-        birthday1: birthdayToString(formData.year, formData.month, formData.day),
-        shirtsString: shirtArrayToString(shirts),
-        numCaps: numCaps.toString(),
-        name1: formData.name,
-        email1: formData.email,
-        info: formData.info,
-        gender: formData.gender,
-        city1: formData.city,
-        extraDonation: formData.extraDonation.toString()
       }
 
-      const session = await stripe.checkout.sessions.create({
-        metadata: metadata as unknown as MetadataParam,
-        payment_method_types: ['card', 'klarna'],
-        line_items: lineItems,
-        mode: 'payment',
-        success_url: `${process.env.CLIENT_URL}/payment-success`,
-        cancel_url: `${process.env.CLIENT_URL}/payment-cancelled`,
-      });
-
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ id: session.id }),
-      };
     }
+
+    const session = await stripe.checkout.sessions.create({
+      metadata: metadata as unknown as MetadataParam,
+      payment_method_types: ['card', 'klarna'],
+      line_items: lineItems,
+      mode: 'payment',
+      success_url: `${process.env.CLIENT_URL}/payment-success`,
+      cancel_url: `${process.env.CLIENT_URL}/payment-cancelled`,
+    });
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ id: session.id }),
+    };
 
 
   } catch (error) {

@@ -15,17 +15,17 @@ export interface BaseOrderType {
   shirtsString?: string,
   numCaps: number,
   extraDonation: number,
-  name: string,
-  email: string,
+  name1: string,
+  email1: string,
   info: string,
 }
 
 export interface RegisterFormSoloState extends BaseOrderType {
-  year: string;
-  month: string;
-  day: string;
+  year1: string;
+  month1: string;
+  day1: string;
   gender: string;
-  city: string;
+  city1: string;
   isCheckboxOneTicked: boolean;
   isCheckboxTwoTicked: boolean;
   isCheckboxThreeTicked: boolean;
@@ -53,10 +53,8 @@ export interface StripeMetadata {
   info: string;
 }
 
-export interface RegisterFormTeamState extends Omit<BaseOrderType, "name" | "email"> {
+export interface RegisterFormTeamState extends BaseOrderType {
   teamName: string;
-  name1: string;
-  email1: string;
   year1: string;
   month1: string;
   day1: string;
@@ -100,8 +98,8 @@ export enum FormType {
 }
 
 export type priceType =
-  "solo"
-  | "team"
+  "registration-fee-solo"
+  | "registration-fee-team"
   | "funktion"
   | "bomull"
   | "keps"

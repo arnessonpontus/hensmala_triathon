@@ -97,7 +97,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
       getPriceByName("bomull"),
       getPriceByName("funktion"),
       getPriceByName("keps"),
-      getPriceByName("team"),
+      getPriceByName("registration-fee-team"),
       formState.numCaps,
       formState.shirts,
       formState.extraDonation,
@@ -345,7 +345,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
         <br></br>
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("team")}kr</b>
+        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-team")}kr</b>
       </Col>
     </Row>
   );

@@ -37,14 +37,14 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
   const { loading, getPriceByName } = usePrices();
 
   const [formState, setFormState] = useState<RegisterFormSoloState>({
-    name: "",
-    email: "",
-    year: "",
-    month: "",
-    day: "",
+    name1: "",
+    email1: "",
+    year1: "",
+    month1: "",
+    day1: "",
     info: "",
     gender: "",
-    city: "",
+    city1: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
     isCheckboxThreeTicked: false,
@@ -74,7 +74,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
   const isAllowedCompanyEntered = () => {
     return (
       import.meta.env.VITE_ALLOWED_COMPANY &&
-      formState.city.toLowerCase().includes(import.meta.env.VITE_ALLOWED_COMPANY.toLowerCase())
+      formState.city1.toLowerCase().includes(import.meta.env.VITE_ALLOWED_COMPANY.toLowerCase())
     );
   };
 
@@ -82,7 +82,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
     return calcTotalRegisterPrice(getPriceByName("bomull"),
       getPriceByName("funktion"),
       getPriceByName("keps"),
-      getPriceByName("solo"),
+      getPriceByName("registration-fee-solo"),
       formState.numCaps,
       formState.shirts,
       formState.extraDonation,
@@ -120,10 +120,10 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <Input
               required={true}
               type="text"
-              name="name"
-              id="name"
+              name="name1"
+              id="name1"
               placeholder="Förnamn Efternamn"
-              value={formState.name}
+              value={formState.name1}
               onChange={handleChange}
             />
           </FormGroup>
@@ -133,10 +133,10 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <Input
               required={true}
               type="email"
-              name="email"
-              id="email"
+              name="email1"
+              id="email1"
               placeholder="din.email@gmail.com"
-              value={formState.email}
+              value={formState.email1}
               onChange={handleChange}
             />
           </FormGroup>
@@ -146,16 +146,16 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
               <YearPicker
                 required={true}
                 handleChange={handleChange}
-                elemName="year" />
+                elemName="year1" />
               <MonthPicker
                 required={true}
                 handleChange={handleChange}
-                elemName="month"
+                elemName="month1"
               />
               <DayPicker
                 required={true}
                 handleChange={handleChange}
-                elemName="day" />
+                elemName="day1" />
             </div>
           </FormGroup>
           <FormGroup>
@@ -179,10 +179,10 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <Label for="city"> Ort (klubb)</Label>
             <Input
               type="text"
-              name="city"
-              id="city"
+              name="city1"
+              id="city1"
               placeholder="Hensmåla löparförening"
-              value={formState.city}
+              value={formState.city1}
               onChange={handleChange}
             />
           </FormGroup>
@@ -323,7 +323,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
         <br></br>
         <br></br>
         <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("solo")}kr</b>
+        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-solo")}kr</b>
 
       </Col>
     </Row>

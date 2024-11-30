@@ -85,8 +85,12 @@ export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: 
         if (addedRow) {
             console.log("Success adding row");
             const email_sent = await sendEmail(addedRow, registerType);
-            console.log(`Row added. Email sent: ${email_sent}`) //maybe this should be returned instead. #TODO Verkar också få undefined här i logsen?? Blir inte fel men lite lurt
-            return true;
+            if (email_sent) {
+                console.log(`Row added. Email sent: ${email_sent}`)
+                return true;
+            } else {
+                return false;;
+            }
         } else {
             console.log("Could not add row");
             return false;

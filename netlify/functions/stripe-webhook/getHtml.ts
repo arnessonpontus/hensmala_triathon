@@ -44,7 +44,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
                 Namn: <b>${data.get('name1')}</b>
             </li>
             <li>
-                Epost: <b>${data.get('email')}</b>
+                Epost: <b>${data.get('email1')}</b>
             </li>
             <li>
                 Födelsedatum: <b>${data.get('birthday1')}</b>
@@ -188,7 +188,7 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
                 Namn: <b>${data.get('name1')}</b>
             </li>
             <li>
-                Epost: <b>${data.get('email')}</b>
+                Epost: <b>${data.get('email1')}</b>
             </li>
             <li>
                 Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
@@ -207,4 +207,36 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
             <img src="cid:logo" alt="Logga" width="200px"'/>
         </div>
     `);
+}
+
+export function getRegistrationErrorHtml(registrationName: string, registrationEmail: string, registrationCity: string, paymentName: any, paymentMail: any, paymentPhone: any) {
+    return (`Något blev fel vid en registrering även om betalning gick igenom. Kontakta personen manuellt!
+        <br>
+        <b>Registrationsinformation</b>
+        <ul>
+            <li>
+                Namn: <b>${registrationName}</b>
+            </li>
+            <li>
+                Epost: <b>${registrationEmail}</b>
+            </li>
+            <li>
+                Stad: <b>${registrationCity}</b>
+            </li>
+        </ul>
+        <b>Betalningsinformation</b>
+        <ul>
+        <li>
+            Namn: <b>${paymentName}</b>
+        </li>
+        <li>
+            Epost: <b>${paymentMail}</b>
+        </li>
+        <li>
+            Telefon: <b>${paymentPhone}</b>
+        </li>
+    </ul>
+        `
+    )
+
 }
