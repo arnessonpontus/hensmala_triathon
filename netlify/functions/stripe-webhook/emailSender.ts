@@ -67,7 +67,7 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
 
 }
 
-export function sendEmailToUsInCaseOfError(paymentName: string | null | undefined, paymentMail: string | null | undefined, paymentPhone: string | null | undefined, metadata?: StripeMetadata,) {
+export function sendEmailToUsInCaseOfError(paymentName: string | null | undefined, paymentMail: string | null | undefined, paymentPhone: string | null | undefined, metadata?: StripeMetadata) {
   return new Promise<void>((resolve, reject) => {
     var transporter = createTransport({
       service: "gmail",
