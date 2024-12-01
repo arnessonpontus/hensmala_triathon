@@ -1,5 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { FormType, OrderShirtState, RegisterFormSoloState, RegisterFormTeamState, Shirt } from '../models';
+import { FormType, OrderShirtState, RegisterFormSoloState, RegisterFormTeamState } from '../models';
 import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PUBLIC}`);

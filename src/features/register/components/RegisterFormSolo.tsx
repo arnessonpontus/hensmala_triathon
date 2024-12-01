@@ -17,7 +17,7 @@ import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { Link } from "react-router-dom";
-import { FormType, RegisterFormSoloState, RegisterFormTeamState } from "../models";
+import { FormType, RegisterFormSoloState } from "../models";
 import { calcTotalRegisterPrice, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";

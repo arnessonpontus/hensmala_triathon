@@ -49,11 +49,11 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
       html: html,
       bcc: [],
       //TODO: bcc: [process.env.EMAILER_USER], 
-      //attachments: [{
-      //  filename: 'logga.png',
-      //  path: __dirname + '/assets/logga.png',
-      //  cid: 'logo'
-      //}]
+      attachments: [{
+        filename: 'logga.png',
+        path: __dirname + '/assets/logga.png',
+        cid: 'logo'
+      }]
     };
 
     console.log("Sending email...");

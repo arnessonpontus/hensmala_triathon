@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
 import { RegSuccess } from "../components/RegSuccess";
@@ -9,7 +9,7 @@ import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
 export const Register = () => {
   const [hasRegisterd, setHasRegistered] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
   const toggleDone = () => {

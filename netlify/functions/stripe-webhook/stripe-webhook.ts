@@ -35,7 +35,7 @@ export const handler: Handler = async (event) => {
     if (session.metadata == null) {
       console.log("something went wrong with the data when being sent")
       sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone);
-      return { statusCode: 400, body: 'Någon hund blev begraven någonstans' };
+      return { statusCode: 400, body: 'Missing metadata when getting the stripe.checkout.session webhook.' };
     }
 
     const metadata: StripeMetadata = session.metadata as unknown as StripeMetadata;
@@ -45,7 +45,7 @@ export const handler: Handler = async (event) => {
     const successWritingToSheetAndMail = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
     if (!successWritingToSheetAndMail) {
       sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone, metadata);
-      return { statusCode: 400, body: 'Någon hund blev begraven någonstans' };
+      return { statusCode: 400, body: 'Error when trying to write to spreedsheet and sending registration email' };
     }
   }
 

@@ -2,9 +2,8 @@ import moment from "moment-timezone";
 import { JWT } from 'google-auth-library';
 import { sendEmail } from "./emailSender";
 import { GoogleSpreadsheet } from "google-spreadsheet";
-import { FormType, OrderShirtState, RegisterFormSoloState, RegisterFormTeamState, StripeMetadata } from "../../../src/features/register/models";
+import { StripeMetadata } from "../../../src/features/register/models";
 import { selectSpreadsheetDetails } from "../utils/registrationUtil";
-
 
 // required env vars
 if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
@@ -18,10 +17,6 @@ if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM_2024)
     throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM_2024 env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER)
     throw new Error("no GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER env var set");
-
-const appendZero = (str: string) => {
-    return parseInt(str) < 10 ? "0" + str : str;
-}
 
 export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: number): Promise<Boolean> {
     console.log("Running sheet netlify function...");
