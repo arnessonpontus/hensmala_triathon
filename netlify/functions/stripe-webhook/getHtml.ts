@@ -1,26 +1,26 @@
 import { GoogleSpreadsheetRow } from "google-spreadsheet";
 
 export function getPaymentString(hasAllowedCompany: boolean, totalToPay: number) {
-  if (hasAllowedCompany) {
-    return (
-      `<p>
+    if (hasAllowedCompany) {
+        return (
+            `<p>
         Eftersom du har anget <b style="color:#007fa8;">${process.env.VITE_ALLOWED_COMPANY}</b> som klubb är anmälningsavgiften gratis. 
       </p>
       ${totalToPay > 0 ?
-        `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
-        : ""}
+                `<p>Du har dock gjort extra tillägg till din anmälan i form av extra donation, t-shirt eller keps och behöver därför betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.</p>`
+                : ""}
         <p>`)
-  } else {
-    return (
-      `<p>
+    } else {
+        return (
+            `<p>
         Betala <b>${totalToPay}kr</b> till bankgiro 386-6563 eller swisha till 1234048781.
        </p>`
-    );
-  }
+        );
+    }
 }
 
 export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, hasAllowedCompany: boolean) {
-  return (`
+    return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -31,7 +31,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
         <style type="text/css">
         </style>
         <div>
-            <h1>Hej ${data.get('name').split(" ")[0]}!</h1>
+            <h1>Hej ${data.get('name1').split(" ")[0]}!</h1>
             <h2>
                 Tack för din anmälan till Hensmåla Triathlon 2024!
             </h2>
@@ -41,22 +41,22 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
             </p>
             <ul>
             <li>
-                Namn: <b>${data.get('name')}</b>
+                Namn: <b>${data.get('name1')}</b>
             </li>
             <li>
-                Epost: <b>${data.get('email')}</b>
+                Epost: <b>${data.get('email1')}</b>
             </li>
             <li>
-                Födelsedatum: <b>${data.get('birthday')}</b>
+                Födelsedatum: <b>${data.get('birthday1')}</b>
             </li>
             <li>
                 Kön: <b>${data.get('gender')}</b>
             </li>
             <li>
-                Ort/klubb: <b>${data.get('city')}</b>
+                Ort/klubb: <b>${data.get('city1')}</b>
             </li>
             <li>
-                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+                Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
             </li>
             <li>
                 Kepsar: <b>${data.get('numCaps')}</b>
@@ -76,7 +76,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
 }
 
 export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, hasAllowedCompany: boolean) {
-  return (`
+    return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -126,7 +126,7 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
                 </li>
             </ul>
             ${data.get('name3') !== "" ?
-      `<b>Lagmedlem 3</b>
+            `<b>Lagmedlem 3</b>
             <ul>
                 <li>
                     Namn: <b>${data.get('name3')}</b>
@@ -141,10 +141,10 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
                     Ort/klubb: <b>${data.get('city3')}</b>
                 </li>
             </ul>`
-      : ""}
+            : ""}
             <b>Övrigt</b>
             <li>
-                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+                Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
             </li>
             <li>
                 Kepsar: <b>${data.get('numCaps')}</b>
@@ -162,7 +162,7 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>, has
     `);
 }
 export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
-  return (`
+    return (`
         <!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
@@ -173,7 +173,7 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
         <style type="text/css">
         </style>
         <div>
-            <h1>Hej ${data.get('name').split(" ")[0]}!</h1>
+            <h1>Hej ${data.get('name1').split(" ")[0]}!</h1>
             <h2>
                 Tack för din beställning av t-shirt eller keps för Hensmåla Triathlon 2024!
             </h2>
@@ -185,13 +185,13 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
             </p>
             <ul>
             <li>
-                Namn: <b>${data.get('name')}</b>
+                Namn: <b>${data.get('name1')}</b>
             </li>
             <li>
-                Epost: <b>${data.get('email')}</b>
+                Epost: <b>${data.get('email1')}</b>
             </li>
             <li>
-                Tröjor: <b>${data.get('shirts') ? data.get('shirts') : '0'}</b>
+                Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
             </li>
             <li>
                 Kepsar: <b>${data.get('numCaps')}</b>
@@ -207,4 +207,36 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
             <img src="cid:logo" alt="Logga" width="200px"'/>
         </div>
     `);
+}
+
+export function getRegistrationErrorHtml(registrationName: string, registrationEmail: string, registrationCity: string, paymentName: any, paymentMail: any, paymentPhone: any) {
+    return (`Något blev fel vid en registrering även om betalning gick igenom. Kontakta personen manuellt!
+        <br>
+        <b>Registrationsinformation</b>
+        <ul>
+            <li>
+                Namn: <b>${registrationName}</b>
+            </li>
+            <li>
+                Epost: <b>${registrationEmail}</b>
+            </li>
+            <li>
+                Stad: <b>${registrationCity}</b>
+            </li>
+        </ul>
+        <b>Betalningsinformation</b>
+        <ul>
+        <li>
+            Namn: <b>${paymentName}</b>
+        </li>
+        <li>
+            Epost: <b>${paymentMail}</b>
+        </li>
+        <li>
+            Telefon: <b>${paymentPhone}</b>
+        </li>
+    </ul>
+        `
+    )
+
 }

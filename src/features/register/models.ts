@@ -15,26 +15,46 @@ export interface BaseOrderType {
   shirtsString?: string,
   numCaps: number,
   extraDonation: number,
-  name: string,
-  email: string,
+  name1: string,
+  email1: string,
   info: string,
 }
 
 export interface RegisterFormSoloState extends BaseOrderType {
-  year: string;
-  month: string;
-  day: string;
+  year1: string;
+  month1: string;
+  day1: string;
   gender: string;
-  city: string;
+  city1: string;
   isCheckboxOneTicked: boolean;
   isCheckboxTwoTicked: boolean;
   isCheckboxThreeTicked: boolean;
 }
 
-export interface RegisterFormTeamState extends Omit<BaseOrderType, "name" | "email"> {
-  teamName: string;
+export interface StripeMetadata {
+  formType: string;
+  birthday1: string;
+  birthday2?: string;
+  birthday3?: string;
+  teamName?: string;
   name1: string;
+  name2?: string;
+  name3?: string;
+  city1: string;
+  city2?: string;
+  city3?: string;
   email1: string;
+  email2?: string;
+  email3?: string;
+  gender?: string;
+  shirtsString?: string;
+  numCaps: string;
+  extraDonation: string;
+  info: string;
+}
+
+export interface RegisterFormTeamState extends BaseOrderType {
+  teamName: string;
   year1: string;
   month1: string;
   day1: string;
@@ -71,7 +91,11 @@ export type DataToSend = Partial<
   totalToPay: number
 };
 
-export type FormType = "solo" | "team" | "tshirt_order";
+export enum FormType {
+  Solo = "solo",
+  Team = "team",
+  TShirtOrder = "tshirt_order",
+}
 
 export type priceType =
   "registration-fee-solo"

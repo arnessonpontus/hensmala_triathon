@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { localStorageService } from '../../../services/localstorageService';
 import { getPrices } from '../service/priceService';
 import { priceType } from '../models';
-import { getPriceId } from '../../../../netlify/functions/payment/pricing';
+import { getPriceId } from '../../../../netlify/functions/utils/pricing';
 import { useErrorModal } from '../../../context/ErrorModalContext';
 
 const usePrices = () => {
@@ -42,7 +42,7 @@ const usePrices = () => {
     return prices[priceId];
   }
 
-  return { prices, loading, error, getPriceByName};
+  return { prices, loading, error, getPriceByName };
 };
 
 export default usePrices;

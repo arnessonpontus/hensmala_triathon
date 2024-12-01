@@ -15,21 +15,22 @@ import ExtraDonation from "../components/ExtraDonation";
 import Consent from "../../../components/Consent";
 import RegisterButton from "../components/RegisterButton";
 
-import { OrderShirtState } from "../models";
+import { FormType, OrderShirtState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
-import { handleSubmit } from "../service/registerService";
 import { calcShirtPrice, hasValidShirt } from "../utils";
 import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
+import { handleCheckout } from "../service/checkoutService";
+import { useErrorModal } from "../../../context/ErrorModalContext";
 
 export const OrderShirt: React.FC = () => {
   const { loading, getPriceByName } = usePrices();
 
   const defaultState: OrderShirtState = {
-    name: "",
-    email: "",
+    name1: "",
+    email1: "",
     extraDonation: 0,
     shirts: [],
     numCaps: 0,
@@ -62,13 +63,6 @@ export const OrderShirt: React.FC = () => {
     setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const toggleDone = () => {
-    setFormState((prevState) => ({
-      ...prevState,
-      hasOrdered: !prevState.hasOrdered,
-    }));
-  };
-
   const resetState = () => {
     setFormState(defaultState);
   };
@@ -81,6 +75,13 @@ export const OrderShirt: React.FC = () => {
       </FillCenterLayout>
     )
   }
+
+  const { showErrorModal } = useErrorModal();
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleCheckout(FormType.TShirtOrder, formState, showErrorModal);
+  };
 
   return (
     <Container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -111,7 +112,7 @@ export const OrderShirt: React.FC = () => {
             </Col>
             <Col style={{ marginTop: "2vh" }}>
               <hr className="register-divider"></hr>
-              <Form onSubmit={(e) => handleSubmit(e, "tshirt_order", formState, totalCost || 0, (val) => setFormState(prev => ({ ...prev, loading: val })), () => toggleDone())}>
+              <Form onSubmit={onSubmit}>
                 <FormGroup>
                   <Label for="clothes-select">Välj antal och storlek (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
                   <div className="clothes-select">
@@ -127,10 +128,10 @@ export const OrderShirt: React.FC = () => {
                   <Input
                     required={true}
                     type="text"
-                    name="name"
-                    id="name"
+                    name="name1"
+                    id="name1"
                     placeholder="Förnamn Efternamn"
-                    value={formState.name}
+                    value={formState.name1}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -139,10 +140,10 @@ export const OrderShirt: React.FC = () => {
                   <Input
                     required={true}
                     type="email"
-                    name="email"
-                    id="email"
+                    name="email1"
+                    id="email1"
                     placeholder="din@email.com"
-                    value={formState.email}
+                    value={formState.email1}
                     onChange={handleChange}
                   />
                 </FormGroup>

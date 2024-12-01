@@ -25,11 +25,6 @@ import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 
 interface RegisterFormSoloProps {
-  handleSubmit: (
-    e: React.FormEvent<HTMLFormElement>,
-    formType: FormType,
-    formData: RegisterFormSoloState,
-    totalCost: number) => void;
   loading: boolean;
 }
 
@@ -37,14 +32,14 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
   const { loading, getPriceByName } = usePrices();
 
   const [formState, setFormState] = useState<RegisterFormSoloState>({
-    name: "",
-    email: "",
-    year: "",
-    month: "",
-    day: "",
+    name1: "",
+    email1: "",
+    year1: "",
+    month1: "",
+    day1: "",
     info: "",
     gender: "",
-    city: "",
+    city1: "",
     isCheckboxOneTicked: false,
     isCheckboxTwoTicked: false,
     isCheckboxThreeTicked: false,
@@ -74,7 +69,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
   const isAllowedCompanyEntered = () => {
     return (
       import.meta.env.VITE_ALLOWED_COMPANY &&
-      formState.city.toLowerCase().includes(import.meta.env.VITE_ALLOWED_COMPANY.toLowerCase())
+      formState.city1.toLowerCase().includes(import.meta.env.VITE_ALLOWED_COMPANY.toLowerCase())
     );
   };
 
@@ -93,7 +88,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout("registration-fee-solo", formState.shirts, formState.numCaps, showErrorModal);
+    handleCheckout(FormType.Solo, formState, showErrorModal);
   };
 
   return (
@@ -120,10 +115,10 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <Input
               required={true}
               type="text"
-              name="name"
-              id="name"
+              name="name1"
+              id="name1"
               placeholder="Förnamn Efternamn"
-              value={formState.name}
+              value={formState.name1}
               onChange={handleChange}
             />
           </FormGroup>
@@ -133,10 +128,10 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <Input
               required={true}
               type="email"
-              name="email"
-              id="email"
+              name="email1"
+              id="email1"
               placeholder="din.email@gmail.com"
-              value={formState.email}
+              value={formState.email1}
               onChange={handleChange}
             />
           </FormGroup>
@@ -146,16 +141,16 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
               <YearPicker
                 required={true}
                 handleChange={handleChange}
-                elemName="year" />
+                elemName="year1" />
               <MonthPicker
                 required={true}
                 handleChange={handleChange}
-                elemName="month"
+                elemName="month1"
               />
               <DayPicker
                 required={true}
                 handleChange={handleChange}
-                elemName="day" />
+                elemName="day1" />
             </div>
           </FormGroup>
           <FormGroup>
@@ -179,10 +174,10 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
             <Label for="city"> Ort (klubb)</Label>
             <Input
               type="text"
-              name="city"
-              id="city"
+              name="city1"
+              id="city1"
               placeholder="Hensmåla löparförening"
-              value={formState.city}
+              value={formState.city1}
               onChange={handleChange}
             />
           </FormGroup>
@@ -266,7 +261,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
           </FormGroup>
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
-            {totalCost != null ? <h5>{totalCost}kr</h5>: <ErrorBanner text="Kunde inte hämta priser"/>}
+            {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
 
           <FormGroup>

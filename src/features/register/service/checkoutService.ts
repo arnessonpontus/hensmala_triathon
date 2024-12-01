@@ -1,20 +1,19 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { Shirt } from '../models';
+import { FormType, OrderShirtState, RegisterFormSoloState, RegisterFormTeamState } from '../models';
 import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PUBLIC}`);
 
 export const handleCheckout = async (
-  registrationType: "registration-fee-solo" | "registration-fee-team",
-  shirts: Shirt[],
-  numCaps: number,
+  formType: FormType,
+  formData: RegisterFormSoloState | RegisterFormTeamState | OrderShirtState, //#TODO kanske finns ett bättre sent att hantera det på? 
   showErrorModal: (message: string, title: string) => void
 ) => {
   try {
     const response = await fetch('/.netlify/functions/payment/payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ registrationType, shirts, numCaps }),
+      body: JSON.stringify({ formType, formData }),
     });
 
     if (!response.ok) {

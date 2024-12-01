@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
-import { FormType, RegisterFormSoloState, RegisterFormTeamState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
 import { RegisterFormSolo } from "../components/RegisterFormSolo";
 import { RegisterFormTeam } from "../components/RegisterFormTeam";
-import { handleSubmit } from "../service/registerService";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
 export const Register = () => {
   const [hasRegisterd, setHasRegistered] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
-const toggleDone = () => {
-   setHasRegistered(!hasRegisterd)
-  }
-
-  const handleRegSubmit = (e: React.FormEvent<HTMLFormElement>, formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState, totalCost: number) => {
-    handleSubmit(e, formType, formData, totalCost, (val) => setLoading(val), () => toggleDone());
+  const toggleDone = () => {
+    setHasRegistered(!hasRegisterd)
   }
 
   if (!import.meta.env.VITE_ALLOW_REGISTRATION) {
@@ -34,7 +28,7 @@ const toggleDone = () => {
   return (
     <Container>
       {!hasRegisterd ? (
-          <div className="card-box" style={{ marginTop: 40}}>
+        <div className="card-box" style={{ marginTop: 40 }}>
           <div className="register-tabs">
             <div onClick={() => setActiveTab(0)} className="register-tab">
               Individuell
@@ -47,12 +41,10 @@ const toggleDone = () => {
           {
             activeTab === 0 ?
               <RegisterFormSolo
-                handleSubmit={handleRegSubmit}
                 loading={loading}
               />
               :
               <RegisterFormTeam
-                handleSubmit={handleRegSubmit}
                 loading={loading}
               />
           }

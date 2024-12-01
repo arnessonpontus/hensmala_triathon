@@ -1,4 +1,4 @@
 [dev]
   framework = "vite"
 [functions]
-  included_files = ["./netlify/functions/writeToSpreadsheet/assets/**"]
+  included_files = ["./netlify/functions/stripe-webhook/assets/**"]

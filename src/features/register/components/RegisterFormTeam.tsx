@@ -26,12 +26,6 @@ import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 
 interface RegisterFormTeamProps {
-  handleSubmit: (
-    e: React.FormEvent<HTMLFormElement>,
-    formType: FormType,
-    formData: RegisterFormTeamState,
-    totalCost: number
-  ) => void;
   loading: boolean;
 }
 
@@ -178,7 +172,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout("registration-fee-team", formState.shirts, formState.numCaps, showErrorModal);
+    handleCheckout(FormType.Team, formState, showErrorModal);
   };
 
   return (
@@ -291,7 +285,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
             : null}
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
-            {totalCost != null ? <h5>{totalCost}kr</h5>: <ErrorBanner text="Kunde inte hämta priser"/>}
+            {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
 
           <FormGroup>
