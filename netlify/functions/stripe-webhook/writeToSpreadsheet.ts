@@ -3,6 +3,7 @@ import { JWT } from 'google-auth-library';
 import { sendEmail } from "./emailSender";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { FormType, OrderShirtState, RegisterFormSoloState, RegisterFormTeamState, StripeMetadata } from "../../../src/features/register/models";
+import { selectSpreadsheetDetails } from "../utils/registrationUtil";
 
 
 // required env vars
@@ -23,32 +24,15 @@ const appendZero = (str: string) => {
 }
 
 export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: number): Promise<Boolean> {
-    let spreadsheetID = "";
-    let idType = "";
     console.log("Running sheet netlify function...");
 
-    let registerType: FormType;
-    let parsedData: { [key: string]: any } = {}; // Initialized as an empty object
+    const spreadsheetDetails = selectSpreadsheetDetails(orderData.formType);
 
-    switch (orderData.formType) {
-        case FormType.Solo:
-            spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_SOLO_2024!;
-            idType = "S";
-            registerType = FormType.Solo
-            break;
-        case FormType.Team:
-            spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TEAM_2024!;
-            idType = "T";
-            registerType = FormType.Team;
-            break;
-        case FormType.TShirtOrder:
-            spreadsheetID = process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER!;
-            idType = "O";
-            registerType = FormType.TShirtOrder;
-            break;
-        default:
-            return false;
+    if (!spreadsheetDetails) {
+        return false;
     }
+
+    const { spreadsheetID, idType, registerType } = spreadsheetDetails
 
     try {
         const serviceAccountAuth = new JWT({
@@ -70,29 +54,27 @@ export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: 
         // Get the number only and not the letter
         const idNumber = lastRow ? parseInt(lastRow.get('id').substring(1)) : 0;
 
-        parsedData = orderData;
-
-        parsedData["id"] = idType + (idNumber + 1).toString();
-        parsedData["uploadTime"] = moment()
-            .tz("Europe/Stockholm")
-            .format("YYYY-MM-DD HH:mm");
-        parsedData["totalToPay"] = totalToPay;
+        const parsedData = {
+            ...orderData,
+            id: idType + (idNumber + 1).toString(),
+            uploadTime: moment().tz("Europe/Stockholm").format("YYYY-MM-DD HH:mm"),
+            totalToPay: totalToPay,
+        }
 
         console.log("parsedData", parsedData)
 
         const addedRow = await sheet.addRow(parsedData);
 
-        if (addedRow) {
-            console.log("Success adding row");
-            const email_sent = await sendEmail(addedRow, registerType);
-            if (email_sent) {
-                console.log(`Row added. Email sent: ${email_sent}`)
-                return true;
-            } else {
-                return false;;
-            }
-        } else {
+        if (!addedRow) {
             console.log("Could not add row");
+            return false;
+        }
+        console.log("Success adding row");
+        const email_sent = await sendEmail(addedRow, registerType);
+        if (email_sent) {
+            console.log(`Row added. Email sent: ${email_sent}`)
+            return true;
+        } else {
             return false;
         }
     } catch (e: unknown) {

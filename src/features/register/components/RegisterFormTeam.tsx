@@ -26,12 +26,6 @@ import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 
 interface RegisterFormTeamProps {
-  handleSubmit: (
-    e: React.FormEvent<HTMLFormElement>,
-    formType: FormType,
-    formData: RegisterFormTeamState,
-    totalCost: number
-  ) => void;
   loading: boolean;
 }
 
@@ -178,7 +172,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout(FormType.Team, formState.shirts, formState.numCaps, formState, showErrorModal);
+    handleCheckout(FormType.Team, formState, showErrorModal);
   };
 
   return (

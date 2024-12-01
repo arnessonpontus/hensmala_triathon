@@ -32,14 +32,14 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
     let html = "";
 
     if (registerType === "team") {
-      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
+      const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
         addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
         addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase());
       html = getTeamHtml(addedRow, hasAllowedCompany);
     } else if (registerType === "tshirt_order") {
       html = getShirtHtml(addedRow);
     } else {
-      const hasAllowedCompany = addedRow.get('city')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase())
+      const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase())
       html = getSoloHtml(addedRow, hasAllowedCompany);
     }
     const mailOptions = {
@@ -49,9 +49,9 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
       html: html,
       bcc: [],
       //TODO: bcc: [process.env.EMAILER_USER], 
-      //attachments: [{ 
+      //attachments: [{
       //  filename: 'logga.png',
-      //  path: __dirname + '/assets/logga.png', //#TODO fick inte rätt på pathen på loggjävlen
+      //  path: __dirname + '/assets/logga.png',
       //  cid: 'logo'
       //}]
     };
@@ -67,7 +67,7 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
 
 }
 
-export function sendEmailToUsInCaseOfError(metadata: StripeMetadata, paymentName: string | null | undefined, paymentMail: string | null | undefined, paymentPhone: string | null | undefined) {
+export function sendEmailToUsInCaseOfError(paymentName: string | null | undefined, paymentMail: string | null | undefined, paymentPhone: string | null | undefined, metadata?: StripeMetadata,) {
   return new Promise<void>((resolve, reject) => {
     var transporter = createTransport({
       service: "gmail",
@@ -78,7 +78,7 @@ export function sendEmailToUsInCaseOfError(metadata: StripeMetadata, paymentName
     });
 
     const mailSubject = "FEL VID REGISTRERING"
-    const html = getRegistrationErrorHtml(metadata.name1, metadata.email1, metadata.city1, paymentName, paymentMail, paymentPhone)
+    const html = getRegistrationErrorHtml(metadata?.name1 ?? "", metadata?.email1 ?? "", metadata?.city1 ?? "", paymentName, paymentMail, paymentPhone)
     const mailOptions = {
       from: process.env.EMAILER_USER,
       to: process.env.EMAILER_USER,

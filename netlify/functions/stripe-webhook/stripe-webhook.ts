@@ -1,7 +1,7 @@
 import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
-import { FormType, RegisterFormSoloState, Shirt, StripeMetadata } from "../../../src/features/register/models";
-import { oreToSek, shirtStringToArray } from '../../../src/features/register/utils';
+import { StripeMetadata } from "../../../src/features/register/models";
+import { oreToSek } from '../../../src/features/register/utils';
 import { writeToSpreadsheet } from './writeToSpreadsheet';
 import { sendEmailToUsInCaseOfError } from './emailSender';
 
@@ -34,6 +34,7 @@ export const handler: Handler = async (event) => {
     const session = stripeEvent.data.object as Stripe.Checkout.Session;
     if (session.metadata == null) {
       console.log("something went wrong with the data when being sent")
+      sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone);
       return { statusCode: 400, body: 'Någon hund blev begraven någonstans' };
     }
 
@@ -43,7 +44,8 @@ export const handler: Handler = async (event) => {
 
     const successWritingToSheetAndMail = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
     if (!successWritingToSheetAndMail) {
-      sendEmailToUsInCaseOfError(metadata, session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone);
+      sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone, metadata);
+      return { statusCode: 400, body: 'Någon hund blev begraven någonstans' };
     }
   }
 

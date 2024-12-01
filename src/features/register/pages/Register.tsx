@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
-import { FormType, RegisterFormSoloState, RegisterFormTeamState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
 import { RegisterFormSolo } from "../components/RegisterFormSolo";
 import { RegisterFormTeam } from "../components/RegisterFormTeam";
-import { handleSubmit } from "../service/registerService";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
@@ -16,19 +14,6 @@ export const Register = () => {
 
   const toggleDone = () => {
     setHasRegistered(!hasRegisterd)
-  }
-  //#TODO remove whole file?
-  const handleRegSubmit = (e: React.FormEvent<HTMLFormElement>, formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState, totalCost: number) => {
-    //handleSubmit(e, formType, formData, totalCost, (val) => setLoading(val), () => toggleDone());
-  }
-
-  if (!import.meta.env.VITE_ALLOW_REGISTRATION) {
-    return (
-      <FillCenterLayout>
-        <h2>Anmälan är inte öppnad än.</h2>
-        <p>Vi öppnar snart. Vid frågor är det bara att höra av sig till {DEFAULT_CONTACT_EMAIL} </p>
-      </FillCenterLayout>
-    )
   }
 
   if (!import.meta.env.VITE_ALLOW_REGISTRATION) {
@@ -56,12 +41,10 @@ export const Register = () => {
           {
             activeTab === 0 ?
               <RegisterFormSolo
-                handleSubmit={handleRegSubmit}
                 loading={loading}
               />
               :
               <RegisterFormTeam
-                handleSubmit={handleRegSubmit}
                 loading={loading}
               />
           }

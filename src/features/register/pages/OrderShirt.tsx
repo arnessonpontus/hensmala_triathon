@@ -80,7 +80,7 @@ export const OrderShirt: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout(FormType.TShirtOrder, formState.shirts, formState.numCaps, formState, showErrorModal);
+    handleCheckout(FormType.TShirtOrder, formState, showErrorModal);
   };
 
   return (

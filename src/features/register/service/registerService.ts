@@ -5,13 +5,12 @@ function writeToSpreadsheet(
   formType: FormType,
   data: DataToSend,
 ) {
-  fetch(`http://localhost:8888/.netlify/functions/writeToSpreadsheet/?type=${formType}`, {
+  fetch(`/.netlify/functions/writeToSpreadsheet/?type=${formType}`, {
     method: "POST",
     body: JSON.stringify(data),
   })
     .then((res) => {
       if (res.status === 200) {
-        console.log("Här brukade vi göra doneCallBack")
       } else {
         alert(
           "Kunde inte slutföra anmälan. Försök igen eller kontakta hensmalatriathlon@gmail.com."
@@ -19,7 +18,6 @@ function writeToSpreadsheet(
       }
     })
     .catch((error) => alert(error))
-    .finally(() => console.log("Här brukade vi setta loading callback"));
 };
 
 export function handleSubmit(

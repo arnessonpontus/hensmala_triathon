@@ -25,11 +25,6 @@ import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 
 interface RegisterFormSoloProps {
-  handleSubmit: (
-    e: React.FormEvent<HTMLFormElement>,
-    formType: FormType,
-    formData: RegisterFormSoloState,
-    totalCost: number) => void;
   loading: boolean;
 }
 
@@ -93,7 +88,7 @@ export const RegisterFormSolo = (props: RegisterFormSoloProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleCheckout(FormType.Solo, formState.shirts, formState.numCaps, formState, showErrorModal);
+    handleCheckout(FormType.Solo, formState, showErrorModal);
   };
 
   return (

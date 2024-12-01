@@ -29,7 +29,7 @@ export const handler: Handler = async (event) => {
 */
   // Handle POST request for payment creation
   try {
-    const { formType, shirts, numCaps, formData } = JSON.parse(event.body || '{}');
+    const { formType, formData } = JSON.parse(event.body || '{}');
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
     const registrationPriceId = getPriceId(formType);
 
@@ -40,28 +40,26 @@ export const handler: Handler = async (event) => {
       });
     }
 
-    if (Array.isArray(shirts)) {
-      lineItems.push(...createShirtPurchaseItems(shirts));
+    if (Array.isArray(formData.shirts)) {
+      lineItems.push(...createShirtPurchaseItems(formData.shirts));
     }
 
-
-
-    if (typeof numCaps === 'number' && numCaps > 0) {
-      lineItems.push(...createCapPurchaseItems(numCaps));
+    if (typeof formData.numCaps === 'number' && formData.numCaps > 0) {
+      lineItems.push(...createCapPurchaseItems(formData.numCaps));
     }
 
     //Common data for all registrations
     let metadata: StripeMetadata = {
       formType: formType,
       birthday1: birthdayToString(formData.year1, formData.month1, formData.day1),
-      shirtsString: shirtArrayToString(shirts),
+      shirtsString: shirtArrayToString(formData.shirts),
       name1: formData.name1,
       email1: formData.email1,
       city1: formData.city1,
       gender: formData.gender,
       extraDonation: formData.extraDonation.toString(),
       info: formData.info,
-      numCaps: numCaps.toString(),
+      numCaps: formData.numCaps.toString(),
     }
 
     if (formType === FormType.Team) {
@@ -77,7 +75,6 @@ export const handler: Handler = async (event) => {
         city2: formData.city2,
         city3: formData.city3,
       }
-
     }
 
     const session = await stripe.checkout.sessions.create({
@@ -93,7 +90,6 @@ export const handler: Handler = async (event) => {
       statusCode: 200,
       body: JSON.stringify({ id: session.id }),
     };
-
 
   } catch (error) {
     return {
