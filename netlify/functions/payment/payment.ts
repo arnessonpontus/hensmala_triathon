@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { getPriceId } from '../utils/pricing';
 import { FormType, StripeMetadata } from '../../../src/features/register/models';
 import { shirtArrayToString } from '../../../src/features/register/utils';
-import { birthdayToString, createCapPurchaseItems, createShirtPurchaseItems } from '../utils/paymentUtil';
+import { birthdayToString, createCapPurchaseItems, createRegistrationPurchaseItem, createShirtPurchaseItems } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
@@ -31,14 +31,8 @@ export const handler: Handler = async (event) => {
   try {
     const { formType, formData } = JSON.parse(event.body || '{}');
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-    const registrationPriceId = getPriceId(formType);
 
-    if (registrationPriceId) {
-      lineItems.push({
-        price: registrationPriceId,
-        quantity: 1,
-      });
-    }
+    lineItems.push(...createRegistrationPurchaseItem(formType));
 
     if (Array.isArray(formData.shirts)) {
       lineItems.push(...createShirtPurchaseItems(formData.shirts));
@@ -76,6 +70,7 @@ export const handler: Handler = async (event) => {
         city3: formData.city3,
       }
     }
+    console.log(metadata)
 
     const session = await stripe.checkout.sessions.create({
       metadata: metadata as unknown as MetadataParam,
@@ -92,7 +87,9 @@ export const handler: Handler = async (event) => {
     };
 
   } catch (error) {
+    console.log(error);
     return {
+
       statusCode: 400,
       body: JSON.stringify({ error: error instanceof Error ? error.message : 'An error occurred' }),
     };

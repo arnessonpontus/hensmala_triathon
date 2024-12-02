@@ -1,7 +1,28 @@
 import Stripe from "stripe";
-import { Shirt } from "../../../src/features/register/models";
+import { FormType, Shirt } from "../../../src/features/register/models";
 import { getPriceId } from "./pricing";
 
+
+export const createRegistrationPurchaseItem = (formType: FormType): Stripe.Checkout.SessionCreateParams.LineItem[] => {
+
+    let registrationPriceId: string | null = null;
+
+    if (formType === FormType.Solo) {
+        registrationPriceId = getPriceId("registration-fee-solo");
+    } else if (formType === FormType.Team) {
+        registrationPriceId = getPriceId("registration-fee-team");
+    }
+
+    if (registrationPriceId) {
+        return [
+            {
+                price: registrationPriceId,
+                quantity: 1,
+            },
+        ];
+    }
+    return [];
+}
 
 export const createShirtPurchaseItems = (shirts: Shirt[]): Stripe.Checkout.SessionCreateParams.LineItem[] => {
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
