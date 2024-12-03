@@ -1,6 +1,5 @@
 import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
-import { getPriceId } from '../utils/pricing';
 import { FormType, StripeMetadata } from '../../../src/features/register/models';
 import { shirtArrayToString } from '../../../src/features/register/utils';
 import { birthdayToString, createCapPurchaseItems, createRegistrationPurchaseItem, createShirtPurchaseItems } from '../utils/paymentUtil';
@@ -18,15 +17,14 @@ export const handler: Handler = async (event) => {
       body: '',
     };
   }
-  //#TODO Vi måste validera mer så att vi vet mer om betalning går igenom men det funkar inte för nån anledning med mail eller skriva i excel. 
-  /*
+
   if (!(process.env.VITE_ALLOW_REGISTRATION === "true")) {
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Registration is now allowed at the moment.' })
     };
   }
-*/
+
   // Handle POST request for payment creation
   try {
     const { formType, formData } = JSON.parse(event.body || '{}');
