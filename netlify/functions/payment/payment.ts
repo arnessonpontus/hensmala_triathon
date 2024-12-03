@@ -19,6 +19,7 @@ export const handler: Handler = async (event) => {
   }
 
   if (!(process.env.VITE_ALLOW_REGISTRATION === "true")) {
+    console.log("VITE_ALLOW_REGISTRATION IS: ", process.env.VITE_ALLOW_REGISTRATION);
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Registration is now allowed at the moment.' })
@@ -87,7 +88,6 @@ export const handler: Handler = async (event) => {
   } catch (error) {
     console.log(error);
     return {
-
       statusCode: 400,
       body: JSON.stringify({ error: error instanceof Error ? error.message : 'An error occurred' }),
     };
