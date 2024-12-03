@@ -16,7 +16,7 @@ export const Register = () => {
     setHasRegistered(!hasRegisterd)
   }
 
-  if (!(process.env.VITE_ALLOW_REGISTRATION === "true")) {
+  if (!import.meta.env.VITE_ALLOW_REGISTRATION) {
     return (
       <FillCenterLayout>
         <h2>Anmälan är inte öppnad än.</h2>
