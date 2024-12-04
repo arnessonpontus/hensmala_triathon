@@ -19,8 +19,9 @@ export const YearPicker = (props: Props) => {
       type="select"
       name={props.elemName}
       onChange={props.handleChange}
+      defaultValue={""}
     >
-      <option disabled selected>
+      <option disabled value="">
         År
       </option>
       {years.map((year) => {
@@ -56,8 +57,9 @@ export const MonthPicker = (props: Props) => {
       type="select"
       name={props.elemName}
       onChange={props.handleChange}
+      defaultValue={""}
     >
-      <option disabled selected>
+      <option disabled value="">
         Månad
       </option>
       {months.map((month, i) => {
@@ -83,8 +85,9 @@ export const DayPicker = (props: Props) => {
       type="select"
       name={props.elemName}
       onChange={props.handleChange}
+      defaultValue={""}
     >
-      <option disabled selected>
+      <option disabled value="">
         Dag
       </option>
       {days.map((day) => {
@@ -108,8 +111,9 @@ export const TimePicker = (props: Props) => {
       type="select"
       name={props.elemName}
       onChange={props.handleChange}
+      defaultValue={""}
     >
-      <option disabled selected>
+      <option disabled value="">
         {props.elemName}
       </option>
       {choises.map((choise) => {

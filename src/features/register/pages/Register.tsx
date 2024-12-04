@@ -9,7 +9,6 @@ import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
 export const Register = () => {
   const [hasRegisterd, setHasRegistered] = useState(false);
-  const [loading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
   const toggleDone = () => {
@@ -40,13 +39,9 @@ export const Register = () => {
           </div>
           {
             activeTab === 0 ?
-              <RegisterFormSolo
-                loading={loading}
-              />
+              <RegisterFormSolo/>
               :
-              <RegisterFormTeam
-                loading={loading}
-              />
+              <RegisterFormTeam/>
           }
         </div>
       ) : (

@@ -26,9 +26,6 @@ export interface RegisterFormSoloState extends BaseOrderType {
   day1: string;
   gender: string;
   city1: string;
-  isCheckboxOneTicked: boolean;
-  isCheckboxTwoTicked: boolean;
-  isCheckboxThreeTicked: boolean;
 }
 
 export interface StripeMetadata {
@@ -71,12 +68,9 @@ export interface RegisterFormTeamState extends BaseOrderType {
   month3: string;
   day3: string;
   city3: string;
-  isCheckboxOneTicked: boolean;
-  isCheckboxTwoTicked: boolean;
-  isCheckboxThreeTicked: boolean;
 }
 
-export interface OrderShirtState extends BaseOrderType {
+export interface MerchOrderState extends BaseOrderType {
   consent: boolean,
   hasOrdered: boolean,
   loading: boolean,
@@ -86,7 +80,7 @@ export type DataToSend = Partial<
   BaseOrderType &
   RegisterFormSoloState &
   RegisterFormTeamState &
-  OrderShirtState
+  MerchOrderState
 > & {
   totalToPay: number
 };

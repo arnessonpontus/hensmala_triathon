@@ -12,7 +12,7 @@ import { Sponsors } from "./features/sponsor/pages/Sponsors";
 import { Route, Routes, useLocation } from "react-router-dom";
 import CoronaEdition from "./features/challenge/pages/CoronaEdition";
 import { Fortrampet } from "./features/fortrampet/pages/Fortrampet";
-import { OrderShirt } from "./features/register/pages/OrderShirt";
+import { MerchOrder } from "./features/register/pages/MerchOrder";
 import PaymentCancelled from "./features/register/pages/PaymentCancelled";
 import PaymentSuccess from "./features/register/pages/PaymentSuccess";
 import { useEffect } from "react";
@@ -31,7 +31,7 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/anmalan" element={<Register />} />
-        <Route path="/bestall-klader" element={<OrderShirt />} />
+        <Route path="/bestall-klader" element={<MerchOrder />} />
         <Route path="/corona-edition" element={<CoronaEdition />} />
         <Route path="/hentrampet" element={<Fortrampet />} />
         <Route path="/media" element={<Media />} />

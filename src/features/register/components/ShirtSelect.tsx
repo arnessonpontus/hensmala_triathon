@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Input, FormGroup, Label } from "reactstrap";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useRef } from "react";
-
+import classnames from "classnames";
 import ImageGallery from "react-image-gallery";
 import { Shirt, ShirtMaterial, shirtType, Size } from "../models";
 
@@ -56,7 +56,8 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
   }
 
   const imageGalleryRef = useRef(null);
-  
+
+  const numShirtsSelected = useMemo(() => shirts.reduce((c,s) => s.size != null && s.type != null ? c+1 : c, 0), [shirts])
 
   return (
     <div id="shirt-select">
@@ -146,7 +147,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
         >
           + Lägg till fler
         </div>
-        <div className="mt-2 d-flex justify-content-center no-clothed-chosen" style={{minHeight: 25}}>{(shirts.every(s => s.size == null || s.type == null)) ? <span>Ingen tröja vald</span> : null}</div>
+        <div className={classnames("mt-2 d-flex justify-content-center", { "no-clothed-chosen": numShirtsSelected < 1 })}style={{minHeight: 25}}>{numShirtsSelected < 1 ? <span>Ingen tröja vald</span> : <span>Antal tröjor valda: {numShirtsSelected}</span>}</div>
       </div>
     </div>
   );

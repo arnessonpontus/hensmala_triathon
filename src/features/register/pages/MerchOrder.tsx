@@ -15,7 +15,7 @@ import ExtraDonation from "../components/ExtraDonation";
 import Consent from "../../../components/Consent";
 import RegisterButton from "../components/RegisterButton";
 
-import { FormType, OrderShirtState } from "../models";
+import { FormType, MerchOrderState } from "../models";
 import { RegSuccess } from "../components/RegSuccess";
 import { calcShirtPrice, hasValidShirt } from "../utils";
 import usePrices from "../hooks/usePrices";
@@ -25,10 +25,10 @@ import { FillCenterLayout } from "../../../components/FillCenterLayout";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 
-export const OrderShirt: React.FC = () => {
+export const MerchOrder: React.FC = () => {
   const { loading, getPriceByName } = usePrices();
 
-  const defaultState: OrderShirtState = {
+  const defaultState: MerchOrderState = {
     name1: "",
     email1: "",
     extraDonation: 0,
@@ -40,7 +40,7 @@ export const OrderShirt: React.FC = () => {
     loading: false,
   }
 
-  const [formState, setFormState] = useState<OrderShirtState>(defaultState);
+  const [formState, setFormState] = useState<MerchOrderState>(defaultState);
 
   const totalCost = useMemo(() => {
     const cottonPrice = getPriceByName("bomull");
@@ -175,6 +175,7 @@ export const OrderShirt: React.FC = () => {
                       id="checkbox1"
                       className="checkbox1"
                       type="checkbox"
+                      checked={formState.consent}
                       onClick={() => setFormState(prev => ({ ...prev, consent: !formState.consent }))}
                     />{" "}
                     Jag accepterar att Hensmåla Triathlon sparar data om mig.
@@ -184,14 +185,12 @@ export const OrderShirt: React.FC = () => {
                     />
                   </Label>
                 </FormGroup>
-                <RegisterButton text="Beställ!" disabled={!formState.consent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || formState.loading} loading={formState.loading} />
+                <RegisterButton
+                type="submit"
+                disabled={!formState.consent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || formState.loading}
+                loading={formState.loading}
+              />
               </Form>
-              <small>
-                This site is protected by reCAPTCHA and the Google{" "}
-                <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
-                <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
-                apply.
-              </small>
             </Col>
           </Row>
         </div>
