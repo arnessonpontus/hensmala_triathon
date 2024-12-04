@@ -70,7 +70,7 @@ export interface RegisterFormTeamState extends BaseOrderType {
   city3: string;
 }
 
-export interface OrderShirtState extends BaseOrderType {
+export interface MerchOrderState extends BaseOrderType {
   consent: boolean,
   hasOrdered: boolean,
   loading: boolean,
@@ -80,7 +80,7 @@ export type DataToSend = Partial<
   BaseOrderType &
   RegisterFormSoloState &
   RegisterFormTeamState &
-  OrderShirtState
+  MerchOrderState
 > & {
   totalToPay: number
 };
