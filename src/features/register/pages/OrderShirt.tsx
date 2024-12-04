@@ -184,7 +184,11 @@ export const OrderShirt: React.FC = () => {
                     />
                   </Label>
                 </FormGroup>
-                <RegisterButton text="Beställ!" disabled={!formState.consent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || formState.loading} loading={formState.loading} />
+                <RegisterButton
+                type="submit"
+                disabled={!formState.consent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || formState.loading}
+                loading={formState.loading}
+              />
               </Form>
               <small>
                 This site is protected by reCAPTCHA and the Google{" "}

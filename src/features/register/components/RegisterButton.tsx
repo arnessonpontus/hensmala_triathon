@@ -1,13 +1,12 @@
 import { Button, ButtonProps, Spinner } from "reactstrap";
 
 interface RegisterButtonProps extends ButtonProps {
-  text: string,
   loading: boolean,
   disabled: boolean
 }
 
 const RegisterButton = (props: RegisterButtonProps) => {
-  const { text, loading, disabled } = props;
+  const { loading, disabled } = props;
   return (
     <Button
       className="mt-2"
@@ -16,7 +15,7 @@ const RegisterButton = (props: RegisterButtonProps) => {
     >
       {loading ? (
         <Spinner size="sm" color="light" />
-      ) : (text)}
+      ) : "Gå till betalning"}
     </Button>
   )
 }

@@ -9,28 +9,25 @@ import {
   Card,
   CardBody,
   FormText,
-  Button
 } from "reactstrap";
-import { Link } from "react-router-dom";
-import Consent from "../../../components/Consent";
 import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormTeamState } from "../models";
-import { AboutPaths } from "../../about/pages/AboutHT";
 import { calcTotalRegisterPrice, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
+import { RegisterInfo } from "./RegisterInfo";
+import RegisterButton from "./RegisterButton";
+import { ConsentCheckboxes } from "./ConsentCheckboxes";
 
-interface RegisterFormTeamProps {
-  loading: boolean;
-}
-
-export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
-  const { loading, getPriceByName } = usePrices();
+export const RegisterFormTeam = () => {
+  const { loading: priceLoading, getPriceByName } = usePrices();
+  const [loading, setLoading] = useState(false);
+  const [allConsentsChecked, setAllConsentsChecked] = useState(false);
 
   const [formState, setFormState] = useState<RegisterFormTeamState>({
     teamName: "",
@@ -53,9 +50,6 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
     day3: "",
     city3: "",
     info: "",
-    isCheckboxOneTicked: false,
-    isCheckboxTwoTicked: false,
-    isCheckboxThreeTicked: false,
     shirts: [],
     numCaps: 0,
     extraDonation: 0,
@@ -64,18 +58,6 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const toggleConsent = (checkbox: 1 | 2 | 3) => {
-    setFormState(prevState => {
-      if (checkbox === 1) {
-        return { ...prevState, isCheckboxOneTicked: !prevState.isCheckboxOneTicked };
-      } else if (checkbox === 2) {
-        return { ...prevState, isCheckboxTwoTicked: !prevState.isCheckboxTwoTicked };
-      } else {
-        return { ...prevState, isCheckboxThreeTicked: !prevState.isCheckboxThreeTicked };
-      }
-    });
   };
 
   const isAllowedCompanyEntered = () => {
@@ -96,7 +78,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
       formState.shirts,
       formState.extraDonation,
       isAllowedCompanyEntered())
-  }, [loading, formState]);
+  }, [priceLoading, formState]);
 
   const renderMemberFields = () => {
     return [1, 2, 3].map((num) => {
@@ -171,6 +153,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
   const { showErrorModal } = useErrorModal();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     handleCheckout(FormType.Team, formState, showErrorModal);
   };
@@ -233,49 +216,7 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
           <FormGroup>
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
-          <FormGroup check>
-            <Label for="checkbox1Team" className="consent-checkbox">
-              <Input
-                id="checkbox1Team"
-                type="checkbox"
-                onClick={() => toggleConsent(1)}
-              />{" "}
-              Jag accepterar att Hensmåla Triathlon sparar data om mig.
-            </Label>
-            <Consent
-              buttonText="Vad betyder detta?"
-              title="Information om sparad data"
-            />
-          </FormGroup>
-          <FormGroup check>
-            <Label for="checkbox2Team">
-              <Input
-                id="checkbox2Team"
-                type="checkbox"
-                onClick={() => toggleConsent(2)}
-              />{" "}
-              Jag kommer att följa Hensmåla Triathlons{" "}
-              <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                to={"/om-ht/" + AboutPaths.rules}
-              >
-                regler
-              </Link>{" "}
-              och den anmälningsinformation som finns på denna sida.
-            </Label>
-          </FormGroup>
-          <FormGroup check>
-            <Label for="checkbox3Team">
-              <Input
-                id="checkbox3Team"
-                type="checkbox"
-                onClick={() => toggleConsent(3)}
-              />{" "}
-              Jag accepterar att bilder och filmer sparas och kan användas på
-              internet.
-            </Label>
-          </FormGroup>
+          <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
           {isAllowedCompanyEntered() ?
             <div className="allowed-company-text-bg">
               <small>
@@ -289,58 +230,15 @@ export const RegisterFormTeam = (props: RegisterFormTeamProps) => {
           </FormGroup>
 
           <FormGroup>
-            <Button
+          <RegisterButton
               type="submit"
-              disabled={
-                !(
-                  formState.isCheckboxOneTicked &&
-                  formState.isCheckboxTwoTicked &&
-                  formState.isCheckboxThreeTicked
-                ) || props.loading
-              }
-              loading={props.loading}
-            >Betala dirr hörredu </Button>
+              disabled={!allConsentsChecked || loading}
+              loading={loading}
+            />
           </FormGroup>
-
         </Form>
-        <small>
-          This site is protected by reCAPTCHA and the Google{" "}
-          <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
-          <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
-          apply.
-        </small>
       </Col>
-      <Col id="info-text" style={{ marginTop: "2vh" }}>
-        <hr className="register-divider"></hr>
-        <h3>Anmäl er som Lag (2-3 pers.)</h3>
-        <b>Datum: 20 juli</b>
-        <p>
-          När ni anmäler er som lag får sträckorna delas upp hur ni vill inom laget. Detta
-          kan innebära att ni är tre personer som deltar där alla kör en gren var, eller ett lag med 2 personer där en av er kör 2 grenar. För mer information om sträckorna och tävlingsregler kan
-          du gå in{" "}
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            to="/om-ht/hem">
-            HÄR
-          </Link>.
-        </p>
-        <p>
-          Du kommer få ett bekräftelse-email med din angiva information och{" "}
-          <b>betalningsuppgifter</b> då anmälan är gjord. Betala gärna direkt i samband med anmälan. När tävlingen närmar
-          sig kommer yttligare information skickas ut via mail till alla
-          deltagare.
-        </p>
-        <p>Första start sker 15.00.</p>
-        <b>
-          Fotografering och videofilmning förekommer, meddela om du inte vill
-          vara med.
-        </b>
-        <br></br>
-        <br></br>
-        <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-        <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-team")}kr</b>
-      </Col>
+      <RegisterInfo type={"team"}/>
     </Row>
   );
 }
