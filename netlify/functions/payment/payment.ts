@@ -2,7 +2,7 @@ import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
 import { FormType, StripeMetadata } from '../../../src/features/register/models';
 import { shirtArrayToString } from '../../../src/features/register/utils';
-import { birthdayToString, createCapPurchaseItems, createRegistrationPurchaseItem, createShirtPurchaseItems } from '../utils/paymentUtil';
+import { birthdayToString, createCapPurchaseItems, createExtraDonationPurchaseItem, createRegistrationPurchaseItem, createShirtPurchaseItems } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
@@ -38,6 +38,10 @@ export const handler: Handler = async (event) => {
 
     if (typeof formData.numCaps === 'number' && formData.numCaps > 0) {
       lineItems.push(...createCapPurchaseItems(formData.numCaps));
+    }
+
+    if (formData.extraDonation > 0) {
+      lineItems.push(...createExtraDonationPurchaseItem(formData.extraDonation));
     }
 
     //Common data for all registrations

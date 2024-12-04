@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { FormType, Shirt } from "../../../src/features/register/models";
 import { getPriceId } from "./pricing";
+import { sekToOre } from "../../../src/features/register/utils";
 
 
 export const createRegistrationPurchaseItem = (formType: FormType): Stripe.Checkout.SessionCreateParams.LineItem[] => {
@@ -50,6 +51,20 @@ export const createCapPurchaseItems = (numCaps: number): Stripe.Checkout.Session
     }
     return [];
 }
+
+export const createExtraDonationPurchaseItem = (extraDonation: number): Stripe.Checkout.SessionCreateParams.LineItem[] => {
+    const amountInOre = sekToOre(extraDonation);
+    return [{
+        price_data: {
+            currency: 'sek',
+            product_data: {
+                name: 'Extra Donation',
+            },
+            unit_amount: amountInOre,
+        },
+        quantity: 1,
+    }];
+};
 
 const appendZero = (str: string) => {
     return parseInt(str) < 10 ? "0" + str : str;

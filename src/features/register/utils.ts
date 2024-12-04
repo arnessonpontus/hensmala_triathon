@@ -69,3 +69,7 @@ export const calcTotalRegisterPrice = (
 export const oreToSek = (ore: number) => {
   return ore / 100;
 }
+
+export const sekToOre = (sek: number) => {
+  return Math.round(sek * 100);
+}
