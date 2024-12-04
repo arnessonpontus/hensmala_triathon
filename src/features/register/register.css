@@ -182,7 +182,7 @@ select {
 
 /* CSS for payment successful/failed*/
 
-.container {
+.redirect-page-container {
   text-align: center;
   padding: 20px;
   background-color: #d4edda;

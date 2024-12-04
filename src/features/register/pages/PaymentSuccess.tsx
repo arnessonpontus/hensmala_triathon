@@ -4,7 +4,7 @@ const PaymentSuccess: React.FC = () => {
   //#TODO add phone compatiblity?
   return (
     <div>
-      <div className="container">
+      <div className="redirect-page-container">
         <h1>Betalningen Genomförd!</h1>
         <p>Tack så mycket för din registrering! Du ska ha fått ett mail över detaljer om ditt köp.</p>
         <p>Vi kommer skicka ut mer information löpande, följ gärna våran facebook och instagram för att inte missa någon nyhet!</p>
@@ -42,7 +42,6 @@ const PaymentSuccess: React.FC = () => {
           height="315"
           src="https://www.youtube.com/embed/xiAz4cuyETY"
           title="YouTube video player"
-          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
