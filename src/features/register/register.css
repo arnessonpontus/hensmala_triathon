@@ -238,3 +238,50 @@ select {
   display: flex;
   justify-content: center;
 }
+
+/* Add Media Query for Smaller Screens */
+@media screen and (max-width: 768px) {
+  .redirect-page-container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .icon-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
+
+  .icon {
+    font-size: 40px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .redirect-page-container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .icon {
+    font-size: 30px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
