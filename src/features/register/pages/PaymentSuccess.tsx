@@ -4,14 +4,14 @@ const PaymentSuccess: React.FC = () => {
   //#TODO add phone compatiblity?
   return (
     <div>
-      <div className="redirect-page-container">
+      <div className="redirect-page-container successful">
         <h1>Betalningen Genomförd!</h1>
         <p>Tack så mycket för din registrering! Du ska ha fått ett mail över detaljer om ditt köp.</p>
         <p>Vi kommer skicka ut mer information löpande, följ gärna våran facebook och instagram för att inte missa någon nyhet!</p>
         <p>Pssssst... Kan du inte bärga dig till det är dags att springa? Kolla in förra årets video och annat skoj på vår Youtube kanal!</p>
         <div className="icon-container">
           <a
-            href="https://www.facebook.com/your-facebook-page"
+            href="https://www.facebook.com/61557863443816"
             target="_blank"
             rel="noopener noreferrer"
             className="icon-link"

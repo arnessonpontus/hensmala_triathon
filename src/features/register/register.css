@@ -185,10 +185,19 @@ select {
 .redirect-page-container {
   text-align: center;
   padding: 20px;
-  background-color: #d4edda;
-  color: #155724;
   border-radius: 8px;
   margin: 50px;
+}
+
+.redirect-page-container.successful {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+
+.redirect-page-container.cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
 .icon-container {
