@@ -11,12 +11,13 @@ export function getDaysFromNow(day: string) {
 
 export const Home: React.FC = () => {
   const [daysLeft, setDaysLeft] = useState(0);
+  const START_DAY = "2025-07-12";
 
   useEffect(() => {
-    setDaysLeft(getDaysFromNow("2024-07-20"));
+    setDaysLeft(getDaysFromNow(START_DAY));
 
     const intervalID = setInterval(() => {
-      setDaysLeft(getDaysFromNow("2024-07-20"));
+      setDaysLeft(getDaysFromNow(START_DAY));
     }, 1000)
 
     return () => {
@@ -33,7 +34,7 @@ export const Home: React.FC = () => {
           alt="HT_banner"
         ></img>
         <div className="center-absolute w-100 text-center">
-          <div className="countdown">{Math.abs(daysLeft)} dagar sedan</div>
+          <div className="countdown">{Math.abs(daysLeft)} dagar kvar</div>
         </div>
       </div>
       <Container className="p-4">
