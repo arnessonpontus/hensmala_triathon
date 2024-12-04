@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
 
 const PaymentCancelled: React.FC = () => {
   return (
     <div style={styles.container}>
-      <h1>Payment Cancelled</h1>
-      <p>We're sorry, but your payment was cancelled.</p>
-      <Link to="/anmalan" style={styles.link}>Return to Register</Link>
-      <Link to="/payment" style={styles.link}>Retry Payment</Link>
+      <h1>Betalningen Avbruten</h1>
+      <p>Betalningen blev avbruten. Försök igen eller kontakta <strong>{DEFAULT_CONTACT_EMAIL}</strong> vid problem.</p>
     </div>
   );
 };

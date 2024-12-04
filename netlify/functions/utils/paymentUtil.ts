@@ -58,7 +58,7 @@ export const createExtraDonationPurchaseItem = (extraDonation: number): Stripe.C
         price_data: {
             currency: 'sek',
             product_data: {
-                name: 'Extra Donation',
+                name: 'Extra donation',
             },
             unit_amount: amountInOre,
         },
