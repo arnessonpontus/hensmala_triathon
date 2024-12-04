@@ -18,8 +18,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  if (!(process.env.VITE_ALLOW_REGISTRATION === "true")) {
-    console.log("VITE_ALLOW_REGISTRATION IS: ", process.env.VITE_ALLOW_REGISTRATION);
+  if (process.env.VITE_ALLOW_REGISTRATION !== "true") {
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Registration is now allowed at the moment.' })
