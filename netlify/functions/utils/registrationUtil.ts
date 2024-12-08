@@ -5,7 +5,7 @@ export function selectSpreadsheetDetails(formType: string): { spreadsheetID: str
   switch (formType) {
     case FormType.Solo:
       return {
-        spreadsheetID: getNodeEnvVariable("GOOGLE_SPREADSHEET_ID_S"),
+        spreadsheetID: getNodeEnvVariable("GOOGLE_SPREADSHEET_ID_SOLO"),
         idType: "S",
         registerType: FormType.Solo,
       };
