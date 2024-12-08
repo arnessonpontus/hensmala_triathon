@@ -4,19 +4,7 @@ import { sendEmail } from "./emailSender";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { StripeMetadata } from "../../../src/features/register/models";
 import { selectSpreadsheetDetails } from "../utils/registrationUtil";
-
-// required env vars
-if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
-    throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
-if (!process.env.GOOGLE_PRIVATE_KEY)
-    throw new Error("no GOOGLE_PRIVATE_KEY env var set");
-// spreadsheet key is the long id in the sheets URL
-if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO)
-    throw new Error("no GOOGLE_SPREADSHEET_ID_SOLO env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM)
-    throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER)
-    throw new Error("no GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER env var set");
+import { getNodeEnvVariable } from "../utils/envUtil";
 
 export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: number): Promise<Boolean> {
     console.log("Running sheet netlify function...");
@@ -31,8 +19,8 @@ export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: 
 
     try {
         const serviceAccountAuth = new JWT({
-            email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-            key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+            email: getNodeEnvVariable("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+            key: getNodeEnvVariable("GOOGLE_PRIVATE_KEY")?.replace(/\\n/g, "\n"),
             scopes: [
                 'https://www.googleapis.com/auth/spreadsheets',
             ],

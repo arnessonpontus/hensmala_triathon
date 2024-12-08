@@ -4,8 +4,9 @@ import { FormType, StripeMetadata } from '../../../src/features/register/models'
 import { shirtArrayToString } from '../../../src/features/register/utils';
 import { birthdayToString, createCapPurchaseItems, createExtraDonationPurchaseItem, createRegistrationPurchaseItem, createShirtPurchaseItems } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
+import { getNodeEnvVariable } from '../utils/envUtil';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
+const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
   apiVersion: '2024-10-28.acacia',
 });
 
@@ -18,7 +19,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  if (process.env.VITE_ALLOW_REGISTRATION !== "true") {
+  if (getNodeEnvVariable("VITE_ALLOW_REGISTRATION") !== "true") {
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Registration is now allowed at the moment.' })
@@ -79,8 +80,8 @@ export const handler: Handler = async (event) => {
       payment_method_types: ['card', 'klarna'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${process.env.CLIENT_URL}/payment-success`,
-      cancel_url: `${process.env.CLIENT_URL}/payment-cancelled`,
+      success_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-success`,
+      cancel_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-cancelled`,
     });
 
     return {

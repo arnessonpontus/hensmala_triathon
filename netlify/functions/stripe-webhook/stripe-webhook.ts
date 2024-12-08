@@ -4,12 +4,13 @@ import { StripeMetadata } from "../../../src/features/register/models";
 import { oreToSek } from '../../../src/features/register/utils';
 import { writeToSpreadsheet } from './writeToSpreadsheet';
 import { sendEmailToUsInCaseOfError } from './emailSender';
+import { getNodeEnvVariable } from '../utils/envUtil';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
+const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET") as string, {
   apiVersion: '2024-10-28.acacia',
 });
 
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
+const endpointSecret = getNodeEnvVariable("STRIPE_WEBHOOK_SECRET") as string;
 
 export const handler: Handler = async (event) => {
 

@@ -6,6 +6,7 @@ import { ErrorModal } from "./components/ErrorModal";
 import { AppRouter } from "./AppRouter";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
+import { getViteEnvVariable } from "./utils";
 
 const App = () => {
   return (
@@ -23,17 +24,17 @@ const App = () => {
 };
 
 const prodConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
-  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APPID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID,
+  apiKey: getViteEnvVariable("VITE_FIREBASE_APIKEY"),
+  authDomain: getViteEnvVariable("VITE_FIREBASE_AUTHDOMAIN"),
+  databaseURL: getViteEnvVariable("VITE_FIREBASE_DATABASE_URL"),
+  projectId: getViteEnvVariable("VITE_FIREBASE_PROJECTID"),
+  storageBucket: getViteEnvVariable("VITE_FIREBASE_STORAGEBUCKET"),
+  messagingSenderId: getViteEnvVariable("VITE_FIREBASE_MESSAGING_SENDER_ID"),
+  appId: getViteEnvVariable("VITE_FIREBASE_APPID"),
+  measurementId: getViteEnvVariable("VITE_FIREBASE_MEASUREMENTID"),
 };
 
-const config = import.meta.env.MODE === "production" ? prodConfig : prodConfig; // TODO: Change one
+const config = getViteEnvVariable("MODE") === "production" ? prodConfig : prodConfig; // TODO: Change one
 
 // Initialize Firebase
 firebase.initializeApp(config);

@@ -6,6 +6,7 @@ import { RegisterFormSolo } from "../components/RegisterFormSolo";
 import { RegisterFormTeam } from "../components/RegisterFormTeam";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
+import { getViteEnvVariable } from "../../../utils";
 
 export const Register = () => {
   const [hasRegisterd, setHasRegistered] = useState(false);
@@ -15,7 +16,7 @@ export const Register = () => {
     setHasRegistered(!hasRegisterd)
   }
 
-  if (import.meta.env.VITE_ALLOW_REGISTRATION !== "true") {
+  if (getViteEnvVariable("VITE_ALLOW_REGISTRATION") !== "true") {
     return (
       <FillCenterLayout>
         <h2>Anmälan är inte öppnad än.</h2>

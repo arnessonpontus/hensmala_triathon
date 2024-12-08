@@ -2,25 +2,18 @@ import { GoogleSpreadsheetRow } from "google-spreadsheet";
 import { FormType, StripeMetadata } from "../../../src/features/register/models";
 import { getSoloHtml, getTeamHtml, getShirtHtml, getRegistrationErrorHtml } from "./getHtml";
 import { createTransport } from "nodemailer";
+import { getNodeEnvVariable } from "../utils/envUtil";
 
 // Click on this link to enable applications to access the email account:
 // https://accounts.google.com/b/0/DisplayUnlockCaptcha
-
-// required env vars
-if (!process.env.EMAILER_USER) throw new Error("no EMAILER_USER env var set");
-// required env vars
-if (!process.env.EMAILER_PASSWORD)
-  throw new Error("no EMAILER_PASSWORD env var set");
-if (!process.env.VITE_ALLOWED_COMPANY)
-  throw new Error("no VITE_ALLOWED_COMPANY env var set");
 
 export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType): Promise<boolean> {
   try {
     const transporter = createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAILER_USER,
-        pass: process.env.EMAILER_PASSWORD,
+        user: getNodeEnvVariable("EMAILER_USER"),
+        pass: getNodeEnvVariable("EMAILER_PASSWORD"),
       },
     });
 
@@ -39,12 +32,12 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
       html = getSoloHtml(addedRow);
     }
     const mailOptions = {
-      from: process.env.EMAILER_USER,
+      from: getNodeEnvVariable("EMAILER_USER"),
       to: email,
       subject: mailSubject,
       html: html,
       bcc: [],
-      //TODO: bcc: [process.env.EMAILER_USER], 
+      //TODO: bcc: [getNodeEnvVariable("EMAILER_USER")], 
       attachments: [{
         filename: 'logga.png',
         path: __dirname + '/assets/logga.png',
@@ -68,16 +61,16 @@ export function sendEmailToUsInCaseOfError(paymentName: string | null | undefine
     var transporter = createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAILER_USER,
-        pass: process.env.EMAILER_PASSWORD,
+        user: getNodeEnvVariable("EMAILER_USER"),
+        pass: getNodeEnvVariable("EMAILER_PASSWORD"),
       },
     });
 
     const mailSubject = "FEL VID REGISTRERING"
     const html = getRegistrationErrorHtml(metadata?.name1 ?? "", metadata?.email1 ?? "", metadata?.city1 ?? "", paymentName, paymentMail, paymentPhone)
     const mailOptions = {
-      from: process.env.EMAILER_USER,
-      to: process.env.EMAILER_USER,
+      from: getNodeEnvVariable("EMAILER_USER"),
+      to: getNodeEnvVariable("EMAILER_USER"),
       subject: mailSubject,
       html: html,
       bcc: [],
@@ -89,7 +82,7 @@ export function sendEmailToUsInCaseOfError(paymentName: string | null | undefine
         console.log("Error sending email: ", error);
         reject();
       } else {
-        console.log("Email sent to : " + process.env.EMAILER_USER + " : " + info.response);
+        console.log("Email sent to : " + getNodeEnvVariable("EMAILER_USER") + " : " + info.response);
         resolve();
       }
     });

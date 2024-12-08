@@ -21,6 +21,7 @@ import { ErrorBanner } from "../../../components/ErrorBanner";
 import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
+import { getViteEnvVariable } from "../../../utils";
 
 
 export const RegisterFormSolo = () => {
@@ -48,10 +49,10 @@ export const RegisterFormSolo = () => {
     setFormState(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const isAllowedCompanyEntered = () => {
+  const isAllowedCompanyEntered = (): boolean => {
     return (
-      import.meta.env.VITE_ALLOWED_COMPANY &&
-      formState.city1.toLowerCase().includes(import.meta.env.VITE_ALLOWED_COMPANY.toLowerCase())
+      getViteEnvVariable("VITE_ALLOWED_COMPANY") !== "" &&
+      formState.city1.toLowerCase().includes(getViteEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())
     );
   };
 
@@ -168,7 +169,7 @@ export const RegisterFormSolo = () => {
           {isAllowedCompanyEntered() ?
             <div className="allowed-company-text-bg">
               <small>
-                Du har anget <b style={{ color: "#007fa8" }}>{import.meta.env.VITE_ALLOWED_COMPANY}</b> som klubb och får därför anmälningsavgiften betald.
+                Du har anget <b style={{ color: "#007fa8" }}>{getViteEnvVariable("VITE_ALLOWED_COMPANY")}</b> som klubb och får därför anmälningsavgiften betald.
               </small>
             </div>
             : null}

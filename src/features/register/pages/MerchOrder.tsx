@@ -24,6 +24,7 @@ import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
+import { getViteEnvVariable } from "../../../utils";
 
 export const MerchOrder: React.FC = () => {
   const { loading, getPriceByName } = usePrices();
@@ -67,7 +68,7 @@ export const MerchOrder: React.FC = () => {
     setFormState(defaultState);
   };
 
-  if (!import.meta.env.VITE_ALLOW_REGISTRATION) {
+  if (!getViteEnvVariable("VITE_ALLOW_REGISTRATION")) {
     return (
       <FillCenterLayout>
         <h2>Beställning av kläder är inte öppnad än.</h2>

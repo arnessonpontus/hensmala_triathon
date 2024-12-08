@@ -1,8 +1,9 @@
 import Stripe from "stripe";
 import { Handler } from '@netlify/functions';
 import { oreToSek } from "../../../src/features/register/utils";
+import { getNodeEnvVariable } from "../utils/envUtil";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET as string, {
+const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
   apiVersion: '2024-10-28.acacia',
 });
 
