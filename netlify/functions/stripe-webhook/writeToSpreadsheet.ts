@@ -11,10 +11,10 @@ if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
 if (!process.env.GOOGLE_PRIVATE_KEY)
     throw new Error("no GOOGLE_PRIVATE_KEY env var set");
 // spreadsheet key is the long id in the sheets URL
-if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO_2024)
-    throw new Error("no GOOGLE_SPREADSHEET_ID_SOLO_2024 env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM_2024)
-    throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM_2024 env var set");
+if (!process.env.GOOGLE_SPREADSHEET_ID_SOLO)
+    throw new Error("no GOOGLE_SPREADSHEET_ID_SOLO env var set");
+if (!process.env.GOOGLE_SPREADSHEET_ID_TEAM)
+    throw new Error("no GOOGLE_SPREADSHEET_ID_TEAM env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER)
     throw new Error("no GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER env var set");
 
