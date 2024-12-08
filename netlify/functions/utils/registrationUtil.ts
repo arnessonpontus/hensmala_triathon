@@ -15,11 +15,11 @@ export function selectSpreadsheetDetails(formType: string): { spreadsheetID: str
         idType: "T",
         registerType: FormType.Team,
       };
-    case FormType.TShirtOrder:
+    case FormType.MerchOrder:
       return {
-        spreadsheetID: getNodeEnvVariable("GOOGLE_SPREADSHEET_ID_TSHIRT_ORDER"),
+        spreadsheetID: getNodeEnvVariable("GOOGLE_SPREADSHEET_ID_MERCH_ORDER"),
         idType: "O",
-        registerType: FormType.TShirtOrder,
+        registerType: FormType.MerchOrder,
       };
     default:
       return false;

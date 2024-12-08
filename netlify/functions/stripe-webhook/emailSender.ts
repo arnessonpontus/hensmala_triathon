@@ -20,13 +20,13 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
     // TODO: Send to all members?
     const email = addedRow.get('email1')
 
-    const mailSubject = registerType === "tshirt_order" ? "Tack för din beställning!" : "Tack för din anmälan!"
+    const mailSubject = registerType === FormType.MerchOrder ? "Tack för din beställning!" : "Tack för din anmälan!"
 
     let html = "";
 
     if (registerType === "team") {
       html = getTeamHtml(addedRow);
-    } else if (registerType === "tshirt_order") {
+    } else if (registerType === FormType.MerchOrder) {
       html = getShirtHtml(addedRow);
     } else {
       html = getSoloHtml(addedRow);

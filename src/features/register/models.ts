@@ -88,7 +88,7 @@ export type DataToSend = Partial<
 export enum FormType {
   Solo = "solo",
   Team = "team",
-  TShirtOrder = "tshirt_order",
+  MerchOrder = "merch_order",
 }
 
 export type priceType =
