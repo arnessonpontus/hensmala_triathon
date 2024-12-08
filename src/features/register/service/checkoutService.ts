@@ -1,8 +1,9 @@
 import { loadStripe } from '@stripe/stripe-js';
 import { FormType, MerchOrderState, RegisterFormSoloState, RegisterFormTeamState } from '../models';
 import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
+import { getViteEnvVariable } from '../../../utils';
 
-const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PUBLIC}`);
+const stripePromise = loadStripe(`${getViteEnvVariable("VITE_STRIPE_PUBLIC")}`);
 
 export const handleCheckout = async (
   formType: FormType,

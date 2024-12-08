@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
 import { RegSuccess } from "../components/RegSuccess";
@@ -7,10 +7,36 @@ import { RegisterFormTeam } from "../components/RegisterFormTeam";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
 import { getViteEnvVariable } from "../../../utils";
+import { useSearchParams } from "react-router-dom";
+
+enum Tab {
+  SOLO = 0,
+  TEAM = 1
+}
 
 export const Register = () => {
   const [hasRegisterd, setHasRegistered] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const registerType = searchParams.get("typ");
+
+  useEffect(() => {
+    if (registerType === "lag") {
+      setActiveTab(Tab.TEAM);
+    } else {
+      setSearchParams({ typ: "individuell" });
+      setActiveTab(Tab.SOLO);
+    }
+  }, [registerType])
+
+  const handleTabChange = (tabIndex: number) => {
+    if (tabIndex === Tab.SOLO) {
+      setSearchParams({ typ: "individuell" });
+    } else {
+      setSearchParams({ typ: "lag" });
+    }
+    setActiveTab(tabIndex);
+  }
 
   const toggleDone = () => {
     setHasRegistered(!hasRegisterd)
@@ -30,10 +56,10 @@ export const Register = () => {
       {!hasRegisterd ? (
         <div className="card-box" style={{ marginTop: 40 }}>
           <div className="register-tabs">
-            <div onClick={() => setActiveTab(0)} className="register-tab">
+            <div onClick={() => handleTabChange(0)} className="register-tab">
               Individuell
             </div>
-            <div onClick={() => setActiveTab(1)} className="register-tab">
+            <div onClick={() => handleTabChange(1)} className="register-tab">
               Lag
             </div>
             <div className={classnames("tab-underline", { second: activeTab === 1 })}></div>
