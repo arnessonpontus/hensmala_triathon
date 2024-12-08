@@ -26,7 +26,7 @@ export const Fortrampet = () => {
               >
                 <h2 style={{ fontSize: "46px" }}>Hentrampet</h2>
                 <h3>
-                  <Badge color="info" className="text-white">1 sep 2024</Badge>
+                  <Badge color="info" className="text-white">Gick 2024</Badge>
                 </h3>
               </div>
               <b>
@@ -36,7 +36,7 @@ export const Fortrampet = () => {
               <br></br>
               <br></br>
               <p>
-                Hentrampet (tidigare Förtrampet) kommer gå av stapeln 1 september 2024.
+                Hentrampet (tidigare Förtrampet) gick av stapeln 1 september 2024.
               </p>
               <h4>
                 Vad innebär Hentrampet?
@@ -49,7 +49,7 @@ export const Fortrampet = () => {
                 När är Hentrampet?
               </h4>
               <p className="indent">
-                Söndag 1 september 2024. Start sker valfri tid mellan 14.00-17.00.
+                Datum för Hentrampet 2025 är ännu inte bestämt.
               </p>
               <h4>
                 Behöver jag ta med fika?
