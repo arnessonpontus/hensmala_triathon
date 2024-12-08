@@ -1,23 +1,20 @@
 import moment from "moment-timezone";
 import { JWT } from 'google-auth-library';
-import { sendEmail } from "./emailSender";
-import { GoogleSpreadsheet } from "google-spreadsheet";
+import { GoogleSpreadsheet, GoogleSpreadsheetRow } from "google-spreadsheet";
 import { StripeMetadata } from "../../../src/features/register/models";
 import { selectSpreadsheetDetails } from "../utils/registrationUtil";
 import { getNodeEnvVariable } from "../utils/envUtil";
 
-export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: number): Promise<Boolean> {
+export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: number): Promise<GoogleSpreadsheetRow<Record<string, any>>> {
     console.log("Running sheet netlify function...");
 
-    const spreadsheetDetails = selectSpreadsheetDetails(orderData.formType);
-
-    if (!spreadsheetDetails) {
-        return false;
-    }
-
-    const { spreadsheetID, idType, registerType } = spreadsheetDetails
-
     try {
+        const spreadsheetDetails = selectSpreadsheetDetails(orderData.formType);
+        if (!spreadsheetDetails) {
+            return {} as GoogleSpreadsheetRow<Record<string, any>>;
+        }
+        const { spreadsheetID, idType, registerType } = spreadsheetDetails
+
         const serviceAccountAuth = new JWT({
             email: getNodeEnvVariable("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
             key: getNodeEnvVariable("GOOGLE_PRIVATE_KEY")?.replace(/\\n/g, "\n"),
@@ -50,18 +47,13 @@ export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: 
 
         if (!addedRow) {
             console.log("Could not add row");
-            return false;
+            return {} as GoogleSpreadsheetRow<Record<string, any>>;
         }
-        console.log("Success adding row");
-        const email_sent = await sendEmail(addedRow, registerType);
-        if (email_sent) {
-            console.log(`Row added. Email sent: ${email_sent}`)
-            return true;
-        } else {
-            return false;
-        }
+        console.log("Row Added");
+        return addedRow;
+
     } catch (e: unknown) {
         console.error(e)
-        return false;
+        return {} as GoogleSpreadsheetRow<Record<string, any>>;
     }
 }
