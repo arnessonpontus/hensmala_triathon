@@ -5,6 +5,7 @@ import { shirtArrayToString } from '../../../src/features/register/utils';
 import { birthdayToString, createCapPurchaseItems, createExtraDonationPurchaseItem, createRegistrationPurchaseItem, createShirtPurchaseItems } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 import { getNodeEnvVariable } from '../utils/envUtil';
+import { getDiscountId } from '../utils/pricing';
 
 const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
   apiVersion: '2024-10-28.acacia',
@@ -67,13 +68,25 @@ export const handler: Handler = async (event) => {
         birthday3: birthdayToString(formData.year3, formData.month3, formData.day3),
         name2: formData.name2,
         name3: formData.name3,
-        email2: formData.email1, //#TODO Assign different emails for other people?
-        email3: formData.email1,
+        email2: formData.email2,
+        email3: formData.email3,
         city2: formData.city2,
         city3: formData.city3,
       }
     }
     console.log(metadata)
+
+    let discounts;
+    if (metadata.city1.toLowerCase().includes(getNodeEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())) {
+      const discountId = getDiscountId('company-discount-code');
+      if (discountId) {
+        discounts = [
+          {
+            coupon: discountId,
+          },
+        ];
+      }
+    }
 
     const session = await stripe.checkout.sessions.create({
       metadata: metadata as unknown as MetadataParam,
@@ -82,6 +95,7 @@ export const handler: Handler = async (event) => {
       mode: 'payment',
       success_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-success`,
       cancel_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-cancelled`,
+      ...(discounts && { discounts }),
     });
 
     return {
