@@ -68,7 +68,7 @@ export const MerchOrder: React.FC = () => {
     setFormState(defaultState);
   };
 
-  if (!getViteEnvVariable("VITE_ALLOW_REGISTRATION")) {
+  if (getViteEnvVariable("VITE_ALLOW_REGISTRATION") !== "true") {
     return (
       <FillCenterLayout>
         <h2>Beställning av kläder är inte öppnad än.</h2>

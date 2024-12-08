@@ -17,4 +17,5 @@ export const StyledLayout = styled.div<{ direction?: string; }>`
   align-items: center;
   text-align: center;
   flex-wrap: wrap;
+  padding: 10px;
 `;
