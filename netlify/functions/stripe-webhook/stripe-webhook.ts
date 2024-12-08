@@ -43,18 +43,16 @@ export const handler: Handler = async (event) => {
 
     const totalInOre = session.amount_total || 0;
 
-    const spreedsheetRow = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
-    if (Object.keys(spreedsheetRow).length > 0) {
-      const email_sent = await sendEmail(spreedsheetRow, metadata.formType as FormType);
-      if (email_sent) {
-        console.log(`Email sent: ${email_sent}`)
-        return { statusCode: 200, body: JSON.stringify({ received: true }) };
-      }
+    try {
+      const spreadsheetRow = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
+      await sendEmail(spreadsheetRow, metadata.formType as FormType);
+      return { statusCode: 200, body: JSON.stringify({ received: true }) };
+    } catch (e) {
+      sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone, metadata);
+      console.error(e);
+      return { statusCode: 400, body: 'Error when trying to write to spreedsheet and sending registration email' };
     }
-    sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone, metadata);
-    return { statusCode: 400, body: 'Error when trying to write to spreedsheet and sending registration email' };
   }
 
   return { statusCode: 200, body: JSON.stringify({ received: true }) };
-
 }

@@ -76,16 +76,16 @@ export const handler: Handler = async (event) => {
     }
     console.log(metadata)
 
-    let discounts;
+    const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
     if (metadata.city1.toLowerCase().includes(getNodeEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())) {
       const discountId = getDiscountId('company-discount-code');
-      if (discountId) {
-        discounts = [
-          {
-            coupon: discountId,
-          },
-        ];
+      if (!discountId) {
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: "Could not find discount" }),
+        };
       }
+      discounts.push({coupon: discountId})
     }
 
     const session = await stripe.checkout.sessions.create({
@@ -95,7 +95,7 @@ export const handler: Handler = async (event) => {
       mode: 'payment',
       success_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-success`,
       cancel_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-cancelled`,
-      ...(discounts && { discounts }),
+      discounts,
     });
 
     return {
