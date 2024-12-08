@@ -32,15 +32,11 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
     let html = "";
 
     if (registerType === "team") {
-      const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
-        addedRow.get('city2')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase()) ||
-        addedRow.get('city3')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase());
-      html = getTeamHtml(addedRow, hasAllowedCompany);
+      html = getTeamHtml(addedRow);
     } else if (registerType === "tshirt_order") {
       html = getShirtHtml(addedRow);
     } else {
-      const hasAllowedCompany = addedRow.get('city1')?.toLowerCase().includes(process.env.VITE_ALLOWED_COMPANY?.toLowerCase())
-      html = getSoloHtml(addedRow, hasAllowedCompany);
+      html = getSoloHtml(addedRow);
     }
     const mailOptions = {
       from: process.env.EMAILER_USER,
