@@ -31,7 +31,7 @@ export const Home: React.FC = () => {
                 landskap.
                 <br></br>
                 <br></br>
-                Sedan 2012 har vi nu samlat in över 1 000 000kr och skänkt
+                Sedan 2012 har vi nu samlat in över 1 200 000kr och skänkt
                 till ALS-forskningen. Vill du vara med och bidra för att bekämpa ALS, swisha din gåva till <b>1234048781</b>.
               </p>
             </Col>

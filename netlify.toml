@@ -2,3 +2,13 @@
   framework = "vite"
 [functions]
   included_files = ["./netlify/functions/stripe-webhook/assets/**"]
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "max-age=31536000, immutable"
