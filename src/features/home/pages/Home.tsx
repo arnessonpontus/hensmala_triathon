@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import News from "../../news/components/News";
 import { Container, Row, Col } from "reactstrap";
-import moment from 'moment-timezone';
 import { Link } from "react-router-dom";
 import { SponsorHighlight } from "../../sponsor/components/SponsorHighlight";
+import { BannerTime } from "../components/BannerTime";
 
-export function getDaysFromNow(day: string) {
-  return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm")) / 86400000)
-}
 
 export const Home: React.FC = () => {
-  const [daysLeft, setDaysLeft] = useState(0);
-  const START_DAY = "2025-07-12";
-
-  useEffect(() => {
-    setDaysLeft(getDaysFromNow(START_DAY));
-
-    const intervalID = setInterval(() => {
-      setDaysLeft(getDaysFromNow(START_DAY));
-    }, 1000)
-
-    return () => {
-      clearInterval(intervalID)
-    }
-  }, [])
-
   return (
     <div style={{ overflow: "hidden" }}>
       <div className="banner-wrapper">
@@ -34,7 +16,7 @@ export const Home: React.FC = () => {
           alt="HT_banner"
         ></img>
         <div className="center-absolute w-100 text-center">
-          <div className="countdown">{Math.abs(daysLeft)} dagar kvar</div>
+          <BannerTime />
         </div>
       </div>
       <Container className="p-4">

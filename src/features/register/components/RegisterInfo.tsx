@@ -12,11 +12,11 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
     <Col id="info-text" style={{ marginTop: "2vh" }}>
       <hr className="register-divider"></hr>
       {type === "solo" ?
-        <h3>Anmäl dig till Hensmåla Triathlon 2024</h3>
+        <h3>Anmäl dig till Hensmåla Triathlon 2025</h3>
         :
         <h3>Anmäl er som Lag (2-3 pers.)</h3>
       }
-      <b>Datum: 20 juli</b>
+      <b>Datum: 12 juli</b>
       <p>
         Ett motionslopp för alla, motionär som elit. Få en härlig dag i Hensmålas vackra natur med simning (340m), cykling (9.2km), löpning (6.5km) och samtidigt bidra till ALS-forskningen.
       </p>
@@ -32,10 +32,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
         </Link>.
       </p>
       <p>
-        Det kommer komma ett bekräftelse-email med din angiva information och{" "}
-        <b>betalningsuppgifter</b> då anmälan är gjord. Betala gärna direkt i samband med anmälan. När tävlingen närmar
-        sig kommer yttligare information skickas ut via mail till alla
-        deltagare.
+        Du betalar enklelt med kort eller Klarna (där du även kan välja att betala med Swish).
       </p>
       <p>Första start sker 15.00.</p>
       <b>

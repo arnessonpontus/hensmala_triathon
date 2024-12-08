@@ -165,7 +165,7 @@ export const RegisterFormTeam = () => {
           onSubmit={onSubmit}
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h3>Anmälan 2024 Lag</h3>
+            <h3>Anmälan 2025 Lag</h3>
             <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
               Visa info<i className="fas fa-angle-down angle-down"></i>
             </div>

@@ -1,3 +1,4 @@
+import moment from 'moment-timezone';
 import { Shirt } from "./models";
 
 // Stringify the shirt selection for easier storage
@@ -72,4 +73,8 @@ export const oreToSek = (ore: number) => {
 
 export const sekToOre = (sek: number) => {
   return Math.round(sek * 100);
+}
+
+export const getDaysFromNow = (day: string) => {
+  return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm")) / 86400000)
 }

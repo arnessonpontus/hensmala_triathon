@@ -82,7 +82,7 @@ export const RegisterFormSolo = () => {
         // #TODO födelsedagsdatum och gender blir inte validerat
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h3>Anmälan 2024 Individuell</h3>
+            <h3>Anmälan 2025 Individuell</h3>
 
             <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
               Visa info<i className="fas fa-angle-down angle-down"></i>
