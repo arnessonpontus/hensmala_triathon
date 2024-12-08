@@ -32,7 +32,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
         </Link>.
       </p>
       <p>
-        Du betalar enklelt med kort eller Klarna (där du även kan välja att betala med Swish).
+        Du betalar enklelt med kort eller Klarna (där du även kan välja att betala med Swish). Om du beställt kläder ska dessa upphämtas på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b>
       </p>
       <p>Första start sker 15.00.</p>
       <b>
