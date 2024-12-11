@@ -97,3 +97,6 @@ export type priceType =
   | "funktion"
   | "bomull"
   | "keps"
+
+export type discountType =
+  "company-discount-code"

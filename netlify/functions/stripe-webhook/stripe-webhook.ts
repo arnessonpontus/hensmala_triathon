@@ -1,9 +1,9 @@
 import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
-import { StripeMetadata } from "../../../src/features/register/models";
+import { FormType, StripeMetadata } from "../../../src/features/register/models";
 import { oreToSek } from '../../../src/features/register/utils';
 import { writeToSpreadsheet } from './writeToSpreadsheet';
-import { sendEmailToUsInCaseOfError } from './emailSender';
+import { sendEmail, sendEmailToUsInCaseOfError } from './emailSender';
 import { getNodeEnvVariable } from '../utils/envUtil';
 
 const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET") as string, {
@@ -43,13 +43,16 @@ export const handler: Handler = async (event) => {
 
     const totalInOre = session.amount_total || 0;
 
-    const successWritingToSheetAndMail = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
-    if (!successWritingToSheetAndMail) {
+    try {
+      const spreadsheetRow = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
+      await sendEmail(spreadsheetRow, metadata.formType as FormType);
+      return { statusCode: 200, body: JSON.stringify({ received: true }) };
+    } catch (e) {
       sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone, metadata);
+      console.error(e);
       return { statusCode: 400, body: 'Error when trying to write to spreedsheet and sending registration email' };
     }
   }
 
   return { statusCode: 200, body: JSON.stringify({ received: true }) };
-
 }

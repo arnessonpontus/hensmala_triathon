@@ -7,8 +7,7 @@ import { getNodeEnvVariable } from "../utils/envUtil";
 // Click on this link to enable applications to access the email account:
 // https://accounts.google.com/b/0/DisplayUnlockCaptcha
 
-export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType): Promise<boolean> {
-  try {
+export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType): Promise<void> {
     const transporter = createTransport({
       service: "gmail",
       auth: {
@@ -48,12 +47,6 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
     console.log("Sending email...");
     await transporter.sendMail(mailOptions);
     console.log("Email sent to: ", email);
-    return true;
-  } catch (error) {
-    console.log("Error sending email: ", error);
-    return false;
-  }
-
 }
 
 export function sendEmailToUsInCaseOfError(paymentName: string | null | undefined, paymentMail: string | null | undefined, paymentPhone: string | null | undefined, metadata?: StripeMetadata) {
