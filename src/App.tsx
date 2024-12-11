@@ -7,17 +7,22 @@ import { AppRouter } from "./AppRouter";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import { getViteEnvVariable } from "./utils";
+import { ConsentBannerProvider } from "./features/consent/context/ConsentBannerContext";
+import ConsentBanner from "./features/consent/components/ConsentBanner";
 
 const App = () => {
   return (
     <div className="App">
       <ErrorModalProvider>
-        <ErrorModal />
-        <Router>
-        <Navigation />
-          <AppRouter />
-        </Router>
-        <Footer />
+        <ConsentBannerProvider>
+          <ErrorModal />
+          <Router>
+            <ConsentBanner />
+            <Navigation />
+            <AppRouter />
+          </Router>
+          <Footer />
+        </ConsentBannerProvider>
       </ErrorModalProvider>
     </div>
   );

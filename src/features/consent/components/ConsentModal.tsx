@@ -6,7 +6,7 @@ interface ConsentProps {
   title: string
 }
 
-const Consent = ({ buttonText, title }: ConsentProps) => {
+const ConsentModal = ({ buttonText, title }: ConsentProps) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -38,4 +38,4 @@ const Consent = ({ buttonText, title }: ConsentProps) => {
   );
 };
 
-export default Consent;
+export default ConsentModal;

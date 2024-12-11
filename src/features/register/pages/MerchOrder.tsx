@@ -12,7 +12,7 @@ import {
 import ShirtSelect from "../components/ShirtSelect";
 import CapSelect from "../components/CapSelect";
 import ExtraDonation from "../components/ExtraDonation";
-import Consent from "../../../components/Consent";
+import ConsentModal from "../../consent/components/ConsentModal";
 import RegisterButton from "../components/RegisterButton";
 
 import { FormType, MerchOrderState } from "../models";
@@ -182,7 +182,7 @@ export const MerchOrder: React.FC = () => {
                       onClick={() => setFormState(prev => ({ ...prev, consent: !formState.consent }))}
                     />{" "}
                     Jag accepterar att Hensmåla Triathlon sparar data om mig.
-                    <Consent
+                    <ConsentModal
                       buttonText="Vad betyder detta?"
                       title="Information om sparad data"
                     />
