@@ -1,14 +1,25 @@
 import React from "react";
 import { FOOTER_HEIGHT } from "../Constants";
+import { useConsentBanner } from "../features/consent/context/ConsentBannerContext";
 
 export const Footer: React.FC = () => {
+  const cookieBanner = useConsentBanner();
+
+  const handleCookieBannerClick = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    console.log("hesze")
+    cookieBanner.showBanner();
+  }
+
   return (
     <div
-      className="text-center py-3"
       style={{
+        paddingRight: 20,
+        paddingLeft: 20,
+        paddingTop: 20,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         marginBottom: 0,
         height: FOOTER_HEIGHT,
@@ -17,7 +28,6 @@ export const Footer: React.FC = () => {
         borderRadius: "0px",
       }}
     >
-      <p style={{ color: "white" }}>© 2024  Copyright: Hensmalatriathlon.se</p>
       <div
         style={{
           width: 200,
@@ -66,6 +76,10 @@ export const Footer: React.FC = () => {
             alt="IG_logo"
           ></img>
         </a>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+        <p style={{ color: "white" }}>© 2024  Copyright: Hensmalatriathlon.se</p>
+        <a href="/" style={{ color: "white", textDecoration: "underline" }} role="button" onClick={handleCookieBannerClick}>Öppna cookiehantering</a>
       </div>
     </div>
   );

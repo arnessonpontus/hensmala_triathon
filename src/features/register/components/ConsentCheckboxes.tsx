@@ -2,7 +2,7 @@ import { FormGroup, Input, Label } from "reactstrap";
 import { AboutPaths } from "../../about/pages/AboutHT";
 import { NavLink as RRNavLink } from "react-router-dom";
 import { useState } from "react";
-import Consent from "../../../components/Consent";
+import ConsentModal from "../../consent/components/ConsentModal";
 
 interface ConsentCheckboxesProp {
   onAllChecked: (allChecked: boolean) => void;
@@ -30,7 +30,7 @@ export const ConsentCheckboxes = ({ onAllChecked }: ConsentCheckboxesProp) => {
           />{" "}
           Jag accepterar att Hensmåla Triathlon sparar data om mig.
         </Label>
-        <Consent
+        <ConsentModal
           buttonText="Vad betyder detta?"
           title="Information om sparad data"
         />
