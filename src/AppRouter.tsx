@@ -18,6 +18,7 @@ import PaymentSuccess from "./features/register/pages/PaymentSuccess";
 import { useEffect } from "react";
 import { Results } from "./features/media/pages/Results";
 import { MainLayout } from "./components/MainLayout";
+import PrivacyPolicy from "./features/consent/pages/ConsentPolicy";
 
 export const AppRouter = () => {
   const location = useLocation();
@@ -44,6 +45,7 @@ export const AppRouter = () => {
         <Route path="/sponsorer" element={<Sponsors />} />
         <Route path="/payment-cancelled" element={<PaymentCancelled />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/integritetspolicy" element={<PrivacyPolicy />} />
         <Route path="/om-ht/:id" element={<AboutHT />} />
         <Route path="/news/:id" element={<NewsDetail />} />
       </Routes>
