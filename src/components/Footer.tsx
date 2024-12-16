@@ -14,9 +14,7 @@ export const Footer: React.FC = () => {
   return (
     <div
       style={{
-        paddingRight: 20,
-        paddingLeft: 20,
-        paddingTop: 20,
+        padding: 20,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -78,8 +76,8 @@ export const Footer: React.FC = () => {
         </a>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-        <p style={{ color: "white" }}>© 2024  Copyright: Hensmalatriathlon.se</p>
-        <a href="/" style={{ color: "white", textDecoration: "underline" }} role="button" onClick={handleCookieBannerClick}>Öppna cookiehantering</a>
+        <p style={{ color: "white", margin: 0, fontSize: "16px" }}>© 2024  Copyright: Hensmalatriathlon.se</p>
+        <a href="/" style={{ color: "white", textDecoration: "underline", alignSelf: "flex-end" }} role="button" onClick={handleCookieBannerClick}>Cookiehantering</a>
       </div>
     </div>
   );

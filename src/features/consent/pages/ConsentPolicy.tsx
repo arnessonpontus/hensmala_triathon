@@ -53,7 +53,7 @@ export const PrivacyPolicy = () => {
         </Paragraph>
         <ul>
           <li>Personlig information: Vi kan samla in namn, e-postadress och annan kontaktinformation som du frivilligt tillhandahåller när du anmäler dig eller beställer kläder.</li>
-          <li>Webbplatsanvändning: Vi använder Microsoft Clarity för att samla in data om hur användare interagerar med vår webbplats. Denna data inkluderar din IP-adress, webbläsartyp, operativsystem, sidor du besöker, hur länge du stannar på varje sida, vilka länkar du klickar på och hur du navigerar på sidan.</li>
+          <li>Webbplatsanvändning: Vi använder Microsoft Clarity för att samla in data om hur användare interagerar med vår webbplats. Denna data inkluderar din IP-adress, webbläsartyp, operativsystem, undersidor på hemsidan du besöker, hur länge du stannar på varje sida, vilka länkar du klickar på och hur du navigerar på sidan.</li>
         </ul>
       </Section>
 

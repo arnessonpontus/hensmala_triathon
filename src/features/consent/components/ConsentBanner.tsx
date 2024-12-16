@@ -4,13 +4,16 @@ import { clarity } from "react-microsoft-clarity";
 import { useConsentBanner } from "../context/ConsentBannerContext";
 import { Link } from "react-router-dom";
 import { getViteEnvVariable } from "../../../utils";
+import { localStorageService } from "../../../services/localstorageService";
 
 const ConsentBanner = () => {
   const {isOpen, hideBanner, showBanner} = useConsentBanner();
   const PROJECT_ID = getViteEnvVariable("VITE_CLARITY_PROJECT_ID");
+  const TTL_DAYS = 365;
+  const TTL_MILLIS = TTL_DAYS * 24 * 60 * 60 * 1000
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookieConsent");
+    const consent = localStorageService.get("cookieConsent");
     if (consent === "accepted") {
       clarity.init(PROJECT_ID);
       hideBanner();
@@ -20,14 +23,14 @@ const ConsentBanner = () => {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("cookieConsent", "accepted");
+    localStorageService.set("cookieConsent", "accepted", TTL_MILLIS)
     hideBanner();
 
     clarity.init(PROJECT_ID);
   };
 
   const handleDecline = () => {
-    localStorage.setItem("cookieConsent", "declined");
+    localStorageService.set("cookieConsent", "accepted", TTL_MILLIS)
     clarity.stop();
     hideBanner();
   };
@@ -37,7 +40,7 @@ const ConsentBanner = () => {
   return (
     <BannerContainer>
       <Text>
-      Vi använder cookies för att förbättra din upplevelse och analysera användningen med Microsoft Clarity. Genom att klicka på "Acceptera" samtycker du till användningen av dessa cookies. Läs mer i vår <Link to="/integritetspolicy">Integritetspolicy</Link>.
+      Vi använder cookies för att förbättra din upplevelse och analysera användningen av sidan med spårningstekniker genom Microsoft Clarity. Genom att klicka på "Acceptera" samtycker du till användningen av dessa tekniker. Läs mer i vår <Link to="/integritetspolicy">Integritetspolicy</Link>.
       </Text>
       <ButtonContainer>
         <Button onClick={handleAccept}>Acceptera</Button>
