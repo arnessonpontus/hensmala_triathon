@@ -34,8 +34,11 @@ const ConsentBanner = () => {
   };
 
   const handleDecline = () => {
-    localStorageService.set("cookieConsent", "accepted", TTL_MILLIS)
-    clarity.stop();
+    localStorageService.set("cookieConsent", "declined", TTL_MILLIS)
+    if (clarity.hasStarted()) {
+      clarity.stop();
+    }
+
     hideBanner();
   };
 
