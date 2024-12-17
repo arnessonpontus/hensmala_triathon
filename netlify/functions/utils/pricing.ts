@@ -1,4 +1,6 @@
 import { discountType, priceType } from "../../../src/features/register/models";
+import { getViteEnvVariable } from "../../../src/utils";
+import { getNodeEnvVariable } from "./envUtil";
 
 export const priceMapProd: Record<priceType, string> = {
   'registration-fee-solo': 'price_1QX6MoJv440zP1qkvlEdai0Z',
@@ -25,10 +27,22 @@ export const discountMapDev: Record<discountType, string> = {
   'company-discount-code': 'q04XNbmg'
 }
 
-export const getPriceId = (item: priceType): string | null => {
-  return priceMapProd[item] || null;
+export const getPriceId = (item: priceType, callFromBackend: boolean): string | null => {
+  if (callFromBackend) {
+    return getNodeEnvVariable("MODE") === "development" ? priceMapDev[item] || null : priceMapProd[item] || null;
+
+  } else {
+    console.log(getViteEnvVariable("MODE") === "development");
+    return getViteEnvVariable("MODE") === "development" ? priceMapDev[item] || null : priceMapProd[item] || null;
+
+  }
 };
 
 export const getDiscountId = (item: discountType): string | null => {
-  return discountMapProd[item] || null;
+  if (getViteEnvVariable("MODE") === "development") {
+    return discountMapDev[item] || null;
+  } else {
+    return discountMapProd[item] || null;
+  }
+
 }

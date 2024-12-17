@@ -35,7 +35,7 @@ const usePrices = () => {
   }, []);
 
   const getPriceByName = (priceName: priceType): number | null => {
-    const priceId = getPriceId(priceName);
+    const priceId = getPriceId(priceName, false);
     if (error || !priceId || !prices) {
       return null;
     }

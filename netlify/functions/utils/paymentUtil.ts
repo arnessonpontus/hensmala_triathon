@@ -9,9 +9,9 @@ export const createRegistrationPurchaseItem = (formType: FormType): Stripe.Check
     let registrationPriceId: string | null = null;
 
     if (formType === FormType.Solo) {
-        registrationPriceId = getPriceId("registration-fee-solo");
+        registrationPriceId = getPriceId("registration-fee-solo", true);
     } else if (formType === FormType.Team) {
-        registrationPriceId = getPriceId("registration-fee-team");
+        registrationPriceId = getPriceId("registration-fee-team", true);
     }
 
     if (registrationPriceId) {
@@ -29,7 +29,7 @@ export const createShirtPurchaseItems = (shirts: Shirt[]): Stripe.Checkout.Sessi
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
     if (Array.isArray(shirts)) {
         shirts.forEach((shirt: Shirt) => {
-            const shirtPriceId = getPriceId(shirt.material);
+            const shirtPriceId = getPriceId(shirt.material, true);
             if (shirtPriceId) {
                 lineItems.push({
                     price: shirtPriceId,
@@ -42,7 +42,7 @@ export const createShirtPurchaseItems = (shirts: Shirt[]): Stripe.Checkout.Sessi
 }
 
 export const createCapPurchaseItems = (numCaps: number): Stripe.Checkout.SessionCreateParams.LineItem[] => {
-    const capPriceId = getPriceId("keps")
+    const capPriceId = getPriceId("keps", true)
     if (capPriceId) {
         return [{
             price: capPriceId,
