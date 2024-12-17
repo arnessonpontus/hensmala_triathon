@@ -77,6 +77,7 @@ export const handler: Handler = async (event) => {
     console.log(metadata)
 
     const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
+    /* #TODO ADD COUPON
     if (metadata.city1.toLowerCase().includes(getNodeEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())) {
       const discountId = getDiscountId('company-discount-code');
       if (!discountId) {
@@ -87,6 +88,7 @@ export const handler: Handler = async (event) => {
       }
       discounts.push({coupon: discountId})
     }
+    */
 
     const session = await stripe.checkout.sessions.create({
       metadata: metadata as unknown as MetadataParam,
