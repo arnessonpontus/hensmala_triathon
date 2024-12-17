@@ -12,6 +12,10 @@ const ConsentBanner = () => {
   const TTL_DAYS = 365;
   const TTL_MILLIS = TTL_DAYS * 24 * 60 * 60 * 1000
 
+  if (getViteEnvVariable("MODE") === "development") {
+    return;
+  }
+
   useEffect(() => {
     const consent = localStorageService.get("cookieConsent");
     if (consent === "accepted") {

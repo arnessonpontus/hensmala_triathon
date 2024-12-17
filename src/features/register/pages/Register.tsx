@@ -24,16 +24,16 @@ export const Register = () => {
     if (registerType === "lag") {
       setActiveTab(Tab.TEAM);
     } else {
-      setSearchParams({ typ: "individuell" });
+      setSearchParams({ typ: "individuell" }, { replace: true });
       setActiveTab(Tab.SOLO);
     }
   }, [registerType])
 
   const handleTabChange = (tabIndex: number) => {
     if (tabIndex === Tab.SOLO) {
-      setSearchParams({ typ: "individuell" });
+      setSearchParams({ typ: "individuell" }, { replace: true });
     } else {
-      setSearchParams({ typ: "lag" });
+      setSearchParams({ typ: "lag" }, { replace: true });
     }
     setActiveTab(tabIndex);
   }

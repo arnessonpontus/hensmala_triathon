@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { SponsorHighlight } from "../../sponsor/components/SponsorHighlight";
 import { BannerTime } from "../components/BannerTime";
-
+import { PulsingButton } from "../../../components/PulsingButton";
 
 export const Home: React.FC = () => {
   return (
@@ -20,6 +20,11 @@ export const Home: React.FC = () => {
         </div>
       </div>
       <Container className="p-4">
+      <Row style={{display: "flex", justifyContent: "center", padding: 10}}>
+      <Link to="/anmalan">
+        <PulsingButton>Anmäl dig här <i className="fas fa-arrow-right" style={{color: "white"}}></i></PulsingButton>
+      </Link>
+      </Row>
         <div className="card-box">
           <Row>
             <Col className="my-4" ms={4}>

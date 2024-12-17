@@ -8,16 +8,8 @@ import { Shirt, ShirtMaterial, shirtType, Size } from "../models";
 
 const images = [
   {
-    original: "/images/clothes/bomull_2024.png",
-    thumbnail: "/images/clothes/bomull_2024_small.png",
-  },
-  {
-    original: "/images/clothes/funktion_front_large.png",
-    thumbnail: "/images/clothes/funktion_front_small.png",
-  },
-  {
-    original: "/images/clothes/funktion-back-darker.png",
-    thumbnail: "/images/clothes/funktion-back-darker_thumb.png",
+    original: "/images/clothes/shirt_no_image.jpg",
+    thumbnail: "/images/clothes/shirt_no_image.jpg",
   }
 ];
 
@@ -26,7 +18,7 @@ const getDefaultShirt = (): Shirt => {
 }
 
 const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) => {
-  const [shirts, setShirts] = useState<Shirt[]>([getDefaultShirt()]);
+  const [shirts, setShirts] = useState<Shirt[ ]>([getDefaultShirt()]);
 
   const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
@@ -61,7 +53,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
 
   return (
     <div id="shirt-select">
-      <p className="w-100 d-flex justify-content-center">Bomullströjan har endast tryck på framsidan</p>
+      <p className="w-100 d-flex justify-content-center">Färg är ännu inte bestämd. Bild kommer snart.</p>
       <ImageGallery showThumbnails={false} showIndex={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()}/>
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
