@@ -6,8 +6,8 @@ import ImageGallery from "react-image-gallery";
 
 const images = [
   {
-    original: "/images/clothes/cap_with_logo.jpg",
-    thumbnail: "/images/clothes/cap_with_logo_thumb.jpg",
+    original: "/images/clothes/cap_no_image.png",
+    thumbnail: "/images/clothes/cap_no_image.png",
   }
 ];
 
@@ -33,7 +33,8 @@ const CapSelect = ({ updateCapSelection }: { updateCapSelection: (numCaps: numbe
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()}/>
+       <p className="w-100 d-flex justify-content-center">Färg är ännu inte bestämd. Bild kommer snart.</p>
+      <ImageGallery ref={imageGalleryRef} showThumbnails={false} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()}/>
         <div className="d-flex align-items-center mt-3">
           <div
             className="button-style small add-shirt-button" 
