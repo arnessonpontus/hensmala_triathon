@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { localStorageService } from '../../../services/localstorageService';
 import { getPrices } from '../service/priceService';
 import { priceType } from '../models';
-import { getPriceId } from '../../../../netlify/functions/utils/pricing';
 import { useErrorModal } from '../../../context/ErrorModalContext';
+import { getPriceId } from '../../../utils';
 
 const usePrices = () => {
   const [prices, setPrices] = useState<Record<string, number>>();
@@ -35,7 +35,7 @@ const usePrices = () => {
   }, []);
 
   const getPriceByName = (priceName: priceType): number | null => {
-    const priceId = getPriceId(priceName, false);
+    const priceId = getPriceId(priceName);
     if (error || !priceId || !prices) {
       return null;
     }
