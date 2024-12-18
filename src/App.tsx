@@ -28,7 +28,7 @@ const App = () => {
   );
 };
 
-const prodConfig = {
+const config = {
   apiKey: getViteEnvVariable("VITE_FIREBASE_APIKEY"),
   authDomain: getViteEnvVariable("VITE_FIREBASE_AUTHDOMAIN"),
   databaseURL: getViteEnvVariable("VITE_FIREBASE_DATABASE_URL"),
@@ -38,8 +38,6 @@ const prodConfig = {
   appId: getViteEnvVariable("VITE_FIREBASE_APPID"),
   measurementId: getViteEnvVariable("VITE_FIREBASE_MEASUREMENTID"),
 };
-
-const config = getViteEnvVariable("MODE") === "production" ? prodConfig : prodConfig; // TODO: Change one
 
 // Initialize Firebase
 firebase.initializeApp(config);

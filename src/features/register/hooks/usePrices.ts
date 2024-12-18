@@ -36,7 +36,12 @@ const usePrices = () => {
 
   const getPriceByName = (priceName: priceType): number | null => {
     const priceId = getPriceId(priceName);
+    if (loading) {
+      return null;
+    }
+
     if (error || !priceId || !prices) {
+      console.error("Could not get price by name", {error, priceId, prices})
       return null;
     }
     return prices[priceId];

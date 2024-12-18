@@ -18,5 +18,5 @@ export const getViteEnvVariable = (key: string): string => {
 };
 
 export const getPriceId = (item: priceType): string | null => {
-  return getViteEnvVariable("MODE") === "production" ? priceMapProd[item] || null : priceMapDev[item] || null;
+  return getViteEnvVariable("VITE_ENV") === "prod" ? priceMapProd[item] || null : priceMapDev[item] || null;
 };

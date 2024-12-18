@@ -12,7 +12,7 @@ const ConsentBanner = () => {
   const TTL_DAYS = 365;
   const TTL_MILLIS = TTL_DAYS * 24 * 60 * 60 * 1000
 
-  if (getViteEnvVariable("MODE") === "development") {
+  if (getViteEnvVariable("VITE_ENV") !== "prod") {
     return;
   }
 
