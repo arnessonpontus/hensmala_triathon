@@ -35,8 +35,7 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
       to: email,
       subject: mailSubject,
       html: html,
-      bcc: [],
-      //TODO: bcc: [getNodeEnvVariable("EMAILER_USER")], 
+      bcc: [getNodeEnvVariable("EMAILER_USER")],
       attachments: [{
         filename: 'logga.png',
         path: __dirname + '/assets/logga.png',
