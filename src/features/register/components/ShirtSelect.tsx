@@ -8,8 +8,8 @@ import { Shirt, ShirtMaterial, shirtType, Size } from "../models";
 
 const images = [
   {
-    original: "/images/clothes/shirt_no_image.jpg",
-    thumbnail: "/images/clothes/shirt_no_image.jpg",
+    original: "/images/clothes/shirt_no_image.png",
+    thumbnail: "/images/clothes/shirt_no_image.png",
   }
 ];
 
