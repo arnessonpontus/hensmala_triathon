@@ -21,6 +21,8 @@ const ConsentBanner = () => {
     if (consent === "accepted") {
       clarity.init(PROJECT_ID);
       hideBanner();
+    } else if (consent === "declined"){
+      hideBanner();
     } else {
       showBanner();
     }
