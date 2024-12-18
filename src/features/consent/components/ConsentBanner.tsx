@@ -12,6 +12,10 @@ const ConsentBanner = () => {
   const TTL_DAYS = 365;
   const TTL_MILLIS = TTL_DAYS * 24 * 60 * 60 * 1000
 
+  if (getViteEnvVariable("VITE_ENV") !== "prod") {
+    return;
+  }
+
   useEffect(() => {
     const consent = localStorageService.get("cookieConsent");
     if (consent === "accepted") {
@@ -30,8 +34,11 @@ const ConsentBanner = () => {
   };
 
   const handleDecline = () => {
-    localStorageService.set("cookieConsent", "accepted", TTL_MILLIS)
-    clarity.stop();
+    localStorageService.set("cookieConsent", "declined", TTL_MILLIS)
+    if (clarity.hasStarted()) {
+      clarity.stop();
+    }
+
     hideBanner();
   };
 

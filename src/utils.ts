@@ -1,4 +1,6 @@
 import { Asset, UnresolvedLink } from "contentful";
+import { priceType } from "./features/register/models";
+import { priceMapDev, priceMapProd } from "../netlify/functions/utils/pricing";
 
 export const getAssetUrl = (asset: UnresolvedLink<'Asset'> | Asset | undefined): string | undefined => {
   if (asset && 'fields' in asset) {
@@ -10,7 +12,11 @@ export const getAssetUrl = (asset: UnresolvedLink<'Asset'> | Asset | undefined):
 export const getViteEnvVariable = (key: string): string => {
   const value = import.meta.env[key];
   if (!value) {
-    throw new Error(`Environment variable ${key} is not set.`);
+    throw new Error(`Vite environment variable ${key} is not set.`);
   }
   return value;
+};
+
+export const getPriceId = (item: priceType): string | null => {
+  return getViteEnvVariable("VITE_ENV") === "prod" ? priceMapProd[item] || null : priceMapDev[item] || null;
 };
