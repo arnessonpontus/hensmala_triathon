@@ -11,6 +11,18 @@ import {
   DropdownItem,
   UncontrolledDropdown,
 } from "reactstrap";
+import styled from "styled-components";
+
+export const StyledDropdownToggle = styled(DropdownToggle)`
+  outline: none;
+  border: none;
+  background-color: transparent;
+  
+  &:focus {
+    outline: 3px solid rgba(50, 150, 250, 0.8);
+  }
+
+`;
 
 const CoronaEdition = () => {
   const [userEntries, setUserEntries] = useState<Entry[]>([]);
@@ -102,9 +114,9 @@ const CoronaEdition = () => {
           marginTop: 20,
         }}
       >
-        <DropdownToggle tag="div" caret className="sorting-toggle">
-          Sortera efter
-        </DropdownToggle>
+        <StyledDropdownToggle tag="button" caret>
+          Sortera efter {orderBy === "time" ? "nyast" : "placering"}
+        </StyledDropdownToggle>
         <DropdownMenu>
           <DropdownItem
             onClick={() => setOrderBy("time")}

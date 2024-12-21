@@ -190,52 +190,6 @@ i {
   height: 0;
 }
 
-.consent-button {
-  color: #909090;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.consent-button:hover {
-  color: #3f3f3f;
-}
-
-.button-style {
-  height: 40px;
-  width: 200px;
-  padding: 5px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
-  border-radius: 10px;
-  transition: all 0.2s ease-out;
-  cursor: pointer;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
-  will-change: transform;
-}
-
-.button-style.small {
-  width: 30px !important;
-}
-
-.button-style:active {
-  transition: none;
-  filter: brightness(85%);
-}
-
-.button-style:hover {
-  box-shadow: 0px 6px 10px rgba(38, 38, 38, 0.2);
-  -webkit-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
-  -moz-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
-  -o-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
-  -ms-transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
-  transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
-}
-
 .nostyle-link {
   text-decoration: none;
   color: rgb(15, 15, 15);

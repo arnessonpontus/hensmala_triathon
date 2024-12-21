@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { SponsorHighlight } from "../../sponsor/components/SponsorHighlight";
 import { BannerTime } from "../components/BannerTime";
-import { PulsingButton } from "../../../components/PulsingButton";
+import { PulsingButton } from "../../../components/Button/PulsingButton";
 
 export const Home: React.FC = () => {
   return (

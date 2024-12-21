@@ -5,6 +5,7 @@ import { useRef } from "react";
 import classnames from "classnames";
 import ImageGallery from "react-image-gallery";
 import { Shirt, ShirtMaterial, shirtType, Size } from "../models";
+import { ElevatedButton } from "../../../components/Button/ElevatedButton";
 
 const images = [
   {
@@ -61,7 +62,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
             <div key={i}>
               <hr></hr>
               <div className="shirt-row" >
-                <div className="select-buttons">
+                <div style={{flex: 1}}>
                   <div className="d-flex">     
                     <Input
                       className="ml-2 mr-2"
@@ -133,13 +134,10 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
             </div>
           )
         })}
-        <div
-          className="button-style add-shirt-button"
-          onClick={addShirt}
-        >
+        <ElevatedButton isSecondary disabled={numShirtsSelected <= shirts.length - 1} type="button" medium onClick={addShirt}>
           + Lägg till fler
-        </div>
-        <div className={classnames("mt-2 d-flex justify-content-center", { "no-clothed-chosen": numShirtsSelected < 1 })}style={{minHeight: 25}}>{numShirtsSelected < 1 ? <span>Ingen tröja vald</span> : <span>Antal tröjor valda: {numShirtsSelected}</span>}</div>
+        </ElevatedButton>
+        <div className={classnames("mt-2 d-flex justify-content-center", { "no-clothed-chosen": numShirtsSelected < 1 })} style={{minHeight: 25}}>{numShirtsSelected < 1 ? <span>Ingen tröja vald</span> : <span>Antal tröjor valda: {numShirtsSelected}</span>}</div>
       </div>
     </div>
   );

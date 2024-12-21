@@ -6,7 +6,6 @@ import {
   NavbarToggler,
   Collapse,
   NavbarBrand,
-  Button,
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
@@ -14,6 +13,19 @@ import {
 } from "reactstrap";
 import { useMediaQuery } from 'react-responsive';
 import { NAVBAR_HEIGHT } from "../Constants";
+import { SecondaryButton } from "./Button/SecondaryButton";
+import styled from "styled-components";
+
+export const DonationsButtonContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+
+  @media (max-width: 1400px) {
+    justify-content: flex-start;
+    padding-left: 16px;
+  }
+`;
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -131,16 +143,16 @@ export const Navigation = () => {
         >
           SPONSORER
         </NavLink>
-        <div className="donations-button-container">
+        <DonationsButtonContainer>
           <a
             className="donate nav-title"
             target="_blank"
             rel="noopener noreferrer"
             href="https://egnainsamlingar.neuro.se/projects/neuro-10"
           >
-            <Button color="light">Insamlingar</Button>
+            <SecondaryButton medium color="light">Insamlingar</SecondaryButton>
           </a>
-        </div>
+        </DonationsButtonContainer>
       </Collapse>
     </Navbar>
   );

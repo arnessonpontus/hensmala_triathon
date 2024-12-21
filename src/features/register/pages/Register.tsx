@@ -1,21 +1,38 @@
 import { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
-import { RegSuccess } from "../components/RegSuccess";
 import { RegisterFormSolo } from "../components/RegisterFormSolo";
 import { RegisterFormTeam } from "../components/RegisterFormTeam";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
 import { getViteEnvVariable } from "../../../utils";
 import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
+import { BaseButton } from "../../../components/Button/BaseButton";
 
 enum Tab {
   SOLO = 0,
   TEAM = 1
 }
 
+export const TabButton = styled(BaseButton)`
+  background-color: transparent;
+  padding: 10px;
+  width: 100px;
+
+  &:hover {
+    background-color: aliceblue;
+  }
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  position: relative;
+  align-self: start;
+`;
+
+
 export const Register = () => {
-  const [hasRegisterd, setHasRegistered] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const registerType = searchParams.get("typ");
@@ -38,10 +55,6 @@ export const Register = () => {
     setActiveTab(tabIndex);
   }
 
-  const toggleDone = () => {
-    setHasRegistered(!hasRegisterd)
-  }
-
   if (getViteEnvVariable("VITE_ALLOW_REGISTRATION") !== "true") {
     return (
       <FillCenterLayout>
@@ -53,27 +66,23 @@ export const Register = () => {
 
   return (
     <Container>
-      {!hasRegisterd ? (
-        <div className="card-box" style={{ marginTop: 40 }}>
-          <div className="register-tabs">
-            <div onClick={() => handleTabChange(0)} className="register-tab">
-              Individuell
-            </div>
-            <div onClick={() => handleTabChange(1)} className="register-tab">
-              Lag
-            </div>
-            <div className={classnames("tab-underline", { second: activeTab === 1 })}></div>
-          </div>
-          {
-            activeTab === 0 ?
-              <RegisterFormSolo/>
-              :
-              <RegisterFormTeam/>
-          }
-        </div>
-      ) : (
-        <RegSuccess type="register" onGoBack={toggleDone} />
-      )}
+      <div className="card-box" style={{ marginTop: 40 }}>
+        <Tabs>
+          <TabButton onClick={() => handleTabChange(0)}>
+            Individuell
+          </TabButton>
+          <TabButton onClick={() => handleTabChange(1)}>
+            Lag
+          </TabButton>
+          <div className={classnames("tab-underline", { second: activeTab === 1 })}></div>
+        </Tabs>
+        {
+          activeTab === 0 ?
+            <RegisterFormSolo />
+            :
+            <RegisterFormTeam />
+        }
+      </div>
     </Container>
   );
 }
