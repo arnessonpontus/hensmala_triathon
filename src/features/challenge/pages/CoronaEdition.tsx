@@ -137,6 +137,8 @@ const CoronaEdition = () => {
           marginLeft: "auto",
           marginRight: "auto",
           maxWidth: 3 * (350 + 20),
+          gap: 20,
+          paddingTop: 10,
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
