@@ -46,39 +46,44 @@ export const handler: Handler = async (event) => {
       lineItems.push(...createExtraDonationPurchaseItem(formData.extraDonation));
     }
 
-    //Common data for all registrations
-    let metadata: StripeMetadata = {
+    // Common data for all registrations
+    const baseMetadata: StripeMetadata = {
       formType: formType,
-      birthday1: birthdayToString(formData.year1, formData.month1, formData.day1),
       shirtsString: shirtArrayToString(formData.shirts),
       name1: formData.name1,
       email1: formData.email1,
-      city1: formData.city1,
-      gender: formData.gender,
       extraDonation: formData.extraDonation.toString(),
       info: formData.info,
       numCaps: formData.numCaps.toString(),
     }
 
-    if (formType === FormType.Team) {
-      metadata = {
-        ...metadata,
-        teamName: formData.teamName,
-        birthday2: birthdayToString(formData.year2, formData.month2, formData.day2),
-        birthday3: birthdayToString(formData.year3, formData.month3, formData.day3),
-        name2: formData.name2,
-        name3: formData.name3,
-        email2: formData.email2,
-        email3: formData.email3,
-        city2: formData.city2,
-        city3: formData.city3,
-      }
-    }
-    console.log(metadata)
+    const soloMetadata = formType === FormType.Solo ? {
+      birthday1: birthdayToString(formData.year1, formData.month1, formData.day1),
+      city1: formData.city1,
+      gender: formData.gender,
+    } : {}
+
+    const teamMetadata = formType === FormType.Team ? {
+      teamName: formData.teamName,
+      birthday1: birthdayToString(formData.year1, formData.month1, formData.day1),
+      birthday2: birthdayToString(formData.year2, formData.month2, formData.day2),
+      birthday3: birthdayToString(formData.year3, formData.month3, formData.day3),
+      name2: formData.name2,
+      name3: formData.name3,
+      email2: formData.email2,
+      email3: formData.email3,
+      city1: formData.city1,
+      city2: formData.city2,
+      city3: formData.city3,
+    } : {}
+
+    const metadata = {...baseMetadata, ...soloMetadata, ...teamMetadata}
+
+    console.log("Processing metadata: ", metadata)
 
     const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
     //#TODO ADD COUPON
-    if (metadata.city1.toLowerCase().includes(getNodeEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())) {
+    if (metadata.city1 && metadata.city1.toLowerCase().includes(getNodeEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())) {
       const discountId = getDiscountId('company-discount-code');
       if (!discountId) {
         return {
@@ -88,7 +93,6 @@ export const handler: Handler = async (event) => {
       }
       discounts.push({ coupon: discountId })
     }
-
 
     const session = await stripe.checkout.sessions.create({
       metadata: metadata as unknown as MetadataParam,

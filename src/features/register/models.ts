@@ -30,14 +30,14 @@ export interface RegisterFormSoloState extends BaseOrderType {
 
 export interface StripeMetadata {
   formType: string;
-  birthday1: string;
+  birthday1?: string;
   birthday2?: string;
   birthday3?: string;
   teamName?: string;
   name1: string;
   name2?: string;
   name3?: string;
-  city1: string;
+  city1?: string;
   city2?: string;
   city3?: string;
   email1: string;
