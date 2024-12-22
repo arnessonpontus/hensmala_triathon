@@ -89,9 +89,7 @@ export const RegisterFormSolo = () => {
             </ScrollToInfoButton>
           </div>
           <p>
-            <b>
-              <i>Sista dag för beställning av t-shirt och keps är 12:e juni</i>
-            </b>
+            <i>Vill du köpa startplats (och keps/t-shirt) i julklapp? Skriv det i info-rutan så skickar vi ett startbevis.</i>
           </p>
           <FormGroup>
             <Label for="name">Namn*</Label>
