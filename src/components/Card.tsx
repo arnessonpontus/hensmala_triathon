@@ -8,6 +8,7 @@ export const Card = styled.div`
   padding: 32px 24px;
   text-decoration: none;
   border: none;
+  color: black;
 `;
 
 export const CardHoverable = styled(Card)`

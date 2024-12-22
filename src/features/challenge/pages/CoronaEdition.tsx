@@ -16,7 +16,12 @@ import styled from "styled-components";
 export const StyledDropdownToggle = styled(DropdownToggle)`
   outline: none;
   border: none;
+  color: black;
   background-color: transparent;
+
+  &:hover {
+    color: gray;
+  }
   
   &:focus {
     outline: 3px solid rgba(50, 150, 250, 0.8);
@@ -76,24 +81,6 @@ const CoronaEdition = () => {
 
   return (
     <div style={{ padding: "0px 20px 0px 20px" }}>
-      <h1
-        style={{
-          fontSize: "calc(2em + 3vw)",
-          fontWeight: "bold",
-          marginTop: "20px",
-          marginBottom: "-10px",
-        }}
-      >
-        HENSMÅLA TRIATHLON 2021
-      </h1>
-      <h1
-        style={{
-          fontSize: "calc(2em + 2vw)",
-          fontStyle: "italic",
-        }}
-      >
-        Corona Edition
-      </h1>
       <div
         style={{
           display: "flex",

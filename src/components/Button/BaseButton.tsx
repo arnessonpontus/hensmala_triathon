@@ -18,6 +18,7 @@ export const BaseButton = styled.button<{
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  color: black;
   gap: 10px;
   width: ${props => (props.fullWidth ? "100%" : "auto")};
 

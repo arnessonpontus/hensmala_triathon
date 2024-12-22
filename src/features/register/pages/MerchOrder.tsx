@@ -84,7 +84,7 @@ export const MerchOrder: React.FC = () => {
 
   return (
     <Container style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <div className="card-box" style={{ marginTop: 40, width: "90%" }}>
+      <div className="card-box" style={{ marginTop: 40 }}>
         <Row>
           <Col style={{ marginTop: "2vh" }} md={6}>
             <h3>Beställ t-shirt och keps </h3>
