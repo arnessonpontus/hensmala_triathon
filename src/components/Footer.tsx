@@ -7,7 +7,6 @@ export const Footer: React.FC = () => {
 
   const handleCookieBannerClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log("hesze")
     cookieBanner.showBanner();
   }
 

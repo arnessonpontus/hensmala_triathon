@@ -7,7 +7,7 @@ import Slider from "react-slick";
 function CustomArrow(props: any) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <button
       className={className}
       style={{
         ...style,

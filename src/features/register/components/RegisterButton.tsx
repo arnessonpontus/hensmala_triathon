@@ -1,4 +1,5 @@
-import { Button, ButtonProps, Spinner } from "reactstrap";
+import { ButtonProps, Spinner } from "reactstrap";
+import { PrimaryButton } from "../../../components/Button/PrimaryButton";
 
 interface RegisterButtonProps extends ButtonProps {
   loading: boolean,
@@ -8,15 +9,14 @@ interface RegisterButtonProps extends ButtonProps {
 const RegisterButton = (props: RegisterButtonProps) => {
   const { loading, disabled } = props;
   return (
-    <Button
-      className="mt-2"
-      style={{ minWidth: "140px", minHeight: "40px", display: "flex", alignItems: "center", justifyContent: "center" }}
+    <PrimaryButton
+      style={{minWidth: 150}}
       disabled={disabled}
     >
       {loading ? (
         <Spinner size="sm" color="light" />
       ) : "Gå till betalning"}
-    </Button>
+    </PrimaryButton>
   )
 }
 
