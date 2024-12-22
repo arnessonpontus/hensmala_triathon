@@ -15,6 +15,19 @@ enum Tab {
   TEAM = 1
 }
 
+export const ScrollToInfoButton = styled(BaseButton)`
+  flex-direction: column;
+  text-align: center;
+  color: #11999e;
+  font-weight: bold;
+  padding: 0;
+  gap: 0;
+
+  @media (min-width: 770px) {
+    display: none;
+  }
+`;
+
 export const TabButton = styled(BaseButton)`
   background-color: transparent;
   padding: 10px;

@@ -24,6 +24,7 @@ import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
 import { getViteEnvVariable } from "../../../utils";
+import { ScrollToInfoButton } from "../pages/Register";
 
 export const RegisterFormTeam = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
@@ -167,9 +168,9 @@ export const RegisterFormTeam = () => {
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Lag</h3>
-            <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
+            <ScrollToInfoButton onClick={() => scrollToInfo("info-text")}>
               Visa info<i className="fas fa-angle-down angle-down"></i>
-            </div>
+            </ScrollToInfoButton>
           </div>
           <p>
             <b>

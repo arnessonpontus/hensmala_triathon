@@ -27,16 +27,6 @@
   margin-bottom: 0px;
 }
 
-.scroll-to-info-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #11999E;
-  font-weight: bold;
-}
-
 .clothes-select {
   margin-bottom: 10px;
   border-style: dashed;
@@ -49,11 +39,6 @@
   display: flex;
   margin-top: 5px;
   align-items: center;
-}
-
-.delete-icon {
-  margin-left: 10px;
-  cursor: pointer;
 }
 
 .no-clothed-chosen {
@@ -83,10 +68,6 @@
 }
 
 @media (min-width: 770px) {
-  .scroll-to-info-btn {
-    display: none;
-  }
-
   .register-divider {
     display: none;
   }

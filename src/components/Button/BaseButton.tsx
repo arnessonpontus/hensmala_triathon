@@ -1,6 +1,11 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
-export const BaseButton = styled.button<{ small?: boolean; medium?: boolean;}>`
+export const BaseButton = styled.button<{
+  small?: boolean;
+  medium?: boolean;
+  large?: boolean;
+  fullWidth?: boolean;
+}>`
   border: none;
   background-color: transparent;
   padding: 12px 24px;
@@ -14,6 +19,7 @@ export const BaseButton = styled.button<{ small?: boolean; medium?: boolean;}>`
   justify-content: center;
   text-decoration: none;
   gap: 10px;
+  width: ${props => (props.fullWidth ? "100%" : "auto")};
 
   &:focus {
     outline: 3px solid rgba(50, 150, 250, 0.8);
@@ -26,7 +32,7 @@ export const BaseButton = styled.button<{ small?: boolean; medium?: boolean;}>`
     transform: none;
     background-color: #e0e0e0;
     color: #a0a0a0;
-    
+
     &:hover,
     &:active {
       box-shadow: none;
@@ -41,8 +47,8 @@ export const BaseButton = styled.button<{ small?: boolean; medium?: boolean;}>`
     css`
       padding: 5px;
     `}
-    
-    ${props =>
+
+  ${props =>
     props.medium &&
     css`
       padding: 10px;

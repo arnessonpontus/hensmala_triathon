@@ -18,7 +18,7 @@ export const ElevatedButton = styled(BaseButton)<{selected?: boolean; isSecondar
     transform: scale(1.05) translate3d(0, 0, 0) perspective(1px);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     transition: none;
     filter: brightness(85%);
   }

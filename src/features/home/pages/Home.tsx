@@ -21,7 +21,7 @@ export const Home: React.FC = () => {
       </div>
       <Container className="p-4">
       <Row style={{display: "flex", justifyContent: "center", padding: 10}}>
-      <Link to="/anmalan">
+      <Link style={{textDecoration: "none"}} to="/anmalan">
         <PulsingButton>Anmäl dig här <i className="fas fa-arrow-right" style={{color: "white"}}></i></PulsingButton>
       </Link>
       </Row>
