@@ -56,7 +56,7 @@ const ShirtSelect = (props: { updateShirtSelection: (shirts: Shirt[]) => void })
   return (
     <div id="shirt-select">
       <p className="w-100 d-flex justify-content-center">Färg är ännu inte bestämd. Bild kommer snart.</p>
-      <ImageGallery showThumbnails={false} showIndex={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
+      <ImageGallery showThumbnails={false} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           return (

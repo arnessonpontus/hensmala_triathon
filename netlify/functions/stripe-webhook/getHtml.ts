@@ -1,5 +1,6 @@
 import { GoogleSpreadsheetRow } from "google-spreadsheet";
 
+const merchPickupText = "Kläder upphämtas av dig eller någon du känner hos Arnessons i Hensmåla. Vi skickar tyvärr inte några kläder."
 
 export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
   return (`
@@ -53,7 +54,8 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
           </li>
           </ul>
           <p>Starten går klockan 15.00, var gärna i god tid.</p>
-          <p>Vi ses den 20e Juli!</p>
+          <p>Vi ses den 12e Juli!</p>
+          ${data.get('numCaps') || data.get('shirtsString') && "<p>" + merchPickupText + "</p>"}
           <img src="cid:logo" alt="Logga" width="200px"'/>
         </div>
     `);
@@ -142,7 +144,8 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
               Övrig information: <b>${data.get('info')}</b>
           </li>
           <p>Starten går klockan 15.00, var gärna i god tid.</p>
-          <p>Vi ses den 20e Juli!</p>
+          <p>Vi ses den 12e Juli!</p>
+          ${data.get('numCaps') || data.get('shirtsString') && "<p>" + merchPickupText + "</p>"}
           <img src="cid:logo" alt="Logga" width="200px"'/>
         </div>
     `);
@@ -189,7 +192,8 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
               Övrig information: <b>${data.get('info')}</b>
           </li>
           </ul>
-          <p>Förhoppningsvis ses vi 20:e juli!</p>
+          <p>Förhoppningsvis ses vi 12:e juli!</p>
+          <p>${merchPickupText}</p>
           <img src="cid:logo" alt="Logga" width="200px"'/>
         </div>
     `);

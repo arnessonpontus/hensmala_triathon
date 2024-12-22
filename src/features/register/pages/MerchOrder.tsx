@@ -24,6 +24,7 @@ import { FillCenterLayout } from "../../../components/FillCenterLayout";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import { getViteEnvVariable } from "../../../utils";
+import { SwishQrImage } from "../components/SwishQrImage";
 
 export const MerchOrder: React.FC = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
@@ -99,15 +100,8 @@ export const MerchOrder: React.FC = () => {
               Du betalar enklelt med kort eller Klarna (där du även kan välja att betala med Swish). När din beställning kommer in noterar vi det och lägger undan kläder till dig.
             </p>
             <p>Upphämtning görs på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b></p>
-
-            <p>Donera gärna en extra slant om du känner för det! Isåfall lägger du enkelt till det i din swish-betalning.</p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <img
-                width="200px"
-                src="/images/qr_swish.svg"
-                alt="hensmala_triathlon"
-              />
-            </div>
+              <p>Donera gärna även en slant via Swish om du känner för det!</p>
+              <SwishQrImage />
           </Col>
           <Col style={{ marginTop: "2vh" }}>
             <hr className="register-divider"></hr>
