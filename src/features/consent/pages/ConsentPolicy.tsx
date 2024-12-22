@@ -5,7 +5,7 @@ const PrivacyPolicyContainer = styled.div`
   padding: 20px;
   background-color: #f8f9fa;
   max-width: 800px;
-  margin: 20px auto;
+  margin: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
@@ -52,7 +52,7 @@ export const PrivacyPolicy = () => {
           Vi samlar in följande typer av information när du besöker vår webbplats:
         </Paragraph>
         <ul>
-          <li>Personlig information: Vi kan samla in namn, e-postadress och annan kontaktinformation som du frivilligt tillhandahåller när du anmäler dig eller beställer kläder.</li>
+          <li>Personlig information: Vi kommer samla in namn, e-postadress, ålder och annan personlig information som du frivilligt tillhandahåller när du anmäler dig eller beställer kläder.</li>
           <li>Webbplatsanvändning: Vi använder Microsoft Clarity för att samla in data om hur användare interagerar med vår webbplats. Denna data inkluderar din IP-adress, webbläsartyp, operativsystem, undersidor på hemsidan du besöker, hur länge du stannar på varje sida, vilka länkar du klickar på och hur du navigerar på sidan.</li>
         </ul>
       </Section>

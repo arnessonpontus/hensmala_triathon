@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { Results } from "./features/media/pages/Results";
 import { MainLayout } from "./components/MainLayout";
 import PrivacyPolicy from "./features/consent/pages/ConsentPolicy";
+import NotFound from "./features/notFound/pages/NotFound";
 
 export const AppRouter = () => {
   const location = useLocation();
@@ -48,6 +49,7 @@ export const AppRouter = () => {
         <Route path="/integritetspolicy" element={<PrivacyPolicy />} />
         <Route path="/om-ht/:id" element={<AboutHT />} />
         <Route path="/news/:id" element={<NewsDetail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
   );

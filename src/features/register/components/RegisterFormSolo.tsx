@@ -80,7 +80,6 @@ export const RegisterFormSolo = () => {
       <Col style={{ marginTop: "2vh" }} md={6}>
         <Form
           onSubmit={onSubmit}
-        // #TODO födelsedagsdatum och gender blir inte validerat
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Individuell</h3>

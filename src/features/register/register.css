@@ -186,18 +186,22 @@ select {
   text-align: center;
   padding: 20px;
   border-radius: 8px;
+  border-width: 3px;
+  border-style: solid;
   margin: 50px;
 }
 
 .redirect-page-container.successful {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #ecf3ee;
+  border-color: #74cd88;
+  color: #0c4318;
 }
 
 
 .redirect-page-container.cancelled {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #f6eced;
+  color: #330a0a;
+  border-color: #dd9fa4;
 }
 
 .icon-container {
