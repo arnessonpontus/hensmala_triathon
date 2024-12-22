@@ -4,7 +4,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { useRef } from "react";
 import classnames from "classnames";
 import ImageGallery from "react-image-gallery";
-import { Shirt, ShirtMaterial, shirtType, Size } from "../models";
+import { Shirt, ShirtMaterial, ShirtType, Size } from "../models";
 import { ElevatedButton } from "../../../components/Button/ElevatedButton";
 import { BaseButton } from "../../../components/Button/BaseButton";
 
@@ -38,7 +38,7 @@ const ShirtSelect = (props: { updateShirtSelection: (shirts: Shirt[]) => void })
     }
 
     setShirts(newShirts);
-    props.updateShirtSelection(newShirts);
+    props.updateShirtSelection(newShirts.filter(s => s.size && s.type));
   };
 
   // Set the size, type or material of the shirt
@@ -46,7 +46,7 @@ const ShirtSelect = (props: { updateShirtSelection: (shirts: Shirt[]) => void })
     const newShirts = [...shirts];
     newShirts[idx][field] = value;
     setShirts(newShirts);
-    props.updateShirtSelection(newShirts);
+    props.updateShirtSelection(newShirts.filter(s => s.size && s.type));
   }
 
   const imageGalleryRef = useRef(null);
@@ -88,7 +88,7 @@ const ShirtSelect = (props: { updateShirtSelection: (shirts: Shirt[]) => void })
                       required={true}
                       type="select"
                       name={"type"}
-                      onChange={(e) => updateShirtValues("type", i, e.target.value as shirtType)}
+                      onChange={(e) => updateShirtValues("type", i, e.target.value as ShirtType)}
                     >
                       <option disabled selected={shirt.type === null}>
                         Typ

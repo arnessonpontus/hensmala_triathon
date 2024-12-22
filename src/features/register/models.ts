@@ -1,13 +1,19 @@
-export type Size = "XXS" | "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL"
+export const sizeValues = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"] as const;
+export type Size = typeof sizeValues[number];
 
-export type shirtType = "Dam" | "Herr";
+export const shirtTypes = ["Dam", "Herr"] as const;
+export type ShirtType = typeof shirtTypes[number];
 
-export type ShirtMaterial = "funktion" | "bomull";
+export const shirtMaterials = ["funktion", "bomull"] as const;
+export type ShirtMaterial = typeof shirtMaterials[number];
+
+export const genderValues = ["Dam", "Herr"] as const;
+export type GenderType = typeof genderValues[number];
 
 export interface Shirt {
   size: Size | null,
-  type: "Dam" | "Herr" | null,
-  material: "funktion" | "bomull"
+  type: GenderType | null,
+  material: ShirtMaterial
 }
 
 export interface BaseOrderType {

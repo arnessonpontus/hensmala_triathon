@@ -19,6 +19,7 @@ export const handleCheckout = async (
 
     if (!response.ok) {
       console.error("Failed to create checkout session");
+      showErrorModal(`Försök igen eller kontakta ${DEFAULT_CONTACT_EMAIL} om felet kvarstår.`, "Kunde inte slutföra betalning")
       return;
     }
 
