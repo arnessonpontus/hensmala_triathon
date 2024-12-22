@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { ElevatedButton } from "../../../components/Button/ElevatedButton";
 
 const AboutChallenge = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
-
+  
   return (
-    <div onClick={toggle} className="button-style">
+    <>
+    <ElevatedButton onClick={toggle}>
       <span>Om Corona Edition</span>
       <i className="fas fa-lightbulb icon-style"></i>
-
-      <Modal
+    </ElevatedButton>
+    <Modal
         isOpen={modal}
         toggle={toggle}
         style={{
@@ -36,7 +38,7 @@ const AboutChallenge = () => {
           </Button>
         </ModalFooter>
       </Modal>
-    </div>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import { CardHoverable } from "../../../components/Card";
 import { secToHMS } from "../utils";
 import { Entry } from "./EntryModal";
 
@@ -13,9 +14,8 @@ const EntryCard = (props: EntryCardProps) => {
       width: 350,
       height: 300,
       padding: "10px",
-      display: "inline",
-      marginLeft: 10,
-      marginRight: 10,
+      display: "flex",
+      flexDirection: "column",
     },
     imgStyle: {
       width: "100%",
@@ -27,6 +27,7 @@ const EntryCard = (props: EntryCardProps) => {
       backgroundColor: "lightgray",
       height: 150,
       display: "flex",
+      position: "relative",
       justifyContent: "center",
       alignItems: "center",
     },
@@ -84,8 +85,9 @@ const EntryCard = (props: EntryCardProps) => {
     },
   };
   return (
-    <div
-      className="card-box-hoverable"
+    <CardHoverable
+      as="button"
+      aria-label="Click to open entry"
       style={styles.cardStyle}
       onClick={props.onClick}
     >
@@ -109,11 +111,12 @@ const EntryCard = (props: EntryCardProps) => {
           display: "flex",
           justifyContent: "space-between",
           marginTop: 5,
+          width: "100%"
         }}
       >
         <div style={styles.userTextBoxStyle}>
-          <h6 style={{ fontWeight: "bold" }}>{props.entry.name}</h6>
-          <p style={{ fontSize: 12, whiteSpace: "pre-line" }}>
+          <h6 style={{ fontWeight: "bold", textAlign: "start" }}>{props.entry.name}</h6>
+          <p style={{ fontSize: 12, whiteSpace: "pre-line", textAlign: "start" }}>
             {props.entry.text}
           </p>
         </div>
@@ -129,7 +132,7 @@ const EntryCard = (props: EntryCardProps) => {
         )}
       </span>
       <span style={styles.dateStyle}>{props.entry.uploadTime}</span>
-    </div>
+    </CardHoverable>
   );
 };
 

@@ -22,7 +22,7 @@ import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
 import { getViteEnvVariable } from "../../../utils";
-
+import { ScrollToInfoButton } from "../pages/Register";
 
 export const RegisterFormSolo = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
@@ -84,9 +84,9 @@ export const RegisterFormSolo = () => {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Individuell</h3>
 
-            <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
+            <ScrollToInfoButton onClick={() => scrollToInfo("info-text")}>
               Visa info<i className="fas fa-angle-down angle-down"></i>
-            </div>
+            </ScrollToInfoButton>
           </div>
           <p>
             <b>
@@ -200,7 +200,7 @@ export const RegisterFormSolo = () => {
           <FormGroup>
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
-            <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
+          <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}

@@ -3,6 +3,7 @@ import { Modal } from "reactstrap";
 import ChallengeCarousell from "./ChallengeCarousell";
 import EntryCard from "./EntryCard";
 import { secToHMS } from "../utils";
+import { PrimaryButton } from "../../../components/Button/PrimaryButton";
 
 export interface Entry {
   hideResults: string,
@@ -52,23 +53,6 @@ const EntryModal = (props: EntryModalProps) => {
       color: "white",
       fontWeight: "bold",
     },
-    closeButtonstyle: {
-      position: "absolute",
-      top: -25,
-      right: -25,
-      backgroundColor: "#11999E",
-      width: 30,
-      height: 30,
-      borderRadius: "50%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      fontWeight: "bold",
-      color: "white",
-      zIndex: 2,
-      cursor: "pointer",
-      boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
-    },
     medalStyle: {
       borderRadius: "50%",
       boxShadow: "0px 4px 8px rgba(38, 38, 38, 0.2)",
@@ -78,10 +62,10 @@ const EntryModal = (props: EntryModalProps) => {
         props.entry.placement === 1
           ? "#E6CF5C"
           : props.entry.placement === 2
-          ? "#C0C0C0"
-          : props.entry.placement === 3
-          ? "#B98555"
-          : "#ddeaeb",
+            ? "#C0C0C0"
+            : props.entry.placement === 3
+              ? "#B98555"
+              : "#ddeaeb",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -105,14 +89,15 @@ const EntryModal = (props: EntryModalProps) => {
         style={{
           minWidth: "80vw",
           maxWidth: "90vw",
-
-          padding: 30,
           marginLeft: "auto",
           marginRight: "auto",
+          paddingTop: 10
         }}
       >
-        <div style={styles.closeButtonstyle} onClick={toggleModal}>
-          X
+        <div style={{ display: "flex", justifyContent: "flex-end", paddingBottom: 10 }}>
+          <PrimaryButton style={{ width: 30, height: 30, borderRadius: 10000 }} onClick={toggleModal}>
+            X
+          </PrimaryButton>
         </div>
         <div style={{ minHeight: "75vh" }}>
           {props.entry.imgs.length > 1 ? (

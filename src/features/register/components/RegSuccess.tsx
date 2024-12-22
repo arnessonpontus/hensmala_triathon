@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Container } from "reactstrap";
+import { ElevatedButton } from "../../../components/Button/ElevatedButton";
+import { FillCenterLayout } from "../../../components/FillCenterLayout";
 
 interface RegSuccessProps {
   type: "register" | "order",
@@ -13,29 +14,16 @@ export const RegSuccess = (props: RegSuccessProps) => {
   }, [])
 
   return (
-    <Container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center"
-      }}
+    <FillCenterLayout
     >
       <h2>{props.type === "register" ? "Tack för din anmälan!" : "Tack för din beställning!"}</h2>
-      <div
-        className="button-style"
-        style={{
-          textDecoration: "none",
-          backgroundColor: "#11999E",
-          color: "white",
-        }}
+      <ElevatedButton isSecondary
         onClick={() => {
           props.onGoBack();
         }}
       >
         {props.type === "register" ? "Registrera fler" : "Beställ mer"}
-      </div>
-    </Container>
+      </ElevatedButton>
+    </FillCenterLayout>
   );
 }
