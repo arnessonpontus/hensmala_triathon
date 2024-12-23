@@ -43,9 +43,11 @@ export const handler: Handler = async (event) => {
 
     const totalInOre = session.amount_total || 0;
 
+    const orderID = "ORDER-" + Date.now() + Math.floor(Math.random() * 5000);
+
     try {
-      const spreadsheetRow = await writeToSpreadsheet(metadata, oreToSek(totalInOre))
-      await sendEmail(spreadsheetRow, metadata.formType as FormType);
+      const spreadsheetRow = await writeToSpreadsheet(metadata, oreToSek(totalInOre), orderID)
+      await sendEmail(spreadsheetRow, metadata.formType as FormType, orderID);
       return { statusCode: 200, body: JSON.stringify({ received: true }) };
     } catch (e) {
       sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone, metadata);

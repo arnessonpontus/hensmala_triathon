@@ -1,6 +1,7 @@
 import { GoogleSpreadsheetRow } from "google-spreadsheet";
 
 const merchPickupText = "Kläder upphämtas av dig eller någon du känner hos Arnessons i Hensmåla. Vi skickar tyvärr inte några kläder."
+const QrCodeText = "Använd den bifogade QR-koden på plats i hensmåla för enklare hantering."
 
 const getRegisterMerchPickupText = (data: GoogleSpreadsheetRow<Record<string, any>>) => {
   return data.get('numCaps') != "0" || data.get('shirtsString') != "0" ? merchPickupText : ""
@@ -61,6 +62,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
           <p>Vi ses den 12e Juli!</p>
           <p>${getRegisterMerchPickupText(data)}</p>
           <img src="cid:logo" alt="Logga" width="200px"'/>
+          <p>${QrCodeText}</p>
         </div>
     `);
 }
@@ -151,6 +153,7 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
           <p>Vi ses den 12e Juli!</p>
           <p>${getRegisterMerchPickupText(data)}</p>
           <img src="cid:logo" alt="Logga" width="200px"'/>
+          <p>${QrCodeText}</p>
         </div>
     `);
 }
@@ -199,6 +202,7 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
           <p>Förhoppningsvis ses vi 12:e juli!</p>
           <p>${merchPickupText}</p>
           <img src="cid:logo" alt="Logga" width="200px"'/>
+          <p>${QrCodeText}</p>
         </div>
     `);
 }
