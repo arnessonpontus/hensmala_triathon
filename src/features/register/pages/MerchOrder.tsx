@@ -96,7 +96,7 @@ export const MerchOrder: React.FC = () => {
             <p>Ska du inte delta i årets lopp men ändå ha en superfin t-shirt eller keps från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
 
             <p>
-              Du betalar enklelt med kort eller Klarna (där du även kan välja att betala med Swish). När din beställning kommer in noterar vi det och lägger undan kläder till dig.
+              När din beställning kommer in noterar vi det och lägger undan kläder till dig.
             </p>
             <p>Upphämtning görs på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b></p>
               <p>Donera gärna även en slant via Swish om du känner för det!</p>

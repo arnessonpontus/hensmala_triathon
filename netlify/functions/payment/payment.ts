@@ -106,7 +106,7 @@ export const handler: Handler = async (event) => {
 
     const session = await stripe.checkout.sessions.create({
       metadata: metadata as unknown as MetadataParam,
-      payment_method_types: ['card', 'klarna'],
+      payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
       success_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-success`,

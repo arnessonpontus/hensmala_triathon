@@ -38,7 +38,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
         </Link>.
       </p>
       <p>
-        Du betalar enklelt med kort eller Klarna (där du även kan välja att betala med Swish). Om du beställt kläder ska dessa upphämtas på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b>
+        Om du beställt kläder ska dessa upphämtas på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b>
       </p>
       <p>Första start sker 15.00.</p>
       <b>
@@ -48,7 +48,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <br></br>
       <br></br>
       <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-      <b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByName("registration-fee-solo") : getPriceByName("registration-fee-team")}kr</b>
+      <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByName("registration-fee-solo") : getPriceByName("registration-fee-team")}kr</b> (Höjs med 100kr efter 1/3)</p>
       <p>Donera gärna även en slant via Swish om du känner för det!</p>
       <SwishQrImage />
     </Col>
