@@ -18,7 +18,11 @@ export const ErrorModal = () => {
         {errorTitle}
       </ModalHeader>
       <ModalBody>
-        {errorMessage}
+        {Array.isArray(errorMessage) ? 
+        <ul>
+          {errorMessage.map(e => <ul>{e}</ul>)}
+        </ul>
+        : errorMessage}
       </ModalBody>
       <ModalFooter>
         <Button color="secondary" onClick={closeErrorModal}>

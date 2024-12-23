@@ -154,10 +154,11 @@ export const RegisterFormTeam = () => {
 
   const { showErrorModal } = useErrorModal();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    handleCheckout(FormType.Team, formState, showErrorModal);
+    await handleCheckout(FormType.Team, formState, showErrorModal);
+    setLoading(false)
   };
 
   return (

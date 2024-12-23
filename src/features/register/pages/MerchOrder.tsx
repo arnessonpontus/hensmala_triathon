@@ -15,7 +15,7 @@ import ExtraDonation from "../components/ExtraDonation";
 import ConsentModal from "../../consent/components/ConsentModal";
 import RegisterButton from "../components/RegisterButton";
 
-import { FormType, MerchOrderState } from "../models";
+import { BaseOrderType, FormType } from "../models";
 import { calcShirtPrice, hasValidShirt } from "../utils";
 import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
@@ -29,20 +29,18 @@ import { SwishQrImage } from "../components/SwishQrImage";
 export const MerchOrder: React.FC = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
   const [loading, setLoading] = useState(false);
+  const [hasGivenConsent, setHasGivenConsent] = useState(false);
 
-  const defaultState: MerchOrderState = {
+  const defaultState: BaseOrderType = {
     name1: "",
     email1: "",
     extraDonation: 0,
     shirts: [],
     numCaps: 0,
     info: "",
-    consent: false,
-    hasOrdered: false,
-    loading: false,
   }
 
-  const [formState, setFormState] = useState<MerchOrderState>(defaultState);
+  const [formState, setFormState] = useState<BaseOrderType>(defaultState);
 
   const totalCost = useMemo(() => {
     const cottonPrice = getPriceByName("bomull");
@@ -76,10 +74,11 @@ export const MerchOrder: React.FC = () => {
 
   const { showErrorModal } = useErrorModal();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    handleCheckout(FormType.MerchOrder, formState, showErrorModal);
+    await handleCheckout(FormType.MerchOrder, formState, showErrorModal);
+    setLoading(false)
   };
 
   return (
@@ -168,8 +167,8 @@ export const MerchOrder: React.FC = () => {
                     id="checkbox1"
                     className="checkbox1"
                     type="checkbox"
-                    checked={formState.consent}
-                    onClick={() => setFormState(prev => ({ ...prev, consent: !formState.consent }))}
+                    checked={hasGivenConsent}
+                    onClick={() => setHasGivenConsent(prev => !prev)}
                   />{" "}
                   Jag accepterar att Hensmåla Triathlon sparar data om mig.
                   <ConsentModal
@@ -180,7 +179,7 @@ export const MerchOrder: React.FC = () => {
               </FormGroup>
               <RegisterButton
                 type="submit"
-                disabled={!formState.consent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || loading}
+                disabled={!hasGivenConsent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || loading}
                 loading={loading}
               />
             </Form>

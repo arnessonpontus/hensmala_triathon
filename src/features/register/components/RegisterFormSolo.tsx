@@ -69,10 +69,11 @@ export const RegisterFormSolo = () => {
 
   const { showErrorModal } = useErrorModal();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    handleCheckout(FormType.Solo, formState, showErrorModal);
+    await handleCheckout(FormType.Solo, formState, showErrorModal);
+    setLoading(false)
   };
 
   return (
@@ -147,8 +148,8 @@ export const RegisterFormSolo = () => {
               <option disabled value="">
                 Välj kön
               </option>
-              <option value="Man">Man</option>
-              <option value="Kvinna">Kvinna</option>
+              <option value="Herr">Herr</option>
+              <option value="Dam">Dam</option>
             </Input>
           </FormGroup>
 

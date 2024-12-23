@@ -1,4 +1,4 @@
-import { DataToSend, FormType, MerchOrderState, RegisterFormSoloState, RegisterFormTeamState } from "../models";
+import { BaseOrderType, DataToSend, FormType, RegisterFormSoloState, RegisterFormTeamState } from "../models";
 import { shirtArrayToString } from "../utils";
 
 function writeToSpreadsheet(
@@ -22,7 +22,7 @@ function writeToSpreadsheet(
 
 export function handleSubmit(
   formType: FormType,
-  formData: MerchOrderState | RegisterFormSoloState | RegisterFormTeamState,
+  formData: BaseOrderType | RegisterFormSoloState | RegisterFormTeamState,
   totalToPay: number,
 ) {
 
