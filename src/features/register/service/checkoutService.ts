@@ -1,5 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { FormType, MerchOrderState, RegisterFormSoloState, RegisterFormTeamState } from '../models';
+import { BaseOrderType, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../models';
 import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
 import { getViteEnvVariable } from '../../../utils';
 
@@ -7,8 +7,8 @@ const stripePromise = loadStripe(`${getViteEnvVariable("VITE_STRIPE_PUBLIC")}`);
 
 export const handleCheckout = async (
   formType: FormType,
-  formData: RegisterFormSoloState | RegisterFormTeamState | MerchOrderState, //#TODO kanske finns ett bättre sent att hantera det på? 
-  showErrorModal: (message: string, title: string) => void
+  formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType, //#TODO kanske finns ett bättre sent att hantera det på? 
+  showErrorModal: (message: string | string[], title: string) => void
 ) => {
   try {
     const response = await fetch('/.netlify/functions/payment/payment', {
@@ -18,8 +18,13 @@ export const handleCheckout = async (
     });
 
     if (!response.ok) {
-      console.error("Failed to create checkout session");
-      showErrorModal(`Försök igen eller kontakta ${DEFAULT_CONTACT_EMAIL} om felet kvarstår.`, "Kunde inte slutföra betalning")
+      const errorData = await response.json();
+      console.error("Failed to create checkout session", errorData);
+      if (errorData?.errors) {
+        showErrorModal(errorData.errors.map((err: any) => err.message), "Vissa fält är inte korrekta")
+      } else {
+        showErrorModal(`Försök igen eller kontakta ${DEFAULT_CONTACT_EMAIL} om felet kvarstår.`, "Kunde inte slutföra betalning")
+      }
       return;
     }
 

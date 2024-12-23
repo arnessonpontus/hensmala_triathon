@@ -2,9 +2,9 @@ import React, { createContext, useState, useContext, ReactNode, useCallback } fr
 
 interface ErrorModalContextType {
   isOpen: boolean;
-  errorMessage: string;
+  errorMessage: string | string[];
   errorTitle: string;
-  showErrorModal: (message: string, title?: string) => void;
+  showErrorModal: (message: string | string[], title?: string) => void;
   closeErrorModal: () => void;
 }
 
@@ -17,9 +17,9 @@ interface ErrorModalProviderProps {
 export const ErrorModalProvider: React.FC<ErrorModalProviderProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [errorTitle, setErrorTitle] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | string[]>('');
 
-  const showErrorModal = useCallback((message: string, title = "Ett fel uppstod") => {
+  const showErrorModal = useCallback((message: string | string[], title = "Ett fel uppstod") => {
     setErrorTitle(title);
     setErrorMessage(message);
     setIsOpen(true);

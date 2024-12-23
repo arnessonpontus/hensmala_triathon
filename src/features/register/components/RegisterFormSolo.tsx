@@ -148,8 +148,8 @@ export const RegisterFormSolo = () => {
               <option disabled value="">
                 Välj kön
               </option>
-              <option value="Man">Man</option>
-              <option value="Kvinna">Kvinna</option>
+              <option value="Herr">Herr</option>
+              <option value="Dam">Dam</option>
             </Input>
           </FormGroup>
 

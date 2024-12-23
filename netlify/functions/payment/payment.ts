@@ -32,8 +32,14 @@ export const handler: Handler = async (event) => {
   try {
     const { formType, formData } = JSON.parse(event.body || '{}');
 
-    validateFormData(formData, formType);
-
+    const { error } = validateFormData(formData, formType);
+    if (error) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ errors: error.details })
+      };
+    }
+    
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
     lineItems.push(...createRegistrationPurchaseItem(formType));
