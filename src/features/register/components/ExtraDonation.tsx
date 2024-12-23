@@ -1,5 +1,13 @@
 import React, { useState, useRef } from "react";
 import { Input } from "reactstrap";
+import { ElevatedButton } from "../../../components/Button/ElevatedButton";
+import styled from "styled-components";
+
+export const ExtraDonationButtons = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
 
 const ExtraDonation = (props: { setDonation: (val: number) => void }) => {
   const [selectedItem, setSelectedItem] = useState(-1);
@@ -24,19 +32,19 @@ const ExtraDonation = (props: { setDonation: (val: number) => void }) => {
   }
 
   return (
-    <div id="extra-donation" className="extra-donation">
-      <div onClick={() => onDonationItemClicked(-1, 0)} className={`button-style donation-item ${selectedItem === -1 ? "selected" : null}`}>Nej tack</div>
+    <ExtraDonationButtons>
+      <ElevatedButton type="button" medium onClick={() => onDonationItemClicked(-1, 0)} selected={selectedItem === -1}>Nej tack</ElevatedButton>
       {suggestedAmount.map((amount, i) => {
         return (
-          <div key={amount} onClick={() => onDonationItemClicked(i, amount)} className={`button-style donation-item ${i === selectedItem ? "selected" : null}`}>{amount}kr</div>
+          <ElevatedButton medium type="button" key={amount} onClick={() => onDonationItemClicked(i, amount)} selected={i === selectedItem}>{amount}kr</ElevatedButton>
         )
       })}
-      <div onClick={() => onDonationItemClicked(Infinity, lastFreeDonation.current)} className={`button-style donation-item optional-donation-button ${Infinity === selectedItem ? "selected" : null}`}>
+      <ElevatedButton medium type="button" onClick={() => onDonationItemClicked(Infinity, lastFreeDonation.current)} selected={Infinity === selectedItem}>
         Annat
-        <Input onChange={(e) => onFreeDonationChange(e)} className="optional-donation-input" bsSize="sm" id="open-donation" type="number" min="0" /></div>
-    </div>
+        <Input onChange={(e) => onFreeDonationChange(e)} type="number" min="0" />
+        </ElevatedButton>
+    </ExtraDonationButtons>
   );
-
 }
 
 export default ExtraDonation;

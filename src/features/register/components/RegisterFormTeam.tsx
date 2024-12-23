@@ -24,6 +24,7 @@ import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
 import { getViteEnvVariable } from "../../../utils";
+import { ScrollToInfoButton } from "../pages/Register";
 
 export const RegisterFormTeam = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
@@ -153,10 +154,11 @@ export const RegisterFormTeam = () => {
 
   const { showErrorModal } = useErrorModal();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    handleCheckout(FormType.Team, formState, showErrorModal);
+    await handleCheckout(FormType.Team, formState, showErrorModal);
+    setLoading(false)
   };
 
   return (
@@ -167,14 +169,12 @@ export const RegisterFormTeam = () => {
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Lag</h3>
-            <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
+            <ScrollToInfoButton onClick={() => scrollToInfo("info-text")}>
               Visa info<i className="fas fa-angle-down angle-down"></i>
-            </div>
+            </ScrollToInfoButton>
           </div>
           <p>
-            <b>
-              <i>Sista dag för beställning av t-shirt och keps är 12:e juni</i>
-            </b>
+            <i>Vill du köpa startplats (och keps/t-shirt) i julklapp? Skriv det i info-rutan så skickar vi ett startbevis.</i>
           </p>
           <FormGroup>
             <Label for="teamName">Lagnamn*</Label>

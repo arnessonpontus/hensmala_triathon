@@ -6,6 +6,7 @@ import { birthdayToString, createCapPurchaseItems, createExtraDonationPurchaseIt
 import { MetadataParam } from '@stripe/stripe-js';
 import { getNodeEnvVariable } from '../utils/envUtil';
 import { getDiscountId } from '../utils/pricing';
+import { validateFormData } from './validation';
 
 const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
   apiVersion: '2024-10-28.acacia',
@@ -30,6 +31,15 @@ export const handler: Handler = async (event) => {
   // Handle POST request for payment creation
   try {
     const { formType, formData } = JSON.parse(event.body || '{}');
+
+    const { error } = validateFormData(formData, formType);
+    if (error) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ errors: error.details })
+      };
+    }
+    
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
     lineItems.push(...createRegistrationPurchaseItem(formType));
@@ -96,7 +106,7 @@ export const handler: Handler = async (event) => {
 
     const session = await stripe.checkout.sessions.create({
       metadata: metadata as unknown as MetadataParam,
-      payment_method_types: ['card', 'klarna'],
+      payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
       success_url: `${getNodeEnvVariable("CLIENT_URL")}/payment-success`,

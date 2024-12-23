@@ -22,7 +22,7 @@ import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
 import { getViteEnvVariable } from "../../../utils";
-
+import { ScrollToInfoButton } from "../pages/Register";
 
 export const RegisterFormSolo = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
@@ -69,10 +69,11 @@ export const RegisterFormSolo = () => {
 
   const { showErrorModal } = useErrorModal();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    handleCheckout(FormType.Solo, formState, showErrorModal);
+    await handleCheckout(FormType.Solo, formState, showErrorModal);
+    setLoading(false)
   };
 
   return (
@@ -80,19 +81,16 @@ export const RegisterFormSolo = () => {
       <Col style={{ marginTop: "2vh" }} md={6}>
         <Form
           onSubmit={onSubmit}
-        // #TODO födelsedagsdatum och gender blir inte validerat
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Individuell</h3>
 
-            <div onClick={() => scrollToInfo("info-text")} className="scroll-to-info-btn">
+            <ScrollToInfoButton onClick={() => scrollToInfo("info-text")}>
               Visa info<i className="fas fa-angle-down angle-down"></i>
-            </div>
+            </ScrollToInfoButton>
           </div>
           <p>
-            <b>
-              <i>Sista dag för beställning av t-shirt och keps är 12:e juni</i>
-            </b>
+            <i>Vill du köpa startplats (och keps/t-shirt) i julklapp? Skriv det i info-rutan så skickar vi ett startbevis.</i>
           </p>
           <FormGroup>
             <Label for="name">Namn*</Label>
@@ -150,8 +148,8 @@ export const RegisterFormSolo = () => {
               <option disabled value="">
                 Välj kön
               </option>
-              <option value="Man">Man</option>
-              <option value="Kvinna">Kvinna</option>
+              <option value="Herr">Herr</option>
+              <option value="Dam">Dam</option>
             </Input>
           </FormGroup>
 
@@ -201,7 +199,7 @@ export const RegisterFormSolo = () => {
           <FormGroup>
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
-            <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
+          <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}

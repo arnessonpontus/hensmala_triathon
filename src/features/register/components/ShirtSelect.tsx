@@ -4,7 +4,9 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { useRef } from "react";
 import classnames from "classnames";
 import ImageGallery from "react-image-gallery";
-import { Shirt, ShirtMaterial, shirtType, Size } from "../models";
+import { Shirt, ShirtMaterial, ShirtType, Size } from "../models";
+import { ElevatedButton } from "../../../components/Button/ElevatedButton";
+import { BaseButton } from "../../../components/Button/BaseButton";
 
 const images = [
   {
@@ -17,8 +19,8 @@ const getDefaultShirt = (): Shirt => {
   return { size: null, type: null, material: "funktion" }
 }
 
-const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) => {
-  const [shirts, setShirts] = useState<Shirt[ ]>([getDefaultShirt()]);
+const ShirtSelect = (props: { updateShirtSelection: (shirts: Shirt[]) => void }) => {
+  const [shirts, setShirts] = useState<Shirt[]>([getDefaultShirt()]);
 
   const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
@@ -27,16 +29,16 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
     setShirts(newShirts);
   }
 
-  const deleteShirt = (idx: number) =>  {
+  const deleteShirt = (idx: number) => {
     const newShirts = [...shirts];
-      if (idx === 0) {
-        newShirts[0] = getDefaultShirt();
-      } else {
-        newShirts.splice(idx, 1);
-      }
-  
-      setShirts(newShirts);
-      props.updateShirtSelection(newShirts);
+    if (idx === 0) {
+      newShirts[0] = getDefaultShirt();
+    } else {
+      newShirts.splice(idx, 1);
+    }
+
+    setShirts(newShirts);
+    props.updateShirtSelection(newShirts.filter(s => s.size && s.type));
   };
 
   // Set the size, type or material of the shirt
@@ -44,25 +46,25 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
     const newShirts = [...shirts];
     newShirts[idx][field] = value;
     setShirts(newShirts);
-    props.updateShirtSelection(newShirts);
+    props.updateShirtSelection(newShirts.filter(s => s.size && s.type));
   }
 
   const imageGalleryRef = useRef(null);
 
-  const numShirtsSelected = useMemo(() => shirts.reduce((c,s) => s.size != null && s.type != null ? c+1 : c, 0), [shirts])
+  const numShirtsSelected = useMemo(() => shirts.reduce((c, s) => s.size != null && s.type != null ? c + 1 : c, 0), [shirts])
 
   return (
     <div id="shirt-select">
       <p className="w-100 d-flex justify-content-center">Färg är ännu inte bestämd. Bild kommer snart.</p>
-      <ImageGallery showThumbnails={false} showIndex={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()}/>
+      <ImageGallery showThumbnails={false} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           return (
             <div key={i}>
               <hr></hr>
               <div className="shirt-row" >
-                <div className="select-buttons">
-                  <div className="d-flex">     
+                <div style={{ flex: 1 }}>
+                  <div className="d-flex">
                     <Input
                       className="ml-2 mr-2"
                       required={true}
@@ -74,19 +76,19 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
                         Storlek
                       </option>
                       {sizes.map((size) => {
-                          return (
-                            <option selected={shirt.size === size} value={size} key={size}>
-                              {size}
-                            </option>
-                          );
-                        })}
+                        return (
+                          <option selected={shirt.size === size} value={size} key={size}>
+                            {size}
+                          </option>
+                        );
+                      })}
                     </Input>
                     <Input
                       className="ml-2 mr-2"
                       required={true}
                       type="select"
                       name={"type"}
-                      onChange={(e) => updateShirtValues("type", i, e.target.value as shirtType)}
+                      onChange={(e) => updateShirtValues("type", i, e.target.value as ShirtType)}
                     >
                       <option disabled selected={shirt.type === null}>
                         Typ
@@ -112,7 +114,7 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
                         Funktion
                       </Label>
                     </FormGroup>
-                      <FormGroup className="ml-4 mr-2" check>
+                    <FormGroup className="ml-4 mr-2" check>
                       <Label>
                         <Input
                           required={true}
@@ -126,20 +128,19 @@ const ShirtSelect = (props: {updateShirtSelection: (shirts: Shirt[]) => void}) =
                     </FormGroup>
                   </div>
                 </div>
-                <div className="delete-icon" onClick={() => deleteShirt(i)}>
-                {(i !== 0 || (shirts[0].size !== null || shirts[0].type !== null)) ? <i className="fas fa-trash "></i> : null}
-                </div>
+                {(i !== 0 || (shirts[0].size !== null || shirts[0].type !== null)) ?
+                  <BaseButton small type="button" onClick={() => deleteShirt(i)}>
+                    <i className="fas fa-trash "></i>
+                  </BaseButton>
+                  : null}
               </div>
             </div>
           )
         })}
-        <div
-          className="button-style add-shirt-button"
-          onClick={addShirt}
-        >
+        <ElevatedButton isSecondary disabled={numShirtsSelected <= shirts.length - 1} type="button" medium onClick={addShirt}>
           + Lägg till fler
-        </div>
-        <div className={classnames("mt-2 d-flex justify-content-center", { "no-clothed-chosen": numShirtsSelected < 1 })}style={{minHeight: 25}}>{numShirtsSelected < 1 ? <span>Ingen tröja vald</span> : <span>Antal tröjor valda: {numShirtsSelected}</span>}</div>
+        </ElevatedButton>
+        <div className={classnames("mt-2 d-flex justify-content-center", { "no-clothed-chosen": numShirtsSelected < 1 })} style={{ minHeight: 25 }}>{numShirtsSelected < 1 ? <span>Ingen tröja vald</span> : <span>Antal tröjor valda: {numShirtsSelected}</span>}</div>
       </div>
     </div>
   );

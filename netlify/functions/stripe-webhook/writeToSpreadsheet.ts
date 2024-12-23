@@ -5,7 +5,7 @@ import { StripeMetadata } from "../../../src/features/register/models";
 import { selectSpreadsheetDetails } from "../utils/registrationUtil";
 import { getNodeEnvVariable } from "../utils/envUtil";
 
-export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: number): Promise<GoogleSpreadsheetRow<Record<string, any>>> {
+export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: number, orderID: string): Promise<GoogleSpreadsheetRow<Record<string, any>>> {
   console.log("Running sheet netlify function...");
 
   try {
@@ -39,6 +39,7 @@ export async function writeToSpreadsheet(orderData: StripeMetadata, totalToPay: 
       id: idType + (idNumber + 1).toString(),
       uploadTime: moment().tz("Europe/Stockholm").format("YYYY-MM-DD HH:mm"),
       totalToPay: totalToPay,
+      orderID
     }
 
     console.log("parsedData", parsedData)

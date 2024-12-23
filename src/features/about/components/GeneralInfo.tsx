@@ -14,13 +14,13 @@ export const GenerealInfo: React.FC = () => {
       <p>
         Sedan 2012 har vi nu samlat in över 1 000 000kr och skänkt
         till ALS-forskningen. Pengarna har igenom åren gått till olika organisationer men de senaste åren har gåvan riktats
-        mot Stoppa ALS och ALS Treatment Center Karolinska. I år ger vi hälften av pengarna till
+        mot Stoppa ALS och ALS Treatment Center Karolinska. I år ger vi hälften av pengarna till {' '}
         <a
           href="https://stoppaals.se/index.php"
           target="_blank"
           rel="noopener noreferrer"
         > Stoppa ALS
-        </a> och andra hälften till
+        </a> och andra hälften till {' '}
         <a
           href="https://www.borjesalmingstiftelse.se/forskning/tilldelning-av-forskningsmedel"
           target="_blank"
@@ -29,7 +29,7 @@ export const GenerealInfo: React.FC = () => {
         </a>.
       </p>
       <p>
-        Här är lite blandade länkar till artiklar som beskriver var vi har gett tidigare år. Fler artiklar hittar du på
+        Här är lite blandade länkar till artiklar som beskriver var vi har gett tidigare år. Fler artiklar hittar du på {' '}
         <Link
           rel="noopener noreferrer"
           to="/artiklar"
@@ -64,7 +64,7 @@ export const GenerealInfo: React.FC = () => {
             href="https://egnainsamlingar.neuro.se/projects/neuro-10"
             target="_blank"
             rel="noopener noreferrer"
-          > vårt projekt </a> på Neuros hemsida!
+          >{' '} vårt projekt </a> på Neuros hemsida!
         </p>
 
       </ul>

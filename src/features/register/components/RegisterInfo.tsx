@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { Col } from "reactstrap"
 import usePrices from "../hooks/usePrices";
+import { SwishQrImage } from "./SwishQrImage";
 
 interface RegisterInfoProps {
   type: "team" | "solo"
@@ -20,9 +21,14 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <p>
         Ett motionslopp för alla, motionär som elit. Få en härlig dag i Hensmålas vackra natur med simning (340m), cykling (9.2km), löpning (6.5km) och samtidigt bidra till ALS-forskningen.
       </p>
+      {type === "solo" ?
+        <p>När du anmälder sig som individuell deltagare utför du alla tre
+          grenar på egen hand.</p>
+        :
+        <p>När ni anmälder er som ett lag med tre personer utför ni en gren var. Om ni är två personer kör en persson två grenar och den andra en gren, i vilken ordning ni vill.</p>
+      }
       <p>
-        När du anmälder sig som individuell deltagare utför du alla tre
-        grenar på egen hand. För mer information om sträckorna och
+        För mer information om sträckorna och
         tävlingsregler kan du gå in{" "}
         <Link
           target="_blank"
@@ -32,7 +38,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
         </Link>.
       </p>
       <p>
-        Du betalar enklelt med kort eller Klarna (där du även kan välja att betala med Swish). Om du beställt kläder ska dessa upphämtas på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b>
+        Om du beställt kläder ska dessa upphämtas på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b>
       </p>
       <p>Första start sker 15.00.</p>
       <b>
@@ -42,7 +48,9 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <br></br>
       <br></br>
       <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-      <b style={{ fontSize: 20 }}>Startavgift: {getPriceByName("registration-fee-solo")}kr</b>
+      <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByName("registration-fee-solo") : getPriceByName("registration-fee-team")}kr</b> (Höjs med 100kr efter 1/3)</p>
+      <p>Donera gärna även en slant via Swish om du känner för det!</p>
+      <SwishQrImage />
     </Col>
   )
 }

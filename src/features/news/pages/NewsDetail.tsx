@@ -11,7 +11,7 @@ import { styled } from "styled-components";
 import { trimTimeFromDate } from "../utils";
 
 const StyledContainer = styled.div`
-  padding: 40px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,7 @@ export const NewsDetail = () => {
   const { id } = useParams();
   const [newsDetail, setNewsDetail] = useState<Entry<TypeNewsEntrySkeleton, undefined, string> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  
+   
   if (!id) {
     return <p>Kunde inte hitta nyhet</p>
   }

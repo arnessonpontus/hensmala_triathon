@@ -43,7 +43,7 @@ export const Fortrampet = () => {
               </h4>
               <p className="indent">
                 Hentrampet innebär att på sin egen cykel ta sig runt Stora
-                Hensjön i den takt man vill, med valfri fika på vägen. Likt förra året kommer även en tipsrunda med fina priser vara utsatt.
+                Hensjön i den takt man vill, med valfri fika på vägen. En tipsrunda med fina priser kommer även vara utsatt.
               </p>
               <h4>
                 När är Hentrampet?
@@ -91,7 +91,7 @@ export const Fortrampet = () => {
                   🎉
                 </span>
                 ) som går oavkortat till "Stoppa ALS" genom NEURO. Betala till
-                bankgiro 386-6563 eller swisha till 1234048781, alternativt kan man även betala på plats.
+                bankgiro 386-6563 eller swisha till 1234048781, alternativt kan man även betala på plats. Märk betalningen gärna med "Hentrampet".
               </p>
             </CardBody>
           </Card>

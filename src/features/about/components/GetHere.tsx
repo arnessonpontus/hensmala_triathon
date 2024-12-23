@@ -9,7 +9,7 @@ export const GetHere: React.FC = () => {
           <h3>Hitta till Hensmåla</h3>
           <p>
             Hensmåla är en liten by utanför Tingsryd längs väg
-            120. Adressen är: Hensmåla 31 36294 Tingsryd.
+            120. Adressen är: <strong>Hensmåla 31, 36294 Tingsryd</strong>.
           </p>
           <h3>Parkeringar</h3>
           <p>

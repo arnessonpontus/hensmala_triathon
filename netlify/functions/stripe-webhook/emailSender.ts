@@ -3,11 +3,12 @@ import { FormType, StripeMetadata } from "../../../src/features/register/models"
 import { getSoloHtml, getTeamHtml, getShirtHtml, getRegistrationErrorHtml } from "./getHtml";
 import { createTransport } from "nodemailer";
 import { getNodeEnvVariable } from "../utils/envUtil";
+import { createQR } from "./createQR";
 
 // Click on this link to enable applications to access the email account:
 // https://accounts.google.com/b/0/DisplayUnlockCaptcha
 
-export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType): Promise<void> {
+export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, any>>, registerType: FormType, orderID: string): Promise<void> {
     const transporter = createTransport({
       service: "gmail",
       auth: {
@@ -30,6 +31,9 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
     } else {
       html = getSoloHtml(addedRow);
     }
+
+    const qrCodeDataURL = await createQR(orderID);
+
     const mailOptions = {
       from: getNodeEnvVariable("EMAILER_USER"),
       to: email,
@@ -40,7 +44,13 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
         filename: 'logga.png',
         path: __dirname + '/assets/logga.png',
         cid: 'logo'
-      }]
+      },
+      {
+        filename: 'registrerings-kod.png',
+        content: qrCodeDataURL?.split(',')[1] ?? "Ingen data",
+        encoding: 'base64',
+      },
+    ]
     };
 
     console.log("Sending email...");

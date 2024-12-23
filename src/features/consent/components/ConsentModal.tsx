@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { BaseButton } from "../../../components/Button/BaseButton";
 
 interface ConsentProps {
   buttonText: string,
@@ -12,11 +13,13 @@ const ConsentModal = ({ buttonText, title }: ConsentProps) => {
   const toggle = () => setModal(!modal);
 
   return (
-    <div className="consent-button">
-      <i onClick={toggle}>
+    <>
+    <BaseButton small type="button" onClick={toggle}>
+      <i>
         {buttonText}
       </i>
-      <Modal isOpen={modal} toggle={toggle}>
+    </BaseButton>
+    <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{title}</ModalHeader>
         <ModalBody>
           Hensmåla Triathlon kommer spara de angivna uppgifterna för att hantera
@@ -34,7 +37,7 @@ const ConsentModal = ({ buttonText, title }: ConsentProps) => {
           </Button>
         </ModalFooter>
       </Modal>
-    </div>
+    </>
   );
 };
 
