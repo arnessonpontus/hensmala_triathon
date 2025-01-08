@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { Col } from "reactstrap"
 import usePrices from "../hooks/usePrices";
-import { SwishQrImage } from "./SwishQrImage";
 
 interface RegisterInfoProps {
   type: "team" | "solo"
@@ -49,8 +48,6 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <br></br>
       <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
       <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByName("registration-fee-solo") : getPriceByName("registration-fee-team")}kr</b> (Höjs med 100kr efter 1/3)</p>
-      <p>Donera gärna även en slant via Swish om du känner för det!</p>
-      <SwishQrImage />
     </Col>
   )
 }

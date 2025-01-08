@@ -89,9 +89,6 @@ export const RegisterFormSolo = () => {
               Visa info<i className="fas fa-angle-down angle-down"></i>
             </ScrollToInfoButton>
           </div>
-          <p>
-            <i>Vill du köpa startplats (och keps/t-shirt) i julklapp? Skriv det i info-rutan så skickar vi ett startbevis.</i>
-          </p>
           <FormGroup>
             <Label for="name">Namn*</Label>
             <Input

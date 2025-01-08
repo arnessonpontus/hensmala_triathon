@@ -99,8 +99,8 @@ export const MerchOrder: React.FC = () => {
               När din beställning kommer in noterar vi det och lägger undan kläder till dig.
             </p>
             <p>Upphämtning görs på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b></p>
-              <p>Donera gärna även en slant via Swish om du känner för det!</p>
-              <SwishQrImage />
+            <p>Donera gärna även en slant via Swish om du känner för det!</p>
+            <SwishQrImage />
           </Col>
           <Col style={{ marginTop: "2vh" }}>
             <hr className="register-divider"></hr>
