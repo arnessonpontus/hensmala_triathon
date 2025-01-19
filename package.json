@@ -64,6 +64,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.14",
     "@types/nodemailer": "^6.4.16",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18.3.12",

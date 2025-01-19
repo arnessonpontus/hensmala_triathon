@@ -1,7 +1,6 @@
 import { Shirt } from "../models";
 import * as Utils from '../utils'; // Import the entire module
 
-
 describe("Shirt", () => {
   it('should have valid shirt', () => {
     const shirts: Shirt[] = [
@@ -94,13 +93,14 @@ describe("Shirt", () => {
   });
 
   it('should return null if any price is null', () => {
-    expect(Utils.calcTotalRegisterPrice(null, functionPrice, capPrice, registerPrice, numCaps, shirts, donation, true)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, null, capPrice, registerPrice, numCaps, shirts, donation, true)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, null, registerPrice, numCaps, shirts, donation, true)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, capPrice, null, numCaps, shirts, donation, true)).toBeNull();
+    expect(Utils.calcTotalRegisterPrice(null, functionPrice, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
+    expect(Utils.calcTotalRegisterPrice(cottonPrice, null, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
+    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, null, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
+    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, capPrice, null, numCaps, shirts, donation, 0)).toBeNull();
   });
 
-  it('should calculate the total when isAllowedCompanyEntered is false', () => {
+  it('should calculate the total when having discount or 60% for all but donation', () => {
+    const inverseDiscount = 0.4;
     const result = Utils.calcTotalRegisterPrice(
       cottonPrice,
       functionPrice,
@@ -109,9 +109,9 @@ describe("Shirt", () => {
       numCaps,
       shirts,
       donation,
-      false
+      inverseDiscount
     );
-    expect(result).toBe(registerPrice + donation + 250 + 150); // 200 (register) + 250 (shirts) + 150 (caps) + 30 (donation)
+    expect(result).toBe(donation + (registerPrice + 250 + 150) * inverseDiscount); // 200 (register) + 250 (shirts) + 150 (caps) + 30 (donation)
   });
 
   it('should handle the case when numCaps is 0', () => {
@@ -123,7 +123,7 @@ describe("Shirt", () => {
       0, // No caps
       shirts,
       donation,
-      false
+      1
     );
     expect(result).toBe(registerPrice + donation + 250 + 0); // Register + donation + shirts cost (no caps)
   })
@@ -137,23 +137,9 @@ describe("Shirt", () => {
       numCaps,
       shirts,
       0, // No donation
-      false
+      1
     );
     expect(result).toBe(registerPrice + 0 + 250 + 150); // Register + no donation + shirts cost + caps cost
-  });
-
-  it('should calculate the total when isAllowedCompanyEntered is true', () => {
-    const result = Utils.calcTotalRegisterPrice(
-      cottonPrice,
-      functionPrice,
-      capPrice,
-      registerPrice,
-      numCaps,
-      shirts,
-      donation,
-      true
-    );
-    expect(result).toBe(donation + 250 + 150); // No register fee
   });
 })
 

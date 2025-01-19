@@ -24,11 +24,12 @@ export interface BaseOrderType {
   name1: string,
   email1: string,
   info: string,
+  couponCode: string;
 }
 
 export interface RegisterFormSoloState extends BaseOrderType {
-  year1: string;
   month1: string;
+  year1: string;
   day1: string;
   gender: string;
   city1: string;
@@ -54,6 +55,7 @@ export interface StripeMetadata {
   numCaps: string;
   extraDonation: string;
   info: string;
+  couponCode: string
 }
 
 export interface RegisterFormTeamState extends BaseOrderType {

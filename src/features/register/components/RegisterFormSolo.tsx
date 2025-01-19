@@ -13,7 +13,7 @@ import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import ShirtSelect from "./ShirtSelect";
 import CapSelect from "./CapSelect";
 import { FormType, RegisterFormSoloState } from "../models";
-import { calcTotalRegisterPrice, scrollToInfo } from "../utils";
+import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import usePrices from "../hooks/usePrices";
@@ -21,13 +21,15 @@ import { ErrorBanner } from "../../../components/ErrorBanner";
 import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
-import { getViteEnvVariable } from "../../../utils";
 import { ScrollToInfoButton } from "../pages/Register";
+import Stripe from "stripe";
+import { CouponCodeInput } from "../../../components/CouponCodeInput";
 
 export const RegisterFormSolo = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
+  const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
 
   const [formState, setFormState] = useState<RegisterFormSoloState>({
     name1: "",
@@ -40,7 +42,8 @@ export const RegisterFormSolo = () => {
     city1: "",
     shirts: [],
     numCaps: 0,
-    extraDonation: 0
+    extraDonation: 0,
+    couponCode: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,14 +52,10 @@ export const RegisterFormSolo = () => {
     setFormState(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const isAllowedCompanyEntered = (): boolean => {
-    return (
-      getViteEnvVariable("VITE_ALLOWED_COMPANY") !== "" &&
-      formState.city1.toLowerCase().includes(getViteEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())
-    );
-  };
 
   const totalCost = useMemo((): number | null => {
+    const inverseDiscount = getInverseDiscountFromPercentOff(coupon?.percent_off);
+
     return calcTotalRegisterPrice(getPriceByName("bomull"),
       getPriceByName("funktion"),
       getPriceByName("keps"),
@@ -64,15 +63,15 @@ export const RegisterFormSolo = () => {
       formState.numCaps,
       formState.shirts,
       formState.extraDonation,
-      isAllowedCompanyEntered())
-  }, [priceLoading, formState]);
+      inverseDiscount)
+  }, [priceLoading, formState, coupon]);
 
   const { showErrorModal } = useErrorModal();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.Solo, formState, showErrorModal);
+    await handleCheckout(FormType.Solo, {...formState, couponCode: coupon?.id ?? ""}, showErrorModal);
     setLoading(false)
   };
 
@@ -161,13 +160,6 @@ export const RegisterFormSolo = () => {
               onChange={handleChange}
             />
           </FormGroup>
-          {isAllowedCompanyEntered() ?
-            <div className="allowed-company-text-bg">
-              <small>
-                Du har anget <b style={{ color: "#007fa8" }}>{getViteEnvVariable("VITE_ALLOWED_COMPANY")}</b> som klubb och får därför anmälningsavgiften betald.
-              </small>
-            </div>
-            : null}
           <FormGroup>
             <Label for="info">Information</Label>
             <Input
@@ -202,13 +194,12 @@ export const RegisterFormSolo = () => {
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
 
-          <FormGroup>
+          <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)}/>
           <RegisterButton
               type="submit"
               disabled={!allConsentsChecked || loading}
               loading={loading}
             />
-          </FormGroup>
         </Form>
       </Col>
       <RegisterInfo type="solo"/>

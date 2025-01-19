@@ -15,7 +15,7 @@ import CapSelect from "./CapSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormTeamState } from "../models";
-import { calcTotalRegisterPrice, scrollToInfo } from "../utils";
+import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import usePrices from "../hooks/usePrices";
@@ -23,13 +23,15 @@ import { ErrorBanner } from "../../../components/ErrorBanner";
 import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
-import { getViteEnvVariable } from "../../../utils";
 import { ScrollToInfoButton } from "../pages/Register";
+import Stripe from "stripe";
+import { CouponCodeInput } from "../../../components/CouponCodeInput";
 
 export const RegisterFormTeam = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
+  const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
 
   const [formState, setFormState] = useState<RegisterFormTeamState>({
     teamName: "",
@@ -55,6 +57,7 @@ export const RegisterFormTeam = () => {
     shirts: [],
     numCaps: 0,
     extraDonation: 0,
+    couponCode: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -62,15 +65,9 @@ export const RegisterFormTeam = () => {
     setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const isAllowedCompanyEntered = () => {
-    const allowedCompany = getViteEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase();
-    return (
-      allowedCompany !== "" &&
-      [formState.city1, formState.city2, formState.city3].some((city) => city.toLowerCase().includes(allowedCompany))
-    );
-  };
 
   const totalCost = useMemo(() => {
+    const discount = getInverseDiscountFromPercentOff(coupon?.percent_off);
     return calcTotalRegisterPrice(
       getPriceByName("bomull"),
       getPriceByName("funktion"),
@@ -79,8 +76,8 @@ export const RegisterFormTeam = () => {
       formState.numCaps,
       formState.shirts,
       formState.extraDonation,
-      isAllowedCompanyEntered())
-  }, [priceLoading, formState]);
+      discount)
+  }, [priceLoading, formState, coupon]);
 
   const renderMemberFields = () => {
     return [1, 2, 3].map((num) => {
@@ -157,7 +154,7 @@ export const RegisterFormTeam = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.Team, formState, showErrorModal);
+    await handleCheckout(FormType.Team, {...formState, couponCode: coupon?.id ?? ""}, showErrorModal);
     setLoading(false)
   };
 
@@ -215,25 +212,17 @@ export const RegisterFormTeam = () => {
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
           <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
-          {isAllowedCompanyEntered() ?
-            <div className="allowed-company-text-bg">
-              <small>
-                Du har anget <b style={{ color: "#007fa8" }}>{getViteEnvVariable("VITE_ALLOWED_COMPANY")}</b> som klubb och får därför anmälningsavgiften betald.
-              </small>
-            </div>
-            : null}
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
 
-          <FormGroup>
+          <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)}/>
           <RegisterButton
               type="submit"
               disabled={!allConsentsChecked || loading}
               loading={loading}
             />
-          </FormGroup>
         </Form>
       </Col>
       <RegisterInfo type={"team"}/>

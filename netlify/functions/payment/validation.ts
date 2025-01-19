@@ -34,6 +34,10 @@ const baseOrderTypeSchema = Joi.object({
     'any.required': 'Antal kepsar är obligatoriskt.'
   }),
 
+  couponCode: Joi.string().allow('').max(50).optional().messages({
+    'string.max': 'Koden får inte vara längre än 50 tecken.'
+  }),
+
   extraDonation: Joi.number().min(0).required().messages({
     'number.base': 'Extra donation måste vara ett nummer.',
     'number.min': 'Extra donation kan inte vara mindre än 0.',

@@ -5,7 +5,6 @@ import { shirtArrayToString } from '../../../src/features/register/utils';
 import { birthdayToString, createCapPurchaseItems, createExtraDonationPurchaseItem, createRegistrationPurchaseItem, createShirtPurchaseItems } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 import { getNodeEnvVariable } from '../utils/envUtil';
-import { getDiscountId } from '../utils/pricing';
 import { validateFormData } from './validation';
 
 const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
@@ -65,6 +64,7 @@ export const handler: Handler = async (event) => {
       extraDonation: formData.extraDonation.toString(),
       info: formData.info,
       numCaps: formData.numCaps.toString(),
+      couponCode: formData.couponCode
     }
 
     const soloMetadata = formType === FormType.Solo ? {
@@ -91,18 +91,7 @@ export const handler: Handler = async (event) => {
 
     console.log("Processing metadata: ", metadata)
 
-    const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = [];
-    //#TODO ADD COUPON
-    if (metadata.city1 && metadata.city1.toLowerCase().includes(getNodeEnvVariable("VITE_ALLOWED_COMPANY").toLowerCase())) {
-      const discountId = getDiscountId('company-discount-code');
-      if (!discountId) {
-        return {
-          statusCode: 500,
-          body: JSON.stringify({ error: "Could not find discount" }),
-        };
-      }
-      discounts.push({ coupon: discountId })
-    }
+    const discounts: Stripe.Checkout.SessionCreateParams.Discount[] = formData.couponCode != "" ? [{ coupon: formData.couponCode }] : [];
 
     const session = await stripe.checkout.sessions.create({
       metadata: metadata as unknown as MetadataParam,
