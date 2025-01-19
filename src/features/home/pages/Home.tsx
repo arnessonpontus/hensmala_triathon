@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { SponsorHighlight } from "../../sponsor/components/SponsorHighlight";
 import { BannerTime } from "../components/BannerTime";
 import { PulsingButton } from "../../../components/Button/PulsingButton";
+import { SwishQrImage } from "../../register/components/SwishQrImage";
 
 export const Home: React.FC = () => {
   return (
@@ -41,12 +42,8 @@ export const Home: React.FC = () => {
               </p>
             </Col>
 
-            <Col className="text-center mt-4 my-auto" ms={4}>
-              <img
-                width="250px"
-                src="/images/qr_swish.svg"
-                alt="hensmala_triathlon"
-              ></img>
+            <Col className=" mt-4 my-auto" ms={4}>
+            <SwishQrImage maxWidth={300}/>
             </Col>
           </Row>
         </div>

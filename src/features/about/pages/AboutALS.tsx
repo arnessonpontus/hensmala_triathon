@@ -151,12 +151,12 @@ export const AboutALS: React.FC = () => {
                 gravis). Neuro administrerar Neurofonden, som årligen ger ett
                 par miljoner kronor i bidrag till olika forskningsprojekt inom
                 neurologin. På <a href="https://www.Neuro.se">Neuro.se</a> och
-                i den nystartade podcasten
+                i den nystartade podcasten {''}
                 <a href="https://www.Neuropodden.se">Neuropodden.se</a>,
                 rapporterar NeuroMedia om den neurologiska forskningens
                 framsteg. Här finns också reportage och intervjuer där
                 personer berättar om konsten att leva med en neurologisk
-                diagnos.  För mer info och medlemskap:
+                diagnos.  För mer info och medlemskap: {''}
                 <a href="https://www.Neuro.se">Neuro.se</a>
               </CardBody>
             </Card>

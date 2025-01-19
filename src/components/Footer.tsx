@@ -74,8 +74,8 @@ export const Footer: React.FC = () => {
           ></img>
         </a>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-        <p style={{ color: "white", margin: 0, fontSize: "16px" }}>© 2024  Copyright: Hensmalatriathlon.se</p>
+      <div style={{ display: "flex", justifyContent: "space-between", width: "100%", flexWrap: "wrap" }}>
+        <p style={{ color: "white", margin: 0, fontSize: "16px" }}>© 2025  Copyright: Hensmalatriathlon.se</p>
         <a href="/" style={{ color: "white", textDecoration: "underline", alignSelf: "flex-end" }} role="button" onClick={handleCookieBannerClick}>Cookiehantering</a>
       </div>
     </div>

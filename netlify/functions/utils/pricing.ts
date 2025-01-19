@@ -28,8 +28,3 @@ export const discountMapDev: Record<discountType, string> = {
 export const getPriceId = (item: priceType): string | null => {
   return getNodeEnvVariable("VITE_ENV") === "prod" ? priceMapProd[item] || null : priceMapDev[item] || null;
 };
-
-export const getDiscountId = (_item: discountType): string | null => {
-  // TODO: Fix discount
-  return null;
-}
