@@ -57,7 +57,6 @@ export const RegisterFormTeam = () => {
     shirts: [],
     numCaps: 0,
     extraDonation: 0,
-    couponCode: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -154,7 +153,7 @@ export const RegisterFormTeam = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.Team, {...formState, couponCode: coupon?.id ?? ""}, showErrorModal);
+    await handleCheckout(FormType.Team, {...formState, coupon}, showErrorModal);
     setLoading(false)
   };
 

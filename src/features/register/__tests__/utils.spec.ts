@@ -99,7 +99,7 @@ describe("Shirt", () => {
     expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, capPrice, null, numCaps, shirts, donation, 0)).toBeNull();
   });
 
-  it('should calculate the total when having discount or 60% for all but donation', () => {
+  it('should calculate the total when having discount for 60% for all but donation', () => {
     const inverseDiscount = 0.4;
     const result = Utils.calcTotalRegisterPrice(
       cottonPrice,

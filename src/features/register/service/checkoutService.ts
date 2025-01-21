@@ -7,7 +7,7 @@ const stripePromise = loadStripe(`${getViteEnvVariable("VITE_STRIPE_PUBLIC")}`);
 
 export const handleCheckout = async (
   formType: FormType,
-  formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType, //#TODO kanske finns ett bättre sent att hantera det på? 
+  formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType,
   showErrorModal: (message: string | string[], title: string) => void
 ) => {
   try {

@@ -41,7 +41,6 @@ export const MerchOrder: React.FC = () => {
     shirts: [],
     numCaps: 0,
     info: "",
-    couponCode: ""
   }
 
   const [formState, setFormState] = useState<BaseOrderType>(defaultState);
@@ -83,7 +82,7 @@ export const MerchOrder: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.MerchOrder, {...formState, couponCode: coupon?.id ?? ""}, showErrorModal);
+    await handleCheckout(FormType.MerchOrder, {...formState, coupon: coupon}, showErrorModal);
     setLoading(false)
   };
 

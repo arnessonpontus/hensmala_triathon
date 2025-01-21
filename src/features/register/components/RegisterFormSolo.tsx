@@ -43,7 +43,6 @@ export const RegisterFormSolo = () => {
     shirts: [],
     numCaps: 0,
     extraDonation: 0,
-    couponCode: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +70,7 @@ export const RegisterFormSolo = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.Solo, {...formState, couponCode: coupon?.id ?? ""}, showErrorModal);
+    await handleCheckout(FormType.Solo, {...formState, coupon}, showErrorModal);
     setLoading(false)
   };
 
