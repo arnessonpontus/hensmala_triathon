@@ -16,7 +16,7 @@ import ConsentModal from "../../consent/components/ConsentModal";
 import RegisterButton from "../components/RegisterButton";
 
 import { BaseOrderType, FormType } from "../models";
-import { calcShirtPrice, hasValidShirt } from "../utils";
+import { calcShirtPrice, getInverseDiscountFromPercentOff, hasValidShirt } from "../utils";
 import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
@@ -25,11 +25,14 @@ import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import { getViteEnvVariable } from "../../../utils";
 import { SwishQrImage } from "../components/SwishQrImage";
+import Stripe from "stripe";
+import { CouponCodeInput } from "../../../components/CouponCodeInput";
 
 export const MerchOrder: React.FC = () => {
   const { loading: priceLoading, getPriceByName } = usePrices();
   const [loading, setLoading] = useState(false);
   const [hasGivenConsent, setHasGivenConsent] = useState(false);
+  const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
 
   const defaultState: BaseOrderType = {
     name1: "",
@@ -47,16 +50,18 @@ export const MerchOrder: React.FC = () => {
     const functionPrice = getPriceByName("funktion");
     const capPrice = getPriceByName("keps");
 
+    const inverseDiscount = getInverseDiscountFromPercentOff(coupon?.percent_off);
+
     if (!cottonPrice || !functionPrice || !capPrice) {
       return null
     }
 
     return (
       formState.extraDonation +
-      calcShirtPrice(formState.shirts, cottonPrice, functionPrice) +
-      formState.numCaps * capPrice
+      (calcShirtPrice(formState.shirts, cottonPrice, functionPrice) +
+      formState.numCaps * capPrice) * inverseDiscount
     );
-  }, [formState, priceLoading]);
+  }, [formState, priceLoading, coupon]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -77,7 +82,7 @@ export const MerchOrder: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.MerchOrder, formState, showErrorModal);
+    await handleCheckout(FormType.MerchOrder, {...formState, coupon: coupon}, showErrorModal);
     setLoading(false)
   };
 
@@ -177,6 +182,7 @@ export const MerchOrder: React.FC = () => {
                   />
                 </Label>
               </FormGroup>
+              <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)}/>
               <RegisterButton
                 type="submit"
                 disabled={!hasGivenConsent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || loading}

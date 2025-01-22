@@ -34,6 +34,25 @@ const baseOrderTypeSchema = Joi.object({
     'any.required': 'Antal kepsar är obligatoriskt.'
   }),
 
+  coupon: Joi.object({
+    id: Joi.string().max(50).required().messages({
+      'string.base': 'Kupong-ID måste vara en text.',
+      'string.max': 'Kupong-ID får inte vara längre än 50 tecken.',
+      'any.required': 'Kupong-ID är obligatoriskt.',
+    }),
+    percent_off: Joi.number().optional().min(0).max(100).messages({
+      'number.base': 'Rabattprocenten måste vara ett nummer.',
+      'number.min': 'Rabattprocenten måste vara minst 0.',
+      'number.max': 'Rabattprocenten får inte överstiga 100.',
+    }),
+    name: Joi.string().max(100).optional().messages({
+      'string.base': 'Kupongnamnet måste vara en text.',
+      'string.max': 'Kupongnamnet får inte vara längre än 100 tecken.',
+    }),
+  }).optional().unknown(true).messages({
+    'object.base': 'Kupongen måste vara ett giltigt objekt.',
+  }),
+
   extraDonation: Joi.number().min(0).required().messages({
     'number.base': 'Extra donation måste vara ett nummer.',
     'number.min': 'Extra donation kan inte vara mindre än 0.',

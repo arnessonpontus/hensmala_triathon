@@ -1,3 +1,5 @@
+import Stripe from "stripe";
+
 export const sizeValues = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"] as const;
 export type Size = typeof sizeValues[number];
 
@@ -24,11 +26,12 @@ export interface BaseOrderType {
   name1: string,
   email1: string,
   info: string,
+  coupon?: Stripe.Coupon;
 }
 
 export interface RegisterFormSoloState extends BaseOrderType {
-  year1: string;
   month1: string;
+  year1: string;
   day1: string;
   gender: string;
   city1: string;
@@ -54,6 +57,7 @@ export interface StripeMetadata {
   numCaps: string;
   extraDonation: string;
   info: string;
+  couponName: string
 }
 
 export interface RegisterFormTeamState extends BaseOrderType {
