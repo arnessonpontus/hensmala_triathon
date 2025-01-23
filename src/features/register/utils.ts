@@ -47,7 +47,7 @@ export const calcTotalRegisterPrice = (
   numCaps: number,
   shirts: Shirt[],
   donation: number,
-  isAllowedCompanyEntered: boolean
+  inverseDiscount: number
 ) => {
   if (
     !cottonPrice ||
@@ -61,10 +61,7 @@ export const calcTotalRegisterPrice = (
   const shirtsCost = calcShirtPrice(shirts, cottonPrice, functionPrice);
   const capsCost = numCaps * capPrice;
 
-  if (isAllowedCompanyEntered) {
-    return donation + shirtsCost + capsCost;
-  }
-  return registerPrice + donation + shirtsCost + capsCost;
+  return donation + (registerPrice + shirtsCost + capsCost) * inverseDiscount;
 }
 
 export const oreToSek = (ore: number) => {
@@ -78,3 +75,5 @@ export const sekToOre = (sek: number) => {
 export const getDaysFromNow = (day: string) => {
   return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm")) / 86400000)
 }
+
+export const getInverseDiscountFromPercentOff = (percent_off?: number | null) =>  1 - (percent_off ?? 0)/100;

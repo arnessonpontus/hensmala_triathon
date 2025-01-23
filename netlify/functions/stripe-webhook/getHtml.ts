@@ -7,6 +7,18 @@ const getRegisterMerchPickupText = (data: GoogleSpreadsheetRow<Record<string, an
   return data.get('numCaps') != "0" || data.get('shirtsString') != "0" ? merchPickupText : ""
 }
 
+const getCouponNameListItem = (code?: string) => {
+  if (code && code != "") {
+    return `
+      <li>
+        Företagskod: <b>${code}</b>
+      </li>
+    `
+  } else {
+    return ""
+  }
+}
+
 export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
   return (`
         <!DOCTYPE html>
@@ -54,6 +66,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
           <li>
               Extra donation: <b>${data.get('extraDonation')}kr</b>
           </li>
+          ${getCouponNameListItem(data.get('couponName'))}
           <li>
               Övrig information: <b>${data.get('info')}</b>
           </li>
@@ -146,6 +159,7 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
           <li>
               Extra donation: <b>${data.get('extraDonation')}kr</b>
           </li>
+           ${getCouponNameListItem(data.get('couponName'))}
           <li>
               Övrig information: <b>${data.get('info')}</b>
           </li>
@@ -195,6 +209,7 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
           <li>
               Extra donation: <b>${data.get('extraDonation')}kr</b>
           </li>
+           ${getCouponNameListItem(data.get('couponName'))}
           <li>
               Övrig information: <b>${data.get('info')}</b>
           </li>

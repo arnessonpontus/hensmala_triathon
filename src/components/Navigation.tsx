@@ -27,6 +27,16 @@ export const DonationsButtonContainer = styled.div`
   }
 `;
 
+export const Logo = styled.img`
+  width: 20px;
+  margin-right: 10px;
+
+  @media (max-width: 350px) {
+    display: none;
+  }
+`;
+
+
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const shouldCollapse = useMediaQuery({ query: `(min-width: 1400px)` });
@@ -45,11 +55,8 @@ export const Navigation = () => {
         to="/"
         onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}
       >
-        <img
-          src="/images/nav_hona.png"
-          alt="hona"
-          style={{ width: 20, marginRight: 10 }}
-        ></img>
+        <Logo src="/images/nav_hona.png"
+          alt="hona" />
         Hensmåla Triathlon
       </NavbarBrand>
       <NavbarToggler onClick={toggleHamburger}>
