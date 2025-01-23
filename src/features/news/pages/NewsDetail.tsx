@@ -12,10 +12,12 @@ import { trimTimeFromDate } from "../utils";
 
 const StyledContainer = styled.div`
   padding: 20px;
+  max-width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  align-self: center;
 `;
 
 let markdownOptions = {
