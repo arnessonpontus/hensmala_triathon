@@ -21,10 +21,10 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
         Ett motionslopp för alla, motionär som elit. Få en härlig dag i Hensmålas vackra natur med simning (340m), cykling (9.2km), löpning (6.5km) och samtidigt bidra till ALS-forskningen.
       </p>
       {type === "solo" ?
-        <p>När du anmälder sig som individuell deltagare utför du alla tre
+        <p>När du anmäler dig som individuell deltagare utför du alla tre
           grenar på egen hand.</p>
         :
-        <p>När ni anmälder er som ett lag med tre personer utför ni en gren var. Om ni är två personer kör en persson två grenar och den andra en gren, i vilken ordning ni vill.</p>
+        <p>När ni anmäler er som ett lag med tre personer utför ni en gren var. Om ni är två personer kör en persson två grenar och den andra en gren, i vilken ordning ni vill.</p>
       }
       <p>
         För mer information om sträckorna och
