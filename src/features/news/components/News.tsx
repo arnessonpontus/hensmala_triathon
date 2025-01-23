@@ -45,7 +45,7 @@ const News = () => {
   }, [])
 
   return (
-    <Col className="s mt-5">
+    <Col className="mt-5">
       <h2>Nyheter</h2>
       {!entries && <p>Inga nyheter</p>}
       <FlexView>
