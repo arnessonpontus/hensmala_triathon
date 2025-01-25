@@ -1,11 +1,9 @@
-export const SwishQrImage = ({maxWidth = 250}: {maxWidth?: number | string}) => {
+export const SwishQrImage = ({width = 250}: {width?: number | string}) => {
   return (
-  <div style={{ display: "flex", justifyContent: "center" }}>
     <img
-      style={{maxWidth: maxWidth}}
+      width={width}
       src="/images/qr_swish.svg"
       alt="Hensmala triathlon swish qr"
     />
-  </div>
   )
 }
