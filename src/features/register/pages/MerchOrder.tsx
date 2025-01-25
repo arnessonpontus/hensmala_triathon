@@ -59,7 +59,7 @@ export const MerchOrder: React.FC = () => {
     return (
       formState.extraDonation +
       (calcShirtPrice(formState.shirts, cottonPrice, functionPrice) +
-      formState.numCaps * capPrice) * inverseDiscount
+        formState.numCaps * capPrice) * inverseDiscount
     );
   }, [formState, priceLoading, coupon]);
 
@@ -82,7 +82,7 @@ export const MerchOrder: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.MerchOrder, {...formState, coupon: coupon}, showErrorModal);
+    await handleCheckout(FormType.MerchOrder, { ...formState, coupon: coupon }, showErrorModal);
     setLoading(false)
   };
 
@@ -105,7 +105,9 @@ export const MerchOrder: React.FC = () => {
             </p>
             <p>Upphämtning görs på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b></p>
             <p>Donera gärna även en slant via Swish om du känner för det!</p>
-            <SwishQrImage />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <SwishQrImage />
+            </div>
           </Col>
           <Col style={{ marginTop: "2vh" }}>
             <hr className="register-divider"></hr>
@@ -182,7 +184,7 @@ export const MerchOrder: React.FC = () => {
                   />
                 </Label>
               </FormGroup>
-              <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)}/>
+              <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)} />
               <RegisterButton
                 type="submit"
                 disabled={!hasGivenConsent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || loading}

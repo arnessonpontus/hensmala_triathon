@@ -12,7 +12,7 @@ import { trimTimeFromDate } from "../utils";
 
 const StyledContainer = styled.div`
   padding: 20px;
-  max-width: 1200px;
+  max-width: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,10 +20,15 @@ const StyledContainer = styled.div`
   align-self: center;
 `;
 
+const StyledImageWrapper = styled.div`
+  max-width: 50%;
+  justify-self: center;
+`;
+
 let markdownOptions = {
   renderNode: {
     'embedded-asset-block': (node: any) => // TODO: Fix any
-      <img width={150} height={510} alt="en bild" className="img-fluid" src={node.data.target.fields.file.url}/>
+      <img width={150} height={510} alt="en bild" className="img-fluid" src={node.data.target.fields.file.url} />
   }
 }
 
@@ -31,7 +36,7 @@ export const NewsDetail = () => {
   const { id } = useParams();
   const [newsDetail, setNewsDetail] = useState<Entry<TypeNewsEntrySkeleton, undefined, string> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-   
+
   if (!id) {
     return <p>Kunde inte hitta nyhet</p>
   }
@@ -39,7 +44,7 @@ export const NewsDetail = () => {
   useEffect(() => {
     setIsLoading(true);
     const client = useContentfulClient();
-      client
+    client
       .getEntry<TypeNewsEntrySkeleton>(id)
       .then((entry) => setNewsDetail(entry))
       .catch((err) => console.log(err))
@@ -62,7 +67,7 @@ export const NewsDetail = () => {
   }
 
   // TODO: Handle image asset types
-  const images = newsDetail.fields.images?.filter(i => isResolvedAsset(i)).map(image => ({thumbnail: image.fields.file?.url as string, original: image.fields?.file?.url as string})) ?? [] as ReactImageGalleryItem[];
+  const images: ReactImageGalleryItem[] = newsDetail.fields.images?.filter(i => isResolvedAsset(i)).map(image => ({ thumbnail: image.fields.file?.url as string, original: image.fields?.file?.url as string, originalAlt: image.fields.title})) ?? [] as ReactImageGalleryItem[];
 
   return (
     <StyledContainer>
@@ -71,13 +76,15 @@ export const NewsDetail = () => {
         <p><i>{trimTimeFromDate(newsDetail.fields.publishedTime)}</i></p>
         <p><strong>{newsDetail.fields.ingressText}</strong></p>
         {documentToReactComponents(newsDetail.fields.body!, markdownOptions)}
-        {images.length > 0 && 
-        <ImageGallery showPlayButton={false} showFullscreenButton={true} items={images} />
+        {images.length > 0 &&
+          <StyledImageWrapper>
+            <ImageGallery showPlayButton={false} showFullscreenButton={true} items={images} showThumbnails={images.length > 1} />
+          </StyledImageWrapper>
         }
         {newsDetail.fields.videoLink ? (
-              <div className="embed-responsive embed-responsive-16by9">
-              <iframe src={newsDetail.fields.videoLink} width="640" height="360" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
-            </div>
+          <div className="embed-responsive embed-responsive-16by9">
+            <iframe src={newsDetail.fields.videoLink} width="640" height="360" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+          </div>
         ) : null}
         {newsDetail.fields.link && newsDetail.fields.linkText ? (
           <div className="mt-4 d-flex justify-content-center">
