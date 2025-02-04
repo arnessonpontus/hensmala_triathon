@@ -10,8 +10,16 @@ import { BaseButton } from "../../../components/Button/BaseButton";
 
 const images = [
   {
-    original: "/images/clothes/shirt_no_image.png",
-    thumbnail: "/images/clothes/shirt_no_image.png",
+    original: "/images/clothes/funktion_2025_fram.png",
+    thumbnail: "/images/clothes/funktion_2025_fram_thumb.png",
+  },
+  {
+    original: "/images/clothes/funktion_2025_bak.png",
+    thumbnail: "/images/clothes/funktion_2025_bak_thumb.png",
+  },
+  {
+    original: "/images/clothes/bomull_2025.png",
+    thumbnail: "/images/clothes/bomull_2025.png",
   }
 ];
 
@@ -55,8 +63,7 @@ const ShirtSelect = (props: { updateShirtSelection: (shirts: Shirt[]) => void })
 
   return (
     <div id="shirt-select">
-      <p className="w-100 d-flex justify-content-center">Färg är ännu inte bestämd. Bild kommer snart.</p>
-      <ImageGallery showThumbnails={false} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
+      <ImageGallery showThumbnails={true} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
       <div className="shirt-inputs">
         {shirts.map((shirt, i) => {
           return (
