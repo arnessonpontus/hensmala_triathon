@@ -14,7 +14,7 @@ import ConsentModal from "../../consent/components/ConsentModal";
 import RegisterButton from "../components/RegisterButton";
 
 import { BaseOrderType, FormType } from "../models";
-import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, isProductRegistration } from "../utils";
+import { calcTotalProductPrice, isProductRegistration } from "../utils";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
@@ -46,9 +46,7 @@ export const MerchOrder: React.FC = () => {
   const [formState, setFormState] = useState<BaseOrderType>(defaultState);
 
   const totalCost = useMemo((): number | null => {
-    const inverseDiscount = getInverseDiscountFromPercentOff(coupon?.percent_off);
-
-    return calcTotalRegisterPrice(cart, formState.extraDonation, inverseDiscount)
+    return calcTotalProductPrice(cart, formState.extraDonation, coupon)
   }, [productsLoading, formState, coupon, cart]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

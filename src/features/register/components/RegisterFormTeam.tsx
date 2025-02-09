@@ -9,11 +9,12 @@ import {
   Card,
   CardBody,
   FormText,
+  Collapse,
 } from "reactstrap";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormTeamState } from "../models";
-import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, isProductRegistration, scrollToInfo } from "../utils";
+import { calcTotalProductPrice, isProductRegistration, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import { ErrorBanner } from "../../../components/ErrorBanner";
@@ -27,6 +28,7 @@ import useProducts from "../hooks/useProducts";
 import { useCart } from "../../../context/CartContext";
 import SmallCartItem from "./SmallCartItem";
 import PurchaseItem, { PurchaseItemsContainer } from "./PurchaseItem";
+import SelectableProductListToggle from "./SelectableProductListToggle";
 
 export const RegisterFormTeam = () => {
   const { loading: productsLoading, getProductByName, products } = useProducts();
@@ -34,6 +36,7 @@ export const RegisterFormTeam = () => {
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   const [formState, setFormState] = useState<RegisterFormTeamState>({
     teamName: "",
@@ -79,9 +82,7 @@ export const RegisterFormTeam = () => {
 
 
   const totalCost = useMemo((): number | null => {
-    const inverseDiscount = getInverseDiscountFromPercentOff(coupon?.percent_off);
-
-    return calcTotalRegisterPrice(cart, formState.extraDonation, inverseDiscount)
+    return calcTotalProductPrice(cart, formState.extraDonation, coupon)
   }, [productsLoading, formState, coupon, cart]);
 
   const renderMemberFields = () => {
@@ -199,11 +200,12 @@ export const RegisterFormTeam = () => {
               onChange={handleChange}
             />
           </FormGroup>
-          <FormGroup>
-            <PurchaseItemsContainer>
-              {products.map(p => p.metadata.selectable ? <PurchaseItem product={p} /> : null)}
-            </PurchaseItemsContainer>
-          </FormGroup>
+          <SelectableProductListToggle items={products} isProductsOpen={isProductsOpen} setIsProductsOpen={setIsProductsOpen}/>
+            <Collapse isOpen={isProductsOpen}>
+              <PurchaseItemsContainer>
+                {products.map(p => p.metadata.selectable ? <PurchaseItem product={p} /> : null)}
+              </PurchaseItemsContainer>
+            </Collapse>
           <FormGroup>
             <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
             <ExtraDonation setDonation={(donationAmount) => setFormState(prev => ({ ...prev, extraDonation: donationAmount }))} />

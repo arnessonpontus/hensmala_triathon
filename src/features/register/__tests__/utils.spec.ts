@@ -99,15 +99,15 @@ describe("Shirt", () => {
   });
 
   it('should return null if any price is null', () => {
-    expect(Utils.calcTotalRegisterPrice(null, functionPrice, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, null, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, null, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, capPrice, null, numCaps, shirts, donation, 0)).toBeNull();
+    expect(Utils.calcTotalProductPrice(null, functionPrice, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
+    expect(Utils.calcTotalProductPrice(cottonPrice, null, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
+    expect(Utils.calcTotalProductPrice(cottonPrice, functionPrice, null, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
+    expect(Utils.calcTotalProductPrice(cottonPrice, functionPrice, capPrice, null, numCaps, shirts, donation, 0)).toBeNull();
   });
 
   it('should calculate the total when having discount for 60% for all but donation', () => {
     const inverseDiscount = 0.4;
-    const result = Utils.calcTotalRegisterPrice(
+    const result = Utils.calcTotalProductPrice(
       cottonPrice,
       functionPrice,
       capPrice,
@@ -121,7 +121,7 @@ describe("Shirt", () => {
   });
 
   it('should handle the case when numCaps is 0', () => {
-    const result = Utils.calcTotalRegisterPrice(
+    const result = Utils.calcTotalProductPrice(
       cottonPrice,
       functionPrice,
       capPrice,
@@ -135,7 +135,7 @@ describe("Shirt", () => {
   })
 
   it('should return the correct total if there is no donation', () => {
-    const result = Utils.calcTotalRegisterPrice(
+    const result = Utils.calcTotalProductPrice(
       cottonPrice,
       functionPrice,
       capPrice,

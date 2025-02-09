@@ -1,5 +1,6 @@
 import moment from 'moment-timezone';
 import { CartItem, ProductWithExpandedPrice, registerType, registerTypes, Shirt } from "./models";
+import Stripe from 'stripe';
 
 export function shirtArrayToString(items: CartItem[]) {
   return items.filter(s => (
@@ -42,12 +43,16 @@ export const calcShirtPrice = (shirts: Shirt[], cottonShirtPrice: number, functi
   return shirtAmount;
 }
 
-export const calcTotalRegisterPrice = (
+export const calcTotalProductPrice = (
   products: CartItem[],
   donation: number,
-  inverseDiscount: number
+  coupon: Stripe.Coupon | undefined
 ) => {
-  return donation + (products.reduce((prev, curr) => prev + curr.quantity * oreToSek(curr.default_price?.unit_amount ?? 0), 0)) * inverseDiscount;
+  return donation + (products.reduce((prev, curr) => {
+    const doesIncludeProduct = coupon?.applies_to?.products.includes(curr.id);
+    const inverseDiscount = doesIncludeProduct ? getInverseDiscountFromPercentOff(coupon?.percent_off) : 1;
+    return prev + curr.quantity * oreToSek(curr.default_price?.unit_amount ?? 0) * inverseDiscount;
+  }, 0));
 }
 
 export const oreToSek = (ore: number) => {

@@ -3,7 +3,7 @@ import { useCart } from "../../../context/CartContext";
 import { CartItem } from "../models";
 import { BaseButton } from "../../../components/Button/BaseButton";
 
-export const Contaienr = styled.div`
+export const Container = styled.div`
   padding: 10px;
   background-color: cornflowerblue;
 `;
@@ -14,7 +14,7 @@ const ProductThumbnail = styled.div`
   gap: 12px;
 `;
 
-const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
   position: relative;
   width: 64px;
   height: 64px;
@@ -42,7 +42,7 @@ const ProductDetails = styled.p`
   color: #666;
 `;
 
-const ThumbnailImage = styled.img`
+export const ThumbnailImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -53,7 +53,7 @@ const SmallCartItem = ({ item, isDeletable }: { item: CartItem, isDeletable?: bo
   return (
     <ProductThumbnail>
       <ImageWrapper>
-        <ThumbnailImage src={item.images[0] || "/placeholder.svg"} alt={item.name} />
+        <ThumbnailImage src={item.images[0] || "/images/placeholder-image.webp"} alt={item.name} />
       </ImageWrapper>
       <ProductThumbnailText>
         <ProductName>{item.name}</ProductName>

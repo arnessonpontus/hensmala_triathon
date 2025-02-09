@@ -29,13 +29,22 @@ export const SelectButtonContainer = styled.div`
   gap: 5px;
 `;
 
-export const PurchaseItemContainer = styled.div`
+const PurchaseItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
   border-radius: 20px;
   border: 2px solid #d9d9d9;
   padding: 15px;
+`;
+
+const PurchaseItemTitle = styled.h2`
+  font-size: 24px;
+`;
+
+const PurchaseItemPrice = styled.h3`
+  font-size: 20px;
+  color: #6a6868;
 `;
 
 const PurchaseItem = ({ product }: { product: ProductWithExpandedPrice }) => {
@@ -71,10 +80,12 @@ const PurchaseItem = ({ product }: { product: ProductWithExpandedPrice }) => {
 
   return (
     <PurchaseItemContainer>
-      <ImageGallery showThumbnails={false} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
+      {images.length > 0 &&
+        <ImageGallery showThumbnails={false} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
+      }
       <div>
-        <h2>{product.name}</h2>
-        <h4>{oreToSek(product.default_price?.unit_amount ?? 0)} kr</h4>
+        <PurchaseItemTitle>{product.name}</PurchaseItemTitle>
+        <PurchaseItemPrice>{oreToSek(product.default_price?.unit_amount ?? 0)} kr</PurchaseItemPrice>
       </div>
       {sizes.length > 0 &&
         <div>
@@ -86,7 +97,7 @@ const PurchaseItem = ({ product }: { product: ProductWithExpandedPrice }) => {
             onChange={(e) => setSelectedSize(e.target.value)}
           >
             <option disabled selected={selectedSize == ""}>
-              Storlek
+              Välj storlek
             </option>
             {sizes.map((size) => {
               return (
@@ -108,7 +119,7 @@ const PurchaseItem = ({ product }: { product: ProductWithExpandedPrice }) => {
             onChange={(e) => setSelectedType(e.target.value)}
           >
             <option disabled selected={selectedType == ""}>
-              Typ
+              Välj typ
             </option>
             {types.map((type) => {
               return (

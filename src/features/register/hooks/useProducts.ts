@@ -56,7 +56,7 @@ const useProducts = () => {
 
     return oreToSek(product.default_price.unit_amount);
   }
-  
+
   return { products, loading, error, getProductByName, getPriceByProductName };
 };
 

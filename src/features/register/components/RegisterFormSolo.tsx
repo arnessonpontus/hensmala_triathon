@@ -7,11 +7,12 @@ import {
   Row,
   Col,
   FormText,
+  Collapse,
 } from "reactstrap";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormSoloState } from "../models";
-import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, isProductRegistration, scrollToInfo } from "../utils";
+import { calcTotalProductPrice, isProductRegistration, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import useProducts from "../hooks/useProducts";
@@ -25,6 +26,14 @@ import { CouponCodeInput } from "../../../components/CouponCodeInput";
 import PurchaseItem, { PurchaseItemsContainer } from "./PurchaseItem";
 import { useCart } from "../../../context/CartContext";
 import SmallCartItem from "./SmallCartItem";
+import styled from "styled-components";
+import SelectableProductListToggle from "./SelectableProductListToggle";
+
+export const ImageList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex;
+`;
 
 export const RegisterFormSolo = () => {
   const { loading: productsLoading, products, getProductByName } = useProducts();
@@ -32,6 +41,7 @@ export const RegisterFormSolo = () => {
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   const [formState, setFormState] = useState<RegisterFormSoloState>({
     name1: "",
@@ -64,9 +74,7 @@ export const RegisterFormSolo = () => {
   };
 
   const totalCost = useMemo((): number | null => {
-    const inverseDiscount = getInverseDiscountFromPercentOff(coupon?.percent_off);
-
-    return calcTotalRegisterPrice(cart, formState.extraDonation, inverseDiscount)
+    return calcTotalProductPrice(cart, formState.extraDonation, coupon)
   }, [productsLoading, formState, coupon, cart]);
 
   const { showErrorModal } = useErrorModal();
@@ -86,7 +94,6 @@ export const RegisterFormSolo = () => {
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Individuell</h3>
-
             <ScrollToInfoButton onClick={() => scrollToInfo("info-text")}>
               Visa info<i className="fas fa-angle-down angle-down"></i>
             </ScrollToInfoButton>
@@ -175,9 +182,12 @@ export const RegisterFormSolo = () => {
             />
           </FormGroup>
           <FormGroup>
-            <PurchaseItemsContainer>
-              {products.map(p => p.metadata.selectable ? <PurchaseItem product={p} /> : null)}
-            </PurchaseItemsContainer>
+            <SelectableProductListToggle items={products} isProductsOpen={isProductsOpen} setIsProductsOpen={setIsProductsOpen}/>
+            <Collapse isOpen={isProductsOpen}>
+              <PurchaseItemsContainer>
+                {products.map(p => p.metadata.selectable ? <PurchaseItem product={p} /> : null)}
+              </PurchaseItemsContainer>
+            </Collapse>
           </FormGroup>
           <FormGroup>
             <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
