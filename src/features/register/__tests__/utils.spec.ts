@@ -1,4 +1,4 @@
-import { Shirt } from "../models";
+import { CartItem, Shirt } from "../models";
 import * as Utils from '../utils'; // Import the entire module
 
 describe("Shirt", () => {
@@ -18,15 +18,21 @@ describe("Shirt", () => {
     expect(Utils.hasValidShirt([{ material: "bomull", size: "XXL", type: null }])).not.toBeTruthy()
   });
 
-  it('shoud give correct shirt string', () => {
-    const shirts: Shirt[] = [
-      { material: "bomull", size: "XXL", type: null },
-      { material: "funktion", size: "S", type: "Dam" },
-      { material: "bomull", size: "XXL", type: "Herr" },
-      { material: "bomull", size: "XS", type: "Herr" },
-    ]
-    expect(Utils.shirtArrayToString(shirts)).toBe("Dam S funktion, Herr XXL bomull, Herr XS bomull")
+  it('should return the correct string for valid shirts', () => {
+    const items: CartItem[] = [
+      { metadata: { data_id: "funktion" }, quantity: 2, name: "Tshirt funktion", selectedType: "Herr", selectedSize: "M" },
+      { metadata: { data_id: "bomull" }, quantity: 1, name: "Tshirt bomull", selectedType: "Dam", selectedSize: "S" },
+      { metadata: { data_id: "funktion" }, quantity: 3, name: "Tshirt funktion", selectedType: "Herr", selectedSize: null },
+      { metadata: { data_id: "bomull" }, quantity: 1, name: "Tshirt bomull", selectedType: null, selectedSize: "L" },
+      { metadata: { data_id: "keps" }, quantity: 1, name: "Tshirt bomull", selectedType: "Herr", selectedSize: "L" },
+      { metadata: { data_id: "funktion" }, quantity: 1, name: "Tshirt funktion", selectedType: "Herr", selectedSize: "XXL" }
+    ] as unknown as CartItem[];
+
+    const result = Utils.shirtArrayToString(items);
+
+    expect(result).toBe('2 Tshirt funktion Herr M, 1 Tshirt bomull Dam S, 1 Tshirt funktion Herr XXL');
   });
+
 })
 
 describe("Shirt price", () => {

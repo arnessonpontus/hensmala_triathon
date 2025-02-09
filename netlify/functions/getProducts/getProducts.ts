@@ -15,26 +15,29 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    for (const stripeCoupon of (await stripe.coupons.list({expand: ['data.applies_to']})).data) {
-      const coupon = event.queryStringParameters?.['coupon'];
-      if (coupon?.toLocaleLowerCase() === stripeCoupon.name?.toLocaleLowerCase()) {
+    const products = (await stripe.products.list({
+      expand: ['data.default_price'],
+    })).data;
+
+    for (const product of products) {
+      if (typeof product.default_price === 'string') {
         return {
-          statusCode: 200,
-          body: JSON.stringify(stripeCoupon),
+          statusCode: 500,
+          body: JSON.stringify({ error: "Failed to expand prices for products" }),
         };
       }
-
     }
+
     return {
-      statusCode: 404,
-      body: JSON.stringify({ error: "No code matching" }),
+      statusCode: 200,
+      body: JSON.stringify(products),
     };
 
   } catch (error) {
-    console.error("Error retrieving coupon:", error);
+    console.error("Error retrieving price:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to retrieve coupon" }),
+      body: JSON.stringify({ error: "Failed to retrieve price" }),
     };
   }
 }

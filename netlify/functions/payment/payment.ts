@@ -1,7 +1,7 @@
 import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
-import { BaseOrderType, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../../../src/features/register/models';
-import { createCapPurchaseItems, createExtraDonationPurchaseItem, createRegistrationPurchaseItem, createShirtPurchaseItems, toMetaData } from '../utils/paymentUtil';
+import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../../../src/features/register/models';
+import { createExtraDonationPurchaseItem, toMetaData } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 import { getNodeEnvVariable } from '../utils/envUtil';
 import { validateFormData } from './validation';
@@ -28,8 +28,9 @@ export const handler: Handler = async (event) => {
 
   // Handle POST request for payment creation
   try {
-    const { formType, formData } = JSON.parse(event.body || '{}') as {formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType};
+    const { formType, formData, cartData } = JSON.parse(event.body || '{}') as {formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType, cartData: CartItem[]};
 
+    // TODO: Validate cartData
     const { error } = validateFormData(formData, formType);
     if (error) {
       return {
@@ -40,21 +41,13 @@ export const handler: Handler = async (event) => {
     
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-    lineItems.push(...createRegistrationPurchaseItem(formType));
-
-    if (Array.isArray(formData.shirts)) {
-      lineItems.push(...createShirtPurchaseItems(formData.shirts));
-    }
-
-    if (typeof formData.numCaps === 'number' && formData.numCaps > 0) {
-      lineItems.push(...createCapPurchaseItems(formData.numCaps));
-    }
+    cartData.forEach(d => lineItems.push({price: d.default_price?.id, quantity: d.quantity}))
 
     if (formData.extraDonation > 0) {
       lineItems.push(...createExtraDonationPurchaseItem(formData.extraDonation));
     }
 
-    const metadata = toMetaData(formType, formData);
+    const metadata = toMetaData(formType, formData, cartData);
 
     console.log("Processing metadata: ", metadata)
 

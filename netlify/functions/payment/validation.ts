@@ -1,38 +1,7 @@
 import Joi from 'joi';
-import { FormType, genderValues, shirtMaterials, shirtTypes, sizeValues } from '../../../src/features/register/models';
+import { FormType, genderValues } from '../../../src/features/register/models';
 
 const baseOrderTypeSchema = Joi.object({
-  shirts: Joi.array()
-    .items(
-      Joi.object({
-        size: Joi.valid(...sizeValues).required().messages({
-          'string.empty': 'Storlek krävs.',
-          'any.only': `Ogiltig storlek. Tillåtna värden är: ${sizeValues.join(", ")}.`,
-          'any.required': 'Storlek är obligatorisk.'
-        }),
-        type: Joi.string().valid(...shirtTypes).required().messages({
-          'string.empty': 'Typ krävs.',
-          'any.only': `Ogiltig typ. Tillåtna värden är: ${shirtTypes.join(", ")}.`,
-          'any.required': 'Typ är obligatorisk.'
-        }),
-        material: Joi.string().valid(...shirtMaterials).required().messages({
-          'string.empty': 'Material krävs.',
-          'any.only': `Ogiltigt material. Tillåtna värden är: ${shirtMaterials.join(", ")}.`,
-          'any.required': 'Material är obligatoriskt.'
-        }),
-      }).options({ allowUnknown: false }) // Disallow additional fields
-    )
-    .required().messages({
-      'array.base': 'T-shirts måste vara en lista.',
-      'array.empty': 'T-shirt-listan kan inte vara tom.',
-      'any.required': 'T-shirts är obligatoriska.'
-    }),
-
-  numCaps: Joi.number().min(0).required().messages({
-    'number.base': 'Antalet kepsar måste vara ett nummer.',
-    'number.min': 'Antalet kepsar kan inte vara mindre än 0.',
-    'any.required': 'Antal kepsar är obligatoriskt.'
-  }),
 
   coupon: Joi.object({
     id: Joi.string().max(50).required().messages({

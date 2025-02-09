@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -10,13 +10,11 @@ import {
 } from "reactstrap";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
-import ShirtSelect from "./ShirtSelect";
-import CapSelect from "./CapSelect";
 import { FormType, RegisterFormSoloState } from "../models";
-import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, scrollToInfo } from "../utils";
+import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, isProductRegistration, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
-import usePrices from "../hooks/usePrices";
+import useProducts from "../hooks/useProducts";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
@@ -24,9 +22,13 @@ import { ConsentCheckboxes } from "./ConsentCheckboxes";
 import { ScrollToInfoButton } from "../pages/Register";
 import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
+import PurchaseItem, { PurchaseItemsContainer } from "./PurchaseItem";
+import { useCart } from "../../../context/CartContext";
+import SmallCartItem from "./SmallCartItem";
 
 export const RegisterFormSolo = () => {
-  const { loading: priceLoading, getPriceByName } = usePrices();
+  const { loading: productsLoading, products, getProductByName } = useProducts();
+  const { cart, removeFromCart, addToCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
@@ -40,10 +42,20 @@ export const RegisterFormSolo = () => {
     info: "",
     gender: "",
     city1: "",
-    shirts: [],
-    numCaps: 0,
     extraDonation: 0,
   });
+
+  useEffect(() => {
+    const registerProduct = getProductByName("registration-fee-solo");
+    if (!productsLoading && registerProduct && !cart.some(i => i.metadata.data_id == "registration-fee-solo")) {
+      addToCart(registerProduct, 1)
+    }
+    return (() => {
+      if (registerProduct) {
+        removeFromCart(registerProduct.id)
+      }
+    })
+  }, [productsLoading])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -51,26 +63,18 @@ export const RegisterFormSolo = () => {
     setFormState(prevState => ({ ...prevState, [name]: value }));
   };
 
-
   const totalCost = useMemo((): number | null => {
     const inverseDiscount = getInverseDiscountFromPercentOff(coupon?.percent_off);
 
-    return calcTotalRegisterPrice(getPriceByName("bomull"),
-      getPriceByName("funktion"),
-      getPriceByName("keps"),
-      getPriceByName("registration-fee-solo"),
-      formState.numCaps,
-      formState.shirts,
-      formState.extraDonation,
-      inverseDiscount)
-  }, [priceLoading, formState, coupon]);
+    return calcTotalRegisterPrice(cart, formState.extraDonation, inverseDiscount)
+  }, [productsLoading, formState, coupon, cart]);
 
   const { showErrorModal } = useErrorModal();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.Solo, {...formState, coupon}, showErrorModal);
+    await handleCheckout(FormType.Solo, { ...formState, coupon }, cart, showErrorModal);
     setLoading(false)
   };
 
@@ -171,14 +175,9 @@ export const RegisterFormSolo = () => {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Lägg till t-shirt (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
-            <div className="clothes-select">
-              <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, shirts: newShirts }))} />
-            </div>
-            <Label className="mt-2">Lägg till keps ({getPriceByName("keps")}kr)</Label>
-            <div className="clothes-select">
-              <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps }))} />
-            </div>
+            <PurchaseItemsContainer>
+              {products.map(p => p.metadata.selectable ? <PurchaseItem product={p} /> : null)}
+            </PurchaseItemsContainer>
           </FormGroup>
           <FormGroup>
             <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
@@ -187,21 +186,21 @@ export const RegisterFormSolo = () => {
           <FormGroup>
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
-          <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
+          <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)} />
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
-
-          <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)}/>
+          {cart.map(item => <SmallCartItem isDeletable={!isProductRegistration(item)} item={item} />)}
+          <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)} />
           <RegisterButton
-              type="submit"
-              disabled={!allConsentsChecked || loading}
-              loading={loading}
-            />
+            type="submit"
+            disabled={!allConsentsChecked || loading}
+            loading={loading}
+          />
         </Form>
       </Col>
-      <RegisterInfo type="solo"/>
+      <RegisterInfo type="solo" />
     </Row>
   );
 }
