@@ -28,21 +28,6 @@ export function scrollToInfo(elementID: string) {
   window.scrollTo({ top: y, behavior: 'smooth' });
 };
 
-export const calcShirtPrice = (shirts: Shirt[], cottonShirtPrice: number, functionShirtPrice: number) => {
-  const shirtAmount = shirts.reduce((acc, shirt) => {
-    if (shirt.size && shirt.type && shirt.material) {
-      if (shirt.material === 'bomull') {
-        return acc + cottonShirtPrice;
-      } else {
-        return acc + functionShirtPrice;
-      }
-    } else {
-      return acc;
-    }
-  }, 0);
-  return shirtAmount;
-}
-
 export const calcTotalProductPrice = (
   products: CartItem[],
   donation: number,
