@@ -4,7 +4,7 @@ import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormT
 import { createExtraDonationPurchaseItem, toMetaData } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 import { getNodeEnvVariable } from '../utils/envUtil';
-import { validateFormData } from './validation';
+import { validateFormCart, validateFormData } from './validation';
 
 const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
   apiVersion: '2024-10-28.acacia',
@@ -30,12 +30,13 @@ export const handler: Handler = async (event) => {
   try {
     const { formType, formData, cartData } = JSON.parse(event.body || '{}') as {formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType, cartData: CartItem[]};
 
-    // TODO: Validate cartData
-    const { error } = validateFormData(formData, formType);
-    if (error) {
+    const { error: errorForm } = validateFormData(formData, formType);
+    const { error: errorCart } = validateFormCart(cartData);
+    
+    if (errorForm || errorCart) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ errors: error.details })
+        body: JSON.stringify({ errors: errorForm ? errorForm.details : errorCart?.details })
       };
     }
     

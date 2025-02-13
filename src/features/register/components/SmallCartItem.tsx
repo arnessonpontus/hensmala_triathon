@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 const ProductThumbnail = styled.div`
   display: flex;
+  max-width: 300px;
   align-items: center;
   gap: 12px;
 `;

@@ -12,7 +12,7 @@ import {
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormSoloState } from "../models";
-import { calcTotalProductPrice, isProductRegistration, scrollToInfo } from "../utils";
+import { calcTotalProductPrice, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import useProducts from "../hooks/useProducts";
@@ -25,9 +25,9 @@ import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
 import PurchaseItem, { PurchaseItemsContainer } from "./PurchaseItem";
 import { useCart } from "../../../context/CartContext";
-import SmallCartItem from "./SmallCartItem";
 import styled from "styled-components";
 import SelectableProductListToggle from "./SelectableProductListToggle";
+import { CartItemList } from "./CartItemList";
 
 export const ImageList = styled.div`
   display: flex;
@@ -37,11 +37,11 @@ export const ImageList = styled.div`
 
 export const RegisterFormSolo = () => {
   const { loading: productsLoading, products, getProductByName } = useProducts();
-  const { cart, removeFromCart, addToCart } = useCart();
+  const { cart, addToCart, emptyCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(true);
 
   const [formState, setFormState] = useState<RegisterFormSoloState>({
     name1: "",
@@ -61,9 +61,7 @@ export const RegisterFormSolo = () => {
       addToCart(registerProduct, 1)
     }
     return (() => {
-      if (registerProduct) {
-        removeFromCart(registerProduct.id)
-      }
+      emptyCart();
     })
   }, [productsLoading])
 
@@ -197,11 +195,11 @@ export const RegisterFormSolo = () => {
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
           <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)} />
+         <CartItemList items={cart} />
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
-          {cart.map(item => <SmallCartItem isDeletable={!isProductRegistration(item)} item={item} />)}
           <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)} />
           <RegisterButton
             type="submit"
