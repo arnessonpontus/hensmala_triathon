@@ -34,10 +34,10 @@ export const handler: Handler = async (event) => {
     };
 
   } catch (error) {
-    console.error("Error retrieving price:", error);
+    console.error("Error retrieving product:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to retrieve price" }),
+      body: JSON.stringify({ error: "Failed to retrieve product" }),
     };
   }
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -14,7 +14,7 @@ import ConsentModal from "../../consent/components/ConsentModal";
 import RegisterButton from "../components/RegisterButton";
 
 import { BaseOrderType, FormType } from "../models";
-import { calcTotalProductPrice, isProductRegistration } from "../utils";
+import { calcTotalProductPrice } from "../utils";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
@@ -26,12 +26,12 @@ import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
 import useProducts from "../hooks/useProducts";
 import { useCart } from "../../../context/CartContext";
-import SmallCartItem from "../components/SmallCartItem";
 import PurchaseItem, { PurchaseItemsContainer } from "../components/PurchaseItem";
+import { CartItemList } from "../components/CartItemList";
 
 export const MerchOrder: React.FC = () => {
   const { loading: productsLoading, products } = useProducts();
-  const { cart } = useCart();
+  const { cart, emptyCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [hasGivenConsent, setHasGivenConsent] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
@@ -44,6 +44,12 @@ export const MerchOrder: React.FC = () => {
   }
 
   const [formState, setFormState] = useState<BaseOrderType>(defaultState);
+
+  useEffect(() => {
+    return (() => {
+      emptyCart();
+    })
+  }, [])
 
   const totalCost = useMemo((): number | null => {
     return calcTotalProductPrice(cart, formState.extraDonation, coupon)
@@ -145,7 +151,7 @@ export const MerchOrder: React.FC = () => {
               <FormGroup>
                 <FormText color="bold">* obligatoriska fält.</FormText>
               </FormGroup>
-              {cart.map(item => <SmallCartItem isDeletable={!isProductRegistration(item)} item={item} />)}
+              <CartItemList items={cart} />
               <FormGroup>
                 <Label for="totalAmountToPay">Totalt att betala:</Label>
                 {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}

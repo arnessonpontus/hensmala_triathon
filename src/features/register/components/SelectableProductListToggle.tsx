@@ -3,11 +3,17 @@ import { BaseButton } from "../../../components/Button/BaseButton";
 import { ImageList } from "./RegisterFormSolo";
 import { ImageWrapper, ThumbnailImage } from "./SmallCartItem";
 
-const SelectableProductListToggle = ({ items, isProductsOpen, setIsProductsOpen }: { items: ProductWithExpandedPrice[], isProductsOpen: boolean, setIsProductsOpen: (a: boolean) => void }) => {
+interface Props {
+  items: ProductWithExpandedPrice[],
+  isProductsOpen: boolean,
+  setIsProductsOpen: (a: boolean) => void
+}
+
+const SelectableProductListToggle = ({ items, isProductsOpen, setIsProductsOpen }: Props) => {
   if (isProductsOpen) {
     return (
       <BaseButton small type="button" onClick={() => setIsProductsOpen(!isProductsOpen)}>
-        Döjl kläder
+        Dölj kläder
         <i className="fas fa-chevron-up"></i>
       </BaseButton>
     )
@@ -16,7 +22,7 @@ const SelectableProductListToggle = ({ items, isProductsOpen, setIsProductsOpen 
   return (
     <>
       <BaseButton small type="button" onClick={() => setIsProductsOpen(!isProductsOpen)}>
-        Visa kläder attt beställa
+        Visa kläder att beställa
         <i className="fas fa-chevron-down"></i>
       </BaseButton>
       <ImageList>

@@ -1,8 +1,7 @@
 import Joi from 'joi';
-import { FormType, genderValues } from '../../../src/features/register/models';
+import { CartItem, FormType, genderValues } from '../../../src/features/register/models';
 
 const baseOrderTypeSchema = Joi.object({
-
   coupon: Joi.object({
     id: Joi.string().max(50).required().messages({
       'string.base': 'Kupong-ID måste vara en text.',
@@ -182,4 +181,42 @@ export function validateFormData(formData: any, formType: FormType) {
   }
 
   return schema.validate(formData, { abortEarly: false });
+}
+
+export function validateFormCart(cart: CartItem[]) {
+  const schema = Joi.array().items(
+    Joi.object({
+      id: Joi.string().required().messages({
+        'string.base': 'Produkt-ID måste vara en text.',
+        'any.required': 'Produkt-ID är obligatoriskt.'
+      }),
+      quantity: Joi.number().min(1).max(20).required().messages({
+        'number.base': 'Antal måste vara ett nummer.',
+        'number.min': 'Antal måste vara minst 1.',
+        'number.max': 'Antal måste vara max 20.',
+        'any.required': 'Antal är obligatoriskt.'
+      }),
+      default_price: Joi.object({
+        id: Joi.string().required().messages({
+          'string.base': 'Pris-ID måste vara en text.',
+          'any.required': 'PrPrisodukt-ID är obligatoriskt.'
+        }),
+        unit_amount: Joi.number().min(0).required().messages({
+          'number.base': 'Pris måste vara ett nummer.',
+          'number.min': 'Pris kan inte vara negativt.',
+          'any.required': 'Pris är obligatoriskt.'
+        }),
+        currency: Joi.string().valid("sek").required().messages({
+          'string.base': 'Valuta måste vara en text.',
+          'any.required': 'Valuta är obligatoriskt.',
+          'any.only': 'endast sek är tillåtet'
+        })
+      }).required().unknown(true).messages({
+        'object.base': 'Produktens pris måste vara giltigt.',
+        'any.required': 'Produkten måste ha ett pris.'
+      })
+    }).unknown(true)
+  );
+
+  return schema.validate(cart, { abortEarly: false });
 }

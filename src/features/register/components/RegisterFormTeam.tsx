@@ -14,7 +14,7 @@ import {
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormTeamState } from "../models";
-import { calcTotalProductPrice, isProductRegistration, scrollToInfo } from "../utils";
+import { calcTotalProductPrice, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
 import { ErrorBanner } from "../../../components/ErrorBanner";
@@ -26,17 +26,17 @@ import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
 import useProducts from "../hooks/useProducts";
 import { useCart } from "../../../context/CartContext";
-import SmallCartItem from "./SmallCartItem";
 import PurchaseItem, { PurchaseItemsContainer } from "./PurchaseItem";
 import SelectableProductListToggle from "./SelectableProductListToggle";
+import { CartItemList } from "./CartItemList";
 
 export const RegisterFormTeam = () => {
   const { loading: productsLoading, getProductByName, products } = useProducts();
-  const { cart, removeFromCart, addToCart } = useCart();
+  const { cart, emptyCart, addToCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(true);
 
   const [formState, setFormState] = useState<RegisterFormTeamState>({
     teamName: "",
@@ -69,9 +69,7 @@ export const RegisterFormTeam = () => {
       addToCart(registerProduct, 1)
     }
     return (() => {
-      if (registerProduct) {
-        removeFromCart(registerProduct.id)
-      }
+      emptyCart();
     })
   }, [productsLoading])
 
@@ -214,7 +212,7 @@ export const RegisterFormTeam = () => {
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
           <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)} />
-          {cart.map(item => <SmallCartItem isDeletable={!isProductRegistration(item)} item={item} />)}
+          <CartItemList items={cart} />
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
