@@ -1,56 +1,6 @@
 import Stripe from "stripe";
-import { BaseOrderType, FormType, RegisterFormSoloState, RegisterFormTeamState, Shirt, StripeMetadata } from "../../../src/features/register/models";
-import { getPriceId } from "./pricing";
+import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState, StripeMetadata } from "../../../src/features/register/models";
 import { sekToOre, shirtArrayToString } from "../../../src/features/register/utils";
-
-
-export const createRegistrationPurchaseItem = (formType: FormType): Stripe.Checkout.SessionCreateParams.LineItem[] => {
-
-  let registrationPriceId: string | null = null;
-
-  if (formType === FormType.Solo) {
-    registrationPriceId = getPriceId("registration-fee-solo");
-  } else if (formType === FormType.Team) {
-    registrationPriceId = getPriceId("registration-fee-team");
-  }
-
-  if (registrationPriceId) {
-    return [
-      {
-        price: registrationPriceId,
-        quantity: 1,
-      },
-    ];
-  }
-  return [];
-}
-
-export const createShirtPurchaseItems = (shirts: Shirt[]): Stripe.Checkout.SessionCreateParams.LineItem[] => {
-  const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-  if (Array.isArray(shirts)) {
-    shirts.forEach((shirt: Shirt) => {
-      const shirtPriceId = getPriceId(shirt.material);
-      if (shirtPriceId) {
-        lineItems.push({
-          price: shirtPriceId,
-          quantity: 1,
-        });
-      }
-    });
-  }
-  return lineItems;
-}
-
-export const createCapPurchaseItems = (numCaps: number): Stripe.Checkout.SessionCreateParams.LineItem[] => {
-  const capPriceId = getPriceId("keps")
-  if (capPriceId) {
-    return [{
-      price: capPriceId,
-      quantity: numCaps,
-    }];
-  }
-  return [];
-}
 
 export const createExtraDonationPurchaseItem = (extraDonation: number): Stripe.Checkout.SessionCreateParams.LineItem[] => {
   const amountInOre = sekToOre(extraDonation);
@@ -76,16 +26,18 @@ export function birthdayToString(year: string, month: string, day: string): stri
 
 export const toMetaData = (
   formType: FormType,
-  formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType
+  formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType,
+  cartData: CartItem[]
 ): StripeMetadata => {
+  // TODO: Change show purchase items are added to email etc
   const baseMetadata: StripeMetadata = {
     formType,
-    shirtsString: shirtArrayToString(formData.shirts),
+    shirtsString: shirtArrayToString(cartData),
     name1: formData.name1,
     email1: formData.email1,
     extraDonation: formData.extraDonation.toString(),
     info: formData.info || '',
-    numCaps: formData.numCaps.toString(),
+    numCaps: cartData.find(d => d.metadata.data_id === "keps")?.quantity.toString() ?? "0",
     couponName: formData.coupon?.name || '',
   };
 

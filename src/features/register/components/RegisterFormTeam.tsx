@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -9,16 +9,14 @@ import {
   Card,
   CardBody,
   FormText,
+  Collapse,
 } from "reactstrap";
-import ShirtSelect from "./ShirtSelect";
-import CapSelect from "./CapSelect";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormTeamState } from "../models";
-import { calcTotalRegisterPrice, getInverseDiscountFromPercentOff, scrollToInfo } from "../utils";
+import { calcTotalProductPrice, isProductRegistration, scrollToInfo } from "../utils";
 import { handleCheckout } from "../service/checkoutService";
 import { useErrorModal } from "../../../context/ErrorModalContext";
-import usePrices from "../hooks/usePrices";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
@@ -26,12 +24,19 @@ import { ConsentCheckboxes } from "./ConsentCheckboxes";
 import { ScrollToInfoButton } from "../pages/Register";
 import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
+import useProducts from "../hooks/useProducts";
+import { useCart } from "../../../context/CartContext";
+import SmallCartItem from "./SmallCartItem";
+import PurchaseItem, { PurchaseItemsContainer } from "./PurchaseItem";
+import SelectableProductListToggle from "./SelectableProductListToggle";
 
 export const RegisterFormTeam = () => {
-  const { loading: priceLoading, getPriceByName } = usePrices();
+  const { loading: productsLoading, getProductByName, products } = useProducts();
+  const { cart, removeFromCart, addToCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [allConsentsChecked, setAllConsentsChecked] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   const [formState, setFormState] = useState<RegisterFormTeamState>({
     teamName: "",
@@ -54,10 +59,21 @@ export const RegisterFormTeam = () => {
     day3: "",
     city3: "",
     info: "",
-    shirts: [],
-    numCaps: 0,
     extraDonation: 0,
   });
+
+  useEffect(() => {
+    // TODO: Fix comparison with data_id field
+    const registerProduct = getProductByName("registration-fee-team");
+    if (!productsLoading && registerProduct && !cart.some(i => i.metadata.data_id == "registration-fee-team")) {
+      addToCart(registerProduct, 1)
+    }
+    return (() => {
+      if (registerProduct) {
+        removeFromCart(registerProduct.id)
+      }
+    })
+  }, [productsLoading])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -65,18 +81,9 @@ export const RegisterFormTeam = () => {
   };
 
 
-  const totalCost = useMemo(() => {
-    const discount = getInverseDiscountFromPercentOff(coupon?.percent_off);
-    return calcTotalRegisterPrice(
-      getPriceByName("bomull"),
-      getPriceByName("funktion"),
-      getPriceByName("keps"),
-      getPriceByName("registration-fee-team"),
-      formState.numCaps,
-      formState.shirts,
-      formState.extraDonation,
-      discount)
-  }, [priceLoading, formState, coupon]);
+  const totalCost = useMemo((): number | null => {
+    return calcTotalProductPrice(cart, formState.extraDonation, coupon)
+  }, [productsLoading, formState, coupon, cart]);
 
   const renderMemberFields = () => {
     return [1, 2, 3].map((num) => {
@@ -153,7 +160,7 @@ export const RegisterFormTeam = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.Team, {...formState, coupon}, showErrorModal);
+    await handleCheckout(FormType.Team, { ...formState, coupon }, cart, showErrorModal);
     setLoading(false)
   };
 
@@ -193,16 +200,12 @@ export const RegisterFormTeam = () => {
               onChange={handleChange}
             />
           </FormGroup>
-          <FormGroup>
-            <Label for="clothes-select">Lägg till t-shirt (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
-            <div className="clothes-select">
-              <ShirtSelect updateShirtSelection={(newShirts) => setFormState(prev => ({ ...prev, shirts: newShirts }))} />
-            </div>
-            <Label className="mt-2">Lägg till keps ({[getPriceByName("keps")]}kr)</Label>
-            <div className="clothes-select">
-              <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps: numCaps }))} />
-            </div>
-          </FormGroup>
+          <SelectableProductListToggle items={products} isProductsOpen={isProductsOpen} setIsProductsOpen={setIsProductsOpen}/>
+            <Collapse isOpen={isProductsOpen}>
+              <PurchaseItemsContainer>
+                {products.map(p => p.metadata.selectable ? <PurchaseItem product={p} /> : null)}
+              </PurchaseItemsContainer>
+            </Collapse>
           <FormGroup>
             <Label for="extra-donation">Extra donation till ALS-forskningen</Label>
             <ExtraDonation setDonation={(donationAmount) => setFormState(prev => ({ ...prev, extraDonation: donationAmount }))} />
@@ -210,21 +213,22 @@ export const RegisterFormTeam = () => {
           <FormGroup>
             <FormText color="bold">* obligatoriska fält.</FormText>
           </FormGroup>
-          <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)}/>
+          <ConsentCheckboxes onAllChecked={(allChecked) => setAllConsentsChecked(allChecked)} />
+          {cart.map(item => <SmallCartItem isDeletable={!isProductRegistration(item)} item={item} />)}
           <FormGroup>
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
 
-          <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)}/>
+          <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)} />
           <RegisterButton
-              type="submit"
-              disabled={!allConsentsChecked || loading}
-              loading={loading}
-            />
+            type="submit"
+            disabled={!allConsentsChecked || loading}
+            loading={loading}
+          />
         </Form>
       </Col>
-      <RegisterInfo type={"team"}/>
+      <RegisterInfo type={"team"} />
     </Row>
   );
 }

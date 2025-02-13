@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
 import { Col } from "reactstrap"
-import usePrices from "../hooks/usePrices";
+import useProducts from "../hooks/useProducts";
 
 interface RegisterInfoProps {
   type: "team" | "solo"
 }
 
 export const RegisterInfo = ({ type }: RegisterInfoProps) => {
-  const { getPriceByName } = usePrices();
+  const { getPriceByProductName } = useProducts();
   return (
     <Col id="info-text" style={{ marginTop: "2vh" }}>
       <hr className="register-divider"></hr>
@@ -47,7 +47,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <br></br>
       <br></br>
       <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-      <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByName("registration-fee-solo") : getPriceByName("registration-fee-team")}kr</b> (Höjs med 100kr efter 1/3)</p>
+      <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByProductName("registration-fee-solo") : getPriceByProductName("registration-fee-team")}kr</b> (Höjs med 100kr efter 1/3)</p>
     </Col>
   )
 }
