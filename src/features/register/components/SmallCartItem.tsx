@@ -63,7 +63,7 @@ const SmallCartItem = ({ item, isDeletable }: { item: CartItem, isDeletable?: bo
         </ProductDetails>
       </ProductThumbnailText>
       {isDeletable &&
-        <BaseButton small type="button" onClick={() => removeFromCart(item.id)}>
+        <BaseButton small type="button" onClick={() => removeFromCart(item)}>
           <i className="fas fa-trash "></i>
         </BaseButton>
       }

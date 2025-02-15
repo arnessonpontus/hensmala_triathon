@@ -1,5 +1,16 @@
 # Website for Hensmåla Triathlon
+Hensmåla mini triathlon for ALS
 
-## Generate typescript files from Contentful
-# Run npx cf-content-types-generator -s <SPACE_ID> -t <CONTENT_MANAGEMENT_TOKEN> -o generated/types -X
+## Run locally with
+### Netlify cli
+For local netlify functions
+```
+netlify dev
+```
 
+### Stripe cli
+For local netlify stripe webhook functions
+
+```
+stripe listen --forward-to localhost:8888/.netlify/functions/stripe-webhook
+```

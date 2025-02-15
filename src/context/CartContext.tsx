@@ -4,7 +4,7 @@ import { CartItem, ProductWithExpandedPrice } from "../features/register/models"
 interface CartContextType {
   cart: CartItem[];
   addToCart: (product: ProductWithExpandedPrice, quantity: number, size?: string, type?: string) => void;
-  removeFromCart: (id: string) => void;
+  removeFromCart: (cartItem: CartItem) => void;
   emptyCart: () => void;
 }
 
@@ -24,8 +24,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
-  const removeFromCart = (id: string) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  const removeFromCart = (cartItem: CartItem) => {
+    setCart((prev) => prev.filter((item) => !(item.id === cartItem.id && item.selectedSize === cartItem.selectedSize && item.selectedType === cartItem.selectedType)));
   };
 
   const emptyCart = () => {
