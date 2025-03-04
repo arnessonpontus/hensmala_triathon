@@ -2,8 +2,8 @@ import { discountType, priceType } from "../../../src/features/register/models";
 import { getNodeEnvVariable } from "./envUtil";
 
 export const priceMapProd: Record<priceType, string> = {
-  'registration-fee-solo': 'price_1QX6MoJv440zP1qkvlEdai0Z',
-  'registration-fee-team': 'price_1QX6M5Jv440zP1qkIPqqje4B',
+  'registration-fee-solo': 'price_1QotWeJv440zP1qkyJQHGoFK',
+  'registration-fee-team': 'price_1QotgEJv440zP1qkznsPPEJX',
   'funktion': 'price_1QX6J9Jv440zP1qkITYMDEWU',
   'bomull': 'price_1QX6IeJv440zP1qkWOHJiyS1',
   'keps': 'price_1QX6IDJv440zP1qkvEif7KrS',
