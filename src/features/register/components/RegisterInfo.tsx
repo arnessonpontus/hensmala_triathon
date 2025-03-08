@@ -47,7 +47,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <br></br>
       <br></br>
       <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-      <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByProductName("registration-fee-solo") : getPriceByProductName("registration-fee-team")}kr</b> (Höjs med 100kr efter 1/3)</p>
+      <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByProductName("registration-fee-solo") : getPriceByProductName("registration-fee-team")}kr</b></p>
     </Col>
   )
 }
