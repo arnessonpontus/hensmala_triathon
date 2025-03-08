@@ -4,8 +4,6 @@ import {
   FormGroup,
   Label,
   Input,
-  Row,
-  Col,
   Card,
   CardBody,
   FormText,
@@ -21,7 +19,7 @@ import { ErrorBanner } from "../../../components/ErrorBanner";
 import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
-import { ScrollToInfoButton } from "../pages/Register";
+import { FormContainer, LeftColumn, ScrollToInfoButton } from "../pages/Register";
 import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
 import useProducts from "../hooks/useProducts";
@@ -163,14 +161,14 @@ export const RegisterFormTeam = () => {
   };
 
   return (
-    <Row>
-      <Col style={{ marginTop: "2vh" }} md={6}>
+    <FormContainer>
+      <LeftColumn>
         <Form
           onSubmit={onSubmit}
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Lag</h3>
-            <ScrollToInfoButton onClick={() => scrollToInfo("info-text")}>
+            <ScrollToInfoButton type="button" onClick={() => scrollToInfo("info-text")}>
               Visa info<i className="fas fa-angle-down angle-down"></i>
             </ScrollToInfoButton>
           </div>
@@ -225,8 +223,8 @@ export const RegisterFormTeam = () => {
             loading={loading}
           />
         </Form>
-      </Col>
-      <RegisterInfo type={"team"} />
-    </Row>
+        </LeftColumn>
+      <RegisterInfo type="solo" />
+    </FormContainer>
   );
 }

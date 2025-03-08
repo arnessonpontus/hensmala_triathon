@@ -1,7 +1,7 @@
 import { ProductWithExpandedPrice } from "../models";
 import { BaseButton } from "../../../components/Button/BaseButton";
-import { ImageList } from "./RegisterFormSolo";
 import { ImageWrapper, ThumbnailImage } from "./SmallCartItem";
+import { ImageList } from "../pages/Register";
 
 interface Props {
   items: ProductWithExpandedPrice[],

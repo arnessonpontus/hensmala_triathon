@@ -1,14 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Row,
-  Col,
-  FormText,
-  Collapse,
-} from "reactstrap";
+import { FormGroup, Label, Input, Collapse, FormText, Form } from "reactstrap";
 import ExtraDonation from "./ExtraDonation";
 import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
 import { FormType, RegisterFormSoloState } from "../models";
@@ -20,20 +11,13 @@ import { ErrorBanner } from "../../../components/ErrorBanner";
 import { RegisterInfo } from "./RegisterInfo";
 import RegisterButton from "./RegisterButton";
 import { ConsentCheckboxes } from "./ConsentCheckboxes";
-import { ScrollToInfoButton } from "../pages/Register";
+import { FormContainer, LeftColumn, ScrollToInfoButton } from "../pages/Register";
 import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
 import PurchaseItem, { PurchaseItemsContainer } from "./PurchaseItem";
 import { useCart } from "../../../context/CartContext";
-import styled from "styled-components";
 import SelectableProductListToggle from "./SelectableProductListToggle";
 import { CartItemList } from "./CartItemList";
-
-export const ImageList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex;
-`;
 
 export const RegisterFormSolo = () => {
   const { loading: productsLoading, products, getProductByName } = useProducts();
@@ -60,9 +44,9 @@ export const RegisterFormSolo = () => {
     if (!productsLoading && registerProduct && !cart.some(i => i.metadata.data_id == "registration-fee-solo")) {
       addToCart(registerProduct, 1)
     }
-    return (() => {
+    return () => {
       emptyCart();
-    })
+    }
   }, [productsLoading])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,15 +69,13 @@ export const RegisterFormSolo = () => {
   };
 
   return (
-    <Row>
-      <Col style={{ marginTop: "2vh" }} md={6}>
-        <Form
-          onSubmit={onSubmit}
-        >
+    <FormContainer>
+      <LeftColumn>
+        <Form onSubmit={onSubmit}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h3>Anmälan 2025 Individuell</h3>
-            <ScrollToInfoButton onClick={() => scrollToInfo("info-text")}>
-              Visa info<i className="fas fa-angle-down angle-down"></i>
+            <ScrollToInfoButton type="button" onClick={() => scrollToInfo("info-text")}>
+              Visa info <i className="fas fa-angle-down angle-down"></i>
             </ScrollToInfoButton>
           </div>
           <FormGroup>
@@ -207,8 +189,8 @@ export const RegisterFormSolo = () => {
             loading={loading}
           />
         </Form>
-      </Col>
+      </LeftColumn>
       <RegisterInfo type="solo" />
-    </Row>
+    </FormContainer>
   );
-}
+};

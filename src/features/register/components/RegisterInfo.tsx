@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom"
-import { Col } from "reactstrap"
 import useProducts from "../hooks/useProducts";
+import styled from "styled-components";
+import { NAVBAR_HEIGHT } from "../../../Constants";
 
 interface RegisterInfoProps {
   type: "team" | "solo"
 }
+const StickyContainer = styled.div`
+  position: sticky;
+  top: calc(${NAVBAR_HEIGHT}px + 20px);
+  align-self: flex-start;
+  max-width: 50%;
+  min-width: 250px;
+`;
 
 export const RegisterInfo = ({ type }: RegisterInfoProps) => {
   const { getPriceByProductName } = useProducts();
   return (
-    <Col id="info-text" style={{ marginTop: "2vh" }}>
+    <StickyContainer id="info-text">
       <hr className="register-divider"></hr>
       {type === "solo" ?
         <h3>Anmäl dig till Hensmåla Triathlon 2025</h3>
@@ -48,6 +56,6 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <br></br>
       <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
       <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByProductName("registration-fee-solo") : getPriceByProductName("registration-fee-team")}kr</b></p>
-    </Col>
+    </StickyContainer>
   )
 }

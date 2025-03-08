@@ -10,6 +10,7 @@ import { oreToSek } from "../utils";
 import { toast } from "react-toastify";
 import SmallCartItem from "./SmallCartItem";
 import { ProductWithExpandedPrice } from "../models";
+import { ImageSkeleton } from "../../../components/Skeleton";
 
 export const PurchaseItemsContainer = styled.div`
   display: flex;
@@ -51,6 +52,7 @@ const PurchaseItem = ({ product }: { product: ProductWithExpandedPrice }) => {
   const [quantity, setQuantity] = useState(1)
   const [selectedType, setSelectedType] = useState("")
   const [selectedSize, setSelectedSize] = useState("")
+  const [loadingImage, setLoadingImage] = useState(product.images.length > 0 ? true : false)
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1)
   const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
@@ -61,7 +63,7 @@ const PurchaseItem = ({ product }: { product: ProductWithExpandedPrice }) => {
     addToCart(product, quantity, selectedSize, selectedType);
     toast(
       <ToastContent>
-        <h5>Du la till</h5>
+        <h5>Tillagd:</h5>
         <SmallCartItem isDeletable={false} item={{ ...product, selectedSize: selectedSize, selectedType: selectedType, quantity: quantity }} />
       </ToastContent>,
       { hideProgressBar: true, position: "bottom-right", type: "success" }
@@ -81,7 +83,12 @@ const PurchaseItem = ({ product }: { product: ProductWithExpandedPrice }) => {
   return (
     <PurchaseItemContainer>
       {images.length > 0 &&
-        <ImageGallery showThumbnails={false} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
+      <>
+        <div style={{display: loadingImage ? "none" : "initial"}}>
+          <ImageGallery onImageLoad={() => setLoadingImage(false)} showThumbnails={false} ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={!loadingImage} items={images}  showNav={!loadingImage} onClick={() => (imageGalleryRef.current as any).toggleFullScreen()} />
+        </div>
+        {loadingImage && <ImageSkeleton />}
+      </>
       }
       <div>
         <PurchaseItemTitle>{product.name}</PurchaseItemTitle>
