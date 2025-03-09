@@ -1,10 +1,11 @@
 import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
-import { BaseOrderType, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../../../src/features/register/models';
-import { createCapPurchaseItems, createExtraDonationPurchaseItem, createRegistrationPurchaseItem, createShirtPurchaseItems, toMetaData } from '../utils/paymentUtil';
+import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../../../src/features/register/models';
+import { createExtraDonationPurchaseItem, toMetaData } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 import { getNodeEnvVariable } from '../utils/envUtil';
-import { validateFormData } from './validation';
+import { validateFormCart, validateFormData } from './validation';
+import { createJsonResponse } from '../utils/responseUtil';
 
 const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
   apiVersion: '2024-10-28.acacia',
@@ -13,48 +14,33 @@ const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET"), {
 export const handler: Handler = async (event) => {
   // Handle OPTIONS request for CORS preflight
   if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      body: '',
-    };
+    return createJsonResponse(200, "");
   }
 
   if (getNodeEnvVariable("VITE_ALLOW_REGISTRATION") !== "true") {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'Registration is now allowed at the moment.' })
-    };
+    return createJsonResponse(400, ({ error: 'Registration is now allowed at the moment.' }));
   }
 
   // Handle POST request for payment creation
   try {
-    const { formType, formData } = JSON.parse(event.body || '{}') as {formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType};
+    const { formType, formData, cartData } = JSON.parse(event.body || '{}') as {formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType, cartData: CartItem[]};
 
-    const { error } = validateFormData(formData, formType);
-    if (error) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ errors: error.details })
-      };
+    const { error: errorForm } = validateFormData(formData, formType);
+    const { error: errorCart } = validateFormCart(cartData);
+    
+    if (errorForm || errorCart) {
+      return createJsonResponse(400, { errors: errorForm ? errorForm.details : errorCart?.details });
     }
     
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-    lineItems.push(...createRegistrationPurchaseItem(formType));
-
-    if (Array.isArray(formData.shirts)) {
-      lineItems.push(...createShirtPurchaseItems(formData.shirts));
-    }
-
-    if (typeof formData.numCaps === 'number' && formData.numCaps > 0) {
-      lineItems.push(...createCapPurchaseItems(formData.numCaps));
-    }
+    cartData.forEach(d => lineItems.push({price: d.default_price?.id, quantity: d.quantity}))
 
     if (formData.extraDonation > 0) {
       lineItems.push(...createExtraDonationPurchaseItem(formData.extraDonation));
     }
 
-    const metadata = toMetaData(formType, formData);
+    const metadata = toMetaData(formType, formData, cartData);
 
     console.log("Processing metadata: ", metadata)
 
@@ -68,16 +54,10 @@ export const handler: Handler = async (event) => {
       discounts: formData.coupon ? [{ coupon: formData.coupon.id }] : [],
     });
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ id: session.id }),
-    };
+    return createJsonResponse(200, { id: session.id });
 
   } catch (error) {
     console.error('Error processing payment:', error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' }),
-    };
+    return createJsonResponse(500, { error: 'Internal server error' });
   }
 };

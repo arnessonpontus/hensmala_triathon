@@ -12,16 +12,23 @@ export type ShirtMaterial = typeof shirtMaterials[number];
 export const genderValues = ["Dam", "Herr"] as const;
 export type GenderType = typeof genderValues[number];
 
+export type ProductWithExpandedPrice = Omit<Stripe.Product, 'default_price'> & {
+  default_price: Stripe.Price | null;
+};
+
 export interface Shirt {
   size: Size | null,
   type: GenderType | null,
   material: ShirtMaterial
 }
 
+export interface CartItem extends ProductWithExpandedPrice {
+  quantity: number,
+  selectedType?: string,
+  selectedSize?: string,
+}
+
 export interface BaseOrderType {
-  shirts: Shirt[],
-  shirtsString?: string,
-  numCaps: number,
   extraDonation: number,
   name1: string,
   email1: string,
@@ -80,26 +87,14 @@ export interface RegisterFormTeamState extends BaseOrderType {
   city3: string;
 }
 
-export type DataToSend = Partial<
-  BaseOrderType &
-  RegisterFormSoloState &
-  RegisterFormTeamState
-> & {
-  totalToPay: number
-};
-
 export enum FormType {
   Solo = "solo",
   Team = "team",
   MerchOrder = "merch_order",
 }
 
-export type priceType =
-  "registration-fee-solo"
-  | "registration-fee-team"
-  | "funktion"
-  | "bomull"
-  | "keps"
+export const registerTypes = ["registration-fee-solo", "registration-fee-team"] as const;
+export type registerType = typeof registerTypes[number];
 
-export type discountType =
-  "company-discount-code"
+export const productTypes = [...registerTypes, "funktion", "bomull", "keps", "extra-donation"] as const;
+export type productType = typeof productTypes[number];

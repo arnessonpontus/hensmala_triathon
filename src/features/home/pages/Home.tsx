@@ -41,7 +41,7 @@ export const Home: React.FC = () => {
                 till ALS-forskningen. Vill du vara med och bidra för att bekämpa ALS, swisha din gåva till <b>1234048781</b>.
               </p>
             </Col>
-            <Col className="mt-4 my-auto" ms={4}>
+            <Col className="mt-4 d-flex justify-content-center align-items-center" ms={4}>
               <SwishQrImage width={250}/>
             </Col>
           </Row>

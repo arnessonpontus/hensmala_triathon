@@ -9,6 +9,8 @@ import { Navigation } from "./components/Navigation";
 import { getViteEnvVariable } from "./utils";
 import { ConsentBannerProvider } from "./features/consent/context/ConsentBannerContext";
 import ConsentBanner from "./features/consent/components/ConsentBanner";
+import { CartProvider } from "./context/CartContext";
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
@@ -19,7 +21,10 @@ const App = () => {
           <Router>
             <ConsentBanner />
             <Navigation />
-            <AppRouter />
+            <CartProvider>
+              <AppRouter />
+              <ToastContainer />
+            </CartProvider>
           </Router>
           <Footer />
         </ConsentBannerProvider>

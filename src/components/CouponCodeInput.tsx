@@ -41,7 +41,7 @@ export const CouponCodeInput: React.FC<CouponCodeInputProps> = ({ onCouponEntere
         </div>
       </CouponInputWrapper>
       {enteredCoupon && enteredCoupon.name &&
-        <p><strong style={{ color: PRIMARY_COLOR }}>{enteredCoupon.name}</strong> ger dig rabatt med <strong>{enteredCoupon.percent_off}%</strong> (inte på extra donation)</p>
+        <p><strong style={{ color: PRIMARY_COLOR }}>{enteredCoupon.name}</strong> ger dig rabatt med <strong>{enteredCoupon.percent_off}%</strong></p>
       }
     </>
   );

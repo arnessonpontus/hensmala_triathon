@@ -1,5 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { BaseOrderType, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../models';
+import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../models';
 import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
 import { getViteEnvVariable } from '../../../utils';
 
@@ -8,13 +8,14 @@ const stripePromise = loadStripe(`${getViteEnvVariable("VITE_STRIPE_PUBLIC")}`);
 export const handleCheckout = async (
   formType: FormType,
   formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType,
+  cartData: CartItem[],
   showErrorModal: (message: string | string[], title: string) => void
 ) => {
   try {
     const response = await fetch('/.netlify/functions/payment/payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ formType, formData }),
+      body: JSON.stringify({ formType, formData, cartData }),
     });
 
     if (!response.ok) {

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Form,
   FormGroup,
@@ -9,15 +9,12 @@ import {
   Row,
   FormText,
 } from "reactstrap";
-import ShirtSelect from "../components/ShirtSelect";
-import CapSelect from "../components/CapSelect";
 import ExtraDonation from "../components/ExtraDonation";
 import ConsentModal from "../../consent/components/ConsentModal";
 import RegisterButton from "../components/RegisterButton";
 
 import { BaseOrderType, FormType } from "../models";
-import { calcShirtPrice, getInverseDiscountFromPercentOff, hasValidShirt } from "../utils";
-import usePrices from "../hooks/usePrices";
+import { calcTotalProductPrice } from "../utils";
 import { ErrorBanner } from "../../../components/ErrorBanner";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
@@ -27,9 +24,14 @@ import { getViteEnvVariable } from "../../../utils";
 import { SwishQrImage } from "../components/SwishQrImage";
 import Stripe from "stripe";
 import { CouponCodeInput } from "../../../components/CouponCodeInput";
+import useProducts from "../hooks/useProducts";
+import { useCart } from "../../../context/CartContext";
+import PurchaseItem, { PurchaseItemsContainer } from "../components/PurchaseItem";
+import { CartItemList } from "../components/CartItemList";
 
 export const MerchOrder: React.FC = () => {
-  const { loading: priceLoading, getPriceByName } = usePrices();
+  const { loading: productsLoading, products } = useProducts();
+  const { cart, emptyCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [hasGivenConsent, setHasGivenConsent] = useState(false);
   const [coupon, setCoupon] = useState<Stripe.Coupon | undefined>();
@@ -38,30 +40,20 @@ export const MerchOrder: React.FC = () => {
     name1: "",
     email1: "",
     extraDonation: 0,
-    shirts: [],
-    numCaps: 0,
     info: "",
   }
 
   const [formState, setFormState] = useState<BaseOrderType>(defaultState);
 
-  const totalCost = useMemo(() => {
-    const cottonPrice = getPriceByName("bomull");
-    const functionPrice = getPriceByName("funktion");
-    const capPrice = getPriceByName("keps");
+  useEffect(() => {
+    return (() => {
+      emptyCart();
+    })
+  }, [])
 
-    const inverseDiscount = getInverseDiscountFromPercentOff(coupon?.percent_off);
-
-    if (!cottonPrice || !functionPrice || !capPrice) {
-      return null
-    }
-
-    return (
-      formState.extraDonation +
-      (calcShirtPrice(formState.shirts, cottonPrice, functionPrice) +
-        formState.numCaps * capPrice) * inverseDiscount
-    );
-  }, [formState, priceLoading, coupon]);
+  const totalCost = useMemo((): number | null => {
+    return calcTotalProductPrice(cart, formState.extraDonation, coupon)
+  }, [productsLoading, formState, coupon, cart]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -82,7 +74,7 @@ export const MerchOrder: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    await handleCheckout(FormType.MerchOrder, { ...formState, coupon: coupon }, showErrorModal);
+    await handleCheckout(FormType.MerchOrder, { ...formState, coupon: coupon }, cart, showErrorModal);
     setLoading(false)
   };
 
@@ -97,13 +89,13 @@ export const MerchOrder: React.FC = () => {
                 <i>Sista beställningsdag är 12:e juni</i>
               </b>
             </p>
-            <p>Kontakta oss om du har frågor.</p>
             <p>Ska du inte delta i årets lopp men ändå ha en superfin t-shirt eller keps från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
 
             <p>
               När din beställning kommer in noterar vi det och lägger undan kläder till dig.
             </p>
             <p>Upphämtning görs på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b></p>
+            <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
             <p>Donera gärna även en slant via Swish om du känner för det!</p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <SwishQrImage />
@@ -113,14 +105,9 @@ export const MerchOrder: React.FC = () => {
             <hr className="register-divider"></hr>
             <Form onSubmit={onSubmit}>
               <FormGroup>
-                <Label for="clothes-select">Välj antal och storlek (Bomull {getPriceByName("bomull")}kr, Funktion {getPriceByName("funktion")}kr)</Label>
-                <div className="clothes-select">
-                  <ShirtSelect updateShirtSelection={(newShirts) => { setFormState(prev => ({ ...prev, shirts: newShirts })) }} />
-                </div>
-                <Label className="mt-2">Lägg till keps ({getPriceByName("keps")}kr)</Label>
-                <div className="clothes-select">
-                  <CapSelect updateCapSelection={(numCaps) => setFormState(prev => ({ ...prev, numCaps: numCaps }))} />
-                </div>
+                <PurchaseItemsContainer>
+                  {products.map(p => p.metadata.selectable ? <PurchaseItem product={p} /> : null)}
+                </PurchaseItemsContainer>
               </FormGroup>
               <FormGroup>
                 <Label for="name">Namn*</Label>
@@ -164,6 +151,7 @@ export const MerchOrder: React.FC = () => {
               <FormGroup>
                 <FormText color="bold">* obligatoriska fält.</FormText>
               </FormGroup>
+              <CartItemList items={cart} />
               <FormGroup>
                 <Label for="totalAmountToPay">Totalt att betala:</Label>
                 {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
@@ -187,7 +175,7 @@ export const MerchOrder: React.FC = () => {
               <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)} />
               <RegisterButton
                 type="submit"
-                disabled={!hasGivenConsent || !(hasValidShirt(formState.shirts) || formState.numCaps > 0) || loading}
+                disabled={!hasGivenConsent || cart.length < 1 || loading}
                 loading={loading}
               />
             </Form>

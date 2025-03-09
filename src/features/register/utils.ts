@@ -1,9 +1,13 @@
 import moment from 'moment-timezone';
-import { Shirt } from "./models";
+import { CartItem, ProductWithExpandedPrice, registerType, registerTypes, Shirt } from "./models";
+import Stripe from 'stripe';
 
-// Stringify the shirt selection for easier storage
-export function shirtArrayToString(shirts: Shirt[]) {
-  return shirts.filter(s => s.type && s.size).map(shirt => `${shirt.type} ${shirt.size} ${shirt.material}`).join(', ');
+export function extractShirtsAsString(items: CartItem[]) {
+  return items.filter(s => (
+    s.metadata.data_id === "funktion" ||
+    s.metadata.data_id === "bomull") &&
+    s.selectedSize && s.selectedType
+  ).map(shirt => `${shirt.quantity} ${shirt.name} ${shirt.selectedType} ${shirt.selectedSize}`).join(', ');
 }
 
 // Checks if at lease one shirt is valid (not having any null values)
@@ -24,44 +28,16 @@ export function scrollToInfo(elementID: string) {
   window.scrollTo({ top: y, behavior: 'smooth' });
 };
 
-export const calcShirtPrice = (shirts: Shirt[], cottonShirtPrice: number, functionShirtPrice: number) => {
-  const shirtAmount = shirts.reduce((acc, shirt) => {
-    if (shirt.size && shirt.type && shirt.material) {
-      if (shirt.material === 'bomull') {
-        return acc + cottonShirtPrice;
-      } else {
-        return acc + functionShirtPrice;
-      }
-    } else {
-      return acc;
-    }
-  }, 0);
-  return shirtAmount;
-}
-
-export const calcTotalRegisterPrice = (
-  cottonPrice: number | null,
-  functionPrice: number | null,
-  capPrice: number | null,
-  registerPrice: number | null,
-  numCaps: number,
-  shirts: Shirt[],
+export const calcTotalProductPrice = (
+  products: CartItem[],
   donation: number,
-  inverseDiscount: number
+  coupon: Stripe.Coupon | undefined
 ) => {
-  if (
-    !cottonPrice ||
-    !functionPrice ||
-    !capPrice ||
-    !registerPrice
-  ) {
-    return null;
-  }
-
-  const shirtsCost = calcShirtPrice(shirts, cottonPrice, functionPrice);
-  const capsCost = numCaps * capPrice;
-
-  return donation + (registerPrice + shirtsCost + capsCost) * inverseDiscount;
+  return donation + (products.reduce((prev, curr) => {
+    const doesIncludeProduct = coupon?.applies_to?.products.includes(curr.id);
+    const inverseDiscount = doesIncludeProduct ? getInverseDiscountFromPercentOff(coupon?.percent_off) : 1;
+    return prev + curr.quantity * oreToSek(curr.default_price?.unit_amount ?? 0) * inverseDiscount;
+  }, 0));
 }
 
 export const oreToSek = (ore: number) => {
@@ -77,3 +53,5 @@ export const getDaysFromNow = (day: string) => {
 }
 
 export const getInverseDiscountFromPercentOff = (percent_off?: number | null) =>  1 - (percent_off ?? 0)/100;
+
+export const isProductRegistration = (product: ProductWithExpandedPrice) => registerTypes.includes(product.metadata.data_id as registerType);
