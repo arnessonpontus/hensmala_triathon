@@ -28,7 +28,7 @@ describe("Shirt", () => {
       { metadata: { data_id: "funktion" }, quantity: 1, name: "Tshirt funktion", selectedType: "Herr", selectedSize: "XXL" }
     ] as unknown as CartItem[];
 
-    const result = Utils.shirtArrayToString(items);
+    const result = Utils.extractShirtsAsString(items);
 
     expect(result).toBe('2 Tshirt funktion Herr M, 1 Tshirt bomull Dam S, 1 Tshirt funktion Herr XXL');
   });

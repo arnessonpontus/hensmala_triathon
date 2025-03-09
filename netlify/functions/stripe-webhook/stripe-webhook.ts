@@ -5,6 +5,7 @@ import { oreToSek } from '../../../src/features/register/utils';
 import { writeToSpreadsheet } from './writeToSpreadsheet';
 import { sendEmail, sendEmailToUsInCaseOfError } from './emailSender';
 import { getNodeEnvVariable } from '../utils/envUtil';
+import { createJsonResponse } from '../utils/responseUtil';
 
 const stripe = new Stripe(getNodeEnvVariable("STRIPE_SECRET") as string, {
   apiVersion: '2024-10-28.acacia',
@@ -15,7 +16,7 @@ const endpointSecret = getNodeEnvVariable("STRIPE_WEBHOOK_SECRET") as string;
 export const handler: Handler = async (event) => {
 
   if (!event.body || !event.headers['stripe-signature']) {
-    return { statusCode: 400, body: 'Invalid webhook request' };
+    return createJsonResponse(400, { error: 'Invalid webhook request' });
   }
 
   let stripeEvent: Stripe.Event;
@@ -28,7 +29,7 @@ export const handler: Handler = async (event) => {
     );
   } catch (error) {
     console.error('Webhook signature verification failed', error);
-    return { statusCode: 400, body: 'Webhook Error: Signature verification failed' };
+    return createJsonResponse(400, { error: 'Webhook Error: Signature verification failed' });
   }
 
   if (stripeEvent.type === 'checkout.session.completed') {
@@ -36,7 +37,7 @@ export const handler: Handler = async (event) => {
     if (session.metadata == null) {
       console.log("something went wrong with the data when being sent")
       sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone);
-      return { statusCode: 400, body: 'Missing metadata when getting the stripe.checkout.session webhook.' };
+      return createJsonResponse(400, { error: 'Missing metadata when getting the stripe.checkout.session webhook.' });
     }
 
     const metadata: StripeMetadata = session.metadata as unknown as StripeMetadata;
@@ -48,13 +49,13 @@ export const handler: Handler = async (event) => {
     try {
       const spreadsheetRow = await writeToSpreadsheet(metadata, oreToSek(totalInOre), orderID)
       await sendEmail(spreadsheetRow, metadata.formType as FormType, orderID);
-      return { statusCode: 200, body: JSON.stringify({ received: true }) };
+      return createJsonResponse(200, { received: true });
     } catch (e) {
       sendEmailToUsInCaseOfError(session.customer_details?.name, session.customer_details?.email, session.customer_details?.phone, metadata);
       console.error(e);
-      return { statusCode: 400, body: 'Error when trying to write to spreedsheet and sending registration email' };
+      return createJsonResponse(400, { error: 'Error when trying to write to spreedsheet and sending registration email' });
     }
   }
 
-  return { statusCode: 200, body: JSON.stringify({ received: true }) };
+  return createJsonResponse(200, { received: true });
 }

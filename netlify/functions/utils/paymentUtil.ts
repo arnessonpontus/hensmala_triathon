@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState, StripeMetadata } from "../../../src/features/register/models";
-import { sekToOre, shirtArrayToString } from "../../../src/features/register/utils";
+import { sekToOre, extractShirtsAsString } from "../../../src/features/register/utils";
 
 export const createExtraDonationPurchaseItem = (extraDonation: number): Stripe.Checkout.SessionCreateParams.LineItem[] => {
   const amountInOre = sekToOre(extraDonation);
@@ -32,7 +32,7 @@ export const toMetaData = (
   // TODO: Change show purchase items are added to email etc
   const baseMetadata: StripeMetadata = {
     formType,
-    shirtsString: shirtArrayToString(cartData),
+    shirtsString: extractShirtsAsString(cartData),
     name1: formData.name1,
     email1: formData.email1,
     extraDonation: formData.extraDonation.toString(),

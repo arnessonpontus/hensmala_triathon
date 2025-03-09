@@ -34,8 +34,8 @@ const useProducts = () => {
     fetchProducts();
   }, []);
 
-  const getProductByName = (pruductName: productType): ProductWithExpandedPrice | null => {
-    const product = products.find(p => p.metadata.data_id === pruductName);
+  const getProductByName = (productName: productType): ProductWithExpandedPrice | null => {
+    const product = products.find(p => p.metadata.data_id === productName);
     if (loading) {
       return null;
     }
@@ -47,8 +47,8 @@ const useProducts = () => {
     return product;
   }
 
-  const getPriceByProductName = (pruductName: productType): number | null => {
-    const product = getProductByName(pruductName)
+  const getPriceByProductName = (productName: productType): number | null => {
+    const product = getProductByName(productName)
 
     if (!product || product.default_price?.unit_amount == null) {
       return null;

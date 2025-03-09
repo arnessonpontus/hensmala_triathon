@@ -2,7 +2,7 @@ import moment from 'moment-timezone';
 import { CartItem, ProductWithExpandedPrice, registerType, registerTypes, Shirt } from "./models";
 import Stripe from 'stripe';
 
-export function shirtArrayToString(items: CartItem[]) {
+export function extractShirtsAsString(items: CartItem[]) {
   return items.filter(s => (
     s.metadata.data_id === "funktion" ||
     s.metadata.data_id === "bomull") &&
