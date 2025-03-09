@@ -89,13 +89,13 @@ export const MerchOrder: React.FC = () => {
                 <i>Sista beställningsdag är 12:e juni</i>
               </b>
             </p>
-            <p>Kontakta oss om du har frågor.</p>
             <p>Ska du inte delta i årets lopp men ändå ha en superfin t-shirt eller keps från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
 
             <p>
               När din beställning kommer in noterar vi det och lägger undan kläder till dig.
             </p>
             <p>Upphämtning görs på plats i Hensmåla via dig själv eller någon bekant, <b>vi skickar alltså tyvärr inte kläderna.</b></p>
+            <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
             <p>Donera gärna även en slant via Swish om du känner för det!</p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <SwishQrImage />

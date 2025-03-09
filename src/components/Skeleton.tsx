@@ -2,8 +2,8 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 
 const shimmer = keyframes`
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
 `;
 
 interface SkeletonProps {

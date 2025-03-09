@@ -9,6 +9,9 @@ export const getProducts = async (): Promise<ProductWithExpandedPrice[]> => {
         'Content-Type': 'application/json',
       },
     })
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
     return await res.json();
 
   } catch (error) {

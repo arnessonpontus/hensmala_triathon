@@ -1,9 +1,11 @@
 import React from 'react';
+import { PrimaryButton } from '../../../components/Button/PrimaryButton';
+import { Link } from 'react-router-dom';
+import { FillCenterLayout } from '../../../components/FillCenterLayout';
 
 const PaymentSuccess: React.FC = () => {
-  //#TODO add phone compatiblity?
   return (
-    <div>
+    <FillCenterLayout>
       <div className="redirect-page-container successful">
         <h1>Betalningen Genomförd!</h1>
         <p>Tack så mycket för din registrering! Du ska ha fått ett mail över detaljer om ditt köp.</p>
@@ -36,6 +38,9 @@ const PaymentSuccess: React.FC = () => {
           </a>
         </div>
       </div>
+        <Link style={{textDecoration: "none"}} to="/anmalan">
+          <PrimaryButton>Anmäl fler personer <i className="fas fa-arrow-right" style={{color: "white"}}></i></PrimaryButton>
+        </Link>
       <div className="video-container">
         <iframe
           width="560"
@@ -46,8 +51,7 @@ const PaymentSuccess: React.FC = () => {
           allowFullScreen
         ></iframe>
       </div>
-    </div>
-
+    </FillCenterLayout>
   );
 };
 

@@ -95,7 +95,7 @@ select {
   border-radius: 8px;
   border-width: 3px;
   border-style: solid;
-  margin: 50px;
+  margin: 20px;
 }
 
 .redirect-page-container.successful {
@@ -148,6 +148,7 @@ select {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  max-width: 90%;
 }
 
 /* Add Media Query for Smaller Screens */
@@ -180,7 +181,7 @@ select {
 
 @media screen and (max-width: 480px) {
   .redirect-page-container {
-    margin: 10px;
+    margin: 20px;
     padding: 10px;
   }
 
