@@ -15,6 +15,22 @@ enum Tab {
   TEAM = 1
 }
 
+export const ImageList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex;
+`;
+export const FormContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+export const LeftColumn = styled.div`
+  flex: 1;
+`;
+
 export const ScrollToInfoButton = styled(BaseButton)`
   flex-direction: column;
   text-align: center;

@@ -1,34 +1,44 @@
 import Stripe from "stripe";
-import { priceType } from "../models";
+import { ProductWithExpandedPrice } from "../models";
 
-export const getPrices = async (): Promise<Record<priceType, number>> => {
+export const getProducts = async (): Promise<ProductWithExpandedPrice[]> => {
   try {
-    const res = await fetch('/.netlify/functions/getPrices', {
+    const res = await fetch('/.netlify/functions/getProducts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
     return await res.json();
 
   } catch (error) {
-    console.error("Error fetching price details:", error)
+    console.error("Error fetching product details:", error)
     return Promise.reject();
   }
 };
 
+
 export const matchCoupon = async (coupon: string): Promise<Stripe.Coupon | undefined> => {
   try {
-    const res = await fetch('/.netlify/functions/matchCoupon?coupon='+ coupon, {
+    const response = await fetch('/.netlify/functions/matchCoupon?coupon='+ coupon, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    return await res.json();
+    
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error(`Failed to match coupon. Status: ${response.status}, Response: ${errorBody}`);
+      return undefined;
+    }
 
+    return await response.json() as Stripe.Coupon;
   } catch (error) {
-    console.error("Error matching coupon:", error)
-    return Promise.reject();
+    console.error("Unexpected error while matching coupon:", error);
+    throw error;
   }
 };

@@ -1,39 +1,7 @@
 import Joi from 'joi';
-import { FormType, genderValues, shirtMaterials, shirtTypes, sizeValues } from '../../../src/features/register/models';
+import { CartItem, FormType, genderValues } from '../../../src/features/register/models';
 
 const baseOrderTypeSchema = Joi.object({
-  shirts: Joi.array()
-    .items(
-      Joi.object({
-        size: Joi.valid(...sizeValues).required().messages({
-          'string.empty': 'Storlek krävs.',
-          'any.only': `Ogiltig storlek. Tillåtna värden är: ${sizeValues.join(", ")}.`,
-          'any.required': 'Storlek är obligatorisk.'
-        }),
-        type: Joi.string().valid(...shirtTypes).required().messages({
-          'string.empty': 'Typ krävs.',
-          'any.only': `Ogiltig typ. Tillåtna värden är: ${shirtTypes.join(", ")}.`,
-          'any.required': 'Typ är obligatorisk.'
-        }),
-        material: Joi.string().valid(...shirtMaterials).required().messages({
-          'string.empty': 'Material krävs.',
-          'any.only': `Ogiltigt material. Tillåtna värden är: ${shirtMaterials.join(", ")}.`,
-          'any.required': 'Material är obligatoriskt.'
-        }),
-      }).options({ allowUnknown: false }) // Disallow additional fields
-    )
-    .required().messages({
-      'array.base': 'T-shirts måste vara en lista.',
-      'array.empty': 'T-shirt-listan kan inte vara tom.',
-      'any.required': 'T-shirts är obligatoriska.'
-    }),
-
-  numCaps: Joi.number().min(0).required().messages({
-    'number.base': 'Antalet kepsar måste vara ett nummer.',
-    'number.min': 'Antalet kepsar kan inte vara mindre än 0.',
-    'any.required': 'Antal kepsar är obligatoriskt.'
-  }),
-
   coupon: Joi.object({
     id: Joi.string().max(50).required().messages({
       'string.base': 'Kupong-ID måste vara en text.',
@@ -213,4 +181,42 @@ export function validateFormData(formData: any, formType: FormType) {
   }
 
   return schema.validate(formData, { abortEarly: false });
+}
+
+export function validateFormCart(cart: CartItem[]) {
+  const schema = Joi.array().items(
+    Joi.object({
+      id: Joi.string().required().messages({
+        'string.base': 'Produkt-ID måste vara en text.',
+        'any.required': 'Produkt-ID är obligatoriskt.'
+      }),
+      quantity: Joi.number().min(1).max(20).required().messages({
+        'number.base': 'Antal måste vara ett nummer.',
+        'number.min': 'Antal måste vara minst 1.',
+        'number.max': 'Antal måste vara max 20.',
+        'any.required': 'Antal är obligatoriskt.'
+      }),
+      default_price: Joi.object({
+        id: Joi.string().required().messages({
+          'string.base': 'Pris-ID måste vara en text.',
+          'any.required': 'Pris-ID är obligatoriskt.'
+        }),
+        unit_amount: Joi.number().min(0).required().messages({
+          'number.base': 'Pris måste vara ett nummer.',
+          'number.min': 'Pris kan inte vara negativt.',
+          'any.required': 'Pris är obligatoriskt.'
+        }),
+        currency: Joi.string().valid("sek").required().messages({
+          'string.base': 'Valuta måste vara en text.',
+          'any.required': 'Valuta är obligatoriskt.',
+          'any.only': 'Endast sek är tillåtet'
+        })
+      }).required().unknown(true).messages({
+        'object.base': 'Produktens pris måste vara giltigt.',
+        'any.required': 'Produkten måste ha ett pris.'
+      })
+    }).unknown(true)
+  );
+
+  return schema.validate(cart, { abortEarly: false });
 }

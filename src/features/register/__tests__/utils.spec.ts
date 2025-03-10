@@ -1,4 +1,4 @@
-import { Shirt } from "../models";
+import { CartItem, Shirt } from "../models";
 import * as Utils from '../utils'; // Import the entire module
 
 describe("Shirt", () => {
@@ -18,129 +18,21 @@ describe("Shirt", () => {
     expect(Utils.hasValidShirt([{ material: "bomull", size: "XXL", type: null }])).not.toBeTruthy()
   });
 
-  it('shoud give correct shirt string', () => {
-    const shirts: Shirt[] = [
-      { material: "bomull", size: "XXL", type: null },
-      { material: "funktion", size: "S", type: "Dam" },
-      { material: "bomull", size: "XXL", type: "Herr" },
-      { material: "bomull", size: "XS", type: "Herr" },
-    ]
-    expect(Utils.shirtArrayToString(shirts)).toBe("Dam S funktion, Herr XXL bomull, Herr XS bomull")
-  });
-})
+  it('should return the correct string for valid shirts', () => {
+    const items: CartItem[] = [
+      { metadata: { data_id: "funktion" }, quantity: 2, name: "Tshirt funktion", selectedType: "Herr", selectedSize: "M" },
+      { metadata: { data_id: "bomull" }, quantity: 1, name: "Tshirt bomull", selectedType: "Dam", selectedSize: "S" },
+      { metadata: { data_id: "funktion" }, quantity: 3, name: "Tshirt funktion", selectedType: "Herr", selectedSize: null },
+      { metadata: { data_id: "bomull" }, quantity: 1, name: "Tshirt bomull", selectedType: null, selectedSize: "L" },
+      { metadata: { data_id: "keps" }, quantity: 1, name: "Tshirt bomull", selectedType: "Herr", selectedSize: "L" },
+      { metadata: { data_id: "funktion" }, quantity: 1, name: "Tshirt funktion", selectedType: "Herr", selectedSize: "XXL" }
+    ] as unknown as CartItem[];
 
-describe("Shirt price", () => {
-  const cottonShirtPrice = 100;
-  const functionShirtPrice = 150;
+    const result = Utils.extractShirtsAsString(items);
 
-  it('calculates the total price for valid cotton shirts', () => {
-    const shirts: Shirt[] = [
-      { size: 'M', type: 'Dam', material: 'bomull' },
-      { size: 'L', type: 'Herr', material: 'bomull' },
-    ];
-
-    const result = Utils.calcShirtPrice(shirts, cottonShirtPrice, functionShirtPrice);
-    expect(result).toBe(200); // 2 shirts * 100
+    expect(result).toBe('2 Tshirt funktion Herr M, 1 Tshirt bomull Dam S, 1 Tshirt funktion Herr XXL');
   });
 
-  it('calculates the total price for valid functional shirts (Herr)', () => {
-    const shirts: Shirt[] = [
-      { size: 'M', type: 'Herr', material: 'funktion' },
-      { size: 'L', type: 'Herr', material: 'funktion' },
-    ];
-
-    const result = Utils.calcShirtPrice(shirts, cottonShirtPrice, functionShirtPrice);
-    expect(result).toBe(300); // 2 shirts * 150 (functional shirts)
-  });
-
-  it('returns 0 for empty array', () => {
-    const shirts: Shirt[] = [];
-
-    const result = Utils.calcShirtPrice(shirts, cottonShirtPrice, functionShirtPrice);
-    expect(result).toBe(0);
-  });
-
-  it('ignores invalid shirts without size, type, or material', () => {
-    const shirts: Shirt[] = [
-      { size: 'M', type: 'Dam', material: 'bomull' }, // Valid
-      { type: 'Herr', material: 'funktion', size: null }, // Missing size
-      { size: 'L', material: 'bomull', type: null },  // Missing type
-    ];
-
-    const result = Utils.calcShirtPrice(shirts, cottonShirtPrice, functionShirtPrice);
-    expect(result).toBe(100); // Only one valid shirt
-  });
-})
-
-describe("Shirt", () => {
-  const cottonPrice = 100;
-  const functionPrice = 150;
-  const capPrice = 50;
-  const registerPrice = 200;
-  const numCaps = 3;
-  const donation = 30;
-  const shirts: Shirt[] = [
-    { size: 'M', type: 'Dam', material: 'bomull' },
-    { size: 'L', type: 'Herr', material: 'funktion' },
-  ];
-
-  beforeEach(() => {
-    jest.spyOn(Utils, 'calcShirtPrice').mockReturnValue(250); // Mock the return value of calcShirtPrice
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks(); // Clean up mocks after each test
-  });
-
-  it('should return null if any price is null', () => {
-    expect(Utils.calcTotalRegisterPrice(null, functionPrice, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, null, capPrice, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, null, registerPrice, numCaps, shirts, donation, 0)).toBeNull();
-    expect(Utils.calcTotalRegisterPrice(cottonPrice, functionPrice, capPrice, null, numCaps, shirts, donation, 0)).toBeNull();
-  });
-
-  it('should calculate the total when having discount for 60% for all but donation', () => {
-    const inverseDiscount = 0.4;
-    const result = Utils.calcTotalRegisterPrice(
-      cottonPrice,
-      functionPrice,
-      capPrice,
-      registerPrice,
-      numCaps,
-      shirts,
-      donation,
-      inverseDiscount
-    );
-    expect(result).toBe(donation + (registerPrice + 250 + 150) * inverseDiscount); // 200 (register) + 250 (shirts) + 150 (caps) + 30 (donation)
-  });
-
-  it('should handle the case when numCaps is 0', () => {
-    const result = Utils.calcTotalRegisterPrice(
-      cottonPrice,
-      functionPrice,
-      capPrice,
-      registerPrice,
-      0, // No caps
-      shirts,
-      donation,
-      1
-    );
-    expect(result).toBe(registerPrice + donation + 250 + 0); // Register + donation + shirts cost (no caps)
-  })
-
-  it('should return the correct total if there is no donation', () => {
-    const result = Utils.calcTotalRegisterPrice(
-      cottonPrice,
-      functionPrice,
-      capPrice,
-      registerPrice,
-      numCaps,
-      shirts,
-      0, // No donation
-      1
-    );
-    expect(result).toBe(registerPrice + 0 + 250 + 150); // Register + no donation + shirts cost + caps cost
-  });
 })
 
 describe('oreToSek', () => {
