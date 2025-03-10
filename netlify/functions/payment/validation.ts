@@ -199,7 +199,7 @@ export function validateFormCart(cart: CartItem[]) {
       default_price: Joi.object({
         id: Joi.string().required().messages({
           'string.base': 'Pris-ID måste vara en text.',
-          'any.required': 'PrPrisodukt-ID är obligatoriskt.'
+          'any.required': 'Pris-ID är obligatoriskt.'
         }),
         unit_amount: Joi.number().min(0).required().messages({
           'number.base': 'Pris måste vara ett nummer.',
@@ -209,7 +209,7 @@ export function validateFormCart(cart: CartItem[]) {
         currency: Joi.string().valid("sek").required().messages({
           'string.base': 'Valuta måste vara en text.',
           'any.required': 'Valuta är obligatoriskt.',
-          'any.only': 'endast sek är tillåtet'
+          'any.only': 'Endast sek är tillåtet'
         })
       }).required().unknown(true).messages({
         'object.base': 'Produktens pris måste vara giltigt.',
