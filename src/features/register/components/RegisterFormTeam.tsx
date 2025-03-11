@@ -61,7 +61,6 @@ export const RegisterFormTeam = () => {
   });
 
   useEffect(() => {
-    // TODO: Fix comparison with data_id field
     const registerProduct = getProductByName("registration-fee-team");
     if (!productsLoading && registerProduct && !cart.some(i => i.metadata.data_id == "registration-fee-team")) {
       addToCart(registerProduct, 1)
@@ -224,7 +223,7 @@ export const RegisterFormTeam = () => {
           />
         </Form>
         </LeftColumn>
-      <RegisterInfo type="solo" />
+      <RegisterInfo type="team" />
     </FormContainer>
   );
 }

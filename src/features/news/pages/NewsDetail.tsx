@@ -21,8 +21,11 @@ const StyledContainer = styled.div`
 `;
 
 const StyledImageWrapper = styled.div`
-  max-width: 50%;
-  justify-self: center;
+  width: 100%;
+   @media (min-width: 770px) {
+     padding-left: 25%;
+     padding-right: 25%;
+   }
 `;
 
 let markdownOptions = {
