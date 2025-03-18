@@ -84,7 +84,7 @@ export const MerchOrder: React.FC = () => {
         <Row>
           <Col style={{ marginTop: "2vh" }} md={6}>
             <h3>Beställ t-shirt och keps </h3>
-            <p>Ska du inte delta i årets lopp men ändå ha en superfin t-shirt eller keps från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
+            <p>Ska du inte delta i årets lopp men vill ändå ha en superfin t-shirt eller keps från Hensmåla Triathlon? Gör då en beställning här och var med och stöd ALS-forskningen! Beställning kan även göras via anmälan om du ska delta.</p>
 
             <p>
               När din beställning kommer in noterar vi det och lägger undan kläder till dig.
