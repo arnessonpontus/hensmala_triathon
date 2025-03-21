@@ -4,7 +4,7 @@ export interface TypeNewsEntryFields {
     title: EntryFieldTypes.Symbol;
     ingressText?: EntryFieldTypes.Text;
     body?: EntryFieldTypes.RichText;
-    publishedTime?: EntryFieldTypes.Date;
+    publishedTime: EntryFieldTypes.Date;
     relatedArticles?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<EntrySkeletonType>>;
     link?: EntryFieldTypes.Symbol;
     linkText?: EntryFieldTypes.Symbol;

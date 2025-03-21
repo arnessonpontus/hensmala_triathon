@@ -5,6 +5,7 @@ export interface TypeSponsorFields {
     title?: EntryFieldTypes.Symbol;
     image: EntryFieldTypes.AssetLink;
     level: EntryFieldTypes.Symbol;
+    sponsorYears?: EntryFieldTypes.Array<EntryFieldTypes.Symbol<"2024" | "2025">>;
 }
 
 export type TypeSponsorSkeleton = EntrySkeletonType<TypeSponsorFields, "sponsor">;
