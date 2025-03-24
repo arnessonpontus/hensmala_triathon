@@ -2,7 +2,6 @@ import { Container } from "reactstrap";
 import { SponsorSection } from "../components/SponsorSection";
 import { useSponsorContent } from "../components/hooks/useSponsorContent";
 import { DEFAULT_CONTACT_EMAIL } from "../../../Constants";
-import { useMemo } from "react";
 import Chip from "../../../components/Chip";
 import styled from "styled-components";
 
@@ -13,16 +12,8 @@ const ChipContainer = styled.div`
 `;
 
 export const Sponsors = () => {
-  const entries = useSponsorContent();
+  const { currentYearEntries, prevYearEntires, latestYear } = useSponsorContent();
 
-  const latestYear = useMemo(() => {
-    const allYears = entries.flatMap(entry => entry.fields.sponsorYears?.map(year => parseInt(year, 10)));
-    const validYears = allYears.filter(a => a != null);
-
-    return validYears.length ? Math.max(...validYears) : 2025;
-  }, [entries]);
-  const currentYearEntries = entries.filter(item => item.fields.sponsorYears?.includes(latestYear.toString() as any))
-  const prevYearEntires = entries.filter(item => item.fields.sponsorYears?.includes((latestYear - 1).toString() as any))
   return (
     <Container>
       <h1 className="m-4">Våra sponsorer för {latestYear}</h1>
