@@ -10,7 +10,6 @@ import { Articles } from "./features/media/pages/Articles";
 import { Radio } from "./features/media/pages/Radio";
 import { Sponsors } from "./features/sponsor/pages/Sponsors";
 import { Route, Routes, useLocation } from "react-router-dom";
-import CoronaEdition from "./features/challenge/pages/CoronaEdition";
 import { Fortrampet } from "./features/fortrampet/pages/Fortrampet";
 import { MerchOrder } from "./features/register/pages/MerchOrder";
 import PaymentCancelled from "./features/register/pages/PaymentCancelled";
@@ -34,7 +33,6 @@ export const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/anmalan" element={<Register />} />
         <Route path="/bestall-klader" element={<MerchOrder />} />
-        <Route path="/corona-edition" element={<CoronaEdition />} />
         <Route path="/hentrampet" element={<Fortrampet />} />
         <Route path="/media" element={<Media />} />
         <Route path="/om-als" element={<AboutALS />} />

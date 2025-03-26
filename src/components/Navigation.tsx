@@ -89,15 +89,6 @@ export const Navigation = () => {
           tag={RNNavLink}
           className="inactive nav-title"
           activeClassName="active"
-          to="/corona-edition"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          CORONA EDITION
-        </NavLink>
-        <NavLink
-          tag={RNNavLink}
-          className="inactive nav-title"
-          activeClassName="active"
           to="/hentrampet"
           onClick={() => setIsMenuOpen(false)}
         >
