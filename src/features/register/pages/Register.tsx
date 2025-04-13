@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import classnames from "classnames";
-import { RegisterFormSolo } from "../components/RegisterFormSolo";
-import { RegisterFormTeam } from "../components/RegisterFormTeam";
 import { DEFAULT_CONTACT_EMAIL, NAVBAR_HEIGHT } from "../../../Constants";
 import { FillCenterLayout } from "../../../components/FillCenterLayout";
 import { getViteEnvVariable } from "../../../utils";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { BaseButton } from "../../../components/Button/BaseButton";
-import { RegisterFormKids } from "../components/RegisterFormKids";
-
-enum Tab {
-  SOLO = 0,
-  TEAM = 1,
-  KIDS = 2
-}
+import { FormType } from "../models";
+import { RegisterForm } from "../components/RegisterForm";
 
 export const ImageList = styled.div`
   display: flex;
@@ -72,28 +65,28 @@ export const StickyContainer = styled.div<{isFullwidth?: boolean}>`
 
 
 export const Register = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<FormType>(FormType.Solo);
   const [searchParams, setSearchParams] = useSearchParams();
   const registerType = searchParams.get("typ");
 
   useEffect(() => {
     if (registerType === "lag" || registerType === "barn") {
-      setActiveTab(registerType === "lag" ? Tab.TEAM : Tab.KIDS);
+      setActiveTab(registerType === "lag" ? FormType.Team : FormType.Kids);
     } else {
       setSearchParams({ typ: "individuell" }, { replace: true });
-      setActiveTab(Tab.SOLO);
+      setActiveTab(FormType.Solo);
     }
   }, [registerType])
 
-  const handleTabChange = (tabIndex: number) => {
-    if (tabIndex === Tab.SOLO) {
+  const handleTabChange = (tab: FormType) => {
+    if (tab === FormType.Solo) {
       setSearchParams({ typ: "individuell" }, { replace: true });
-    } else if (tabIndex === Tab.KIDS) {
+    } else if (tab === FormType.Kids) {
       setSearchParams({ typ: "barn" }, { replace: true });
     } else {
       setSearchParams({ typ: "lag" }, { replace: true });
     }
-    setActiveTab(tabIndex);
+    setActiveTab(tab);
   }
 
   if (getViteEnvVariable("VITE_ALLOW_REGISTRATION") !== "true") {
@@ -109,23 +102,18 @@ export const Register = () => {
     <Container>
       <div className="card-box" style={{ marginTop: 40, flexDirection: "column" }}>
         <Tabs>
-          <TabButton onClick={() => handleTabChange(0)}>
+          <TabButton onClick={() => handleTabChange(FormType.Solo)}>
             Individuell
           </TabButton>
-          <TabButton onClick={() => handleTabChange(1)}>
+          <TabButton onClick={() => handleTabChange(FormType.Team)}>
             Lag
           </TabButton>
-          <TabButton onClick={() => handleTabChange(2)}>
+          <TabButton onClick={() => handleTabChange(FormType.Kids)}>
             Barn
           </TabButton>
-          <div className={classnames("tab-underline", { second: activeTab === 1, third: activeTab === 2 })}></div>
+          <div className={classnames("tab-underline", { second: activeTab === FormType.Team, third: activeTab === FormType.Kids})}></div>
         </Tabs>
-        {
-          activeTab === Tab.SOLO ?
-            <RegisterFormSolo />
-            : activeTab === Tab.KIDS  ? <RegisterFormKids /> :
-            <RegisterFormTeam />
-        }
+        <RegisterForm type={activeTab} />
       </div>
     </Container>
   );

@@ -92,6 +92,8 @@ export interface RegisterFormTeamState extends BaseOrderType {
   city3: string;
 }
 
+export type AnyFormstate = RegisterFormTeamState | RegisterFormKidsState | RegisterFormSoloState;
+
 export enum FormType {
   Solo = "solo",
   Team = "team",

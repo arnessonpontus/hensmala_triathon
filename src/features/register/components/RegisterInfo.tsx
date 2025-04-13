@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 import useProducts from "../hooks/useProducts";
 import { StickyContainer } from "../pages/Register";
+import { FormType } from "../models";
 
 interface RegisterInfoProps {
-  type: "team" | "solo"
+  type: FormType.Solo | FormType.Team
 }
 
 export const RegisterInfo = ({ type }: RegisterInfoProps) => {
@@ -11,7 +12,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
   return (
     <StickyContainer id="info-text">
       <hr className="register-divider"></hr>
-      {type === "solo" ?
+      {type === FormType.Solo ?
         <h4>Anmäl dig till Hensmåla Triathlon 2025</h4>
         :
         <h4>Anmäl er som Lag (2-3 pers.)</h4>
@@ -20,7 +21,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <p>
         Ett motionslopp för alla, motionär som elit. Få en härlig dag i Hensmålas vackra natur med simning (340m), cykling (9.2km), löpning (6.5km) och samtidigt bidra till ALS-forskningen.
       </p>
-      {type === "solo" ?
+      {type ===FormType.Solo ?
         <p>När du anmäler dig som individuell deltagare utför du alla tre
           grenar på egen hand.</p>
         :
@@ -47,7 +48,7 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
       <br></br>
       <br></br>
       <p>Vid frågor kontakta hensmala.triathlon@gmail.com</p>
-      <p><b style={{ fontSize: 20 }}>Startavgift: {type === "solo" ? getPriceByProductName("registration-fee-solo") : getPriceByProductName("registration-fee-team")}kr</b></p>
+      <p><b style={{ fontSize: 20 }}>Startavgift: {type === FormType.Solo ? getPriceByProductName("registration-fee-solo") : getPriceByProductName("registration-fee-team")}kr</b></p>
     </StickyContainer>
   )
 }
