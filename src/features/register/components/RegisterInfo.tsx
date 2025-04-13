@@ -1,18 +1,10 @@
 import { Link } from "react-router-dom"
 import useProducts from "../hooks/useProducts";
-import styled from "styled-components";
-import { NAVBAR_HEIGHT } from "../../../Constants";
+import { StickyContainer } from "../pages/Register";
 
 interface RegisterInfoProps {
   type: "team" | "solo"
 }
-const StickyContainer = styled.div`
-  position: sticky;
-  top: calc(${NAVBAR_HEIGHT}px + 20px);
-  align-self: flex-start;
-  max-width: 50%;
-  min-width: 250px;
-`;
 
 export const RegisterInfo = ({ type }: RegisterInfoProps) => {
   const { getPriceByProductName } = useProducts();
@@ -20,9 +12,9 @@ export const RegisterInfo = ({ type }: RegisterInfoProps) => {
     <StickyContainer id="info-text">
       <hr className="register-divider"></hr>
       {type === "solo" ?
-        <h3>Anmäl dig till Hensmåla Triathlon 2025</h3>
+        <h4>Anmäl dig till Hensmåla Triathlon 2025</h4>
         :
-        <h3>Anmäl er som Lag (2-3 pers.)</h3>
+        <h4>Anmäl er som Lag (2-3 pers.)</h4>
       }
       <b>Datum: 12 juli</b>
       <p>
