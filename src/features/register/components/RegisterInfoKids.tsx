@@ -3,7 +3,7 @@ import { StickyContainer } from "../pages/Register"
 
 export const RegisterInfoKids = () => {
   return (
-    <StickyContainer id="info-text" isFullwidth>
+    <StickyContainer id="info-text">
       <hr className="register-divider"></hr>
       <h4>Anmälan för dig som är under 15 till Hensmåla Triathlon 2025</h4>
       <b>Datum: 12 juli</b>

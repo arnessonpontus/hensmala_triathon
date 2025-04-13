@@ -1,5 +1,5 @@
 import { loadStripe } from '@stripe/stripe-js';
-import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../models';
+import { BaseOrderType, CartItem, FormType, RegisterFormKidsState, RegisterFormSoloState, RegisterFormTeamState } from '../models';
 import { DEFAULT_CONTACT_EMAIL } from '../../../Constants';
 import { getViteEnvVariable } from '../../../utils';
 
@@ -7,7 +7,7 @@ const stripePromise = loadStripe(`${getViteEnvVariable("VITE_STRIPE_PUBLIC")}`);
 
 export const handleCheckout = async (
   formType: FormType,
-  formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType,
+  formData: RegisterFormSoloState | RegisterFormTeamState | RegisterFormKidsState | BaseOrderType,
   cartData: CartItem[],
   showErrorModal: (message: string | string[], title: string) => void
 ) => {

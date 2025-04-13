@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState, StripeMetadata } from "../../../src/features/register/models";
+import { BaseOrderType, CartItem, FormType, RegisterFormKidsState, RegisterFormSoloState, RegisterFormTeamState, StripeMetadata } from "../../../src/features/register/models";
 import { sekToOre, extractShirtsAsString } from "../../../src/features/register/utils";
 
 export const createExtraDonationPurchaseItem = (extraDonation: number): Stripe.Checkout.SessionCreateParams.LineItem[] => {
@@ -67,6 +67,13 @@ export const toMetaData = (
       city2: teamData.city2,
       city3: teamData.city3,
     };
+  }
+
+  if (formType === FormType.Kids) {
+    const kidsData = formData as RegisterFormKidsState;
+    return {...baseMetadata,
+      age: kidsData.year1
+    }
   }
 
   return baseMetadata;

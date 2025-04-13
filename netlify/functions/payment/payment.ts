@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
-import { BaseOrderType, CartItem, FormType, RegisterFormSoloState, RegisterFormTeamState } from '../../../src/features/register/models';
+import { BaseOrderType, CartItem, FormType, RegisterFormKidsState, RegisterFormSoloState, RegisterFormTeamState } from '../../../src/features/register/models';
 import { createExtraDonationPurchaseItem, toMetaData } from '../utils/paymentUtil';
 import { MetadataParam } from '@stripe/stripe-js';
 import { getNodeEnvVariable } from '../utils/envUtil';
@@ -23,7 +23,7 @@ export const handler: Handler = async (event) => {
 
   // Handle POST request for payment creation
   try {
-    const { formType, formData, cartData } = JSON.parse(event.body || '{}') as {formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState | BaseOrderType, cartData: CartItem[]};
+    const { formType, formData, cartData } = JSON.parse(event.body || '{}') as {formType: FormType, formData: RegisterFormSoloState | RegisterFormTeamState | RegisterFormKidsState | BaseOrderType, cartData: CartItem[]};
 
     const { error: errorForm } = validateFormData(formData, formType);
     const { error: errorCart } = validateFormCart(cartData);
