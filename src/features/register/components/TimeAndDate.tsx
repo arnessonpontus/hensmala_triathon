@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const YearPicker = (props: Props) => {
-  const ageLimit = 15;
+  const ageLimit = 16;
   const currentYear = useMemo(() => new Date().getFullYear(), []);
   const minAdultYear = currentYear - ageLimit;
 

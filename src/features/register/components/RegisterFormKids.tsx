@@ -7,7 +7,7 @@ export const RegisterFormKids = ({ handleChange }: FormElementsProps) => {
   return (
     <>
       <FormGroup>
-        <Label for="name">Namn*</Label>
+        <Label for="name">Namn (barnet)*</Label>
         <Input
           required={true}
           type="text"
@@ -19,7 +19,7 @@ export const RegisterFormKids = ({ handleChange }: FormElementsProps) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="email">Epost*</Label>
+        <Label for="email">Epost (Målsman)*</Label>
         <Input
           required={true}
           type="email"
@@ -30,7 +30,7 @@ export const RegisterFormKids = ({ handleChange }: FormElementsProps) => {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Ålder vid genomförandet</Label>
+        <Label>Ålder vid genomförandet*</Label>
         <div style={{ display: "flex" }}>
           <YearPicker
             kidsMode
@@ -38,6 +38,22 @@ export const RegisterFormKids = ({ handleChange }: FormElementsProps) => {
             handleChange={handleChange}
             elemName="year1" />
         </div>
+      </FormGroup>
+      <FormGroup>
+        <Label>Simkunnighet*</Label>
+        <Input
+          required
+          type="select"
+          name="swimLevel"
+          defaultValue={""}
+          onChange={handleChange}
+        >
+          <option disabled value="">
+            Välj simkunnighet
+          </option>
+          <option value="Kan inte simma">Kan inte simma</option>
+          <option value="Kan simma">Kan simma</option>
+        </Input>
       </FormGroup>
 
       <FormGroup>

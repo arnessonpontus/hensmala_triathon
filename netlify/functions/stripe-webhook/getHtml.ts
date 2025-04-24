@@ -232,6 +232,9 @@ export function getKidsHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
                 Ålder: <b>${data.get('age')}</b>
             </li>
             <li>
+                Simkunnighet: <b>${data.get('swimLevel')}</b>
+            </li>
+            <li>
                 Totalt betalat belopp: <b>${data.get('totalToPay')}kr</b>
             </li>
             <li>

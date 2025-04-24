@@ -1,12 +1,45 @@
 import React from "react";
-import { Row, Col } from "reactstrap";
+import styled from "styled-components";
+
+const Container = styled.div`
+  padding: 1rem;
+`;
+
+const Section = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+`;
+
+const TextContent = styled.div`
+  flex: 1 1 50%;
+  padding-right: 1rem;
+`;
+
+const ImageWrapper = styled.div`
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledImage = styled.img`
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+`;
+
+const SubTitle = styled.h3`
+  margin-top: 1rem;
+`;
 
 export const Distances: React.FC = () => {
   return (
-    <div>
+    <Container>
       <h2>Ordinarie tävlingssträckor</h2>
-      <Row>
-        <Col style={{ marginTop: "5vh" }} md={6}>
+
+      <Section>
+        <TextContent>
           <b>Simning - 340 m</b>
           <p>
             Simningen sker runt lillön. Starten går i vattnet vid stranden.
@@ -21,23 +54,14 @@ export const Distances: React.FC = () => {
               här
             </a>
           </p>
-        </Col>
-        <Col
-          style={{
-            marginTop: "5vh",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src="/images/simning.jpg"
-            alt="simma"
-            style={{ width: 200, height: 200 }}
-          ></img>
-        </Col>
-      </Row>
-      <Row>
-        <Col style={{ marginTop: "5vh" }} md={6}>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/simning.jpg" alt="Simmning" />
+        </ImageWrapper>
+      </Section>
+
+      <Section>
+        <TextContent>
           <b>Cykling - 9.2 km</b>
           <p>
             Cyklingen sker runt Hensjön. Cyklingen får först börja när
@@ -52,23 +76,14 @@ export const Distances: React.FC = () => {
               här
             </a>
           </p>
-        </Col>
-        <Col
-          style={{
-            marginTop: "5vh",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src="/images/cykling.jpg"
-            alt="simma"
-            style={{ width: 200, height: 200 }}
-          ></img>
-        </Col>
-      </Row>
-      <Row>
-        <Col style={{ marginTop: "5vh" }} md={6}>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/cykling.jpg" alt="Cykling" />
+        </ImageWrapper>
+      </Section>
+
+      <Section>
+        <TextContent>
           <b>Löpning - 6.5 km</b>
           <p>
             Löpningen sker i skogen på andra sidan väg 120. Var{" "}
@@ -81,23 +96,73 @@ export const Distances: React.FC = () => {
               här
             </a>
           </p>
-        </Col>
-        <Col
-          style={{
-            marginTop: "5vh",
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "5vh",
-          }}
-        >
-          <img
-            src="/images/lopning.jpg"
-            alt="simma"
-            style={{ width: 200, height: 200 }}
-          ></img>
-        </Col>
-      </Row>
-    </div>
-  );
-}
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/lopning.jpg" alt="Löpning" />
+        </ImageWrapper>
+      </Section>
 
+      <h2>Tävlingssträckor barn</h2>
+      <SubTitle>2-8 år</SubTitle>
+
+      <Section>
+        <TextContent>
+          <b>Simning/löpning - 30 m</b>
+          <p>Simning eller löpning i strandkanten med målsmans övervakning.</p>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/kids/barn-stracka1.png" alt="Löpning barn" />
+        </ImageWrapper>
+      </Section>
+      <Section>
+        <TextContent>
+          <b>Cykling - 300 m</b>
+          <p>Cykling på gräs och grusväg.</p>
+          <p>Funktionärer kommer vara utplacerade för att leda barnen rätt.</p>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/kids/barn-stracka5.png" alt="Siming barn" />
+        </ImageWrapper>
+      </Section>
+      <Section>
+        <TextContent>
+          <b>Löpning - 260 m</b>
+          <p>Löpning på grus och grässtig.</p>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/kids/barn-stracka4.png" alt="Siming barn" />
+        </ImageWrapper>
+      </Section>
+
+      <SubTitle>9-15 år</SubTitle>
+
+      <Section>
+        <TextContent>
+          <b>Simning - 25 m</b>
+          <p>Simning nära strandkanten.</p>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/kids/barn-stracka1.png" alt="Löpning barn" />
+        </ImageWrapper>
+      </Section>
+      <Section>
+        <TextContent>
+          <b>Cykling - 550 m</b>
+          <p>Cykling på gräs och grusväg.</p>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/kids/barn-stracka3.png" alt="Siming barn" />
+        </ImageWrapper>
+      </Section>
+      <Section>
+        <TextContent>
+          <b>Löpning - 360 m</b>
+          <p>Löpning på gräsplan och stig.</p>
+        </TextContent>
+        <ImageWrapper>
+          <StyledImage src="/images/distances/kids/barn-stracka2.png" alt="Siming barn" />
+        </ImageWrapper>
+      </Section>
+    </Container>
+  );
+};

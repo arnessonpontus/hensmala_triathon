@@ -127,7 +127,7 @@ export const RegisterForm = ({ type }: Props) => {
             <Label for="totalAmountToPay">Totalt att betala:</Label>
             {totalCost != null ? <h5>{totalCost}kr</h5> : <ErrorBanner text="Kunde inte hämta priser" />}
           </FormGroup>
-          <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)} />
+         {type !== FormType.Kids &&  <CouponCodeInput enteredCoupon={coupon} onCouponEntered={(coupon) => setCoupon(coupon)} />}
           <RegisterButton
             type="submit"
             disabled={!allConsentsChecked || loading}

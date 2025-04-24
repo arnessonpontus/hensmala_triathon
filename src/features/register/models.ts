@@ -46,6 +46,7 @@ export interface RegisterFormSoloState extends BaseOrderType {
 
 export interface RegisterFormKidsState extends BaseOrderType {
   year1: string;
+  swimLevel: string;
 }
 
 export interface StripeMetadata {
@@ -66,6 +67,7 @@ export interface StripeMetadata {
   gender?: string;
   shirtsString?: string;
   age?: string;
+  swimLevel?: string;
   numCaps: string;
   extraDonation: string;
   info: string;

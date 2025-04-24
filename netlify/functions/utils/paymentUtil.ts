@@ -72,7 +72,8 @@ export const toMetaData = (
   if (formType === FormType.Kids) {
     const kidsData = formData as RegisterFormKidsState;
     return {...baseMetadata,
-      age: kidsData.year1
+      age: kidsData.year1,
+      swimLevel: kidsData.swimLevel
     }
   }
 

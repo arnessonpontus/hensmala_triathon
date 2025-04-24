@@ -88,6 +88,7 @@ export const getEmptyFormState = (type: FormType): AnyFormstate => {
         email1: "",
         year1: "",
         info: "",
+        swimLevel: "",
         extraDonation: 0,
       }
     default:

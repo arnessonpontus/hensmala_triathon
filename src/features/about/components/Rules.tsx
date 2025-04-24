@@ -38,8 +38,13 @@ export const Rules: React.FC = () => {
         har eget ansvar för din försäkring. Du har eget ansvar att läsa igenom
         reglerna, och att agera efter dem och efter vanliga trafikregler.
       </p>
+      <p>
+        Åldersgränsen är 16 år, men dispans kan ges ut vid förälders tillåtelse.
+      </p>
 
-      Åldersgränsen är 16 år, men dispans kan ges ut vid förälders tillåtelse.
+      <h4>Barntriathlon</h4>
+      <p>Barnen måste akompanjeras med målsman eller någon annan anhörig.</p>
+      <p>Vid önskemål kan möjlighet om förflyttning till en annan barngrupp diskuteras.</p>
     </div>
   );
 }

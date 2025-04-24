@@ -82,6 +82,13 @@ const kidsSchema = baseOrderTypeSchema.keys({
     'string.pattern.base': 'Ålder måste vara ett giltigt år.',
     'any.required': 'Ålder är obligatoriskt.'
   }),
+  swimLevel: Joi.string()
+    .valid('Kan simma', 'Kan inte simma')
+    .required()
+    .messages({
+      'any.only': 'Välj ett giltigt alternativ för simkunnighet.',
+      'any.required': 'Simkunnighet är obligatoriskt.',
+    }),
 });
 
 const teamSchema = baseOrderTypeSchema.keys({
@@ -185,6 +192,7 @@ export function validateFormData(formData: any, formType: FormType) {
   } else if (formType === FormType.MerchOrder) {
     schema = baseOrderTypeSchema;
   } else if (formType === FormType.Kids) {
+    // TODO: VARFÖR INTE VALIDATE SWIM?
     schema = kidsSchema;
   } else {
     throw new Error('Ogiltig formulärtyp');
