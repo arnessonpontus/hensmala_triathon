@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ImageWithModal from "../../../components/ImageWithModal";
 
 const Container = styled.div`
   padding: 1rem;
@@ -21,12 +22,6 @@ const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const StyledImage = styled.img`
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
 `;
 
 const SubTitle = styled.h3`
@@ -56,7 +51,7 @@ export const Distances: React.FC = () => {
           </p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/simning.jpg" alt="Simmning" />
+          <ImageWithModal src="/images/distances/simning.jpg" alt="Simmning" />
         </ImageWrapper>
       </Section>
 
@@ -78,7 +73,7 @@ export const Distances: React.FC = () => {
           </p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/cykling.jpg" alt="Cykling" />
+          <ImageWithModal src="/images/distances/cykling.jpg" alt="Cykling" />
         </ImageWrapper>
       </Section>
 
@@ -98,7 +93,7 @@ export const Distances: React.FC = () => {
           </p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/lopning.jpg" alt="Löpning" />
+          <ImageWithModal src="/images/distances/lopning.jpg" alt="Löpning" />
         </ImageWrapper>
       </Section>
 
@@ -111,7 +106,7 @@ export const Distances: React.FC = () => {
           <p>Simning eller löpning i strandkanten med målsmans övervakning.</p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/kids/barn-stracka1.png" alt="Löpning barn" />
+          <ImageWithModal src="/images/distances/kids/barn-stracka1.png" alt="Löpning barn" />
         </ImageWrapper>
       </Section>
       <Section>
@@ -121,7 +116,7 @@ export const Distances: React.FC = () => {
           <p>Funktionärer kommer vara utplacerade för att leda barnen rätt.</p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/kids/barn-stracka5.png" alt="Siming barn" />
+          <ImageWithModal src="/images/distances/kids/barn-stracka5.png" alt="Siming barn" />
         </ImageWrapper>
       </Section>
       <Section>
@@ -130,7 +125,7 @@ export const Distances: React.FC = () => {
           <p>Löpning på grus och grässtig.</p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/kids/barn-stracka4.png" alt="Siming barn" />
+          <ImageWithModal src="/images/distances/kids/barn-stracka4.png" alt="Siming barn" />
         </ImageWrapper>
       </Section>
 
@@ -142,7 +137,7 @@ export const Distances: React.FC = () => {
           <p>Simning nära strandkanten.</p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/kids/barn-stracka1.png" alt="Löpning barn" />
+          <ImageWithModal src="/images/distances/kids/barn-stracka1.png" alt="Löpning barn" />
         </ImageWrapper>
       </Section>
       <Section>
@@ -151,7 +146,7 @@ export const Distances: React.FC = () => {
           <p>Cykling på gräs och grusväg.</p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/kids/barn-stracka3.png" alt="Siming barn" />
+          <ImageWithModal src="/images/distances/kids/barn-stracka3.png" alt="Siming barn" />
         </ImageWrapper>
       </Section>
       <Section>
@@ -160,7 +155,7 @@ export const Distances: React.FC = () => {
           <p>Löpning på gräsplan och stig.</p>
         </TextContent>
         <ImageWrapper>
-          <StyledImage src="/images/distances/kids/barn-stracka2.png" alt="Siming barn" />
+          <ImageWithModal src="/images/distances/kids/barn-stracka2.png" alt="Siming barn"/>
         </ImageWrapper>
       </Section>
     </Container>

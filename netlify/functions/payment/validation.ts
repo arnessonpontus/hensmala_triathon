@@ -192,7 +192,6 @@ export function validateFormData(formData: any, formType: FormType) {
   } else if (formType === FormType.MerchOrder) {
     schema = baseOrderTypeSchema;
   } else if (formType === FormType.Kids) {
-    // TODO: VARFÖR INTE VALIDATE SWIM?
     schema = kidsSchema;
   } else {
     throw new Error('Ogiltig formulärtyp');

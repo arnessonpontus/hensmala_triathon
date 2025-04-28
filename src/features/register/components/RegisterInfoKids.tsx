@@ -11,7 +11,7 @@ export const RegisterInfoKids = () => {
       <b>Datum: 12 juli</b>
       <p>Första start sker 10.30.</p>
       <p>
-        Ett motionslopp för barn 9-15. Få en härlig dag i Hensmålas vackra natur med simning (eller löpning längs strandkanten för de små), cykling, löpning och samtidigt bidra till ALS-forskningen.
+        Ett motionslopp för barn 2-15. Få en härlig dag i Hensmålas vackra natur med simning (eller löpning längs strandkanten för de små), cykling, löpning och samtidigt bidra till ALS-forskningen.
       </p>
       <p>
         För mer information om sträckorna gå till {" "}
