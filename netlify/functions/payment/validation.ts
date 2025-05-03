@@ -76,6 +76,21 @@ const soloSchema = baseOrderTypeSchema.keys({
   }),
 });
 
+const kidsSchema = baseOrderTypeSchema.keys({
+  year1: Joi.number().integer().min(0).max(99).required().messages({
+    'string.empty': 'Ålder krävs.',
+    'string.pattern.base': 'Ålder måste vara ett giltigt år.',
+    'any.required': 'Ålder är obligatoriskt.'
+  }),
+  swimLevel: Joi.string()
+    .valid('Kan simma', 'Kan inte simma')
+    .required()
+    .messages({
+      'any.only': 'Välj ett giltigt alternativ för simkunnighet.',
+      'any.required': 'Simkunnighet är obligatoriskt.',
+    }),
+});
+
 const teamSchema = baseOrderTypeSchema.keys({
   teamName: Joi.string().min(1).max(40).required().messages({
     'string.empty': 'Lagnamn krävs.',
@@ -176,6 +191,8 @@ export function validateFormData(formData: any, formType: FormType) {
     schema = teamSchema;
   } else if (formType === FormType.MerchOrder) {
     schema = baseOrderTypeSchema;
+  } else if (formType === FormType.Kids) {
+    schema = kidsSchema;
   } else {
     throw new Error('Ogiltig formulärtyp');
   }

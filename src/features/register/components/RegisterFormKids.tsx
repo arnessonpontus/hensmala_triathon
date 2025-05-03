@@ -1,12 +1,13 @@
+
 import { FormGroup, Label, Input } from "reactstrap";
-import { DayPicker, MonthPicker, YearPicker } from "./TimeAndDate";
+import { YearPicker } from "./TimeAndDate";
 import { FormElementsProps } from "./RegisterForm";
 
-export const RegisterFormSolo = ({ handleChange }: FormElementsProps) => {
+export const RegisterFormKids = ({ handleChange }: FormElementsProps) => {
   return (
     <>
       <FormGroup>
-        <Label for="name">Namn*</Label>
+        <Label for="name">Namn (barnet)*</Label>
         <Input
           required={true}
           type="text"
@@ -18,7 +19,7 @@ export const RegisterFormSolo = ({ handleChange }: FormElementsProps) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="email">Epost*</Label>
+        <Label for="email">Epost (Målsman)*</Label>
         <Input
           required={true}
           type="email"
@@ -29,51 +30,32 @@ export const RegisterFormSolo = ({ handleChange }: FormElementsProps) => {
         />
       </FormGroup>
       <FormGroup>
-        <Label for="birthdayID">Födelsedatum*</Label>
+        <Label>Ålder vid genomförandet*</Label>
         <div style={{ display: "flex" }}>
           <YearPicker
+            kidsMode
             required
             handleChange={handleChange}
             elemName="year1" />
-          <MonthPicker
-            required
-            handleChange={handleChange}
-            elemName="month1"
-          />
-          <DayPicker
-            required
-            handleChange={handleChange}
-            elemName="day1" />
         </div>
       </FormGroup>
       <FormGroup>
-        <Label for="genderSelection">Kön*</Label>
+        <Label>Simkunnighet*</Label>
         <Input
           required
           type="select"
-          name="gender"
-          id="genderSelection"
+          name="swimLevel"
           defaultValue={""}
           onChange={handleChange}
         >
           <option disabled value="">
-            Välj kön
+            Välj simkunnighet
           </option>
-          <option value="Herr">Herr</option>
-          <option value="Dam">Dam</option>
+          <option value="Kan inte simma">Kan inte simma</option>
+          <option value="Kan simma">Kan simma</option>
         </Input>
       </FormGroup>
 
-      <FormGroup>
-        <Label for="city"> Ort (klubb)</Label>
-        <Input
-          type="text"
-          name="city1"
-          id="city1"
-          placeholder="Hensmåla löparförening"
-          onChange={handleChange}
-        />
-      </FormGroup>
       <FormGroup>
         <Label for="info">Information</Label>
         <Input

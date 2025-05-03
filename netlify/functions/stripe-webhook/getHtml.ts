@@ -19,9 +19,8 @@ const getCouponNameListItem = (code?: string) => {
   }
 }
 
-export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
-  return (`
-        <!DOCTYPE html>
+const getCommonHtmlStart = () => {
+    return `<!DOCTYPE html>
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,7 +28,12 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
         <title>HT Confirm Email</title>
         </head>
         <style type="text/css">
-        </style>
+        </style>`
+}
+
+export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
+  return (`
+        ${getCommonHtmlStart()}
         <div>
           <h1>Hej ${data.get('name1').split(" ")[0]}!</h1>
           <h2>
@@ -82,15 +86,7 @@ export function getSoloHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
 
 export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
   return (`
-        <!DOCTYPE html>
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head> 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>HT Confirm Email</title>
-        </head>
-        <style type="text/css">
-        </style>
+       ${getCommonHtmlStart()}
         <div>
           <h1>Hej ${data.get('teamName')}!</h1>
           <h2>
@@ -173,15 +169,7 @@ export function getTeamHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
 }
 export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
   return (`
-        <!DOCTYPE html>
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head> 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>HT Confirm Email</title>
-        </head>
-        <style type="text/css">
-        </style>
+        ${getCommonHtmlStart()}
         <div>
           <h1>Hej ${data.get('name1').split(" ")[0]}!</h1>
           <h2>
@@ -221,6 +209,54 @@ export function getShirtHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
         </div>
     `);
 }
+
+export function getKidsHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
+    return (`
+          ${getCommonHtmlStart()}
+          <div>
+            <h1>Hej ${data.get('name1').split(" ")[0]}!</h1>
+            <h2>
+                Tack för din anmälan till Hensmåla Triathlon 2025 - Barn!
+            </h2>
+            <p>
+                Vi kommer framöver att skicka ut ett mail med vidare information. Här är dina uppgifter:
+            </p>
+            <ul>
+            <li>
+                Namn: <b>${data.get('name1')}</b>
+            </li>
+            <li>
+                Epost: <b>${data.get('email1')}</b>
+            </li>
+            <li>
+                Ålder: <b>${data.get('age')}</b>
+            </li>
+            <li>
+                Simkunnighet: <b>${data.get('swimLevel')}</b>
+            </li>
+            <li>
+                Totalt betalat belopp: <b>${data.get('totalToPay')}kr</b>
+            </li>
+            <li>
+                Tröjor: <b>${data.get('shirtsString') ? data.get('shirtsString') : '0'}</b>
+            </li>
+            <li>
+                Kepsar: <b>${data.get('numCaps')}</b>
+            </li>
+            <li>
+                Extra donation: <b>${data.get('extraDonation')}kr</b>
+            </li>
+            <li>
+                Övrig information: <b>${data.get('info')}</b>
+            </li>
+            </ul>
+            <p>Starten går klockan 11.00, var gärna i god tid.</p>
+            <p>Vi ses den 12e Juli!</p>
+            <p>${getRegisterMerchPickupText(data)}</p>
+            <img src="cid:logo" alt="Logga" width="200px"'/>
+          </div>
+      `);
+  }
 
 export function getRegistrationErrorHtml(registrationName: string, registrationEmail: string, registrationCity: string, paymentName: any, paymentMail: any, paymentPhone: any) {
   return (`Något blev fel vid en registrering även om betalning gick igenom. Kontakta personen manuellt!

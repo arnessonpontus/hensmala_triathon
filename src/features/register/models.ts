@@ -44,6 +44,11 @@ export interface RegisterFormSoloState extends BaseOrderType {
   city1: string;
 }
 
+export interface RegisterFormKidsState extends BaseOrderType {
+  year1: string;
+  swimLevel: string;
+}
+
 export interface StripeMetadata {
   formType: string;
   birthday1?: string;
@@ -61,6 +66,8 @@ export interface StripeMetadata {
   email3?: string;
   gender?: string;
   shirtsString?: string;
+  age?: string;
+  swimLevel?: string;
   numCaps: string;
   extraDonation: string;
   info: string;
@@ -87,13 +94,16 @@ export interface RegisterFormTeamState extends BaseOrderType {
   city3: string;
 }
 
+export type AnyFormstate = RegisterFormTeamState | RegisterFormKidsState | RegisterFormSoloState;
+
 export enum FormType {
   Solo = "solo",
   Team = "team",
+  Kids = "kids",
   MerchOrder = "merch_order",
 }
 
-export const registerTypes = ["registration-fee-solo", "registration-fee-team"] as const;
+export const registerTypes = ["registration-fee-solo", "registration-fee-team", "registration-fee-kids"] as const;
 export type registerType = typeof registerTypes[number];
 
 export const productTypes = [...registerTypes, "funktion", "bomull", "keps", "extra-donation"] as const;

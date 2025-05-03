@@ -1,6 +1,6 @@
 import { GoogleSpreadsheetRow } from "google-spreadsheet";
 import { FormType, StripeMetadata } from "../../../src/features/register/models";
-import { getSoloHtml, getTeamHtml, getShirtHtml, getRegistrationErrorHtml } from "./getHtml";
+import { getSoloHtml, getTeamHtml, getShirtHtml, getRegistrationErrorHtml, getKidsHtml } from "./getHtml";
 import { createTransport } from "nodemailer";
 import { getNodeEnvVariable } from "../utils/envUtil";
 import { createQR } from "./createQR";
@@ -28,6 +28,8 @@ export async function sendEmail(addedRow: GoogleSpreadsheetRow<Record<string, an
       html = getTeamHtml(addedRow);
     } else if (registerType === FormType.MerchOrder) {
       html = getShirtHtml(addedRow);
+    } else if (registerType === FormType.Kids) {
+      html = getKidsHtml(addedRow);
     } else {
       html = getSoloHtml(addedRow);
     }

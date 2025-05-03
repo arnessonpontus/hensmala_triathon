@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import { CartItem, ProductWithExpandedPrice, registerType, registerTypes, Shirt } from "./models";
+import { AnyFormstate, CartItem, FormType, ProductWithExpandedPrice, registerType, registerTypes, Shirt } from "./models";
 import Stripe from 'stripe';
 
 export function extractShirtsAsString(items: CartItem[]) {
@@ -52,6 +52,56 @@ export const getDaysFromNow = (day: string) => {
   return Math.ceil(moment(day).tz("Europe/Stockholm").diff(moment().tz("Europe/Stockholm")) / 86400000)
 }
 
-export const getInverseDiscountFromPercentOff = (percent_off?: number | null) =>  1 - (percent_off ?? 0)/100;
+export const getInverseDiscountFromPercentOff = (percent_off?: number | null) => 1 - (percent_off ?? 0) / 100;
 
 export const isProductRegistration = (product: ProductWithExpandedPrice) => registerTypes.includes(product.metadata.data_id as registerType);
+
+export const getEmptyFormState = (type: FormType): AnyFormstate => {
+  switch (type) {
+    case FormType.Team:
+      return {
+        teamName: "",
+        name1: "",
+        email1: "",
+        year1: "",
+        month1: "",
+        day1: "",
+        city1: "",
+        name2: "",
+        email2: "",
+        year2: "",
+        month2: "",
+        day2: "",
+        city2: "",
+        name3: "",
+        email3: "",
+        year3: "",
+        month3: "",
+        day3: "",
+        city3: "",
+        info: "",
+        extraDonation: 0,
+      }
+    case FormType.Kids:
+      return {
+        name1: "",
+        email1: "",
+        year1: "",
+        info: "",
+        swimLevel: "",
+        extraDonation: 0,
+      }
+    default:
+      return {
+        name1: "",
+        email1: "",
+        year1: "",
+        month1: "",
+        day1: "",
+        info: "",
+        gender: "",
+        city1: "",
+        extraDonation: 0,
+      }
+  }
+}

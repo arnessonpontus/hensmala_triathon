@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Input } from "reactstrap";
 
 interface Props {
   required: boolean,
   elemName: string,
+  kidsMode?: boolean
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const YearPicker = (props: Props) => {
-  let years = [];
-  for (let i = 2008; i > 1930; i--) {
-    years.push(i);
-  }
+  const ageLimit = 16;
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
+  const minAdultYear = currentYear - ageLimit;
+
+  const years = useMemo(() => {
+    const result: number[] = [];
+
+    if (props.kidsMode) {
+      for (let i = 0; i < ageLimit; i++) {
+        result.push(i);
+      }
+    } else {
+      for (let i = minAdultYear; i >= 1940; i--) {
+        result.push(i);
+      }
+    }
+
+    return result;
+  }, [props.kidsMode, currentYear, minAdultYear]);
+
   return (
     <Input
       className="mr-2"

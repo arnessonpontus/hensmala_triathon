@@ -22,6 +22,12 @@ export function selectSpreadsheetDetails(formType: string): { spreadsheetID: str
         idType: "O",
         registerType: FormType.MerchOrder,
       };
+    case FormType.Kids:
+      return {
+        spreadsheetID: getNodeEnvVariable("GOOGLE_SPREADSHEET_ID_KIDS"),
+        idType: "K",
+        registerType: FormType.Kids,
+      };
     default:
       return false;
   }

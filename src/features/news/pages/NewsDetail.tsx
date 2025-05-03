@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ImageGallery, { ReactImageGalleryItem } from "react-image-gallery";
 import { Spinner } from "reactstrap";
 import ExternalInternalButtonLink from "../../../components/ExternalInternalButtonLink";
@@ -39,6 +39,7 @@ export const NewsDetail = () => {
   const { id } = useParams();
   const [newsDetail, setNewsDetail] = useState<Entry<TypeNewsEntrySkeleton, undefined, string> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const imageGalleryRef = useRef(null);
 
   if (!id) {
     return <p>Kunde inte hitta nyhet</p>
@@ -85,7 +86,7 @@ export const NewsDetail = () => {
           </div>
         ) : images.length > 0 &&
         <StyledImageWrapper>
-          <ImageGallery showPlayButton={false} showFullscreenButton={true} items={images} showThumbnails={images.length > 1} />
+          <ImageGallery ref={imageGalleryRef} showPlayButton={false} showFullscreenButton={true} items={images} showThumbnails={images.length > 1 } onClick={() => (imageGalleryRef.current as any).toggleFullScreen()}/>
         </StyledImageWrapper>
         }
 
