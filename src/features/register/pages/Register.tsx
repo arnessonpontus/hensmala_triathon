@@ -41,8 +41,14 @@ export const ScrollToInfoButton = styled(BaseButton)`
 
 export const TabButton = styled(BaseButton)`
   background-color: transparent;
+  box-sizing: border-box;
   padding: 10px;
-  width: 100px;
+  display: block;
+
+  width: 33%;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     background-color: aliceblue;
@@ -53,6 +59,11 @@ export const Tabs = styled.div`
   display: flex;
   position: relative;
   align-self: start;
+  width: 50%;
+
+  @media (max-width: 770px) {
+    width: 100%;
+  }
 `;
 
 export const StickyContainer = styled.div<{isFullwidth?: boolean}>`

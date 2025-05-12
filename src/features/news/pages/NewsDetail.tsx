@@ -18,6 +18,11 @@ const StyledContainer = styled.div`
   align-items: center;
   flex-direction: column;
   align-self: center;
+  
+  ul, ol {
+    padding-inline-start: 1.5rem;
+    margin-inline-start: 0;
+  }
 `;
 
 const StyledImageWrapper = styled.div`
