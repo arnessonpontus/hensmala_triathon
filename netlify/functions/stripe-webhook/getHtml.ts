@@ -250,7 +250,7 @@ export function getKidsHtml(data: GoogleSpreadsheetRow<Record<string, any>>) {
                 Övrig information: <b>${data.get('info')}</b>
             </li>
             </ul>
-            <p>Starten går klockan 11.00, var gärna i god tid.</p>
+            <p>Första start är klockan 10.30 för de minsta, där efter startar de äldre barnen.</p>
             <p>Vi ses den 12e Juli!</p>
             <p>${getRegisterMerchPickupText(data)}</p>
             <img src="cid:logo" alt="Logga" width="200px"'/>

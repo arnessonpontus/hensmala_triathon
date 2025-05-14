@@ -102,6 +102,7 @@ export const RegisterForm = ({ type }: Props) => {
               Visa info <i className="fas fa-angle-down angle-down"></i>
             </ScrollToInfoButton>
           </div>
+          <p><em>Sista dag för att beställa kläder är 5e juni.</em></p>
           {type === FormType.Team ? <RegisterFormTeam handleChange={handleChange} />
             : type === FormType.Kids ? <RegisterFormKids handleChange={handleChange} />
               : <RegisterFormSolo handleChange={handleChange} />
